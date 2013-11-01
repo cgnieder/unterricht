@@ -1,3 +1,20 @@
+\RequirePackage{acro}
+
+\newcommand*\siehe{$\rightarrow$~}
+\newcommand*\begriff{\siehe\ac}
+\newcommand*\begriffa{\siehe\aca}
+
+\DeclareAcronym{Abszisse}{
+  short = Abszisse ,
+  long  = Ein Fachbegriff für die $x$-Achse.
+}
+\DeclareAcronym{Definitionsmenge}{
+  short = Definitionsmenge ,
+  long  = {
+    Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
+    \begriff*{Wertemenge} zugeordnet werden.
+  }
+}
 \DeclareAcronym{Funktion}{
   short = Funktion ,
   long  = {
@@ -22,19 +39,21 @@
   } ,
   alt   = Geraden
 }
-\DeclareAcronym{Steigung}{
-  short = Steigung ,
+\DeclareAcronym{Graph}{
+  short = Graph ,
   long  = {
-    Ein Maß dafür, wie steil der \begriff*{Graph} einer \siehe\aca*{Gerade} im
-    Koordinatensystem liegt.
-  }
+    Die graphische Darstellung einer \begriff*{Funktion} im
+    Koordinatensystem.
+  } ,
+  alt   = Graphen
 }
-\DeclareAcronym{y-Achsenabschnitt}{
-  short = $y$-Achsenabschnitt ,
-  long  = {
-    Die Stelle, an der der \begriff*{Graph} einer \siehe\aca*{Gerade} die
-    $y$-Achse schneidet.
-  }
+\DeclareAcronym{Ordinate}{
+  short = Ordinate ,
+  long  = Ein Fachbegriff für die $y$-Achse.
+}
+\DeclareAcronym{Ordinatenabschnitt}{
+  short = Ordinatenabschnitt ,
+  long  = Ein Fachbegriff für die \begriff*{y-Achsenabschnitt}.
 }
 \DeclareAcronym{Parabel}{
   short = Parabel ,
@@ -44,19 +63,19 @@
   } ,
   alt   = Parabeln
 }
-\DeclareAcronym{Graph}{
-  short = Graph ,
+\DeclareAcronym{Steigung}{
+  short = Steigung ,
   long  = {
-    Die graphische Darstellung einer \begriff*{Funktion} im
-    Koordinatensystem.
-  } ,
-  alt   = Graphen
+    Ein Maß dafür, wie steil der \begriff*{Graph} einer \begriffa*{Gerade} im
+    Koordinatensystem liegt.
+  }
 }
-\DeclareAcronym{Zuordnung}{
-  short = Zuordnung ,
+\DeclareAcronym{Steigungswinkel}{
+  short = Steigungswinkel ,
   long  = {
-    Eine Gruppe von \siehe\aca*{Tupel}, die nach einer bestimmten Regel
-    gebildet werden.
+    Der Winkel, den der \begriff*{Graph} einer \begriffa*{Gerade} mit der
+    $x$-Achse bildet.  Er wird aus der \begriff*{Steigung} über
+    $\tan(\alpha)=m$ berechnet.
   }
 }
 \DeclareAcronym{Tupel}{
@@ -66,13 +85,6 @@
     als Koordinaten eines Punktes im Koordinatensystem interpretiert.
   } ,
   alt   = Tupeln
-}
-\DeclareAcronym{Definitionsmenge}{
-  short = Definitionsmenge ,
-  long  = {
-    Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
-    \begriff*{Wertemenge} zugeordnet werden.
-  }
 }
 \DeclareAcronym{Wertemenge}{
   short = Wertemenge ,
@@ -86,5 +98,19 @@
   long  = {
     Eine Tabelle, in der einige \begriff*{Tupel} einer \begriff*{Zuordnung}
     aufgelistet sind.
+  }
+}
+\DeclareAcronym{y-Achsenabschnitt}{
+  short = $y$-Achsenabschnitt ,
+  long  = {
+    Die Stelle, an der der \begriff*{Graph} einer \begriffa*{Gerade} die
+    $y$-Achse schneidet.  Man nennt sie auch \begriff*{Ordinatenabschnitt}.
+  }
+}
+\DeclareAcronym{Zuordnung}{
+  short = Zuordnung ,
+  long  = {
+    Eine Gruppe von \begriffa*{Tupel}, die nach einer bestimmten Regel
+    gebildet werden.
   }
 }

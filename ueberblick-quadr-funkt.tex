@@ -1,15 +1,15 @@
 % arara: pdflatex: { shell: on }
-% !arara: pdflatex: { shell: on }
+% arara: pdflatex: { shell: on }
 \documentclass{arbeitsblatt}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 
-\title{Quadratische Funktionen}
+\title{(Quadratische) Funktionen}
 
 \usepackage{silence}
 \WarningFilter{microtype}{I cannot find a protrusion list}
 
-\usepackage[sort]{acro}
+\usepackage[sort,only-used=false]{acro}
 \acsetup{
   first-style=short ,
   short-format=\scshape ,
@@ -19,126 +19,27 @@
   list-name = Begriffe
 }
 
-\DeclareAcronym{Funktion}{
-  short = Funktion ,
-  long  = {
-    Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl der
-    \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl der
-    \begriff*{Wertemenge} zugeordnet, und zwar so, dass man eindeutig sagen
-    kann, welche es ist.
-  }
-}
-\DeclareAcronym{Funktionsgleichung}{
-  short = Funktionsgleichung ,
-  long  = {
-    Die Vorschrift, nach der man den Wert aus der \begriff*{Wertemenge} bilden
-    kann, der einer Zahl aus der \begriff*{Definitionsmenge} zugeordnet wird.
-  }
-}
-\DeclareAcronym{Gerade}{
-  short = Gerade ,
-  long  = {
-    Eine lineare \begriff*{Funktion}.  Ihre Wertepaare liegen im Schaubild
-    alle auf einer geraden Linie.
-  } ,
-  alt   = Geraden
-}
-\DeclareAcronym{Steigung}{
-  short = Steigung ,
-  long  = {
-    Ein Maß dafür, wie steil der \begriff*{Graph} einer \siehe\aca*{Gerade} im
-    Koordinatensystem liegt.
-  }
-}
-\DeclareAcronym{y-Achsenabschnitt}{
-  short = $y$-Achsenabschnitt ,
-  long  = {
-    Die Stelle, an der der \begriff*{Graph} einer \siehe\aca*{Gerade} die
-    $y$-Achse schneidet.
-  }
-}
-\DeclareAcronym{Parabel}{
-  short = Parabel ,
-  long  = {
-    Der \begriff*{Graph} einer quadratischen Funktion.  Oft auch als Synonym
-    für \emph{quadratische Funktion} verwendet.
-  } ,
-  alt   = Parabeln
-}
-\DeclareAcronym{Graph}{
-  short = Graph ,
-  long  = {
-    Die graphische Darstellung einer \begriff*{Funktion} im
-    Koordinatensystem.
-  } ,
-  alt   = Graphen
-}
-\DeclareAcronym{Zuordnung}{
-  short = Zuordnung ,
-  long  = {
-    Eine Gruppe von \siehe\aca*{Tupel}, die nach einer bestimmten Regel
-    gebildet werden.
-  }
-}
-\DeclareAcronym{Tupel}{
-  short = Tupel ,
-  long  = {
-    Wertepaare oder Zahlenpaare wie $\punkt*(1,2)$.  In der Regel werden sie
-    als Koordinaten eines Punktes im Koordinatensystem interpretiert.
-  } ,
-  alt   = Tupeln
-}
-\DeclareAcronym{Definitionsmenge}{
-  short = Definitionsmenge ,
-  long  = {
-    Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
-    \begriff*{Wertemenge} zugeordnet werden.
-  }
-}
-\DeclareAcronym{Wertemenge}{
-  short = Wertemenge ,
-  long  = {
-    Die Menge der Zahlen, die denen einer ersten Menge, der
-    \begriff*{Definitionsmenge} zugeordnet werden.
-  }
-}
-\DeclareAcronym{Wertetabelle}{
-  short = Wertetabelle ,
-  long  = {
-    Eine Tabelle, in der einige \begriff*{Tupel} einer \begriff*{Zuordnung}
-    aufgelistet sind.
-  }
-}
-
-\makeatletter
-\newcommand*\menge[1]{\mathbb{#1}}
-\newcommand*\punkt{\@ifstar{\@punkt}{\@Punkt}}
-\newcommand*\@Punkt[1]{#1\@punkt}
-\def\@punkt(#1,#2){(#1\vert#2)}
-
-\newcommand*\siehe{$\rightarrow$~}
-\newcommand*\begriff{\siehe\ac}
-\makeatother
-
-\usepackage[framemethod=tikz]{mdframed}
-\xdefinecolor{beispiel}{rgb}{0.02,0.04,0.48}
-\newcounter{beispiel}
-\newmdenv[
-  linecolor  = beispiel ,
-  linewidth  = .5ex ,
-  rightline  = false ,
-  leftline   = false ,
-  frametitle = {\refstepcounter{beispiel}\textbf{Beispiel~\thebeispiel.}}
-]{beispiel}
+\input{mathe-kl10.acro}
 
 \begin{document}
 
 \maketitle
 
+\begin{abstract}
+  Diese Übersicht soll grundsätzlich nur quadratische Funktionen behandeln und
+  alle typischen Aufgabestellungen enthalten, wie sie in einer
+  Realschulprüfung vorkommen können.  Da dort das Thema "`quadratische
+  Funktionen"' aber nicht klar von den linearen Funktionen zu trennen sind,
+  werden diese hier auch kurz behandelt.
+  
+  Am Ende der Übersicht befindet sich eine Liste häufig verwendeter Begriffe
+  mit jeweils einer kurzen Erklärung.  Begriff, die dort auftauchen, sind mit
+  einem Pfeil gekennzeichnet, so wie hier \begriff{Funktion}.
+\end{abstract}
+
 \tableofcontents
 
-\section{Funktionen}
-\subsection{Allgemeines -- Begriffsklärung}
+\section{Allgemeines -- Begriffsklärung}
 
 Unter einer \begriff{Funktion} versteht man eine \emph{eindeutige}
 \begriff{Zuordnung}.  Zuordung bedeutet, dass einer Zahl aus einer Gruppe
@@ -149,7 +50,7 @@ bekommt das Symbol $x$.  Die zweite Gruppe nennt man \begriff{Wertemenge}
 $\menge{W}$, eine Zahl dieser Gruppe bekommt das Symbol $y$ oder $f(x)$.  Eine
 Tabelle, in der einige der Zahlenpaare (man nennt sie auch \begriff{Tupel})
 aufgelistet sind, nennt man \begriff{Wertetabelle}.  Ein Beispiel dafür ist
-Tabelle~\ref{tab:wertetabelle}.
+Tabelle~\vref{tab:wertetabelle}.
 
 \begin{table}
   \centering
@@ -163,56 +64,79 @@ Tabelle~\ref{tab:wertetabelle}.
 \end{table}
 
 Diese Zahlenpaare kann man in einem Koordinatensystem einzeichen.  Für die
-Werte aus Tabelle~\ref{tab:wertetabelle} wurde das in
-Abbildung~\ref{fig:wertepaare} gemacht.
+Werte aus Tabelle~\vref{tab:wertetabelle} wurde das in
+Abbildung~\vref{fig:wertepaare} gemacht.
 
 \begin{figure}
   \centering
-  \begin{tikzpicture}[scale=.5]
-    \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
-    \tkzGrid
-    \tkzAxeXY
-    \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
-    \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
-  \end{tikzpicture}
-  \caption{Die Wertepaare aus Tabelle~\ref{tab:wertetabelle} in einem
-    Koordinatensystem}.
+  \begin{minipage}[t]{.45\linewidth}
+    \begin{tikzpicture}[scale=.5]
+      \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
+      \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
+    \end{tikzpicture}
+    \subcaption{Die Wertepaare aus Tabelle~\vref{tab:wertetabelle} in einem
+      Koordinatensystem.}
+    \label{fig:wertepaare-punkte}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[t]{.45\linewidth}
+    \begin{tikzpicture}[scale=.5]
+      \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
+      \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
+      \tkzFct[color=red]{(x+1)**2-1}
+    \end{tikzpicture}
+    \subcaption{Die Wertepaare aus Tabelle~\vref{tab:wertetabelle} liegen alle
+      auf einer Linie.}
+    \label{fig:wertepaare-linie}
+  \end{minipage}
+  \caption{Wertepaare einer Funktion bilden in der Regel einen Graphen aus
+    einer Linie.}
   \label{fig:wertepaare}
 \end{figure}
 
 Bei einer \begriff{Funktion} liegen alle Punkte dann in der Regel auf einer
-Linie, dem \siehe\aca{Graph} der \begriff{Funktion}.  In
-Abbildung~\ref{fig:wertepaare-linie} wurde das für die Punkte aus
-Tabelle~\ref{tab:wertetabelle} gemacht.
+Linie, dem \begriffa{Graph} der \begriff{Funktion}.  In
+Abbildung~\vref{fig:wertepaare-linie} wurde das für die Punkte aus
+Tabelle~\vref{tab:wertetabelle} gemacht.
 
 \begin{figure}
   \centering
-  \begin{tikzpicture}[scale=.5]
-    \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
-    \tkzGrid
-    \tkzAxeXY
-    \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
-    \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
-    \tkzFct[color=red]{(x+1)**2-1}
-  \end{tikzpicture}
-  \caption{Die Wertepaare aus Tabelle~\ref{tab:wertetabelle} liegen alle auf
-    einer Linie.}
-  \label{fig:wertepaare-linie}
+
 \end{figure}
 
-\subsection{Lineare Funktionen -- Geraden}
+Für uns sind zwei Arten von Funktionen von Belang: zum einen die
+\emph{linearen Funktionen} (siehe Abschnitt~\vref{sec:line-funkt-gerad}), die
+hier nur ganz kurz wiederholt werden, und zum anderen die \emph{quadratischen
+  Funktionen} (siehe Abschnitt~\vref{sec:quadr-funkt-parab}), um die es
+hauptsächlich gehen wird.
+
+Zuerst werden die Grundlagen der linearen Funktionen noch einmal wiederholt,
+da sie die einfachste Sorte von Funktionen sind, und weil viele der
+Prüfungsaufgaben zum Thema "`quadratische Funktionen"' auch lineare Funktionen
+beinhalten.  Man sollte sie also auch kennen.
+
+\section{Lineare Funktionen -- Geraden}\label{sec:line-funkt-gerad}
+\subsection{Funktionsgleichung, Steigung und $y$-Achsenabschnitt}
 
 Lineare Funktionen sind eine spezielle Sorte von Funktionen, bei denen alle
 Wertepaare im Koordinatensystem auf einer geraden Linie liegen.  Man nennt sie
-auch \siehe\aca{Gerade}.  Lineare Funktionen werden nach einer bestimmten
+auch \begriffa{Gerade}.  Lineare Funktionen werden nach einer bestimmten
 Vorschrift gebildet.  Ihre allgemeine Form lautet
 \begin{equation}
   \label{eq:lineare-funktion}
   y = m\cdot x + c \quad.
 \end{equation}
 Man nennt $m$ die \begriff{Steigung} und $c$ den \begriff{y-Achsenabschnitt}.
+Diese beiden Begriffe und Gleichung~\vref{eq:lineare-funktion} sollte man sich
+unbedingt merken: sie werden unter Garantie prüfungsrelevant sein!
 
-\begin{beispiel}
+\begin{beispiel}\label{bsp:wertetabelle}
   Für die Gerade $y=2x+1$ kann man folgende \begriff{Wertetabelle} aufstellen:
   \begin{center}
     \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
@@ -221,21 +145,158 @@ Man nennt $m$ die \begriff{Steigung} und $c$ den \begriff{y-Achsenabschnitt}.
      y & -5 & -3 & -1 &  1 &  3 &  5 &  7
   \end{tabular}
   \end{center}
-  Ihr \begriff{Graph} sieht dann so aus:
-  \begin{center}
-    \begin{tikzpicture}[scale=.5]
-      \tkzInit[xmin=-4,xmax=4,ymin=-6,ymax=6]
-      \tkzGrid
-      \tkzAxeXY
-      \tkzDefPoints{-3/-5/a,-2/-3/b,-1/-1/c,0/1/d,1/3/e,2/5/f}
-      \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
-      \tkzFct[color=red]{2*x+1}
-    \end{tikzpicture}
-  \end{center}
+  Die $y$-Werte kann man jeweils ausrechnen, indem man die
+  $x$-Werte\footnote{Sie werden zufällig ausgewählt; von $-3$ bis $3$ ist
+    meistens ein guter Bereich.} in die Gleichung einsetzt.  Zum Beispiel:
+  \begin{equation*}
+    y = 2\cdot(-2)+1=-4+1=-3
+  \end{equation*}
 \end{beispiel}
 
+Der \begriff{y-Achsenabschnitt} $c$ gibt den Wert an, an dem der
+\begriff{Graph} die $y$-Achse schneidet.  Das ist das Zahlenpaar, dessen
+$x$-Wert $0$ ist: $\punkt{S_y}(0,c)$.
+\begin{equation}
+  \label{eq:lin-funkt-achsenabschnitt}
+  y = m \cdot 0 + c = c
+\end{equation}
 
-\subsection{Quadratische Funktionen -- Parabeln}
+Die \begriff{Steigung} $m$ ist ein Maß dafür, wie steil oder flach der
+\begriff{Graph} der \begriffa{Gerade} im Koordinatensystem liegt.  Man kann
+sie bestimmen, indem man an den \begriffa{Graph} der \begriffa{Gerade} ein
+rechtwinkliges Dreieck einzeichnet, dessen eine Kathete parallel zur $x$-Achse
+ist und dessen zweite Kathete parallel zur $y$-Achse ist.  Die Größe und
+Position des Dreiecks spielt dabei keine Rolle.  Der Quotient aus der
+vertikalen Seite $\Delta y$ und der horizontalen Seite $\Delta x$ ergibt dann
+$m$:
+\begin{equation}
+  \label{eq:lin-funkt-steigung}
+  m = \frac{\Delta y}{\Delta x}
+\end{equation}
+Ein solches Dreieck ist in Abbildung~\vref{fig:lin-funkt-steigung} gezeigt.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=.75]
+    \tkzInit[xmin=-2,xmax=5,ymin=-1,ymax=6]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzDefPoints{1/1/a,3/1/b,3/5/c}
+    \tkzFillPolygon[color=green!10](a,b,c)
+    \tkzDrawSegments[color=green](a,b b,c c,a)
+    \tkzLabelSegment[below](a,b){$\Delta x$}
+    \tkzLabelSegment[right](b,c){$\Delta y$}
+    \tkzFct{2*x-1}
+  \end{tikzpicture}
+  \caption{Steigung einer Geraden.}
+  \label{fig:lin-funkt-steigung}
+\end{figure}
+
+\subsection{Bestimmung einer Geraden aus zwei Punkten}
+Hat man zwei Punkte $\punkt P(x_p,y_p)$ und $\punkt Q(x_q,y_q)$ gegeben, dann
+ergibt die Differenz ihrer $y$-Werte $\Delta y$ und die Differenz ihrer
+$x$-Werte $\Delta x$.  Damit lässt sich die \begriff{Steigung} dann auch
+berechnen:
+\begin{equation}
+  \label{eq:steigung-aus-zwei-punkten}
+  m = \frac{y_q-y_p}{x_q-x_p} \quad.
+\end{equation}
+Wenn man damit $m$ berechnet hat, kann man $m$ und die Werte eines der
+gegebenen Punkte in die allgemeine Form (Gleichung~\vref{eq:lineare-funktion})
+einsetzen und auch den \begriff{y-Achsenabschnitt} $c$ berechnen.  Dadurch
+kann man eine \begriff{Funktionsgleichung} einer Geraden ohne Zeichnung
+bestimmen.
+
+\begin{beispiel}\label{bsp:steigung-berechnen}
+  Eine Gerade geht durch die Punkte $\punkt A(-2,-3)$ und $\punkt B(1,3)$.
+  Mit Gleichung~\vref{eq:steigung-aus-zwei-punkten} lässt sich nun die
+  Steigung berechnen:
+  \begin{equation*}
+    m = \frac{3-(-3)}{1-(-2)}=\frac{6}{3}=2
+  \end{equation*}
+  Nun setzt man den Wert der Steigung und die Werte eines der
+  Punkte\footnote{Die Werte eines Punktes entsprechen immer einem $x$-Wert und
+    einem $y$-Wert (alphabetisch!).  Sie werden also für $x$ und $y$
+    eingesetzt.} in Gleichung~\vref{eq:lineare-funktion} ein und berechnet $c$:
+  \begin{align*}
+    -3 &= 2\cdot(-2) +c \\
+    -3 &= -4 +c && \auftrag{+4} \\
+     1 &= c
+  \end{align*}
+  Damit ergibt sich die gesuchte Gleichung zu
+  \begin{equation*}
+    y = 2x+1 \quad.
+  \end{equation*}
+\end{beispiel}
+
+\subsection{Steigungswinkel}
+Jede Gerade hat auch einen \begriff{Steigungswinkel}.  Er ist in
+Abbildung~\vref{fig:steigungswinkel} eingezeichnet.  Man kann dort auch
+erkennen, dass der gleiche Winkel im Steigungsdreieck auftaucht (Stichwort
+Stufenwinkel).  Da das Steigungsdreieck ein rechtwinkliges Dreieck ist, lässt
+sich der \begriff{Steigungswinkel} mit dem Tangens\footnote{Zur Erinnerung:
+  Gegenkathete durch Ankathete.} aus der Steigung berechnen.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    \tkzInit[xmin=-2,xmax=5,ymin=-1,ymax=6]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzDefPoints{.5/0/N,2/0/X,1.5/2/a,3/2/b,3/5/c}
+    \tkzDrawSegments(a,b b,c c,a)
+    \tkzLabelSegment[below](a,b){$\Delta x$}
+    \tkzLabelSegment[right](b,c){$\Delta y$}
+    \tkzMarkAngle[color=green,fill=green!10](X,N,a)
+    \tkzLabelAngle[pos=.5](X,N,a){$\alpha$}
+    \tkzMarkAngle(b,a,c)
+    \tkzLabelAngle[pos=.5](b,a,c){$\alpha$}
+    \tkzFct{2*x-1}
+  \end{tikzpicture}
+  \caption{Steigungswinkel von Geraden.}
+  \label{fig:steigungswinkel}
+\end{figure}
+
+\begin{equation}
+  \label{eq:steigungswinkel}
+  \tan(\alpha) = \frac{\Delta y}{\Delta x} = m
+  \quad \Leftrightarrow \quad
+  \alpha = \arctan(m)
+\end{equation}
+
+$\arctan$ ist die "`echte"' Schreibweise von $\atan$, die heutzutage immer
+weiter verbreitet ist, da Taschenrechner damit beschriftet sind.  Korrekt
+nennt man das "`Arcustangens"'\footnote{Das entsprechende git übrigens auch
+  für Sinus und Kosinus: $\asin\equiv\arcsin$ und $\acos\equiv\arccos$.}.  Wir
+werden hier ab jetzt auch $\atan$ verwenden.
+
+\begin{beispiel}\label{bsp:steigungswinkel}
+  Der Steigungswinkel der Geraden $y=3x-1$ berechnet sich zu
+  \begin{equation*}
+    \alpha = \atan(3) = \ang{71.6} \quad.
+  \end{equation*}
+  Achtung: bei Geraden mit negativer Steigung spuckt der Taschenrechner einen
+  negativen Winkel aus!  In diesem Fall muss man \ang{180} addieren.  Bei
+  einer Geraden mit $m=-2$ ergibt sich mit
+  \begin{equation*}
+    \alpha' = \atan(-2) = \ang{-63.4}
+  \end{equation*}
+  ein negativer Winkel.  Der Steigungswinkel beträgt damit $\alpha=\ang{180} -
+  \ang{63.4} = \ang{116.6}$.
+\end{beispiel}
+
+\section{Quadratische Funktionen -- Parabeln}\label{sec:quadr-funkt-parab}
+\subsection{Normalparabel}
+
+\subsection{Allgemeine Form}
+
+\subsection{Scheitelform}
+
+\section{Schnittpunkte mit den Koordinatenachsen, Nullstellen}
+
+\section{Gemeinsame Punkte von Funktionen, Schnittpunkte}
+
+\section{Bestimmung von Funktionsgleichungen}
 
 \printacronyms
 
