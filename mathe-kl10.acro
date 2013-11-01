@@ -1,9 +1,5 @@
 \RequirePackage{acro}
 
-\newcommand*\siehe{$\rightarrow$~}
-\newcommand*\begriff{\siehe\ac}
-\newcommand*\begriffa{\siehe\aca}
-
 \DeclareAcronym{Abszisse}{
   short = Abszisse ,
   long  = Ein Fachbegriff für die $x$-Achse.
