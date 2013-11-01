@@ -1,0 +1,281 @@
+% arara: pdflatex: { shell: on }
+% arara: pdflatex: { shell: on }
+\documentclass{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{etoolbox}
+
+\usepackage[oldstyle]{libertine}
+\csdef{libertine@figurestyle}{LF}
+\usepackage[libertine]{newtxmath}
+\csdef{libertine@figurestyle}{OsF}
+\usepackage{microtype}
+\recalctypearea
+
+\setcapindent{1.5em}
+\setkomafont{caption}{\normalfont\small\sffamily}
+\setkomafont{captionlabel}{\normalfont\small\sffamily\scshape}
+
+\csdef{fps@figure}{htb}
+\csdef{fps@table}{htb}
+
+\usepackage{silence}
+\WarningFilter{microtype}{I cannot find a protrusion list}
+
+\usepackage{array,booktabs,hhline}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\let\vary\relax
+\usepackage{exsheets}
+
+\usepackage{tkz-fct}
+\usetkzobj{all}
+
+\usepackage{xcolor}
+\colorlet{grid}{black!10}
+
+\usepackage[sort]{acro}
+\acsetup{
+  first-style=short ,
+  short-format=\scshape ,
+  list-short-format = ,
+  page-ref = plain ,
+  list-heading = section ,
+  list-name = Begriffe
+}
+
+\DeclareAcronym{Funktion}{
+  short = Funktion ,
+  long  = {
+    Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl der
+    \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl der
+    \begriff*{Wertemenge} zugeordnet, und zwar so, dass man eindeutig sagen
+    kann, welche es ist.
+  }
+}
+\DeclareAcronym{Funktionsgleichung}{
+  short = Funktionsgleichung ,
+  long  = {
+    Die Vorschrift, nach der man den Wert aus der \begriff*{Wertemenge} bilden
+    kann, der einer Zahl aus der \begriff*{Definitionsmenge} zugeordnet wird.
+  }
+}
+\DeclareAcronym{Gerade}{
+  short = Gerade ,
+  long  = {
+    Eine lineare \begriff*{Funktion}.  Ihre Wertepaare liegen im Schaubild
+    alle auf einer geraden Linie.
+  } ,
+  alt   = Geraden
+}
+\DeclareAcronym{Steigung}{
+  short = Steigung ,
+  long  = {
+    Ein Maß dafür, wie steil der \begriff*{Graph} einer \siehe\aca*{Gerade} im
+    Koordinatensystem liegt.
+  }
+}
+\DeclareAcronym{y-Achsenabschnitt}{
+  short = $y$-Achsenabschnitt ,
+  long  = {
+    Die Stelle, an der der \begriff*{Graph} einer \siehe\aca*{Gerade} die
+    $y$-Achse schneidet.
+  }
+}
+\DeclareAcronym{Parabel}{
+  short = Parabel ,
+  long  = {
+    Der \begriff*{Graph} einer quadratischen Funktion.  Oft auch als Synonym
+    für \emph{quadratische Funktion} verwendet.
+  } ,
+  alt   = Parabeln
+}
+\DeclareAcronym{Graph}{
+  short = Graph ,
+  long  = {
+    Die graphische Darstellung einer \begriff*{Funktion} im
+    Koordinatensystem.
+  } ,
+  alt   = Graphen
+}
+\DeclareAcronym{Zuordnung}{
+  short = Zuordnung ,
+  long  = {
+    Eine Gruppe von \siehe\aca*{Tupel}, die nach einer bestimmten Regel
+    gebildet werden.
+  }
+}
+\DeclareAcronym{Tupel}{
+  short = Tupel ,
+  long  = {
+    Wertepaare oder Zahlenpaare wie $\punkt*(1,2)$.  In der Regel werden sie
+    als Koordinaten eines Punktes im Koordinatensystem interpretiert.
+  } ,
+  alt   = Tupeln
+}
+\DeclareAcronym{Definitionsmenge}{
+  short = Definitionsmenge ,
+  long  = {
+    Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
+    \begriff*{Wertemenge} zugeordnet werden.
+  }
+}
+\DeclareAcronym{Wertemenge}{
+  short = Wertemenge ,
+  long  = {
+    Die Menge der Zahlen, die denen einer ersten Menge, der
+    \begriff*{Definitionsmenge} zugeordnet werden.
+  }
+}
+\DeclareAcronym{Wertetabelle}{
+  short = Wertetabelle ,
+  long  = {
+    Eine Tabelle, in der einige \begriff*{Tupel} einer \begriff*{Zuordnung}
+    aufgelistet sind.
+  }
+}
+
+\makeatletter
+\newcommand*\menge[1]{\mathbb{#1}}
+\newcommand*\punkt{\@ifstar{\@punkt}{\@Punkt}}
+\newcommand*\@Punkt[1]{#1\@punkt}
+\def\@punkt(#1,#2){(#1\vert#2)}
+
+\newcommand*\siehe{$\rightarrow$~}
+\newcommand*\begriff{\siehe\ac}
+\makeatother
+
+\usepackage[framemethod=tikz]{mdframed}
+\xdefinecolor{beispiel}{rgb}{0.02,0.04,0.48}
+\newcounter{beispiel}
+\newmdenv[
+  linecolor  = beispiel ,
+  rightline  = false ,
+  leftline   = false ,
+  frametitle = {\refstepcounter{beispiel}\textbf{Beispiel~\thebeispiel.}}
+]{beispiel}
+
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks ,
+  title = Quadratische Funktionen
+}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Quadratische Funktionen
+\end{center}
+
+\tableofcontents
+
+\section{Funktionen}
+\subsection{Allgemeines -- Begriffsklärung}
+
+Unter einer \begriff{Funktion} versteht man eine \emph{eindeutige}
+\begriff{Zuordnung}.  Zuordung bedeutet, dass einer Zahl aus einer Gruppe
+(oder besser: Menge) eine Zahl aus einer zweiten Gruppe zugeordnet bekommt, so
+dass Zahlenpaare entstehen.  Die erste Gruppe nennt man
+\begriff{Definitionsmenge} $\menge{D}$ und eine unbekannte Zahl dieser Gruppe
+bekommt das Symbol $x$.  Die zweite Gruppe nennt man \begriff{Wertemenge}
+$\menge{W}$, eine Zahl dieser Gruppe bekommt das Symbol $y$ oder $f(x)$.  Eine
+Tabelle, in der einige der Zahlenpaare (man nennt sie auch \begriff{Tupel})
+aufgelistet sind, nennt man \begriff{Wertetabelle}.  Ein Beispiel dafür ist
+Tabelle~\ref{tab:wertetabelle}.
+
+\begin{table}
+  \centering
+  \caption{Beispiel für eine Wertetabelle.}
+  \label{tab:wertetabelle}
+  \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
+     x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\
+    \hline
+     y &  3 &  0 & -1 &  0 &  3 &  8 & 15
+  \end{tabular}
+\end{table}
+
+Diese Zahlenpaare kann man in einem Koordinatensystem einzeichen.  Für die
+Werte aus Tabelle~\ref{tab:wertetabelle} wurde das in
+Abbildung~\ref{fig:wertepaare} gemacht.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=.5]
+    \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
+    \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
+  \end{tikzpicture}
+  \caption{Die Wertepaare aus Tabelle~\ref{tab:wertetabelle} in einem
+    Koordinatensystem}.
+  \label{fig:wertepaare}
+\end{figure}
+
+Bei einer \begriff{Funktion} liegen alle Punkte dann in der Regel auf einer
+Linie, dem \siehe\aca{Graph} der \begriff{Funktion}.  In
+Abbildung~\ref{fig:wertepaare-linie} wurde das für die Punkte aus
+Tabelle~\ref{tab:wertetabelle} gemacht.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=.5]
+    \tkzInit[xmin=-5,xmax=5,ymin=-2,ymax=9]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzDefPoints{-3/3/a,-2/0/b,-1/-1/c,0/0/d,1/3/e,2/8/f}
+    \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
+    \tkzFct[color=red]{(x+1)**2-1}
+  \end{tikzpicture}
+  \caption{Die Wertepaare aus Tabelle~\ref{tab:wertetabelle} liegen alle auf
+    einer Linie.}
+  \label{fig:wertepaare-linie}
+\end{figure}
+
+\subsection{Lineare Funktionen -- Geraden}
+
+Lineare Funktionen sind eine spezielle Sorte von Funktionen, bei denen alle
+Wertepaare im Koordinatensystem auf einer geraden Linie liegen.  Man nennt sie
+auch \siehe\aca{Gerade}.  Lineare Funktionen werden nach einer bestimmten
+Vorschrift gebildet.  Ihre allgemeine Form lautet
+\begin{equation}
+  \label{eq:lineare-funktion}
+  y = m\cdot x + c \quad.
+\end{equation}
+Man nennt $m$ die \begriff{Steigung} und $c$ den \begriff{y-Achsenabschnitt}.
+
+\begin{beispiel}
+  Für die Gerade $y=2x+1$ kann man folgende \begriff{Wertetabelle} aufstellen:
+  \begin{center}
+    \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
+     x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\
+    \hline
+     y & -5 & -3 & -1 &  1 &  3 &  5 &  7
+  \end{tabular}
+  \end{center}
+  Ihr \begriff{Graph} sieht dann so aus:
+  \begin{center}
+    \begin{tikzpicture}[scale=.5]
+      \tkzInit[xmin=-4,xmax=4,ymin=-6,ymax=6]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzDefPoints{-3/-5/a,-2/-3/b,-1/-1/c,0/1/d,1/3/e,2/5/f}
+      \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f)
+      \tkzFct[color=red]{2*x+1}
+    \end{tikzpicture}
+  \end{center}
+\end{beispiel}
+
+
+\subsection{Quadratische Funktionen -- Parabeln}
+
+\printacronyms
+
+\end{document}
