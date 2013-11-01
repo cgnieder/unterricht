@@ -11,10 +11,10 @@
 
 \LoadClassWithOptions{scrartcl}
 
-\cnltx@create@message*{arbeitsblatt}{Error}
-\cnltx@create@message*{arbeitsblatt}{Warning}
-\cnltx@create@message*{arbeitsblatt}{WarningNoLine}
-\cnltx@create@message*{arbeitsblatt}{Info}
+\cnltx@create@message*{arb}{arbeitsblatt}{Error}
+\cnltx@create@message*{arb}{arbeitsblatt}{Warning}
+\cnltx@create@message*{arb}{arbeitsblatt}{WarningNoLine}
+\cnltx@create@message*{arb}{arbeitsblatt}{Info}
 
 \RequirePackage[ngerman]{babel}
 % \RequirePackage[T1]{fontenc}
@@ -48,7 +48,9 @@
 \clearscrheadfoot
 \pagestyle{scrheadings}
 \chead{Seite \thepage}
-\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+\AtBeginDocument{%
+  \cfoot{\small \@author\ -- aktualisiert am \@date}%
+}
 
 % exercises:
 \let\vary\relax
@@ -59,5 +61,29 @@
 \colorlet{grid}{black!10}
 \RequirePackage{tkz-fct,tkz-euclide}
 \usetkzobj{all}
+
+\def\@title{?? Missing Title ??}
+\def\@author{C.\,Niederberger}
+\def\@date{\today}
+\renewcommand*\title[1]{\gdef\@title{#1}}
+\renewcommand*\author[1]{\gdef\@author{#1}}
+\renewcommand*\date[1]{\gdef\@date{#1}}
+
+\renewcommand*\maketitle{%
+  \begin{center}
+    \Huge\sffamily\@title
+  \end{center}%
+  \let\title\@gobble
+  \let\date\@gobble
+  \let\author\@gobble
+}
+
+\AtBeginDocument{%
+  \RequirePackage{hyperref}
+  \hypersetup{
+    colorlinks = false ,
+    pdftitle = {\@title}
+  }%
+}
 
 \endinput

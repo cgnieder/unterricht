@@ -1,45 +1,13 @@
 % arara: pdflatex: { shell: on }
-% arara: pdflatex: { shell: on }
-\documentclass{scrartcl}
-\usepackage[ngerman]{babel}
+% !arara: pdflatex: { shell: on }
+\documentclass{arbeitsblatt}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{etoolbox}
 
-\usepackage[oldstyle]{libertine}
-\csdef{libertine@figurestyle}{LF}
-\usepackage[libertine]{newtxmath}
-\csdef{libertine@figurestyle}{OsF}
-\usepackage{microtype}
-\recalctypearea
-
-\setcapindent{1.5em}
-\setkomafont{caption}{\normalfont\small\sffamily}
-\setkomafont{captionlabel}{\normalfont\small\sffamily\scshape}
-
-\csdef{fps@figure}{htb}
-\csdef{fps@table}{htb}
+\title{Quadratische Funktionen}
 
 \usepackage{silence}
 \WarningFilter{microtype}{I cannot find a protrusion list}
-
-\usepackage{array,booktabs,hhline}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
-
-\usepackage{scrpage2}
-\clearscrheadfoot
-\pagestyle{scrheadings}
-\chead{Seite \thepage}
-\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
-
-\let\vary\relax
-\usepackage{exsheets}
-
-\usepackage{tkz-fct}
-\usetkzobj{all}
-
-\usepackage{xcolor}
-\colorlet{grid}{black!10}
 
 \usepackage[sort]{acro}
 \acsetup{
@@ -157,22 +125,15 @@
 \newcounter{beispiel}
 \newmdenv[
   linecolor  = beispiel ,
+  linewidth  = .5ex ,
   rightline  = false ,
   leftline   = false ,
   frametitle = {\refstepcounter{beispiel}\textbf{Beispiel~\thebeispiel.}}
 ]{beispiel}
 
-\usepackage{hyperref}
-\hypersetup{
-  colorlinks ,
-  title = Quadratische Funktionen
-}
-
 \begin{document}
 
-\begin{center}
-  \Huge\sffamily Quadratische Funktionen
-\end{center}
+\maketitle
 
 \tableofcontents
 
