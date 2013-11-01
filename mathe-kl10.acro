@@ -1,0 +1,90 @@
+\DeclareAcronym{Funktion}{
+  short = Funktion ,
+  long  = {
+    Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl der
+    \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl der
+    \begriff*{Wertemenge} zugeordnet, und zwar so, dass man eindeutig sagen
+    kann, welche es ist.
+  }
+}
+\DeclareAcronym{Funktionsgleichung}{
+  short = Funktionsgleichung ,
+  long  = {
+    Die Vorschrift, nach der man den Wert aus der \begriff*{Wertemenge} bilden
+    kann, der einer Zahl aus der \begriff*{Definitionsmenge} zugeordnet wird.
+  }
+}
+\DeclareAcronym{Gerade}{
+  short = Gerade ,
+  long  = {
+    Eine lineare \begriff*{Funktion}.  Ihre Wertepaare liegen im Schaubild
+    alle auf einer geraden Linie.
+  } ,
+  alt   = Geraden
+}
+\DeclareAcronym{Steigung}{
+  short = Steigung ,
+  long  = {
+    Ein Maß dafür, wie steil der \begriff*{Graph} einer \siehe\aca*{Gerade} im
+    Koordinatensystem liegt.
+  }
+}
+\DeclareAcronym{y-Achsenabschnitt}{
+  short = $y$-Achsenabschnitt ,
+  long  = {
+    Die Stelle, an der der \begriff*{Graph} einer \siehe\aca*{Gerade} die
+    $y$-Achse schneidet.
+  }
+}
+\DeclareAcronym{Parabel}{
+  short = Parabel ,
+  long  = {
+    Der \begriff*{Graph} einer quadratischen Funktion.  Oft auch als Synonym
+    für \emph{quadratische Funktion} verwendet.
+  } ,
+  alt   = Parabeln
+}
+\DeclareAcronym{Graph}{
+  short = Graph ,
+  long  = {
+    Die graphische Darstellung einer \begriff*{Funktion} im
+    Koordinatensystem.
+  } ,
+  alt   = Graphen
+}
+\DeclareAcronym{Zuordnung}{
+  short = Zuordnung ,
+  long  = {
+    Eine Gruppe von \siehe\aca*{Tupel}, die nach einer bestimmten Regel
+    gebildet werden.
+  }
+}
+\DeclareAcronym{Tupel}{
+  short = Tupel ,
+  long  = {
+    Wertepaare oder Zahlenpaare wie $\punkt*(1,2)$.  In der Regel werden sie
+    als Koordinaten eines Punktes im Koordinatensystem interpretiert.
+  } ,
+  alt   = Tupeln
+}
+\DeclareAcronym{Definitionsmenge}{
+  short = Definitionsmenge ,
+  long  = {
+    Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
+    \begriff*{Wertemenge} zugeordnet werden.
+  }
+}
+\DeclareAcronym{Wertemenge}{
+  short = Wertemenge ,
+  long  = {
+    Die Menge der Zahlen, die denen einer ersten Menge, der
+    \begriff*{Definitionsmenge} zugeordnet werden.
+  }
+}
+\DeclareAcronym{Wertetabelle}{
+  short = Wertetabelle ,
+  long  = {
+    Eine Tabelle, in der einige \begriff*{Tupel} einer \begriff*{Zuordnung}
+    aufgelistet sind.
+  }
+}
