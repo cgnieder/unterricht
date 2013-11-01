@@ -1,6 +1,7 @@
 % arara: pdflatex: { shell: on }
 % arara: pdflatex: { shell: on }
 % arara: pdflatex: { shell: on }
+% arara: pdflatex: { shell: on }
 \documentclass{arbeitsblatt}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -46,12 +47,12 @@ Unter einer \begriff{Funktion} versteht man eine \emph{eindeutige}
 \begriff{Zuordnung}.  Zuordung bedeutet, dass einer Zahl aus einer Gruppe
 (oder besser: Menge) eine Zahl aus einer zweiten Gruppe zugeordnet bekommt, so
 dass Zahlenpaare entstehen.  Die erste Gruppe nennt man
-\begriff{Definitionsmenge} $\menge{D}$ und eine unbekannte Zahl dieser Gruppe
-bekommt das Symbol $x$.  Die zweite Gruppe nennt man \begriff{Wertemenge}
-$\menge{W}$, eine Zahl dieser Gruppe bekommt das Symbol $y$ oder $f(x)$.  Eine
-Tabelle, in der einige der Zahlenpaare (man nennt sie auch \begriff{Tupel})
-aufgelistet sind, nennt man \begriff{Wertetabelle}.  Ein Beispiel dafür ist
-Tabelle~\vref{tab:wertetabelle}.
+\begriff{Definitionsmenge} $\definitionsmenge$ und eine unbekannte Zahl dieser
+Gruppe bekommt das Symbol $x$.  Die zweite Gruppe nennt man
+\begriff{Wertemenge} $\wertemenge$, eine Zahl dieser Gruppe bekommt das Symbol
+$y$ oder $f(x)$.  Eine Tabelle, in der einige der Zahlenpaare (man nennt sie
+auch \begriff{Tupel}) aufgelistet sind, nennt man \begriff{Wertetabelle}.  Ein
+Beispiel dafür ist Tabelle~\vref{tab:wertetabelle}.
 
 \begin{table}
   \centering
@@ -138,7 +139,9 @@ Diese beiden Begriffe und Gleichung~\vref{eq:lineare-funktion} sollte man sich
 unbedingt merken: sie werden unter Garantie prüfungsrelevant sein!
 
 \begin{beispiel}\label{bsp:wertetabelle}
-  Für die Gerade $y=2x+1$ kann man folgende \begriff{Wertetabelle} aufstellen:
+  Für die Gerade $y=2x+1$ hat die Steigung $m=2$ und den $y$"=Achsenabschnitt
+  $c=1$.  Es lässt sich für die Funktion folgende \begriff{Wertetabelle}
+  aufstellen:
   \begin{center}
     \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
      x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\

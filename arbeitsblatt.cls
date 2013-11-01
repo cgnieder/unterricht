@@ -132,13 +132,27 @@
 \renewcommand*\partformat{%
   \textcolor{cnltxblue}{\partname~\thepart\autodot}}
 
-% math related commands:
-\RequirePackage{amsmath,amssymb,siunitx}
+% math and chemistry related commands:
+\RequirePackage{amsmath,amssymb,siunitx,chemmacros}
 \sisetup{locale=DE}
+
 \DeclareMathOperator\asin{sin^{-1}}
 \DeclareMathOperator\acos{cos^{-1}}
 \DeclareMathOperator\atan{tan^{-1}}
+
+% 
 \newcommand*\menge[1]{\mathbb{#1}}
+\newcommand*\natuerliche     {\menge{N}}
+\newcommand*\ganze           {\menge{Z}}
+\newcommand*\rationale       {\menge{Q}}
+\newcommand*\irrationale     {\menge{I}}
+\newcommand*\reelle          {\menge{R}}
+\newcommand*\komplexe        {\menge{C}}
+\newcommand*\definitionsmenge{\menge{D}}
+\newcommand*\wertemenge      {\menge{W}}
+
+% \punkt*(x,y) or \punkt*(x,y,z)
+% \punkt{A}(x,y) or \punkt{A}(x,y,z)
 \newcommand*\punkt{\@ifstar{\@punkt}{\@Punkt}}
 \newcommand*\@Punkt[1]{#1\@punkt}
 \newcommand*\@punkt{}
@@ -151,17 +165,8 @@
 \newcommand*\@punkt@RR[2]{(\,#1\mid#2\,)}
 \newcommand*\@punkt@RRR[3]{(\,#1\mid#2\mid#3\,)}
 
+% Arbeitsstrich:
 \newcommand*\auftrag[1]{{}\mid#1}
-
-\ExplSyntaxOn
-\cs_new_protected:Npn \berechne #1
-  {
-    \group_begin:
-      \sisetup{round-mode=places,round-precision=2}
-      \exp_args:Nx \num { \fp_eval:n { #1 } }
-    \group_end:
-  }
-\ExplSyntaxOff
 
 % example environment:
 \RequirePackage[framemethod=tikz]{mdframed}
@@ -174,6 +179,25 @@
   leftline   = false ,
   frametitle = {\refstepcounter{beispiel}\textbf{Beispiel~\thebeispiel.}}
 ]{beispiel}
+
+% tipp
+\RequirePackage{marginnote,ragged2e,adjustbox}
+\newcommand\tipp[1]{%
+  \leavevmode
+  \begingroup
+    \reversemarginpar
+    \marginnote
+      {%
+        \sffamily\small
+        \IfFileExist{arb-lightbulb.pdf}{%
+          \adjustbox{valign=B,center=\marginparwidth,set vsize={0pt}{0pt}}{%
+            \includegraphics{arb-lightbulb.pdf}%
+          }\newline
+        }{}%
+        \RaggedRight\textcolor{cnltxgray}{#1}%
+      }[-\baselineskip]%
+    \endgroup
+}
 
 % acronyms abused as some kind of glossary:
 \newrobustcmd\saveat{%
@@ -204,3 +228,11 @@
 }
 
 \endinput
+HISTORY:
+2013/11/01 v0.0 - initial draft
+
+TODO:
+- Option, mit denen Mathe/Chemie-Pakete optional geladen werden können
+- Option, mit der man die automatische Font-Wahl abschalten kann
+- Doku schreiben
+
