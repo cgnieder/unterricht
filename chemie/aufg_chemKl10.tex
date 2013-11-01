@@ -1,0 +1,669 @@
+\documentclass[DIV11]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage[utopia]{mathdesign}
+\usepackage[oldstyle]{libertine}
+\usepackage{microtype}
+
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+  chemformula/format      = \libertineLF ,
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\usepackage{siunitx}
+\sisetup{
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+  scientific-notation = fixed ,
+  exponent-product = \cdot
+}
+
+\usepackage{chemfig}
+\makeatletter
+\def\CF@node@content{%
+  \expandafter\expandafter\expandafter
+    \printatom\expandafter\expandafter\expandafter
+      {\csname atom@\number\CF@cnt@atomnumber\endcsname}%
+    \ensuremath{\CF@node@strut}%
+}
+\makeatother
+\renewcommand*\printatom[1]{\ch{#1}}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  y tick label style = {
+    /pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision = 2,
+    /tikz/.cd} ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+\usepackage{enumitem}
+
+\usepackage{fnpct}
+\usepackage{booktabs}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+\usepackage{mdframed}
+\newmdenv[linecolor=red!20, linewidth=1ex]{intermission}
+
+\usepackage[colorlinks]{hyperref}
+
+\hyphenation{Salz-säu-re}
+\begin{document}
+\begin{center}
+  \Huge\sffamily Chemie Querbeet -- Klasse 10/11
+\end{center}
+
+\addsec{Übungen}
+
+\begin{question}[name=Reaktionsgleichungen]
+Vervollständigen Sie die folgenden Reaktionsgleichungen.
+\begin{tasks}(2)
+  \task \ch{Na + O2 -> Na2O}
+  \task \ch{Al + Br2 -> AlBr3}
+  \task \ch{H2 + O2 -> H2O}
+  \task \ch{Mg(OH)2\sld{} ->[ H2O ] Mg^2+ \aq{} + OH- \aq{} }
+  \task \ch{K2O + H2O -> KOH}
+  \task \ch{CaCl2 + AgNO3 -> AgCl v + Ca(NO3)2}
+  \task \ch{Fe + H2O -> Fe3O4 + H2}
+  \task \ch{TiCl4 + H2O -> TiO2 + HCl}
+  \task \ch{B2O3 + C + Cl2 -> BCl3 + CO}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Reaktionsgleichungen]
+\begin{tasks}(2)
+  \task \ch{4 Na + O2 -> 2 Na2O}
+  \task \ch{2 Al + 3 Br2 -> 2 AlBr3}
+  \task \ch{2 H2 + O2 -> 2 H2O}
+  \task \ch{Mg(OH)2\sld{} ->[ H2O ] Mg^2+ \aq{} + 2 OH- \aq }
+  \task \ch{K2O + H2O -> 2 KOH}
+  \task \ch{CaCl2 + 2 AgNO3 -> 2  AgCl v + Ca(NO3)2}
+  \task \ch{3 Fe + 4 H2O -> Fe3O4 + 4 H2}
+  \task \ch{TiCl4 + 2 H2O -> TiO2 + 4 HCl}
+  \task \ch{B2O3 + 3 C + 3 Cl2 -> 2 BCl3 + 3 CO}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Summenformeln]
+Korrigieren Sie folgende Summenformeln. Benennen Sie die Substanz.
+\begin{tasks}(6)
+  \task \ch{AlO3}
+  \task \ch{BaOH}
+  \task \ch{NH2}
+  \task \ch{Ca2CO3}
+  \task \ch{CH5}
+  \task \ch{Al(OH)2}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Summenformeln]
+\begin{tasks}(3)
+  \task Aluminiumoxid \ch{Al2O3}
+  \task Bariumhydroxid \ch{Ba(OH)2}
+  \task Ammoniak \ch{NH3}
+  \task Calciumcarbonat \ch{CaCO3}
+  \task Methan \ch{CH4}
+  \task Aluminiumhydroxid \ch{Al(OH)3}
+\end{tasks}
+\end{solution}
+
+
+\begin{question}[name=Methanol-Metabolismus]
+Der Körper baut Methanol ab, indem er es oxidiert.  Dabei entsteht zunächst
+giftiges Formaldehyd (= Methanal) und in einem weiteren Schritt die
+hochgiftige Ameisensäure.
+\begin{tasks}
+  \task Geben Sie die Strukturformeln von Methanol. Formaldehyd und
+    Ameisensäure an.  Wie lautet der systematische Name der Ameisensäure?
+  \task Geben Sie eine Reaktionsgleichung für die Dehydrierung (= Entzug von
+    Wasserstoff) von Methanol zu Methanal an.
+  \task Geben Sie eine Reaktionsgleichung für die Oxidation von Methanol zu
+    Ameisensäure an.
+  \task \ghspic{skull} Ca. \SI{50}{g}\footnotemark{} Ameisensäure sind
+    tödlich. Wieviel Gramm Methanol muss man dafür zu sich nehmen?
+  \task \SI{1}{mL} Methanol wiegt \SI{0.79}{g}. Wieviel \si{mL} Methanol sind
+    tödlich?   Ein Viertel dieser Menge kann bereits zur Erblindung führen.
+\end{tasks}
+\end{question}
+\footnotetext{Wert bezieht sich auf einen \SI{70}{kg}  schweren Menschen. Die
+  LD$_{50}$ beträgt \SI{730}{mg/kg}, getestet an Ratten.}
+
+\begin{solution}[name=Methanol-Metabolismus]
+\begin{tasks}
+  \task Der Reihe nach: Methanol, Formaldehyd (Methanal) und Ameisensäure
+    (Methansäure)\par
+    \chemfig{H-C(-[2]H)(-[6]H)-OH} \quad \chemfig{H-[:30]C(=[2]O)-[:-30]H}
+    \quad \chemfig{H-[:30]C(=[2]O)-[:-30]OH}
+  \task \ch{CH3OH + 1/2 O2 ->[\text{Ag,~\SI{400}{\celsius}}] CH2O + H2O}
+  \task Formal: \ch{CH3OH + O2 -> HCOOH + H2O}
+  \task
+    \begin{gather*}
+      n(\ch{HCOOH})
+        = \frac{m}{M}
+        = \frac{\SI{50}{\gram}}{\SI{46}{\gram\per\mole}}
+        = \SI{1.09}{\mole} \\
+      m(\ch{CH3OH})
+        = n\cdot M
+        = \SI{1.09}{\mole}\cdot\SI{32}{\gram\per\mole}
+        = \SI{34.9}{\gram}
+    \end{gather*}
+  \task
+    \[
+      V = \frac{m}{\varrho}
+        = \frac{\SI{34.9}{g}}{\SI{0.79}{\gram\per\cmc}}
+        = \SI{44.2}{\milli\liter}
+    \]
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Ester I]
+Eines der Aromen der Ananas ist Butansäureethylester.
+\begin{tasks}(2)
+  \task Aus welchen beiden Stoffen könnte man diesen Ester im Labor
+    herstellen?
+  \task Geben Sie die Strukturformeln der Ausgangsstoffe und des Esters an.
+\end{tasks}
+\end{question}
+\begin{solution}[name=Ester I]
+\begin{tasks}
+  \task Buttersäure und Ethanol (konz. Schwefelsäure als Katalysator)
+  \task Buttersäure \chemfig{CH_3-CH_2-CH_2-C(=[2]O)-OH}\par
+    Ethanol \chemfig{CH_3-CH_2-OH}\par
+    Butansäureethylester \chemfig{CH_3-CH_2-CH_2-C(=[2]O)-O-CH_2-CH_3}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Ester II]
+Als Rumaroma wird Methansäureethylester verwendet.
+\begin{tasks}
+  \task Geben Sie die Reaktionsgleichung für die Herstellung des Esters an.
+  \task Wieviel Gramm Ethanol benötigt man zur Herstellung von \SI{500}{\gram}
+    dieses Esters? Wieviel \si{\gram} Methansäure werden gebraucht?
+\end{tasks}
+\end{question}
+\begin{solution}[name=Ester II]
+\begin{tasks}
+  \task \ch{C2H5OH + HCOOH ->[ \[H2SO4\] ] HCOOC2H5 + H2O}
+  \task
+    \begin{gather*}
+      n(\text{Ester})
+        = \frac{m}{M}
+        = \frac{\SI{500}{\gram}}{\SI{74.09}{\gram\per\mole}}
+        = \SI{6.75}{\mole} \\
+      m(\ch{C2H5OH})
+        = n \cdot M
+        = \SI{6.75}{\mole}\cdot\SI{46.08}{\gram\per\mole}
+        = \SI{311.0}{\gram} \\
+      m(\ch{HCOOH})
+        = n \cdot M
+        = \SI{6.75}{\mole}\cdot\SI{46.03}{\gram\per\mole}
+        = \SI{310.7}{\gram}
+    \end{gather*}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Wasserstoffdarstellung]
+Wenn man im Labor kleine Mengen Wasserstoff benötigt, setzt man ein Metall mit
+Säure um und fängt das entstehende Gas auf.
+\begin{tasks}
+  \task Geben Sie eine Reaktionsgleichung für die Reaktion von Schwefelsäure
+    mit Zink an.
+  \task Wenn man \SI{100}{\gram} konzentrierte (= \SI{98}{\percent}-ige)
+    Schwefelsäure mit einem Überschuß Zink versetzt, wird die Schwefelsäure
+    nahezu vollständig reagieren. Wieviel Liter Wasserstoff entstehen dabei?
+
+    Hinweis: \SI{1}{\mole} entspricht \SI{22.4}{\liter} (bei \SI{0}{\celsius}
+    und \SI{1}{\atm}).
+\end{tasks}
+\end{question}
+\begin{solution}[name=Wasserstoffdarstellung]
+\begin{tasks}
+  \task \ch{Zn + H2SO4 -> H2 ^ + ZnSO4}
+  \task
+    \[
+      n = \frac{\SI{100}{\gram}\cdot 0.98}{\SI{98}{\gram\per\mole}}
+      = \SI{1.0}{\mole}
+      \quad \Rightarrow\quad
+      V = \SI{22.4}{\liter}
+    \]
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Neutralisation]
+Die Reaktion einer Säure mit einer Lauge nennt man Neutralisation.
+\begin{tasks}
+  \task Geben Sie die Neutralisationsreaktion von Essigsäure mit
+    Natriumhydroxid an.
+  \task Wieviel \si{\gram} Chlorwasserstoff benötigt man zur Neutralisation
+    von \SI{120}{\gram} Natriumhydroxid?
+  \task In Wasser gelöstes Chlorwasserstoffgas nennt man Salzsäure.
+    Konzentrierte Salzsäure enthält etwa \SI{38}{\percent}
+    Chlorwasserstoff. Wieviel \si{\milli\liter} Salzsäure benötigt man für b,
+    wenn \SI{1}{\milli\liter} Salzsäure etwa \SI{1.2}{\gram} wiegt, wenn also
+    die Dichte $\varrho = \SI{1.2}{\gram\per\milli\liter}$ beträgt? 
+\end{tasks}
+\end{question}
+\begin{solution}[name=Neutralisation]
+\begin{tasks}
+  \task \ch{CH3COOH + NaOH <=> CH3COONa + H2O}
+  \task
+    \begin{gather*}
+      n(\ch{NaOH}) = \frac{m}{M}
+                   = \frac{\SI{120}{\gram}}{\SI{40}{\gram\per\mole}}
+                   = \SI{3.0}{\mole} \\
+      m(\ch{HCl})  = n \cdot M
+                   = \SI{3.0}{\mole} \cdot \SI{36.45}{\gram\per\mole}
+                   = \SI{109.4}{\gram}
+    \end{gather*}
+  \task
+    \[
+      V = \frac{m}{\varrho\cdot 0.38}
+        = \frac{\SI{109.4}{\gram}}{\SI{1.2}{\gram\per\milli\liter}\cdot0.38}
+        = \SI{240}{\milli\liter}
+    \]
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Verbrennungsreaktion]
+Stellen Sie die Reaktionsgleichungen für die vollständige Verbrennung
+folgender Stoffe auf:
+\begin{tasks}(4)
+  \task Cyclohexan
+  \task Toluol (\ch{C7H8})
+  \task Octan
+  \task Propan
+  \task Thiophen (\ch{C4H4S})
+  \task Pyridin (\ch{C5H5N})
+  \task Anilin (\ch{C6H7N})
+  \task Butandisäure
+\end{tasks}
+\end{question}
+\begin{solution}[name=Verbrennungsreaktion]
+Verbrennung ist die Reaktion mit Sauerstoff.  Dabei entstehen bei vollständiger
+Verbrennung hauptsächlich \ch{CO2} und \ch{H2O}.
+\begin{tasks}
+  \task \ch{C6H12 + 9 O2 -> 6 CO2 + 6 H2O}
+  \task \ch{C7H8 + 9 O2 -> 7 CO2 + 4 H2O}
+  \task \ch{2 C8H18 + 25 O2 -> 16 CO2 + 18 H2O}
+  \task \ch{C3H8 + 7 O2 -> 3 CO2 + 4 H2O}
+  \task \ch{C4H4S + 6 O2 -> 4 CO2 + 2 H2O + SO2}
+  \task \ch{4 C5H5N + 29 O2 -> 20 CO2 + 10 H2O + 4 NO2}
+  \task \ch{4 C6H7N + 35 O2 -> 24 CO2 + 14 H2O + 4 NO2}
+  \task \ch{2 C4H6O4 + 7 O2 -> 8 CO2 + 6 H2O}
+\end{tasks}
+\end{solution}
+\newpage
+
+\begin{question}[name=Oxidation von Alkoholen]
+\begin{wrapfigure}[3]{r}{38mm}
+  \vskip-\baselineskip\relax
+  \includegraphics{./170px-Potassium-chromate-sample.jpg}\hfil
+  \includegraphics{./180px-Chromium(III)-oxide-sample.jpg}
+\end{wrapfigure}
+Versetzt man gelbes Chromat, das \ox[pos=side]{6,Cr} enthält, mit Alkohol,
+wird das Chrom zu grünem \ox[pos=side]{3,Cr} reduziert.  Diese Reaktion
+verwendete man früher in den "`Pusteröhrchen"' der Polizei zur
+Alkoholkontrolle.
+\begin{tasks}
+  \task Was entsteht bei dieser Reaktion aus dem Trinkalkohol (= Ethanol)?
+  \task Wieso würde diese Reaktion mit \iupac{\tert\-Butanol} (=
+    \iupac{1,1\-Di\|methyl\|ethanol}) nicht funktionieren?
+  \task Was würde aus Isopropanol (= \iupac{Propan\-2\-ol}) entstehen?
+\end{tasks}
+\end{question}
+\begin{solution}[name=Oxidation von Alkoholen]
+\begin{tasks}
+  \task Im ersten Schritt wirk Ethanol zu Acetaldehyd (Ethanal) oxidiert, das
+    schließlich zu Essigsäure (Ethansäure) oxidiert wird.
+  \task \iupac{\tert\-Butanol} (\ch{\textit{t} BuOH}) hat kein
+    \Chemalpha-\ch{H}-Atom und lässt sich daher nicht dehydrieren.
+  \task Isopropanol würde zu Aceton (Propanon) oxidiert, das nicht weiter
+    oxidiert werden kann, ohne dass die Struktur zerstört würde.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Bindungen I]
+Entscheiden Sie, ob bei den folgenden Bindungen eine Elektronenpaarbindung
+oder eine ionische Bindung vorliegt.  Benennen Sie die Stoffe.  Sortieren Sie
+die Stoffe mit Elektronenpaarbindung nach steigender Polarität.
+\begin{tasks}(8)
+  \task \ch{NaCl}
+  \task \ch{HCl}
+  \task \ch{H2O}
+  \task \ch{K2O}
+  \task \ch{CaH2}
+  \task \ch{BH3}
+  \task \ch{NH3}
+  \task \ch{MgBr2}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Bindungen I]
+Es gilt als Faustregel: Bindungen mit $\Delta EN > 1.7$ sind ionisch, sonst
+sind es Elektronenpaarbindungen. Weitere Faustregel: Metalle ragieren mit
+Nichtmetallen zu Ionenverbindungen, Nichtmetalle mit Nichtmetallen zu
+Elektronenpaarbindungen.
+\begin{tasks}(2)
+  \task \ch{NaCl}: ionische Bindung $\Delta EN=1.8$
+  \task \ch{HCl}: Elektronenpaarbindung $\Delta EN=0.6$
+  \task \ch{H2O}: Elektronenpaarbindung $\Delta EN=1.3$
+  \task \ch{K2O}: ionische Bindung $\Delta EN=2.6$
+  \task \ch{CaH2}: ionische Bindung $\Delta EN=1.2$ (Faustregel greift nicht,
+    hier gilt: Metall"=Nichtmetall $\Rightarrow$ Salz)
+  \task \ch{BH3}: Elektronenpaarbindung $\Delta EN=0.2$
+  \task \ch{NH3}: Elektronenpaarbindung $\Delta EN=0.9$
+  \task \ch{MgBr2}: ionische Bindung $\Delta EN=1.5$ (Faustregel greift nicht,
+    hier gilt: Metall"=Nichtmetall $\Rightarrow$ Salz)
+\end{tasks}
+Moleküle sortiert nach steigender Polarität: $ \ch{BH3} < \ch{HCl} < \ch{NH3}
+< \ch{H2O}$.
+\end{solution}
+
+\begin{question}[name=Bindungen II]
+Welche Arten chemischer Bindung kennen Sie (drei
+intramolekulare\footnote{innerhalb von Molekülen}, drei
+intermolekulare\footnote{zwischen Molekülen})?  Beschreiben Sie sie und geben
+Sie jeweils ein Beispiel an.
+\end{question}
+\begin{solution}[name=Bindungen II]
+\begin{itemize}
+  \item intramolekulare Bindungen
+    \begin{itemize}
+      \item Elektronenpaarbindung: gerichtete lokalisierte Bindung zwischen
+        zwei Atomen, Atome bilden Moleküle; Beispiel: \ch{HCl}.
+      \item Ionenbindung: ungerichtete Bindung durch elektrostatische
+        Anziehung, Atome im Kristallgitter angeordnet; Beispiel: \ch{KBr}.
+      \item metallische Bindung: Metallatome bilden Kugelpackung, Elektronen
+        delokalisiert; Beispiel: \ch{Fe}.
+    \end{itemize}
+  \item intermolekulare Bindungen
+    \begin{itemize}
+      \item Van-der-Waals-Bindungen: induzierte Dipole, Anziehung zwischen
+        unpolaren Stoffen; Beispiel: \ch{CH4}.
+      \item Dipol-Dipol-Wechselwirkungen: permanente Dipole; Beispiel:
+        \ch{H2S}.
+      \item Wasserstoff-Brücken-Bindungen: der starke Dipol zwischen der
+        \ch{O-H}- oder \ch{N-H}-Bindung und einem elektronegativen Atom,
+        in der Regel \ch{O}; Beispiel: \ch{H2O}.
+     \end{itemize}
+\end{itemize}
+\end{solution}
+
+\begin{question}[name=Bindungen III]
+Bindungen in der organischen Chemie.
+\begin{tasks}
+  \task Erläutern Sie die Begriffe Einfachbindung, Doppelbindung und
+    Dreifachbindung.  Ordnen Sie sie den gesättigten und ungesättigten
+    Kohlenwasserstoffen zu.
+  \task Um welche Bindungsart handelt es sich bei den \ch{C-C}-Einfach- und
+    den \ch{C-C}"=Mehrfachbindungen?  Begründen Sie.
+\end{tasks}
+\end{question}
+\begin{solution}[name=Bindungen III]
+\begin{tasks}
+  \task Einfachbindung: eine kovalente Bindung zwischen zwei Atomen;
+    gesättigte Kohlenwasserstoffe (eine \Chemsigma-Bindung). \par
+    Doppelbindung: zwei kovalente Bindungen zwischen denselben Atomen;
+    ungesättigte Kohlenwasserstoffe (eine \Chemsigma-Bindung und eine
+    \Chempi-Bindung). \par
+    Dreifachbindung: drei kovalente Bindungen zwischen denselben Atomen;
+    ungesättigte Kohlenwasserstoffe (eine \Chemsigma-Bindung und zwei
+    \Chempi-Bindungen).
+  \task Elektronenpaarbindungen, eine \Chemsigma-Bindung, zusätzliche
+    Bindungen sind \Chempi"=Bindungen.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name={Säuren, Basen und Salze I}]
+Benennen Sie folgende Salze und ordnen Sie ihnen die Säure zu, aus denen sie
+sich darstellen lassen.  Geben Sie die Säure mit Namen und Summenformel
+an.  Geben Sie für drei Salze Ihrer Wahl je drei Darstellungsmethoden mit
+Reaktionsgleichung an.
+\begin{tasks}(8)
+  \task \ch{Na2SO4}
+  \task \ch{CaCO3}
+  \task \ch{K3PO4}
+  \task \ch{NaNO3}
+  \task \ch{LiCl}
+  \task \ch{Na2SO3}
+  \task \ch{CaS}
+  \task \ch{KNO2}
+\end{tasks}
+\end{question}
+\begin{solution}[name={Säuren, Basen und Salze I}]
+\begin{tasks}
+  \task Natriumsulfat, Salz der Schwefelsäure \ch{H2SO4}.\\
+    Bildungs-Methode Metall und Säure: \ch{2 Na + H2SO4 -> Na2SO4 + H2 ^}.\\
+    Bildungs-Methode Metallhydroxid und Säure: \ch{2 NaOH + H2SO4 -> 2 H2O +
+      Na2SO4}.\\
+    Bildungs-Methode Metalloxid und Säure: \ch{Na2O + H2SO4 -> Na2SO4 + H2O}.
+  \task Calciumcarbonat, Salz der Kohlensäure \ch{H2CO3}.\\
+    Bildungsmethode Metall und Säure: \ch{Ca + H2CO3 -> CaCO3 + H2 ^}.\\
+    Bildungsmethode Metallhydroxis und Säure: \ch{Ca(OH)2 + H2CO3 -> CaCO3 + 2
+      H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{CaO + H2CO3 -> CaCO3 + H2O}.
+  \task Kaliumphosphat, Salz der Phosphorsäure \ch{H3PO4}.\\
+    Bildungsmethode Metall und Säure: \ch{6 K + 2 H3PO4 -> 2 K2PO4 + 3 H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{3 KOH + H3PO4 -> K3PO4 + 3
+      H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{3 K2O + 2 H3PO4 -> 2 K3PO4 + 3
+      H2O}.
+  \task Natriumnitrat, Salz der Salpetersäure \ch{HNO3}.\\
+    Bildungsmethode Metall und Säure: \ch{2 Na + 2 HNO3 -> 2 NaNO3 + H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{NaOH + HNO3 -> NaNO3 +
+      H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{Na2O + 2 HNO3 -> 2 NaNO3 +
+      H2O}.
+  \task Lithiumchlorid, Salz der Salzsäure \ch{HCl}.\\
+    Bildungsmethode Metall und Säure: \ch{2 Li + 2 HCl -> 2 LiCl + H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{LiOH + HCl -> LiCl + H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{Li2O + 2 HCl -> 2 LiCl + H2O}.
+  \task Natriumsulfit, Salz der schwefligen Säure \ch{H2SO3}.\\
+    Bildungsmethode Metall und Säure: \ch{2 Na + H2SO3 -> Na2SO3 + H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{2 NaOH + H2SO3 -> Na2SO3 + 2
+      H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{Na2O + H2SO3 -> Na2SO3 + H2O}.
+  \task Calciumsulfid, Salz der Schwefelwasserstoffsäure \ch{H2S}.\\
+    Bildungsmethode Metall und Säure: \ch{Ca + H2S -> CaS + H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{Ca(OH)2 + H2S -> CaS + 2
+      H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{CaO + H2S -> CaS + H2O}.
+  \task Kaliumnitrit, salz der salpetrigen Säure \ch{HNO2}.\\
+    Bildungsmethode Metall und Säure: \ch{2 K + 2 HNO2 -> 2 KNO2 + H2 ^}.\\
+    Bildungsmethode Metallhydroxid und Säure: \ch{KOH + HNO2 -> KNO2 + H2O}.\\
+    Bildungsmethode Metalloxid und Säure: \ch{K2O + 2 HNO2 -> 2 KNO2 + H2O}.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name={Säuren, Basen und Salze II}]
+Stellen Sie die Dissoziationsgleichungen für folgende Stoffe auf:
+\begin{tasks}(4)
+  \task Salzsäure
+  \task Schwefelsäure
+  \task Natriumhydroxid
+  \task Magnesiumsulfat
+  \task Kaliumchlorid
+  \task Natriumsulfat
+\end{tasks}
+\end{question}
+\begin{solution}[name={Säuren, Basen und Salze II}]
+\begin{tasks}
+  \task \ch{HCl\aq{} <=> H+ \aq{} + Cl- \aq}
+  \task \ch{H2SO4\aq{} <=> H+ \aq{} + HSO4- \aq{} <=> 2 H+ \aq{} + SO4^2- \aq}
+  \task \ch{NaOH\aq{} <=> OH- \aq{} + Na+ \aq}
+  \task \ch{MgSO4\aq{} <=> Mg^2+ \aq{} + SO4^2- \aq}
+  \task \ch{KCl\aq{} <=> K+ \aq{} + Cl- \aq}
+  \task \ch{Na2SO4\aq{} <=> 2 Na+ \aq{} + SO4^2- \aq}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Strukturformeln I]
+Geben Sie die Strukturformeln folgender Stoffe an:
+\begin{tasks}(4)
+  \task Hexan
+  \task \iupac{3\-Methyl\|pentan}
+  \task \iupac{2\-Chlor\|heptan}
+  \task \iupac{2,3,3\-Tri\|brom\|octan}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Strukturformeln I]
+\begin{tasks}
+  \task \chemfig{CH_3-CH_2-CH_2-CH_2-CH_2-CH_3}
+  \task \chemfig{CH_3-CH_2-CH(-[2]CH_3)-CH_2-CH_3}
+  \task \chemfig{CH_3-CH(-[2]Cl)-CH_2-CH_2-CH_2-CH_2-CH_3}
+  \task \chemfig{CH_3-CH(-[2]Br)-C(-[2]Br)(-[6]Br)-CH_2-CH_2-CH_2-CH_2-CH_3}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Strukturformeln II]
+Geben Sie die Strukturformeln aller isomeren Pentanole\footnote{Ohne Beachten
+  der R/S-Isomerie.} an.  Benennen Sie sie mit ihrem systematischen Namen und
+teilen Sie die Isomere in primäre, sekundäre und tertiäre Alkohole ein.
+\end{question}
+\begin{solution}[name=Strukturformeln II]
+Zunächst die Strukturformeln aller Isomere:
+
+\chemfig{[:30]--[:-30]--[:-30]-OH}\quad
+\chemfig{[:30]--[:-30]-(-[2])-[:-30]OH}\quad
+\chemfig{[:30]--[:-30](-[6]-[:-30])-OH}\quad
+\chemfig{[:30]--[:-30](-[6])--[:-30]OH}
+
+\chemfig{[:30]-(-[2])-[:-30]--[:-30]OH}\quad
+\chemfig{[:30]--[:-30](-[:-70])(-[:-110])-OH}\quad
+\chemfig{[:30]-(-[2])-[:-30](-[6])-OH}\quad
+\chemfig{[:30]-(-[:70])(-[:110])-[:-30]-OH}
+
+\noindent
+Nun der Reihe nach die Namen und die Klassifizierung in primär, sekundär und
+tertiär:
+
+\iupac{1\-Pentanol} (primär); \iupac{2\-Pentanol} (sekundär);
+\iupac{3\-Pentanol} (sekundär); \iupac{2\-Methyl\-1\-butanol} (primär);
+
+\iupac{3\-Methyl\-1\-butanol} (primär); \iupac{2\-Methyl\-2\-butanol}
+(tertiär); \iupac{3\-Methyl\-2\-butanol} (sekundär);
+\iupac{2,2\-Di\|methyl\|propanol} (primär); 
+\end{solution}
+
+\begin{question}[name=Strukturformeln III -- Nomenklatur]
+Geben Sie die systematischen Namen\footnote{Ohne Beachten der absoluten
+  Konfiguration (R/S-Nomenklatur)} -- gegebenenfalls auch den Trivialnamen --
+der folgenden Verbindungen an.
+\begin{tasks}(2)
+  \task \chemfig{[:30]--[:-30]([6])-}
+  \task \chemfig{[:30]O=-[:-30]-}
+  \task \chemfig{CH_3-CH(-[2]OH)-CH_2-CH_2-CH_3}
+  \task \chemfig{[:30]HO--[:-30]-OH}
+  \task \chemfig{[:30]--[:-30]-(=[2]O)-[:-30]OH}
+  \task \chemfig{CH_3-CH_2-O-CH_3}
+  \task \chemfig{CH_3-CH_2-COO-C_4H_9}
+  \task \chemfig{[:30]-(=[2]O)-[:-30]}
+  \task \chemfig{[:30]--[:-30]-NH_2}
+  \task \chemfig{[:30]--[:-30]--[:-30](-[6]SH)--[:-30]}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Strukturformeln III - Nomenklatur]
+\begin{tasks}(3)
+  \task \iupac{2\-Methyl\|butan}
+  \task Propanal (Propionaldehyd)
+  \task \iupac{Pentan\-2\-ol}
+  \task \iupac{Ethan\|di\|ol} (Glykol)
+  \task Butansäure (Buttersäure)
+  \task \iupac{Ethyl\|methyl\|ether}
+  \task \iupac{Propansäure\|butyl\|ester}
+  \task Propanon (Aceton)
+  \task \iupac{1\-Amino\|propan}
+  \task \iupac{Heptan\-3\-thiol}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Organische Reaktionen]
+Entscheiden Sie, welches der folgenden Gemische reagieren kann.  Geben Sie
+gegebenenfalls die Reaktionsgleichung und den Reaktionstyp an:
+\begin{tasks}(3)
+  \task Butan/Wasserstoff
+  \task \iupac{2\-Buten}/Chlor
+  \task Butan/Chlor
+  \task \iupac{1\-Buten}/Chlorwasserstoff
+  \task \iupac{2\-Butin}/Wasserstoff
+  \task \iupac{1\-Butin}/\iupac{1\-Butin}
+\end{tasks}
+\end{question}
+\begin{solution}[name=Organische Reaktionen]
+\begin{tasks}
+  \task keine Reaktion
+  \task Addition: \ch{CH3-CH=CH-CH3 + Cl2 -> CH3-CHCl-CHCl-CH3}
+  \task (radikalische) Substitution:
+    \[
+      \ch{C4H10 + Cl2 -> !(Nebenprodukt)( C2H5-CH2-CH2Cl )
+        + !(Hauptprodukt)( C2H5-CHCl-CH3 ) + HCl}
+    \]
+  \task Addition:
+    \[
+      \ch{C2H5-CH=CH2 + HCl -> !(Nebenprodukt)( C2H5-CH2-CH2Cl )
+        + !(Hauptprodukt)( C2H5-CHCl-CH3 )}
+    \]
+  \task Addition:
+    \begin{gather*}
+      \ch{CH3-C+C-CH3 + H2 -> CH3-CH=CH-CH3}\\
+      \ch{CH3-C+C-CH3 + 2 H2 -> CH3-CH3-CH3-CH3}
+    \end{gather*}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Siedepunkte und Struktur]
+Ordnen Sie folgende Siedepunkte den Verbindungen Ethanal, Ethansäure, Ethanol,
+Propan und Propansäure zu:
+
+\SI{78}{\celsius}, \SI{97}{\celsius}, \SI{-42}{\celsius}, \SI{20}{\celsius},
+\SI{118}{\celsius}
+
+Begründen Sie Ihre Entscheidung.
+\end{question}
+\begin{solution}[name=Siedepunkte und Struktur]
+\begin{itemize}
+  \item \SI{-42}{\celsius}: Propan (kurzes unpolares Molekül, nur
+    v.d.W.-Kräfte);
+  \item \SI{20}{\celsius}: Ethanal (Carbonylgruppe ist polar,
+    Dipol-Dipol-Wechselwirkungen);
+  \item \SI{78}{\celsius}: Ethanol (Hydroxy-Gruppe kann \ch{H}-Brücken
+    bilden);
+  \item \SI{97}{\celsius}: Ethansäure (Carboxy-Gruppe ist polar, kann
+    \ch{H}-Brücken bilden, Dimerisierung möglich);
+  \item \SI{118}{\celsius}: Propansäure (Carboxy-Gruppe ist polar, kann
+    \ch{H}-Brücken bilden, Dimerisierung möglich, Molekül größer als
+    Ethansäure);
+\end{itemize}
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

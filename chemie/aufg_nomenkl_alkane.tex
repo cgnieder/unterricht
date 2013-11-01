@@ -1,0 +1,280 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[greek,ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+
+\DeclareChemReaction[star]{gthreactions}{gather}
+\newcommand*\rctref[1]{\{\ref{#1}\}}
+
+\usepackage{chemnum}
+\cmpdsetup{cmpd-counter=Alph}
+
+\usepackage{siunitx}
+\sisetup{
+  detect-all ,
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+\DeclareSIUnit{\graddh}{grad\,dH}
+
+\usepackage{chemfig}
+\setatomsep{1.8em}
+\setcrambond{2.5pt}{1pt}{2pt}
+\definesubmol{C}{{\vphantom{CH_3}C}H_}
+\definesubmol{m}{C(-[2]H)(-[6]H)}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+
+\usepackage{fnpct}
+
+\usepackage{booktabs}
+\usepackage{collcell}
+\newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
+
+\usepackage{tikz}
+\colorlet{angcolor}{green!50!black}
+\colorlet{lencolor}{red!50!black}
+
+\usepackage{multicol}
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Nomenklatur von Kohlenwasserstoffen
+\end{center}
+
+\addsec{Übungen}
+
+\begin{question}[name=Unverzweigte Alkane]
+  Geben Sie die Strukturformeln von Methan bis Decan der homologen Reihe an.
+\end{question}
+\begin{solution}[name=Unverzweigte Alkane]
+  \begin{tabular}[c]{lc}
+    Methan & \chemfig{H-!m-H} \\
+    Ethan  & \chemfig{H-!m-!m-H} \\
+    Propan & \chemfig{H-!m-!m-!m-H} \\
+    Butan  & \chemfig{H-!m-!m-!m-!m-H} \\
+    Pentan & \chemfig{H-!m-!m-!m-!m-!m-H} \\
+    Hexan  & \chemfig{H-!m-!m-!m-!m-!m-!m-H} \\
+    Heptan & \chemfig{H-!m-!m-!m-!m-!m-!m-!m-H} \\
+    Octan  & \chemfig{H-!m-!m-!m-!m-!m-!m-!m-!m-H} \\
+    Nonan  & \chemfig{H-!m-!m-!m-!m-!m-!m-!m-!m-!m-H} \\
+    Decan  & \chemfig{H-!m-!m-!m-!m-!m-!m-!m-!m-!m-!m-H}
+  \end{tabular}
+\end{solution}
+
+\begin{question}[name=Einfach verweigte Alkane I]
+  Geben Sie die Strukturformeln folgender Alkane an.
+  \begin{tasks}(4)
+    \task \iupac{2\-Methyl\|butan}
+    \task \iupac{3\-Ethyl\|hexan}
+    \task \iupac{4\-Propyl\|heptan}
+    \task \iupac{5\-Butyl\|nonan}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Einfach verweigte Alkane I]
+  \begin{tasks}
+    \task \chemfig{!C3-!C{}(-[6]!C3)-!C2-!C3}
+    \task \chemfig{!C3-!C2-!C{}(-[6]!C2-!C3)-!C2-!C2-!C3}
+    \task \chemfig{!C3-!C2-!C2-!C{}(-[6]!C2-!C2-!C3)-!C2-!C2-!C3}
+    \task \chemfig{!C3-!C2-!C2-!C2-!C{}(-[6]!C2-!C2-!C2-!C3)-!C2-!C2-!C2-!C3}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Einfach verzweigte Alkane II]
+  Benennen Sie folgende Moleküle.
+  \begin{tasks}
+    \task \chemfig{!C3-!C2-!C2-!C{}(-[6]!C3)-!C3}
+    \task \chemfig{!C3-!C2-!C{}(-[6]!C3)-!C2-!C2-!C3}
+    \task \chemfig{!C3-!C2-!C2-!C{}(-[6]!C2-!C3)-!C2-!C2-!C2-!C3}
+    \task \chemfig{!C3-!C2-!C2-!C2-!C{}(-[6]!C2-!C2-!C3)-!C2-!C2-!C3}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Einfach verzweigte Alkane II]
+  \begin{tasks}(4)
+    \task \iupac{2\-Methyl\|pentan}
+    \task \iupac{3\-Methyl\|hexan}
+    \task \iupac{4\-Ethyl\|octan}
+    \task \iupac{4\-Propyl\|octan}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Mehrfach verzweigte Alkane I]
+  Geben Sie die Strukturformeln folgender Alkane an.
+  \begin{tasks}(2)
+    \task \iupac{2,2\-Di\|methyl\|butan}
+    \task \iupac{2,4\-Di\|methyl\|hexan}
+    \task \iupac{3\-Ethyl\-3\-methyl\|pentan}
+    \task \iupac{3,3,5\-Tri\|methyl\|heptan}
+    \task \iupac{5\-Butyl\-4,4\-di\|ethyl\-2,7\-di\|methyl\|nonan}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Mehrfach verzweigte Alkane I]
+  \begin{tasks}
+    \task\chemfig{!C3-C(-[6]!C3)(-[2]!C3)-!C2-!C3}
+    \task\chemfig{!C3-!C{}(-[6]!C3)-!C2-!C{}(-[6]!C3)-!C2-!C3}
+    \task\chemfig{!C3-!C2-C(-[6]!C3)(-[2]!C2-!C3)-!C2-!C3}
+    \task\chemfig{!C3-!C2-C(-[6]!C3)(-[2]!C3)-!C2-!C{}(-[6]!C3)-!C2-!C3}
+    \task
+      \chemfig{
+        !C3-!C{}(-[6]!C3)
+        -!C2-C(-[6]!C2-[6]!C3)(-[2]!C2-!C3)
+        -!C{}(-[6]!C2-[6]!C2-[6]!C3)
+        -!C2-!C{}(-[6]!C3)-!C2-!C3
+      }
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Mehrfach verzweigte Alkane II]
+  Benennen Sie folgende Moleküle.
+  \begin{tasks}
+    \task \chemfig{!C3-!C{}(-[6]!C3)-!C{}(-[6]!C3)-!C2-!C2-!C3}
+    \task \chemfig{!C3-C(-[6]!C3)(-[2]!C3)-!C2-!C3}
+    \task \chemfig{!C3-C(-[6]!C3)(-[2]!C3)-!C2-!C{}(-[6]!C3)-!C3}
+    \task \chemfig{!C3-!C2-!C{}(-[6]!C2-!C3)-!C{}(-[2]!C3)-!C2-!C{}(-[6]!C3)-!C3}
+    \task
+      \chemfig{
+        !C3-!C2-C(-[2]!C3)(-[6]!C2-[6]!C3)
+        -!C2-C(-[6]!C2-[6]!C2-!C3)(-[2]!C2-!C2-!C3)
+        -!C2-!C{}(-[6]!C3)
+        -!C3
+      }
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Mehrfach verzweigte Alkane II]
+  \begin{tasks}(2)
+    \task \iupac{2,3\-Di\|methyl\|hexan}
+    \task \iupac{2,2\-Di\|methyl\|butan}
+    \task \iupac{2,2,4\-Tri\|methyl\|pentan}
+    \task \iupac{5\-Ethyl\-2,4\-di\|methyl\|heptan}
+    \task \iupac{6\-Ethyl\-2,6\-di\|methyl\-4,4\-di\|propyl\|octan}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Alkene I]
+  Geben Sie die Strukturformeln folgender Alkene an.
+  \begin{tasks}(3)
+    \task \iupac{Propen}
+    \task \iupac{2\-Penten}
+    \task \iupac{1,3\-Buta\|di\|en}
+    \task \iupac{2,4\-Hepta\|di\|en}
+    \task \iupac{1,3,5\-Hepta\|tri\|en}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Alkene I]
+  \begin{tasks}(2)
+    \task \ch{CH2=CH-CH3}
+    \task \ch{CH3-CH2-CH=CH-CH3}
+    \task \ch{CH3-CH=CH-CH=CH-CH2-CH3}
+    \task \ch{CH3-CH=CH-CH=CH-CH=CH2}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Alkene II]
+  Benennen Sie folgende Moleküle.
+  \begin{tasks}(2)
+    \task \ch{CH2=CH2}
+    \task \ch{CH3-CH=CH-CH3}
+    \task \ch{CH2=CH-CH=CH-CH3}
+    \task \ch{CH2=CH-CH2-CH=CH2}
+    \task \ch{CH3=C=CH-CH2-CH=CH2}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Alkene II]
+  \begin{tasks}(3)
+    \task \iupac{Ethen}
+    \task \iupac{2\-Buten}
+    \task \iupac{1,3\-Penta\|di\|en}
+    \task \iupac{1,4\-Penta\|di\|en}
+    \task \iupac{1,2,5\-Hexa\|tri\|en}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Kohlenwasserstoffe I]
+  Geben Sie die Strukturformeln folgender Moleküle an.
+  \begin{tasks}
+    \task \iupac{3,3\-Di\|methyl\|pent\-1\-en}
+    \task \iupac{7\-Ethyl\-2,3\-di\|methyl\-4\-propyl\-3,5\-nona\|di\|en}
+    \task \iupac{5\-Ethyl\-2,4\-di\|methyl\-6\-propyl\-2,4,7\-nona\|tri\|en}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Kohlenwasserstoffe I]
+  \begin{tasks}(2)
+    \task \chemfig{[:30]=-[:-30](-[:-70])(-[:-110])--[:-30]}
+    \task
+      \chemfig{
+        [:30]-(-[2])
+        -[:-30](-[6])
+        =(-[2]-[:30]-[:-30])
+        -[:-30]=-[:-30](-[6]-[:-30])
+        --[:-30]
+      }
+    \task
+      \chemfig{
+        [:30]-(-[2])
+        =[:-30]-(-[2])
+        =[:-30](-[6]-[:-30])
+        -(-[2]-[:30]-[:-30])
+        -[:-30]=-[:-30]
+      }
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Kohlenwasserstoffe II]
+  Benennen Sie folgende Moleküle.
+  \begin{tasks}(2)
+    \task \chemfig{[:30]=-[:-30]-(-[2]-[:30])=[:-30]}
+    \task \chemfig{[:30]-(-[:70])(-[:110])-[:-30]=}
+    \task
+      \chemfig{
+        [:30]=-[:-30](-[6]-[::-60]-[::-60])
+        -(-[2]-[::60])
+        -[:-30]=(-[2])
+        -[:-30](-[6])=
+      }
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Kohlenwasserstoffe II]
+  \begin{tasks}(2)
+    \task \iupac{2\-Ethyl\-1,4\-penta\|di\|en}
+    \task \iupac{3,3\-Di\|methyl\-1\-but\|en}
+    \task \rlap{\iupac{5\-Ethyl\-2,3\-di\|methyl\-6\-propyl\-1,3,7\-octa\|tri\|en}}
+  \end{tasks}
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

@@ -1,0 +1,1105 @@
+\documentclass[DIV11]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage[utopia]{mathdesign}
+\usepackage[oldstyle]{libertine}
+\usepackage{microtype}
+
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+  chemformula/format      = \libertineLF
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\usepackage{siunitx}
+\sisetup{
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+  scientific-notation = fixed ,
+  exponent-product = \cdot
+}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  y tick label style = {
+    /pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision = 2,
+    /tikz/.cd} ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+\usepackage{enumitem}
+
+\usepackage{fnpct}
+\usepackage{booktabs}
+
+\usepackage{mdframed}
+\newmdenv[linecolor=red!20, linewidth=1ex]{intermission}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Chemisches Gleichgewicht
+\end{center}
+
+\noindent
+Im folgenden bedeuten Angaben in eckigen Klammern wie $[\ch{A}]$ die
+Stoffmengenkonzentration $c(\ch{A})$ eines Stoffes.  Es gilt also wenn nicht
+anders angegeben $[\ch{A}] \equiv c(\ch{A})$.
+
+
+\addsec{Aufgaben}
+
+\begin{question}[name=Reaktionsgeschwindigkeit]
+Bei der Reaktion von \SI{5}{\milli\mole} \ch{Mg} mit \SI{10}{\milli\liter}
+\SI{1}{\Molar} Salzsäure wurde das Volumen $V(\ch{H2})$ in \si{\milli\liter}
+des entwickelten Wasserstoffgases über die Zeit $t$ in Minuten in die folgende
+Tabelle eingetragen:
+\begin{center}
+ \begin{tabular}{ l*{5}{S[table-format=2.1]}*{2}{S[table-format=3.1]} }
+  \toprule
+   $t$ in \si{\minute}
+     &  1   &  2   &  3   &  4   &  5   &  10   &  15 \\
+  \midrule
+   $V(\ch{H2})$ in \si{\milli\liter}
+     & 29.0 & 50.5 & 66.5 & 78.2 & 87.4 & 106.4 & 110.7 \\
+   $n(\ch{H2})$ in \si{\milli\mole} \\
+   $n(\ch{Mg^2+})$ in \si{\milli\mole} \\
+   $[\ch{Mg^2+}]$ in \si{\milli\mole\per\milli\liter} \\
+  \bottomrule
+ \end{tabular}
+\end{center}
+\begin{tasks}
+ \task Rechnen Sie die Volumina $V(\ch{H2})$ in die Zahl $n(\ch{H2})$ der
+   gebildeten Wasserstoffmoleküle um.  (\SI{1}{\milli\mole} Teilchen =
+   \SI{24.8}{\milli\liter})
+ \task Stellen Sie die Reaktionsgleichung auf.
+ \task Geben Sie mit Hilfe der Reaktionsgleichung die Zahl $n(\ch{Mg^2+})$ der
+   gebildeten \ch{Mg^2+}-Ionen an.
+ \task Tragen Sie die Konzentrationen $[\ch{Mg^2+}]$ der \ch{Mg^2+}-Ionen in die
+   letzte Zeile ein.
+ \task Beschreiben Sie den Verlauf der Reaktion in einem
+   Konzentrations-Zeit-Diagramm über \num{15} Minuten.
+ \task Lesen Sie die Reaktionsgeschwindigkeit bei $t=0,2,5$ und $10$ Minuten
+   ab und erstellen Sie daraus ein Reaktionsgeschwindigkeits-Zeit-Diagramm.
+ \task Wie verändern sich die beiden Diagramme, wenn man die Temperatur um
+   \SI{10}{\celsius} erhöht?
+ \task Welche 2 Möglichkeiten gibt es noch, um die Reaktion zu beschleunigen?
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{center}
+ \begin{tabular}{ l*{5}{S[table-format=2.3]}*{2}{S[table-format=3.3]} }
+  \toprule
+   $t$ in \si{\minute}
+     &  1     &  2     &  3     &  4     &  5     &  10     &  15 \\
+  \midrule
+   $V(\ch{H2})$ in \si{\milli\liter}
+     & 29.0   & 50.5   & 66.5   & 78.2   & 87.4   & 106.4   & 110.7 \\
+   $n(\ch{H2})$ in \si{\milli\mole}
+     &  1.29  &  2.25  &  2.97  &  3.59  &  3.90  &   4.75  &   4.94 \\
+   $n(\ch{Mg^2+})$ in \si{\milli\mole}
+     &  0.65  &  1.13  &  1.49  &  1.75  &  1.95  &   2.38  &   2.47 \\
+   $[\ch{Mg^2+}]$ in \si{\milli\mole\per\milli\liter}
+     &  0.065 &   .113 &   .149 &   .175 &   .195 &    .238 &    .247 \\
+  \bottomrule
+ \end{tabular}
+\end{center}
+\begin{tasks}
+ \task Siehe Tabelle
+ \task \ch{Mg\sld{} + 2 HCl\aq{} -> MgCl2\aq{} + H2\gas{} ^}
+ \task siehe Tabelle
+ \task siehe Tabelle
+ \task \begin{tikzpicture}[baseline]
+        \begin{axis}[
+          anchor = north ,
+          xlabel = $t$ in \si\minute ,
+          ylabel = $c$ in \si{\milli\mole\per\milli\liter}]
+         \addplot[color=red,mark=x,draw=none] coordinates {
+            (1,.065)
+            (2,.113)
+            (3,.149)
+            (4,.175)
+            (5,.195)
+           (10,.238)
+           (15,.247)
+         };
+        \end{axis}
+       \end{tikzpicture}
+ \task Die Reaktionsgeschwindigkeit ist gegeben durch $v=\frac{\Delta
+     c}{\Delta t}$,  kann also mit Hilfe der benachbarten Messwerte genähert
+   werden.  Für den folgenden Plot wurde jeweils die Differenz zum
+   vorhergehenden Messwert verwendet.
+   
+   \begin{tikzpicture}[baseline]
+    \begin{axis}[
+      anchor = north ,
+      xlabel = $t$ in \si\minute ,
+      ylabel = $v$ in \si{\milli\mole\per\milli\liter\per\minute}]
+     \addplot[color=red,mark=x,draw=none] coordinates {
+        (0,.065)
+        (2,.048)
+        (5,.020)
+       (10,.0086)
+     };
+    \end{axis}
+   \end{tikzpicture}
+ \task Eine Erhöhung der Temperatur führt zu einer Beschleunigung der
+   Reaktionsgeschwindigkeit.  Das bedeutet, dass der Plot aus e steiler
+   starten  wird und sich der Endkonzentration schneller annähert.  Der Plot
+   aus f wird bei einer höheren Geschwindigkeit starten aber auch etwas
+   steiler abfallen.
+ \task Man die Reaktion zum Beispiel beschleunigen, indem die Konzentration
+   eines Edukts oder beider Edukte erhöht wird.  Auch die Absenkung des Drucks
+   wird hier die Reaktion theoretisch beschleunigen.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Abhängigkeit von der Konzentration]
+Bestimmen Sie die Konzentrationsabhängigkeit der Reaktionsgeschwindigkeit für die
+folgenden Reaktionen:
+\begin{tasks}(2)
+ \task \ch{H2 + I2 <=> 2 HI}
+ \task \ch{2 HI  <=>  H2 + I2}
+ \task \ch{2 NO2 <=> N2O4}
+ \task \ch{N2O4  <=>   2 NO2}
+ \task \ch{N2 + 3 H2 <=> 2 NH3}
+ \task \ch{2 NH3  <=>  N2 + 3 H2}
+ \task \ch{IO3- + 3 HSO3- <=> I- + 3 SO4^2- + 3 H+}
+ \task \ch{2 I- + S2O8^2- <=> I2 + 2 SO4^2-}
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}(3)
+ \task $v=k\cdot[\ch{H2}][\ch{I2}]$
+ \task $v=k\cdot[\ch{HI}]^2$
+ \task $v=k\cdot[\ch{NO2}]^2$
+ \task $v=k\cdot[\ch{N2O4}]$
+ \task $v=k\cdot[\ch{N2}][\ch{H2}]^3$
+ \task $v=k\cdot[\ch{NH3}]^2$
+ \task $v=k\cdot[\ch{IO3-}][\ch{HSO3-}]^3$
+ \task $v=k\cdot[\ch{I-}]^2[\ch{S2O8^2-}]$
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Verteilungsgleichgewichte]
+Ein Stoff \ch{A} löst sich in Hexan 10 mal besser als in Wasser:
+$\frac{[\ch{A}]_\text{Hexan}}{[\ch{A}]_\text{Wasser}} = 10$. \SI{1}{\milli\mole}
+dieses Stoffes sind in \SI{100}{\milli\liter} Wasser gelöst.  Um das Wasser zu
+reinigen, stehen \SI{100}{\milli\liter} Hexan zur Verfügung.  Berechnen Sie
+die im Wasser verbleibende Restmenge des Stoffes, wenn zur Extraktion
+\begin{tasks}
+  \task 1 mal \SI{100}{\milli\liter} Hexan in einem Arbeitsgang
+  \task 2 mal \SI{50}{\milli\liter} Hexan in zwei Arbeitsgängen
+  \task 10 mal \SI{10}{\milli\liter} Hexan in zehn Arbeitsgängen
+\end{tasks}
+verwendet werden.
+\end{question}
+\begin{solution}
+Für die Gleichgewichtskonzentrationen gilt:
+\begin{align*}
+  \frac{[\ch{A}]_\text{H}}{[\ch{A}]_\text{W}} &= 10 \\
+  [\ch{A}]_\text{H} &= 10 \cdot [\ch{A}]_\text{W}
+\end{align*}
+Die Ausgangsgleichung gilt für jeden einzelnen Waschgang.  Sie ist darum einmal,
+zweimal beziehungsweise zehnmal anzuwenden.
+
+\begin{tasks}
+  \task Im Gleichgewicht verbleiben noch $x$ \si{\mole} des Stoffes im
+    Wasser. Damit ergibt sich die Gleichung 
+    \[
+      \frac{\SI{1}{\milli\mole}-x}{\SI{100}{\milli\liter}}
+      = 10 \cdot \frac{x}{\SI{100}{\milli\liter}}
+    \]
+    mit der Lösung $x = \SI{.091}{\milli\mole}$.
+  \task Zunächst wenden wir einen allgemeinen Ansatz an.  $a$ ist die
+    vorhandene Ausgangsmenge.  Die Gleichung
+    \[
+      \frac{a-x}{\SI{50}{\milli\liter}}
+      = 10 \cdot \frac{x}{\SI{100}{\milli\liter}}
+    \]
+    hat die Lösung $x = \frac{1}{6}\,a$.  Da die Gleichung für jeden Waschgang
+    Anwendung findet, beträgt die Endmenge
+    \[
+      x = \biggl(\frac{1}{6}\biggr)^2\cdot\SI{1}{\milli\mole}
+      = \SI{.028}{\milli\mole} \, .
+    \]
+  \task Wieder stellen wir zunächst einen allgemeinen Ansatz auf mit $a$ für
+    die Ausgangsmenge.  Die Gleichung
+    \[
+      \frac{a-x}{\SI{10}{\milli\liter}}
+      = 10 \cdot \frac{x}{\SI{100}{\milli\liter}}
+    \]
+    hat die Lösung $x = \frac{1}{2}\,a$.  Dieses mal muss die Gleichung 10 mal
+    angewendet werden.  Damit beträgt die Endmenge
+    \[
+      x = \biggl(\frac{1}{2}\biggr)^{10}\cdot\SI{1}{\milli\mole}
+        = \SI{.001}{\milli\mole} \, .
+    \]
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Iodwasserstoffgleichgewicht,ID=HI-Glgw]
+Wasserstoff und Iod reagieren zu Iodwasserstoff: \ch{H2 + I2 <=> 2 HI} mit $K = 54.3$.
+\begin{tasks}
+ \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+ \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit \SI{0.1}{\mole}
+   Wasserstoff und \SI{0.1}{\mole} Iod gefüllt.  Wie viel Mole Iodwasserstoff werden
+   daraus gebildet?
+ \task Warum ist das Volumen des Reaktionsgefäßes bei dieser Berechnung unerheblich?
+ \task Wie viel Mole Wasserstoff und Iod werden gebildet, wenn \SI{0.1}{\mole}
+   Iodwasserstoff eingefüllt wurde?
+ \task Berechnen Sie die Ausbeute für b.
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}
+ \task $K = \frac{[\ch{HI}]^2}{[\ch{H2}]\cdot[\ch{I2}]}$
+ \task Wir verwenden das Ergebnis aus c, was bedeutet, dass wir uns um das
+   Volumen nicht kümmern müssen.  Die Stoffmengen für Wasserstoff und Iod
+   betragen im Gleichgewicht $[\ch{H2}]=[\ch{I2}]=0.1-x$ (in \si{\mole}), die
+   Stoffmenge von \ch{HI} entsprechend $[\ch{HI}]=2x$.  Daraus folgt für das
+   Massenwirkungsgesetz \[54.3 = \frac{(2x)^2}{(0.1-x)^2} \,.\]  Die Lösungen
+   dieser quadratischen Gleichung betragen $x_1=0.08$ und $x_2=0.14$.  Die
+   zweite Lösung ergibt chemisch keinen Sinn, da das negative Stoffmengen
+   für \ch{H2} und \ch{I2} ergeben würde.  Also werden \SI{0.16}{\mole} \ch{HI}
+   gebildet.
+ \task Das Volumen kürzt sich aus $K$ heraus:
+   \[
+     K = \frac{[\ch{HI}]^2}{[\ch{H2}]\cdot[\ch{I2}]}
+       = \frac{\left(\frac{n(\ch{HI})}{V}\right)^2}{\frac{n(\ch{H2})}{V}\cdot\frac{n(\ch{I2})}{V}}
+       = \frac{n^2(\ch{HI})}{n(\ch{H2})\cdot n(\ch{I2})}
+   \]
+   Alternative Erklärung: die Summe der stöchiometrischen Faktoren beträgt
+   $(-1) + (-1) +1 +1 = 0$, also gilt laut rotem Kasten $K_c = K_n \cdot V^0 =
+   K_n$.
+ \task Die Stoffmengen für Wasserstoff und Iod  betragen im Gleichgewicht
+   $[\ch{H2}]=[\ch{I2}]=x$ (in \si{\mole}), die Stoffmenge von \ch{HI}
+   entsprechend $[\ch{HI}]=0.1-2x$.  Daraus folgt für das Massenwirkungsgesetz
+   \[54.3 = \frac{(0.1-2x)^2}{x^2} \,.\]  Die Lösungen
+   dieser quadratischen Gleichung betragen $x_1=-0.02$ und $x_2=0.01$.  Die
+   erste Lösung ergibt chemisch keinen Sinn, da das negative Stoffmengen
+   für \ch{H2} und \ch{I2} ergeben würde.  Also werden je \SI{0.01}{\mole}
+   \ch{H2} und \ch{I2} gebildet.
+ \task Bei einem kompletten Umsatz wären in b \SI{0.2}{\mole} \ch{HI}
+   gebildet worden.  Tatsächlich werden jedoch nur \SI{0.16}{\mole}
+   gebildet.  Also beträgt die Ausbeute $\frac{0.16}{0.2}=\SI{80}{\percent}$.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Massenwirkungsgesetz]
+Formulieren Sie das Massenwirkungsgesetz für die folgenden Reaktionen:
+\begin{tasks}(2)
+ \task \ch{CH4 + 2 O2    <=> CO2 + 2 H2O}
+ \task \ch{2 SO2 + O2    <=> 2 SO3}
+ \task \ch{H2O + HCl     <=> H3O+ + Cl- }
+ \task \ch{2 H2O + H2SO4 <=> 2 H3O+ + SO4^2- }
+ \task \ch{3 H2O + H3PO4 <=> 3 H3O+ + PO4^3- }
+ \task \ch{CH4 + NH3     <=> HCN + 3 H2 }
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}(3)
+ \task $K=\frac{[\ch{CO2}][\ch{H2O}]^2}{[\ch{CH4}][\ch{O2}]^2}$
+ \task $K=\frac{[\ch{SO3}]^2}{[\ch{SO2}]^2[\ch{O2}]}$
+ \task $K=\frac{[\ch{H3O+}][\ch{Cl-}]}{[\ch{H2O}][\ch{HCl}]}$
+ \task $K=\frac{[\ch{H3O+}]^2[\ch{SO4^2-}]}{[\ch{H2O}]^2[\ch{H2SO4}]}$
+ \task $K=\frac{[\ch{H3O+}]^3[\ch{PO4^3-}]}{[\ch{H2O}]^3[\ch{H3PO4}]}$
+ \task $K=\frac{[\ch{HCN}][\ch{H2}]^3}{[\ch{CH4}][\ch{NH3}]}$
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Estersynthese]
+Bei der Reaktion von Ethansäure \ch{CH3COOH} mit Ethanol \ch{C2H5-OH} bildet
+sich unter Austritt von Wasser Ethansäureethylester \ch{CH3-COO-C2H5}:
+\begin{reaction*}
+ CH3COOH + C2H5-OH <=> CH3-COO-C2H5 + H2O
+\end{reaction*}
+\begin{tasks}
+  \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+  \task \SI{1}{\mole} Säure wurden mit \SI{1}{\mole} Alkohol versetzt.  Nach
+    einiger Zeit sind \SI{0.8}{\mole} Ester entstanden. Berechnen Sie die
+    Gleichgewichtskonstante $K$.
+  \task Warum ist das Volumen der Reaktionslösung bei dieser Berechnung
+    unerheblich?
+  \task Wieviel Mole Ester werden gebildet, wenn \SI{1}{\mole} Säure mit
+    \SI{4}{\mole} Alkohol versetzt wurden?
+  \task Berechnen Sie die Ausbeute für d.
+  \task Berechnen Sie die Ausbeute für d, wenn der Ester jeweils
+    abdestilliert wird, so dass nur noch \SI{0.1}{\mole} Ester in der
+    Reaktionslösung zurückbleiben.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \[ K = \frac{[\ch{CH3-COO-C2H5}]\cdot[\ch{H2O}]}{[\ch{CH3COOH}]\cdot[\ch{C2H5-OH}]} \]
+    \task Da das Volumen sich aus der Gleichung herauskürzt (siehe c),
+      braucht es nicht beachtet zu werden.  Die Stoffmengen im
+      Gleichgewicht betragen $n(\ch{H2O})=n(\ch{CH3-COO-C2H5})=\SI{0.8}{\mole}$
+      und $n(\ch{CH3COOH})=n(\ch{C2H5-OH})=\SI{1}{\mole}-\SI{.8}{\mole} =
+      \SI{.2}{\mole}$. Damit ergibt sich
+      \[ K = \frac{0.8^2}{0.2^2} = 4 \,. \]
+    \task Siehe Lösung zu Aufgabe \QuestionNumber{HI-Glgw}c.
+    \task Die Stoffmengen der Reaktanden betragen im Gleichgewicht
+      $n(\ch{H2O}]=[\ch{CH3-COO-C2H5})=x$, $n(\ch{CH3COOH})=1-x$ und
+      $n(\ch{C2H5-OH})=4-x$ (jeweils in \si{\mole}).  Damit ergibt sich im
+      MWG mit dem Ergebnis aus b und c \[ 4 = \frac{x^2}{(1-x)(4-x)}\,. \]
+      Die Lösungen dieser quadratischen Gleichung betragen $x_1=0.93$ und
+      $x_2=5.74$.  Die zweite Lösung ergibt chemisch keinen Sinn, da dann
+      die Edukte negative Stoffmengen hätten.  Also werden \SI{0.93}{\mole}
+      Ester gebildet.  Dieses Ergebnis bestätigt den Satz vom kleinsten
+      Zwang, der sagt, dass sich bei der Konzentrationserhöhung eines der
+      Edukte das Gleichgewicht nach rechts verschiebt.
+    \task Bei vollem Reaktionsumsatz wären \SI{1}{\mole} Ester entstanden, also
+      beträgt die Aubeute $\frac{0.93}{1}=\SI{93}{\percent}$.
+    \task Setzen wir das Ergebnis aus d voraus, so betragen die
+      Ausgangsstoffmengen $c(\ch{CH3COOH})=0.07$, $n(\ch{C2H5-OH})=3.07$
+      und $n(\ch{H2O})=0.93$ (jeweils in \si{\mole}).  Durch Abdestillation
+      des Esters wird sich das Gleichgewicht nach dem Prinzip des kleinsten
+      Zwangs nach rechts verschieben.  Damit ergeben sich als Stoffmengen im
+      Gleichgewicht (in \si{\mole}) $n(\ch{CH3COOH}) = 0.07-x$,
+      $n(\ch{C2H5-OH}) = 3.07-x$, $n(\ch{H2O}) = 0.93+x$ und
+      $n(\ch{CH3-COO-C2H5}) = 0.1$ (vorgegeben).  Das ergibt die Gleichung
+      \[ 4 = \frac{0.1\cdot(0.93+x)}{(0.07-x)(3.07-x)} \]
+      mit den Lösungen $x_1=0.06$ und $x_2=3.10$.  Nur die erste Lösung ergibt
+      chemisch einen Sinn.  Damit sind von ursprünglich \SI{1}{\mole} Säure noch
+      \SI{0.01}{\mole} übrig, was einer Ausbeute von $\frac{1-0.01}{1} =
+      \SI{99}{\percent}$ entspricht.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Bestimmung der Gleichgewichtskonstanten bei der Esterhydrolyse]
+Bei der Reaktion von \SI{10}{\milli\mole} Ethansäuremethylester mit \SI{10}{\milli\liter}
+\SI{10}{\Molar} Natronlauge nach der Gleichung
+\begin{reaction*}
+ CH3-COO-CH3 + OH- <=> CH3COO- + CH3OH
+\end{reaction*}
+wurden die folgenden Werte gemessen:
+\begin{center}
+ \begin{tabular}{ l*{7}{S[table-format=1.2]}}
+  \toprule
+   $t$ in Min
+     & 1   & 2   & 3   & 4   & 5  & 10    & 15 \\
+  \midrule
+   $[\Hyd]$ in \si{\milli\mole\per\milli\liter}
+     & 8.5 & 7.2 & 6.3 & 5.6 & 5. &  3.57 &  3.2 \\
+   $[\ch{CH3COOCH3}]$ in \si{\milli\mole\per\milli\liter} \\
+   $[\ch{CH3COO-}]$ in \si{\milli\mole\per\milli\liter} \\
+   $[\ch{CH3OH}]$ in \si{\milli\mole\per\milli\liter} \\
+  \bottomrule
+ \end{tabular}
+\end{center}
+\begin{tasks}
+  \task Formulieren Sie die Reaktionsgleichung mit Strukturformeln
+  \task Ergänzen Sie die fehlenden Konzentrationen in der Tabelle.
+  \task Beschreiben Sie den Verlauf der Reaktion in einem
+    Konzentrations-Zeit-Diagramm über \num{15} Minuten.
+  \task Wie hoch sind die Konzentrationen der Edukte und Produkte im
+    Gleichgewicht
+  \task Bestimmen Sie die Gleichgewichtskonstante $K$
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task
+      \schemestart
+        \chemfig{H-C(-[2]H)(-[6]H)-C(=[2]\lewis{13,O})-\lewis{26,O}-C(-[2]H)(-[6]H)-H}
+        \+ \ch{OH-}
+        \arrow{<=>}
+        \chemfig{H-C(-[2]H)(-[6]H)-C(=[2]\lewis{13,O})-{\Lewis{026,O}\,\mch}}
+        \+
+        \chemfig{H-C(-[2]H)(-[6]H)-\lewis{26,O}-H}
+      \schemestop
+    \task
+      \begin{tabular}[t]{ l*{7}{S[table-format=1.2]}}
+        \toprule
+          $t$ in Min
+            & 1   & 2   & 3   & 4   & 5  & 10    & 15 \\
+        \midrule
+          $[\Hyd]$ in \si{\milli\mole\per\milli\liter}
+            & 8.5 & 7.2 & 6.3 & 5.6 & 5. &  3.57 &  3.2 \\
+          $[\ch{CH3COOCH3}]$ in \si{\milli\mole\per\milli\liter}
+            & 8.5 & 7.2 & 6.3 & 5.6 & 5. &  3.57 &  3.2 \\
+          $[\ch{CH3COO-}]$ in \si{\milli\mole\per\milli\liter}
+            & 1.5 & 2.8 & 3.7 & 4.4 & 5. &  6.43 &  6.8 \\
+          $[\ch{CH3OH}]$ in \si{\milli\mole\per\milli\liter}
+            & 1.5 & 2.8 & 3.7 & 4.4 & 5. &  6.43 &  6.8 \\
+        \bottomrule
+      \end{tabular}
+    \task
+      \begin{tikzpicture}[baseline]
+        \begin{axis}[
+          anchor = north ,
+          xlabel = $t$ in \si\minute ,
+          ylabel = $c$ in \si{\milli\mole\per\milli\liter}]
+         \addplot[color=red,mark=x,draw=none] coordinates {
+            (0,10)
+            (1,8.5)
+            (2,7.2)
+            (3,6.3)
+            (4,5.6)
+            (5,5.0)
+           (10,3.57)
+           (15,3.2)
+         };
+         \addlegendentry{Edukt}
+         \addplot[color=blue,mark=o,draw=none] coordinates {
+            (0,0)
+            (1,1.5)
+            (2,2.8)
+            (3,3.7)
+            (4,4.4)
+            (5,5.0)
+           (10,6.43)
+           (15,6.8)
+         };
+         \addlegendentry{Produkt}
+        \end{axis}
+      \end{tikzpicture}
+    \task Die Konzentration im Gleichgewicht können anhand Tabelle und Grafik
+      auf \SI{6.8}{\mole\per\liter} für die Produkte und
+      \SI{3.2}{\mole\per\liter} für die Edukte geschätzt werden.
+    \task Es gilt das Massenwirkungsgesetz
+      \[ K = \frac{[\ch{CH3COO-}]\cdot[\ch{CH3OH}]}{[\ch{CH3-COO-CH3}]\cdot[\Hyd]} \,. \]
+      Mit den Werten aus d berechnet sich damit $K$ wie folgt (Einheiten kürzen
+      sich und werden daher ausgelassen):
+      \[ K = \frac{6.8\cdot6.8}{3.2\cdot3.2} = 4.52 \,. \]
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Dimerisierung von Stickstoffdioxid]
+Zwei Moleküle Stickstoffdioxid dimerisieren zu einem Molekül
+Distickstofftetroxid:
+\begin{reaction*}
+ 2 NO2 <=> N2O4
+\end{reaction*}
+\begin{tasks}
+  \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{0.26}{\mole} Stickstoffdioxid gefüllt.  Nach einiger Zeit sind
+    \SI{0.08}{\mole} Distickstofftetroxid entstanden.  Berechnen Sie die
+    Gleichgewichtskonstante $K$.
+  \task Welche Einheit hat $K$?  In welchen Fällen hat $K$ keine Einheit?
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{0.1}{\mole} Stickstoffdioxid gefüllt.  Wie viel Mole
+    Distickstofftetroxid werden daraus gebildet?
+  \task Wie viel Mole Stickstoffdioxid werden gebildet, wenn \SI{0.1}{\mole}
+    Distickstofftetroxid eingefüllt wurde?
+  \task Berechnen Sie die Ausbeute für b.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \[ K=\frac{[\ch{N2O4}]}{[\ch{NO2}]^2} \]
+    \task Die Gleichgewichtskonzentrationen betragen
+      $[\ch{N2O4}]=\SI{.08}{\mole\per\liter}$ und
+      $[\ch{NO2}]=\SI{.10}{\mole\per\liter}$.  Damit berechnet sich $K$ zu
+      \[
+        K = \frac{\SI{.08}{\mole\per\liter}}{(\SI{.10}{\mole\per\liter})^2}
+          = \SI{8}{\liter\per\mole} \,.
+      \]
+    \task Die Einheit von $K$ wurde in b angegeben.  Keine Einheit hat $K$
+      wenn  die Anzahl der Edukt-Teilchen mit der der Produkt-Teilchen
+      übereinstimmt, das bedeutet, wenn die Summe der stöchiometrischen
+      Faktoren der Edukte gleich der Summe der stöchiometrischen Faktoren der
+      Produkte ist.  Dann kürzen sich die Einheiten im MWG.  In diesem Fall
+      ist dann auch $K_c = K_n = K_x$, siehe roter Kasten.
+    \task Die Konzentrationen im Gleichgewicht betragen $[\ch{NO2}]=0.1-2x$
+      und $[\ch{N2O4}]=x$, jeweils in \si{\mole\per\liter}.  Damit ergibt sich
+      die Gleichung \[ 8 = \frac{x}{(0.1-2x)^2} \] mit den Lösungen $x_1=0.023$
+      und $x_2=0.108$. Nur die erste Lösung ergibt in diesem Kontext einen
+      Sinn, also sind \SI{0.023}{\mole} \ch{N2O4} entstanden.  Beachten Sie,
+      dass die Zahlen nur deshalb einfach so übertragbar sind, weil das
+      Volumen des Kolbens genau ein Liter beträgt.
+    \task Die Konzentrationen im Gleichgewicht betragen $[\ch{N2O4}]=0.1-0.5x$
+      und $[\ch{NO}]=x$, jeweils in \si{\mole\per\liter}.  Damit ergibt sich
+      die Gleichung \[ 8 = \frac{0.1-0.5x}{x^2} \] mit den Lösungen $x_1=-0.15$
+      und $x_2=0.085$. Nur die zweite Lösung ergibt in diesem Kontext einen
+      Sinn, also sind \SI{0.085}{\mole} \ch{NO2} entstanden.
+    \task Aus \SI{0.26}{\mole} \ch{NO2} würden bei kompletter Dimerisierung
+      \SI{0.13}{\mole} \ch{N2O4} entstehen, also beträgt die Ausbeute
+      $\frac{0.08}{0.13} = \SI{61.5}{\percent}$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Ammoniaksynthese]
+Stickstoff \ch{N2} und Wasserstoff \ch{H2} reagieren zu Ammoniak \ch{NH3}:
+\begin{reaction*}
+ N2 + 3 H2 <=> 2 NH3
+\end{reaction*}
+\begin{tasks}
+  \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{0.24}{\mole} Stickstoff und \SI{0.32}{\mole} Wasserstoff gefüllt.
+    Nach einiger Zeit sind \SI{0.08}{\mole} Ammoniak entstanden.  Berechnen
+    Sie die Gleichgewichtskonstante $K$.
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{2}{\mole} Stickstoff und \SI{4}{\mole} Wasserstoff gefüllt.  Wie viel
+    Mole Ammoniak werden daraus gebildet?
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{0.1}{\mole} Ammoniak gefüllt.  Wie viel Mole Stickstoff und wie viel
+    Mole Wasserstoff werden daraus gebildet?  (Nehmen Sie einen GTR zur
+    Hilfe.)
+  \task Berechnen Sie die Ausbeute für b und c.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \[ K = \frac{[\ch{NH3}]^2}{[\ch{N2}]\cdot[\ch{H2}]^3} \]
+    \task Die Konzentrationen im Gleichgewicht betragen
+      $[\ch{NH3}]=0.08=2\cdot0.04$, $[\ch{N2}]=0.24-0.04=0.20$ und
+      $[\ch{H2}]=0.32-3\cdot0.04=0.20$, jeweils in \si{\mole\per\liter}. Damit
+      ergibt sich $K$ zu
+      \[
+        K = \frac
+              {(\SI{0.08}{\mole\per\liter})^2}
+              {\SI{0.20}{\mole\per\liter}\cdot(\SI{0.20}{\mole\per\liter})^3}
+          = \SI{4}{\liter\squared\per\mole\squared} \,.
+      \]
+    \task Die Konzentrationen im Gleichgewicht betragen $[\ch{N2}]=2-x$,
+      $[\ch{H2}]=4-3x$ und $[\ch{NH3}]=2x$, jeweils in \si{\mole\per\liter}.
+      Damit ergibt sich folgende Gleichung:
+      \[ 4 = \frac{(2x)^2}{(2-x)(4-3x)^3} \,. \]
+      Ihre Lösungen betragen $x_1=1$ und $x_2=2.246$.  Die zweite Lösung gäbe
+      für Stickstoff eine negative Konzentration, also ist die erste die
+      richtige.  (Die Gleichung ist so gestellt, dass man die richtige Lösung
+      auch erraten kann, da es sich hier um eine Gleichung vierten Grades
+      handelt.)  Es werden also \SI{2}{\mole} Ammoniak gebildet.
+    \task
+      Die Konzentrationen im Gleichgewicht betragen $[\ch{N2}]=x$,
+      $[\ch{H2}]=3x$ und $[\ch{NH3}]=0.1-2x$, jeweils in \si{\mole\per\liter}.
+      Damit ergibt sich folgende Gleichung:
+      \[ 4 = \frac{(0.1-2x)^2}{x\cdot(3x)^3} \,. \]
+      Ihre Lösungen betragen $x_1=-0.234$ und $x_2=0.041$.  Nur die positive
+      Lösung ergibt chemisch einen Sinn.  Es werden also \SI{0.041}{\mole}
+      \ch{N2} und \SI{0.123}{\mole} \ch{H2} gebildet.
+    \task Bei b gehen wir von der Reaktion \ch{N2 + 3 H2 -> 2 NH3} aus.  Bei
+      einem vollständigen Umsatz wären \SI{4}{\mole} Ammoniak gebildet worden,
+      die Ausbeute beträgt also $\frac{2}{4}=\SI{50}{\percent}$.
+
+      Bei c gehen wir von der umgekehrten Reaktion \ch{2 NH3 -> N2 + 3 H2}
+      aus.  Bei einem vollständigen Umsatz wären \SI{0.05}{\mole} Stickstoff
+      gebildet worden, die Ausbeute beträgt also $\frac{0.041}{0.05} =
+      \SI{82}{\percent}$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Schwefeltrioxidsynthese]
+Zwei Moleküle Schwefeldioxid reagieren mit einem Molekül Sauerstoff \ch{O2} zu
+zwei Molekülen Schwefeltrioxid:
+\begin{reaction*}
+ 2 SO2 + O2 <=> 2 SO3
+\end{reaction*}
+\begin{tasks}
+  \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{0.4}{\mole} Schwefeldioxid und \SI{1.1}{\mole} Sauerstoff gefüllt.
+    Nach einiger Zeit sind \SI{0.2}{\mole} Schwefeltrioxid entstanden.
+    Berechnen Sie die Gleichgewichtskonstante.
+  \task Ein Kolben mit einem Volumen $V = \SI{1}{\liter}$ wurde mit
+    \SI{4}{\mole} Schwefeldioxid und \SI{2}{\mole} Sauerstoff gefüllt.  Wie
+    viel Mole Schwefeltrioxid werden daraus gebildet?
+  \task Wie viel Mole Schwefeldioxid werden gebildet, wenn \SI{0.1}{\mole}
+    Schwefeltrioxid eingefüllt wurde? (Nehmen Sie den GTR zur Hilfe.)
+  \task Berechnen Sie die Ausbeute für c.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \[ K = \frac{[\ch{SO3}]^2}{[\ch{SO2}]^2\cdot[\ch{O2}]} \]
+    \task Die Gleichgewichtskonzentrationen betragen $[\ch{SO3}]=0.1$,
+      $[\ch{SO2}]=0.4-0.2=0.2$ und $[\ch{=2}]=1.1-\frac{1}{2}\cdot0.2=1.0$,
+      jeweils in \si{\mole\per\liter}.  Aus dem MWG ergibt sich damit die
+      Gleichgewichtskonstante
+      \[
+        K = \frac
+              {(\SI{0.2}{\mole\per\liter})^2}
+              {(\SI{0.2}{\mole\per\liter})^2\cdot\SI{1.0}{\mole\per\liter}}
+          = \SI{1}{\liter\per\mole} \,.
+      \]
+    \task Im Gleichgewicht liegen folgende Konzentrationen vor: $[\ch{SO2}] =
+      4-2x$, $[\ch{O2}]=2-x$ und $[\ch{SO3}]=2x$, jeweils in
+      \si{\liter\per\mole}.  Mit dem MWG ergibt sich damit die Gleichung
+      \[ 1 = \frac{(2x)^2}{(4-2x)^2(2-x)} \]
+      mit der Lösung $x=1$.  (Die Aufgabe ist so gestellt, dass die richtige
+      Lösung auch erraten werden kann, da es sich um eine Gleichung dritten
+      Grades handelt.)  Es wurden also \SI{2}{\mole} \ch{SO3} gebildet.
+      Denken Sie daran, dass $x$ eine Konzentration ist und wir die Zahl nur
+      deshalb als Stoffmenge verwenden können, weil das Volumen des Kolbens
+      genau ein Liter beträgt.
+    \task Im Gleichgewicht liegen die Konzentrationen $[\ch{SO2}] =
+      2x$, $[\ch{O2}]=x$ und $[\ch{SO3}]=0.1-2x$ vor, jeweils in
+      \si{\liter\per\mole}. Daraus ergibt sich die Gleichung
+      \[ 1 = \frac{(0.1-2x)^2}{(2x)^2\cdot x} \]
+      mit der Lösung $x=0.042$.  Es wurden also \SI{0.084}{\mole} \ch{SO2}
+      gebildet.  Denken Sie daran, dass $x$ eine Konzentration ist und wir die
+      Zahl nur deshalb als Stoffmenge verwenden können, weil das Volumen des
+      Kolbens genau ein Liter beträgt.
+    \task Bei vollständigem Umsatz wären \SI{4}{\mole} Schwefeltrioxid
+      gebildet worden.  Die Ausbeute beträgt also $\frac{2}{4} =
+      \SI{50}{\percent}$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=\pH-Wert einer schwachen Säure]
+Phosphorsäure reagiert mit Wasser unter Bildung von Dihydrogenphosphat-Ionen
+und Oxonium-Ionen:
+\begin{reaction*}
+ H3PO4 + H2O <=> H2PO4- + H3O+
+\end{reaction*}
+\begin{tasks}
+  \task Formulieren Sie das Massenwirkungsgesetz für diese Reaktion.
+  \task Wie viel Mole \ch{H2O} enthält ein Liter Wasser?  Wie groß ist
+    $[\ch{H2O}]$ in einer verdünnten wäßrigen Lösung?
+  \task Wie groß ist der \pH-Wert bei $[\ch{H3O+}] =
+    \SI{104}{\mole\per\liter}$?  Wie groß ist $[\ch{H3O+}]$ bei $\pH = 8$?
+  \task Löst man \SI{2}{\mole} Phosphorsäure in einem Liter Wasser, so erhält
+    man $\pH = 1$.  Berechnen Sie die Gleichgewichtskonstante $K$ und runden
+    Sie auf die 4. Stelle nach dem Komma.
+  \task Wie viel Mole Phosphorsäure müssen in einem Liter Wasser gelöst
+    werden, wenn man $\pH = 2$ erreichen will?
+  \task Welchen \pH{} erhält man, wenn man \SI{0.5}{\mole} Phosphorsäure in
+    einem Liter Wasser löst?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \[ K = \frac{[\ch{H2PO4-}]\cdot[H3O+]}{[H3PO4]\cdot[H2O]} \]
+    \task Die Konzentration von Wasser lässt sich mit Hilfe der Dichte
+      berechnen.  Bei Raumtemperatur beträgt die Dichte von Wasser $\varrho =
+      \SI{1.0}{\gram\per\cmc}$, ein Liter wiegt also \SI{1.0}{\kilo\gram}.  Da
+      die molare Masse von Wasser \SI{18}{\gram\per\mole} beträgt, ergibt sich
+      eine Konzentration von
+      \[
+        [\ch{H2O}]
+         = \frac{\SI{1e3}{\gram}}{\SI{18}{\gram\per\mole}}/\SI{1}{\liter}
+         = \SI{55.56}{\mole\per\liter} \,.
+      \]
+      Ein Liter Wasser enthält also \SI{55.56}{\mole} Moleküle pro Liter.
+      Diese Konzentration wird ebenso auf verdünnte Lösungen zutreffen und
+      die Verdünnung sich erst in kleineren Nach\-komma\-stellen bemerkbar machen.
+    \task Die Definition des \pH-Werts ist $\pH = -\log[\ch{H3O+}]$, wobei mit
+      $\log$ der dekadische Logarithmus gemeint ist und die Konzentration in
+      \si{\mole\per\liter} angegeben wird.  Der \pH{} beträgt also $\pH =
+      -\log(104) = -2.02$.  Die gesuchte Oxonium-Konzentration beträgt
+      dementsprechend $[\ch{H3O+}] =
+      \SI[scientific-notation=true]{1e-8}{\mole\per\liter} =
+      \SI{1e-8}{\mole\per\liter}$. 
+    \task Ein \pH{} von $1$ bedeutet eine Oxonium-Konzentration von
+      \SI{.1}{\mole\per\liter}, was der Gleichgewichtskonzentration von
+      Oxononium und Dihydrogenphosphat entspricht.  Die Konzentration der
+      Phosphorsäure beträgt daher \SI{1.9}{\mole\per\liter}.  Damit errechnet
+      sich $K$ zu \[ K = \frac{0.1\cdot0.1}{1.9\cdot55.5} = 0.0001 \,. \]
+      (Die Einheiten kürzen sich im MWG.)
+    \task Für diese Rechnung gehen wir von einer konstanten
+      Wasserkonzentration aus. (Wie in b schon gesagt, ist die Angabe
+      vernünftig, wie sie gerne an den Aufgaben d und f überprüfen können.)
+      Ein $\pH = 2$ entspricht einer Oxonium-Konzentration von
+      \SI{0.01}{\mole\per\liter}.  Eingesetzt in das MWG ergibt sich die
+      Gleichung \[ 0.0001 = \frac{0.01^2}{x\cdot 55.6} \] mit der Lösung
+      $x=0.018$. Man müsste also \SI{0.018}{\mole} Phosphorsäure lösen.
+    \task Als Gleichgewichtskonzentrationen ergeben sich $[\ch{H2PO4-}] =
+      [\ch{H3O+}] = x$, $[\ch{H3PO4}]=0.5-x$ und für Wasser $55.6-x$, jeweils
+      in \si{\mole\per\liter}.  Das MWG liefert dann die Gleichung
+      \[ 0.0001 = \frac{x\cdot x}{(0.5-x)(55.6-x)} \] mit den Lösungen
+      $x_1=-0.056$ und $x_2=0.050$.  Da der negative Wert chemisch keinen Sinn
+      ergibt, beträgt der gesuchte $\pH = -\log(0.050) = 1.3$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Prinzip vom kleinsten Zwang]
+In welche Richtung verschieben sich die folgenden Gleichgewichte
+\begin{tasks}[counter-format=tsk.]
+ \task bei der angegebenen Konzentrationsänderung
+ \task bei Druckerhöhung
+ \task bei Temperaturerhöhung?
+\end{tasks}
+\begin{tasks}
+  \task \ch{ N2\gas{} + 3 H2\gas{} <=> 2 NH3\gas{} }, $\Delta H < 0$\\
+    $[\ch{NH3}]$ herauf- oder herabsetzen
+  \task \ch{ C\sld{} + CO2\gas{} <=> 2 CO\gas{} }, $\Delta H > 0$\\
+    $[\ch{CO2}]$ herauf- oder herabsetzen
+  \task \ch{ Ca(HCO3)2\sld{} <=> CaCO3\sld{} + H2O\lqd{} + CO2\gas{} },
+    $\Delta H > 0$\\
+    $[\ch{CO2}]$ herauf- oder herabsetzen
+  \task \ch{ H2O\gas{} + C_{(s)} <=> H2\gas{} + CO\gas{} }, $\Delta H > 0$\\
+    $[\ch{CO}]$ herauf- oder herabsetzen
+  \task \ch{ 2 SO2\gas{} + O2\gas{} <=> 2 SO3\gas{} }, $\Delta H < 0$\\
+    $[\ch{O2}]$ herauf- oder herabsetzen
+  \task \ch{ H3O+ \aq{} + \Hyd\aq{} <=> 2 H2O\lqd }, $\Delta H < 0$\\
+    $[\ch{H3O+}]$ herauf- oder herabsetzen
+\end{tasks}
+\end{question}
+\begin{solution}
+  Es werden folgende Kürzel verwendet: $T\uparrow$ oder $p\uparrow$ bedeuten
+  eine Erhöhung der Temperatur oder des Drucks. Mit $c\uparrow$ wird die
+  Erhöhung der angegebenen Konzentration angezeigt.
+  \begin{tasks}(2)
+    \task $T\uparrow$: links;  $p\uparrow$: rechts; $c\uparrow$: links;
+    \task $T\uparrow$: rechts; $p\uparrow$: links;  $c\uparrow$: rechts;
+    \task $T\uparrow$: rechts; $p\uparrow$: links;  $c\uparrow$: links;
+    \task $T\uparrow$: rechts; $p\uparrow$: links;  $c\uparrow$: links;
+    \task $T\uparrow$: links;  $p\uparrow$: rechts; $c\uparrow$: rechts;
+    \task $T\uparrow$: links;  $p\uparrow$: ---;    $c\uparrow$: rechts;
+  \end{tasks}
+\end{solution}
+
+\begin{intermission}
+  Bevor es an die nächsten Aufgaben geht, kommt hier noch etwas
+  mathematisch"=physikalische Theorie zur Gleichgewichtskonstanten.
+  Genauer  werden wir uns verschiedene Arten der Darstellung anschauen und wie
+  die  verschiedenen Konstanten ineinander umgerechnet werden können.  Das
+  wird bei den Lösungen der folgenden Aufgaben behilflich sein.
+
+  Bei allen bisherigen Aufgaben wurde $K=K_c$ angenommen, das heißt die
+  Berechnung der Gleichgewichtskonstanten aus den
+  Gleichgewichtskonzentrationen.  Es gibt allerdings keinen Grund, die
+  Konzentrationen zu verwenden, auch wenn das allgemein üblich ist und oft
+  stillschweigend angenommen wird, wenn nichts anderes angegeben wird.
+  Genauso gut könnte man die Stoffmengen verwenden ($K_n$), die Molenbrüche
+  ($K_x$), die Partialdrücke ($K_p$) und so weiter.  Wir wollen uns nun mit
+  $K_c$, $K_n$ und $K_x$ etwas genauer beschäftigen.
+
+  Klären wir zunächst, was ein \emph{Molenbruch} ist.  Der Molenbruch $x_i$
+  der Substanz $i$ ist definiert als ihre Stoffmenge $n_i$ geteilt durch die
+  Gesamtstoffmenge $n$ und ist damit dimensionslos:
+  \[
+    x_i = \frac{n_i}{n} \qquad n_i = x_i \cdot n
+  \]
+
+  Nun führen wir eine kompakte Schreibweise für Summen und Produkte ein.
+  Die Summe $n_1 + n_2 + \cdots + n_j$ schreiben wir als $\sum_{i=1}^j n_i$
+  oder kurz $\sum_i n_i$:
+  \[ \sum_i n_i = n_1 + n_2 + \ldots + n_i \]
+  Analog verwenden wir $\prod_i n_i$ für Produkte:
+  \[ \prod_i n_i = n_1 \cdot n_2 \cdot \ldots \cdot n_i \]
+
+  Diese Schreibweise ermöglicht eine Kurzdarstellung der
+  Gleichgewichtskonstanten.  Nehmen wir eine allgemeine Reaktion
+  \begin{reaction*}
+    $(-\nu_A)$ A + $(-\nu_B)$ B <=> $\nu_C$ C + $\nu_D$ D
+  \end{reaction*}
+  Hier habe ich eine weitere kleine Neuerung eingeführt: $\nu_i$ gibt den
+  stöchiometrischen Faktor des Stoffes $i$ an.  $\nu_i$ ist negativ, wenn $i$
+  ein Edukt ist, weswegen die Edukte in der Reaktionsgleichung ein
+  Minuszeichen erhalten haben, um positive stöchiometrische Faktoren zu haben.
+  Nun stellen wir das MWG auf:
+  \[
+    K_c = \frac
+            { c_C^{\nu_C} \cdot c_D^{\nu_D} }
+            { c_A^{-\nu_A } \cdot c_B^{-\nu_B} }
+  \]
+  Diese Gleichung lässt sich als Produkt schreiben:
+  \[
+    K_c =  c_C^{\nu_C} \cdot c_D^{\nu_D} \cdot c_A^{\nu_A } \cdot c_B^{\nu_B} \\
+        = \prod_i c_i^{\nu_i}
+  \]
+  Ganz entsprechend lassen sich nun $K_n$ und $K_x$ notieren:
+  \[
+    K_n = \prod_i n_i^{\nu_i} \qquad
+    K_x = \prod_i x_i^{\nu_i}
+  \]
+  Jetzt werden wir mit dieser neuen Schreibweise Zusammenhänge zwischen den
+  drei genannten Gleichgewichtskonstanten herstellen.
+  \[
+    K_c = \prod_i c_i^{\nu_i}
+        = \prod_i \biggl(\frac{n_i}{V}\biggr)^{\nu_i}
+        = \prod_i n_i^{\nu_i} \cdot V^{-\nu_i}
+        = K_n \cdot V^{-\sum_i\nu_i}
+  \]
+  $K_c$ lässt sich also aus $K_n$ berechnen, indem man es mit dem Volumen hoch
+  der negativen Summe der stöchiometrischen Faktoren multipliziert.
+  (Vergessen Sie dabei nicht, dass die stöchiometrischen Faktoren der Edukte
+  negativ in die Summe eingehen.)  Einen ähnlichen Zusammenhang können wir zu
+  $K_x$ herstellen.  Dafür beginnen wir mit einem Zwischenergebnis der obigen
+  Gleichung:
+  \[
+    K_c = \prod_i n_i^{\nu_i} \cdot V^{-\nu_i}
+        = \prod_i (x_i\cdot n)^{\nu_i} \cdot V^{-\nu_i}
+        = \prod_i x_i \cdot \biggl(\frac{V}{n}\biggr)^{-\nu_i}
+        = K_x \cdot V_m^{-\sum_i\nu_i}
+  \]
+  $K_c$ errechnet sich aus $K_x$ durch Multiplikation mit dem molaren Volumen
+  $V_m = \frac{V}{n}$ hoch der negativen Summe der stöchiometrischen Faktoren.
+  Dieses letzte Ergebnis wollen wir uns nun für zwei konkrete Beispiele
+  anschauen, die Sie in den beiden verbleibenden Übungsaufgaben gebrauchen
+  können.
+
+  Für die Reaktion \ch{H2 + 3 N2 <=> 2 NH3} ist
+  \[
+    K_c = \frac{ c^2(\ch{NH3}) }{ c(\ch{N2}) \cdot c^3(\ch{H2}) }
+    \quad \text{und} \quad
+    K_x = \frac{ x^2(\ch{NH3}) }{ x(\ch{N2}) \cdot x^3(\ch{H2}) } \,.
+  \]
+  Die Summe der stöchiometrischen Faktoren ist $\sum_i\nu_i = -1 + (-3) +2 =
+  -2$. Damit ergibt sich folgende Beziehung: $K_c=K_x\cdot V_m^2$.
+
+  Für die Reaktion \ch{2 SO2 + O2 <=> 2 SO3} ist
+  \[
+    K_c = \frac{ c^2(\ch{SO3}) }{ c^2(\ch{SO2}) \cdot c(\ch{O2}) }
+    \quad \text{und} \quad
+    K_x = \frac{ x^2(\ch{SO3}) }{ x^2(\ch{SO2}) \cdot x(\ch{O2}) } \,.
+  \]
+  Die Summe der stöchiometrischen Faktoren ist $\sum_i\nu_i = -2 + (-1) +2 =
+  -1$. Damit ergibt sich folgende Beziehung: $K_c=K_x\cdot V_m$.
+
+  Und nun viel Spaß mit den weiteren Übungsaufgaben!
+\end{intermission}
+
+\bigskip
+
+\begin{question}[name=Technische Ammoniaksynthese,ID=tech:NH3]
+Die exotherme Ammoniaksynthese aus den Elementen wird technisch bei $p =
+\SI{200}{\bar}$ und $T = \SI{500}{\celsius}$ unter Verwendung eines
+Eisenkatalysators durchgeführt (Haber-Bosch-Verfahren).  In einem
+geschlossenen Reaktionsbehälter erhält man einen Volumenanteil von
+\SI{17.6}{\percent} \ch{NH3}, wenn vorher \ch{N2} und \ch{H2} im Verhältnis
+$1:3$ eingefüllt wurden.  Um die Ausbeute zu erhöhen, werden die Gase nach
+dem Verlassen des Ammoniakofens abgekühlt, wobei \ch{NH3} kondensiert und
+abgetrennt werden kann.  Das restliche \ch{N2} und \ch{H2} wird wieder in den
+Ammoniakofen zurückgepumpt.
+\begin{tasks}
+  \task Erklären Sie mit Hilfe des Prinzips vom kleinsten Zwang, wie sich hohe
+    Drücke und Temperaturen auf die Ausbeute auswirken.
+  \task Aus wirtschaftlichen Gründen wird eine ziemlich hohe
+    Reaktionstemperatur gewählt, obwohl sich dadurch die Ausbeute verringert.
+    Erklären Sie, warum sich die Produktionsleistung (= Ausbeute pro Zeit) des
+    Ammoniakofens durch die Temperaturerhöhung trotzdem verbessert.
+  \task Warum wird der Katalysator zugefügt?  Welchen Einfluss hat der
+    Katalysator auf die Ausbeute?
+  \task Berechnen Sie die Gleichgewichtskonstante $K$ bei $p = \SI{200}{\bar}$
+    und $T = \SI{500}{\celsius}$.  Das Molvolumen bei $p = \SI{200}{\bar}$ und
+    $T = \SI{500}{\celsius}$ ist $V_m = \SI{0.32}{\liter\per\mole}$. Der
+    Molenbruch von Ammoniak im Gleichgewicht beträgt $x_{\ch{NH3}}=0.176$.
+    
+    Hinweis: Stellen Sie die Gleichgewichtsstoffmengen der beteiligten Stoffe
+    in Abhängigkeit der Gesamtstoffmenge $n_0$ vor Beginn der
+    Gleichgewichtseinstellung auf und bestimmen Sie damit die Molenbrüche im
+    Gleichgewicht.  Daraus lässt sich dann die Gleichgewichtskonstante
+    berechnen.
+  \task Erklären Sie mit Hilfe des Prinzips vom kleinsten Zwang, warum die
+    Abtrennung des \ch{NH3} und Rückführung des restlichen \ch{N2} und \ch{H2}
+    die Ausbeute erhöhen.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Ein hoher Druck wird die Ausbeute erhöhen, da eine Druckerhöhung das
+      Gleichgewicht auf die Seite mit weniger Gasteilchen, also die
+      Produktseite, verschiebt.  Da die Reaktion exotherm ist, verschiebt eine
+      Temperaturerhöhung das Gleichgewicht in Richtung Ausgangsstoffe.  Eine
+      hohe Temperatur ist also ungünstig für eine hohe Ausbeute.
+    \task Eine Temperaturerhöhung verschiebt nicht nur das Gleichgewicht nach
+      links, sondern erhöht auch die Reaktionsgeschwindigkeit
+      (vgl. RGT-Regel).  Das bedeutet, dass sich trotz der ungünstigen
+      Verschiebung des Gleichgewichts die Menge an Produkt in einem bestimmten
+      Zeitraum erhöhen kann, sich also die Produktionsleistung erhöht.
+    \task Ein Katalysator verringert die Aktivierungsenergie, beschleunigt die
+      Reaktion also.  Das ist nicht nur günstig für eine möglichst hohe
+      Produktionsleistung, sondern ermöglicht auch, die Reaktion bei
+      niedrigeren Temperaturen durchzuführen, als es ohne Katalysator möglich
+      wäre.  Das spart Energie und damit Kosten.  Ein Katalysator ändert die
+      Lage des Gleichgewichts nicht, hat also auch auf die Ausbeute keinen
+      Einfluss.
+    \task Die eingefüllte Gesamtstoffmenge $n_0$ verteilt sich im Verhältnis
+      $3:1$ auf Stickstoff und Wasserstoff: $n_{\ch{N3}} = 0.25n_0$ und
+      $n_{\ch{H2}} = 0.75n_0$.  Damit ergeben sich im Gleichgewicht folgende
+      Stoffmengen: $n_{\ch{N2}} = 0.25n_0 - x$, $n_{\ch{H2}} = 0.75n_0 - 3x$ und
+      $n_{\ch{NH3}} = 2x$. Die Gesamtstoffmenge ist dann die Summe daraus,
+      also $n=n_0-2x$.  Aus dem Molenbruch für \ch{NH3} lässt sich nun $x$ in
+      Abhängigkeit von $n_0$ bestimmen.
+      \[
+        x_{\ch{NH3}} = 0.176 = \frac{2x}{n_0-2x}
+        \quad \Leftrightarrow \quad
+        x = 0.0748n_0
+      \]
+      Daraus berechnen sich die Stoffmengen zu $n_{\ch{N2}} = 0.175n_0$,
+      $n_{\ch{H2}} = 0.526n_0$, $n = 0.850n_0$.  Als Molenbrüche ergeben sich
+      mit $x_i=\frac{n_i}{n}$ die Werte $x_{\ch{N2}} = 0.206$ und $x_{\ch{H2}}
+      = 0.619$.  Nun endlich lässt sich auch die Gleichgewichtskonstante
+      berechnen.  Dafür verwenden wir das Ergebnis $K_c=K_x\cdot V_m^2$ aus
+      dem roten Kasten:
+      \[
+        K_c = K_x\cdot V_m^2
+            = \frac{0.176^2}{0.206\cdot0.619^3}\cdot
+              (\SI{0.32}{\liter\per\mole})^2
+            = \SI{0.065}{\liter\squared\per\mole\squared}
+      \]
+    \task Durch die Entfernung des Ammoniaks aus dem Gleichgewicht, also durch
+      Verringerung seiner Konzentration, bewirkt man eine Verschiebung des
+      Gleichgewichts nach rechts.  Eine Rückführung von \ch{N2} und \ch{H2}
+      verschiebt ihrerseits durch die Erhöhung der Edukt"=Konzentrationen
+      eine Verschiebung nach rechts.  Dadurch wird die Ausbeute weiter maximiert.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Technische Schwefelsäuresynthese]
+\begin{enumerate}[label=\arabic*.]
+  \item Rösten von Pyrit \ch{FeS2} an der Luft:
+    \begin{reaction*}
+      4 FeS2 + 11 O2 <=> 2 Fe2O3 + 8 SO2 \qquad{} "mit~\Enthalpy{-3309}"
+    \end{reaction*}
+  \item Kontaktverfahren: Schwefeldioxid wird an der Luft bei $T =
+    \SI{600}{\celsius}$ und $p = \SI{1}{\bar}$ über Vanadiumpentoxid \ch{V2O5}
+    geleitet, das als Katalysator dient:
+    \begin{itemize}
+      \item 1. Schritt: Oxidation des \ch{SO3} durch \ch{V2O5}:
+        \begin{reaction*}
+          2 V2O5 + 2 SO2 <=> V2O4 + 2 SO3
+        \end{reaction*}
+      \item 2. Schritt: Regeneration des Katalysators durch Luft-\ch{O2}:
+        \begin{reaction*}
+          2 V2O4 + O2 <=> 2 V2O5
+        \end{reaction*}
+      \item Gesamtbilanz:
+        \begin{reaction*}
+          2 SO2 + O2 <=> 2 SO3 \qquad{} "mit~\Enthalpy{-198}"
+        \end{reaction*}
+    \end{itemize}
+  \item \ch{SO3} löst sich nur schwer in Wasser, relativ leicht und schnell
+    dagegen in ca. \SI{20}{\percent}-iger Schwefelsäure, wobei sich zunächst
+    Dischwefelsäure \ch{H2S2O7} bildet.  In diesem Fall dienen die schon vor
+    der Reaktion vorhandenen Schwefelsäuremoleküle als Katalysator:
+    \begin{itemize}
+     \item 1. Schritt: Bildung der Dischwefelsäure:
+       \begin{reaction*}
+         SO3 + H2SO4 <=> H2S2O7
+       \end{reaction*}
+     \item 2. Schritt: Regeneration des Katalysators durch Wasser:
+       \begin{reaction*}
+         H2S2O7 + H2O <=> 2 H2SO4
+       \end{reaction*}
+     \item Gesamtbilanz:
+       \begin{reaction*}
+         SO3 + H2O <=> H2SO4
+       \end{reaction*}
+    \end{itemize}
+\end{enumerate}
+\begin{tasks}
+  \task Geben Sie die Oxidationszahlen für Eisen und Schwefel beim Röstvorgang
+    an und kennzeichnen Sie den Elektronenübergang durch einen Pfeil.
+  \task In einem geschlossenen Reaktionsgefäß bei $T = \SI{600}{\celsius}$ und
+    $p = \SI{1}{\bar}$ wurden \ch{SO2} und \ch{O2} im Verhältnis $2:1$
+    eingepumpt und zur Reaktion gebracht.  Nach Einstellung des
+    Gleichgewichtes \ch{2 SO2 + O2 <=> 2 SO3} wurde ein Volumenanteil von
+    \SI{76}{\percent} \ch{SO3} gemessen.  Das Molvolumen bei diesen
+    Bedingungen ist \SI{72.5}{\liter\per\mole}.  Berechnen Sie die
+    Gleichgewichtskonstante.  (Der Molenbruch von \ch{SO3} im Gleichgewicht
+    beträgt entsprechend dem prozentualen Anteil $x_{\ch{SO3}}=0.76$.)
+    
+    Hinweis: Stellen Sie die Gleichgewichtsstoffmengen der beteiligten Stoffe
+    in Abhängigkeit der Gesamtstoffmenge $n_0$ vor Beginn der
+    Gleichgewichtseinstellung auf und bestimmen Sie damit die Molenbrüche im
+    Gleichgewicht.  Daraus lässt sich dann die Gleichgewichtskonstante
+    berechnen.
+  \task Erklären Sie, warum die Ausbeute an \ch{SO3} bei steigenden Drücken
+    und sinkenden Temperaturen wächst.
+  \task Warum arbeitet man im großtechnischen Verfahren trotzdem mit einer
+    relativ hohen Temperatur von \SI{600}{\celsius}?
+  \task \ch{SO3} entsteht auch ohne Katalysator bei der Verbrennung von
+    Schwefel oder Schwefeldioxid.  Welchen Zweck hat der Katalysator?
+  \task Erklären Sie, warum die Abtrennung des \ch{SO3} und Rückführung des
+    restlichen \ch{SO2} und \ch{O2} die Ausbeute erhöhen.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Die Oxidationsstufe von Eisen erhöht sich von II auf III, die von
+      Schwefel von $-$I auf IV.  Damit werden insgesamt $44$ Elektronen
+      übertragen.  Die $22$ Sauerstoff Atome ändern ihre Oxidationsstufe von
+      $0$ auf $-$II.
+      \vspace*{2\bigskipamount}
+      \begin{center}
+        \ch{
+          4 "\OX{Fe-r,\ox{2,Fe}}\OX{S-r,\ox{-1,S}}" {}2 + 11 O2
+          <=> 2 "\OX{Fe-o,\ox{3,Fe}}" 2O3 + 8 "\OX{S-o,\ox{4,S}}" O2 
+        }
+      \end{center}
+      \vspace*{2\bigskipamount}
+      \redox(Fe-r,Fe-o)[draw,->]{$-4\cdot1\,\el$}%
+      \redox(S-r,S-o)[->][-1]{$-8\cdot5\,\el$}%
+      Der Sauerstoff hat zwei verschiedene Reaktiosnpartner, einmal Eisen und
+      einmal Schwefel.  Der EInfachheit halber wurde daher hier auf die
+      bildhafte Darstellung seiner Elektronenübertragung verzichtet.
+    \task Die eingefüllte Gesamtstoffmenge $n_0$ verteilt sich im Verhältnis
+      $2:1$ auf Schwefeldioxid und Sauerstoff: $n_{\ch{SO2}} = \frac{2}{3}n_0$
+      und $n_{\ch{O2}} = \frac{1}{3}n_0$.  Damit ergeben sich im Gleichgewicht
+      folgende Stoffmengen: $n_{\ch{SO2}} = \frac{1}{3}n_0 - 2x$, $n_{\ch{O2}}
+      = \frac{1}{3}n_0 - x$ und $n_{\ch{SO3}} = 2x$. Die Gesamtstoffmenge ist
+      dann die Summe daraus, also $n=n_0-x$.  Aus dem Molenbruch für \ch{SO3}
+      lässt sich nun $x$ in Abhängigkeit von $n_0$ bestimmen.
+      \[
+        x_{\ch{SO3}} = 0.76 = \frac{2x}{n_0-x}
+        \quad \Leftrightarrow \quad
+        x = 0.275n_0
+      \]
+      Daraus berechnen sich die Stoffmengen zu $n_{\ch{SO2}} = 0.117n_0$,
+      $n_{\ch{O2}} = 0.058n_0$, $n = 0.725n_0$.  Als Molenbrüche ergeben sich
+      mit $x_i=\frac{n_i}{n}$ die Werte $x_{\ch{SO2}} = 0.161$ und
+      $x_{\ch{O2}} = 0.080$.  Nun endlich lässt sich auch die
+      Gleichgewichtskonstante berechnen.  Dafür verwenden wir das Ergebnis
+      $K_c=K_x\cdot V_m$ aus dem roten Kasten:
+      \[
+        K_c = K_x\cdot V_m
+            = \frac{0.76^2}{0.161^2\cdot0.08}\cdot
+              (\SI{72.5}{\liter\per\mole})
+            = \SI[scientific-notation=true]{20e3}{\liter\squared\per\mole\squared}
+      \]
+    \task Da auf der rechten Seite weniger Gasteilchen vorliegen, verschiebt
+      eine Druckerhöhung das Gleichgewicht nach rechts, zugunsten der
+      Ausbeute.  Eine Temperaturerniedrigung begünstigt ebenfalls die rechte
+      Seite, da die Reaktion exotherm ist.
+    \task Hohe Temperaturen beschleunigen die Reaktionsgeschwindigkeit, was
+      die Produktionsleistung günstig beeinflusst, siehe auch die entsprechende
+      Antwort zu Übung~\QuestionNumber{tech:NH3}  Der eigentliche Grund ist
+      jedoch ein anderer. Die Temperatur muss etwa zwischen \SI{420}{\degree}
+      und \SI{620}{\degree} liegen. Bei tieferen Temperaturen wird der
+      Katalysator inaktiv, bei höheren Temperaturen zersetzt er sich.
+    \task Ohne Katalysator ist die Reaktion zu langsam  und bei hohen
+      Temperaturen ist das Gleichgewicht zudem zu weit zu den Edukten
+      verschoben, um eine wirtschaftliche Ausbeute zu bringen.
+    \task Sowohl eine Abtrennung von \ch{SO3} als auch eine Rückführung der
+      Edukte sorgen nach dem Prinzip des kleinsten Zwangs eine Verschiebung
+      zugunsten des Produkts und damit für eine höhere Ausbeute.
+  \end{tasks}
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+
+Die Lösungen gehen davon aus, dass die benötigte Mathematik beherrscht
+wird.  Das bedeutet zum Beispiel, dass die Umrechnung in Prozentwerte und das
+Lösen quadratischer Gleichungen nicht vorgerechnet wird.
+
+\printsolutions
+
+\end{document}

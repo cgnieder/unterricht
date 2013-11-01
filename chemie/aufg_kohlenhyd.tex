@@ -1,0 +1,717 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[greek,ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+
+\DeclareChemReaction[star]{gthreactions}{gather}
+\newcommand*\rctref[1]{\{\ref{#1}\}}
+
+\usepackage{chemnum}
+\cmpdsetup{cmpd-counter=Alph}
+
+\usepackage{siunitx}
+\sisetup{
+  detect-all ,
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+\DeclareSIUnit{\graddh}{grad\,dH}
+
+\usepackage{chemfig}
+\setatomsep{1.8em}
+\setcrambond{2.5pt}{1pt}{2pt}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+
+\usepackage{fnpct}
+
+\usepackage{booktabs}
+\usepackage{collcell}
+\newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
+
+\usepackage{tikz}
+\colorlet{angcolor}{green!50!black}
+\colorlet{lencolor}{red!50!black}
+
+\usepackage{multicol}
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Kohlenhydrate
+\end{center}
+
+\addsec{Übungen}
+\begin{question}[name=Physikalische Eigenschaften]
+  Zeichnen Sie die Strukturformeln der folgenden Verbindungen, ordnen Sie sie
+  nach Siedepunkten bzw. Wasserlöslichkeit und begründen Sie:
+  \begin{tasks}
+    \task Ethan, Ethanol, Dimethylether, Ethanal
+    \task Methanol, Glykol (Ethandiol), Glycerin (Propantriol), Sorbitol
+      (Hexanhexol)
+    \task Ethansäure, Methansäure"=Methyl"=Ester
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Physikalische Eigenschaften]
+  Steigende Siedepunkte\slash Wasserlöslichkeit:
+  \begin{tasks}
+    \task
+      \chemfig{H_3|C-CH3} \qquad
+      \chemfig{-[:30]O-[:-30]} \qquad
+      \chemfig{-[:30]=[:-30]O} \qquad
+      \chemfig{-[:30]-[:-30]OH}
+    \task
+      \chemfig{H_3|C-OH} \qquad
+      \chemfig{HO-[:-30]-[:30]-[:-30]OH} \qquad
+      \chemfig{HO-[:-30]-[:30](-[2]OH)-[:-30]-[:30]OH}
+      
+      \chemfig{
+        HO-[:-30]-[:30](-[2]OH)
+        -[:-30](-[6]OH)
+        -[:30](-[2]OH)
+        -[:-30](-[6]OH)
+        -[:30]-[:-30]OH
+      }
+    \task
+      \chemfig{-[:30](=[2]O)-[:-30]O-[:30]} \qquad
+      \chemfig{-[:30](=[2]O)-[:-30]OH}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[
+  name={Stereoisomerie, R\slash S"=Nomenklatur und
+    \iupac{\L}/\iupac{\D}"=Reihen}
+  ]
+  Zeichnen Sie alle möglichen Stereoisomere der folgenden Verbindungen,
+  benennen Sie sie nach der R\slash S"=Nomenklatur und ordnen Sie sie jeweils
+  der \iupac{\D}- oder \iupac{\L}"=Reihe zu:
+  \begin{tasks}(2)
+    \task \iupac{2,3\-Di\|chlor\|pentan}
+    \task \iupac{1,2,3\-Tri\|chlor\|butan}
+    \task \iupac{2,3,4\-Tri\|hydroxy\|butanal}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Stereoisomerie]
+  \begin{tasks}
+    \task \iupac{\D}"=Reihe:
+    
+      \chemfig{-[:30](<[2]Cl)-[:-30](<[6]Cl)-[:30]-[:-30]} \qquad
+      \chemfig{-[:30](<:[2]Cl)-[:-30](<[6]Cl)-[:30]-[:-30]}
+
+      \iupac{\cip{2R,3R}\-2,3\-Di\|chlor\|pentan},
+      \iupac{\cip{2S,3R}\-2,3-Di\|chlor\|pentan}
+
+      \iupac{\L}"=Reihe:
+      
+      \chemfig{-[:30](<[2]Cl)-[:-30](<:[6]Cl)-[:30]-[:-30]} \qquad
+      \chemfig{-[:30](<:[2]Cl)-[:-30](<:[6]Cl)-[:30]-[:-30]}
+
+      \iupac{\cip{2R,3S}\-2,3\-Di\|chlor\|pentan},
+      \iupac{\cip{2S,3S}\-2,3\-Di\|chlor\|pentan}
+    \task \iupac{\D}"=Reihe:
+    
+      \chemfig{Cl-[:-30]-[:30](<[2]Cl)-[:-30](<[6]Cl)-[:30]} \qquad
+      \chemfig{Cl-[:-30]-[:30](<:[2]Cl)-[:-30](<[6]Cl)-[:30]}
+
+      \iupac{\cip{2R,3R}\-1,2,3\-Tri\|chlor\|butan},
+      \iupac{\cip{2S,3R}\-1,2,3\-Tri\|chlor\|butan}
+
+      \iupac{\L}"=Reihe:
+      
+      \chemfig{Cl-[:-30]-[:30](<[2]Cl)-[:-30](<:[6]Cl)-[:30]} \qquad
+      \chemfig{Cl-[:-30]-[:30](<:[2]Cl)-[:-30](<:[6]Cl)-[:30]}
+
+      \iupac{\cip{2R,3S}\-1,2,3\-Tri\|chlor\|butan},
+      \iupac{\cip{2S,3S}\-1,2,3\-Tri\|chlor\|butan}
+    \task \iupac{\D}"=Reihe:
+    
+      \chemfig{HO-[:-30]-[:30](<[2]OH)-[:-30](<[6]OH)-[:30]=[:-30]O} \qquad
+      \chemfig{HO-[:-30]-[:30](<[2]OH)-[:-30](<:[6]OH)-[:30]=[:-30]O}
+      
+     \iupac{\cip{2S,3R}\-2,3,4\-Tri\|hydroxy\|butanal} (\iupac{\D\-Threose}),
+     \iupac{\cip{2R,3R}\-2,3,4\-Tri\|hydroxy\|butanal} (\iupac{\D\-Erythrose})
+
+     \iupac{\L}"=Reihe:
+     
+     \chemfig{HO-[:-30]-[:30](<:[2]OH)-[:-30](<[6]OH)-[:30]=[:-30]O} \qquad
+     \chemfig{HO-[:-30]-[:30](<:[2]OH)-[:-30](<:[6]OH)-[:30]=[:-30]O}
+
+     \iupac{\cip{2S,3S}\-2,3,4\-Tri\|hydroxy\|butanal} (\iupac{\L\-Erythrose}),
+     \iupac{\cip{2R,3S}\-2,3,4\-Tri\|hydroxy\|butanal} (\iupac{\L\-Threose})
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Polarimetrie]
+  Erklären Sie mit Hilfe einer beschrifteten Skizze den Aufbau und die
+  Funktionsweise eines einfachen Polarimeters.
+\end{question}
+\begin{solution}[name=Polarimetrie]
+  In Abboldung~\ref{fig:polarimeter} sehen Sie die schematische Darstellung
+  eines Polarimeters.  Am ersten optischen Gitter wird Licht einer Lichtquelle
+  linear polarisiert, d.h., nur Licht einer Schwingungsebene wird
+  hindurchgelassen.  Danach passiert das Licht eine Probenküvette.  Abhängig
+  von der Konzentration der Probenlösung in der Küvette (Standard
+  \SI{1}{\Molar}) und der Länge {\color{lencolor}$d$} der Küvette wird die
+  Schwingungsebene um einen Winkel {\color{angcolor}$\alpha$} gedreht, wenn
+  die Probe optisch aktiv ist.
+        
+  Das zweite optische Gitter kann gedreht werden, um den Drehwinkel
+  {\color{angcolor}$\alpha$} festzustellen.  Bei einer Einstellung von
+  {\color{angcolor}$\alpha$} wird die Lichtintensität dahinter maximal.
+  Der Drehwinkel {\color{angcolor}$\alpha$}, umgerechnet auf eine
+  Standard"=Konzentration und eine Standard"=Küvettenlänge (\SI{1}{cm}), ist
+  charakteristisch für die optisch aktive Substanz.
+\end{solution}
+
+\begin{question}[name=Halbacetalbildung]
+  Geben Sie den Reaktionsmechanismus der Halbacetalbildung von
+  \iupac{5\-Hydroxy\|hexanal} (\cmpd{hyrdoxyhexanal}) und Ethanol
+  (\cmpd{ethanol}) in saurer Lösung an.  Welches Produkt bildet sich, wenn man
+  \cmpd{hyrdoxyhexanal} und \cmpd{ethanol} im Verhältnis $1:2$ reagieren
+  lässt?
+\end{question}
+\begin{solution}[name=Halbacetalbildung]
+  Mechanismus der Halbacetalbildung:
+  \begin{center}
+    \schemestart
+      \chemfig{R-\lewis{26,O}H}
+      \+
+      \chemfig{R'-(=[:60]@{Oald1}\lewis{02,O})-[:-60]R''}
+      \arrow{<=>[\chemfig{@{Prt}H\pch}]}
+      \chemfig{R-@{Oalk1}\lewis{26,O}H}
+      \+
+      \chemfig{
+        R'-@{Cald}
+        (=[@{Odb}:60]@{Oald2}\chemabove{\lewis{2,O}}{\scrp}-H)
+        -[:-60]R''
+      }
+      \arrow{<=>}[-90]
+      \chemfig{
+        R-@{Oet}\chembelow[3pt]{\lewis{6,O}}{\scrp}
+        (-[@{Heb}2]H)-(-[:60]OH)(-[:-60]R'')-R'
+      }
+      \arrow{<=>[$-\ch{H+}$]}[180]
+      \chemfig{R-\lewis{26,O}-(-[:60]OH)(-[:-60]R'')-R'}
+    \schemestop
+  \end{center}
+  \chemmove[red,shorten <=3pt,shorten >=3pt,->]{
+    \draw (Oald1) ..controls +(0:4mm) and +(90:8mm) .. (Prt) ;
+    \draw (Oalk1) ..controls +(-90:8mm) and +(-120:4mm) .. (Cald) ;
+    \draw (Heb) ..controls +(180:4mm) and +(135:4mm) .. (Oet) ;
+    \draw (Odb) ..controls +(-30:4mm) and +(-30:8mm) .. (Oald2) ;
+  }%
+  Es enstehen ein ringförmiges Halbacetal und ein offenkettiges Halbacetal.
+  Beim Verhältnis $1:2$ ensteht ein Acetal, das Halbacetal reagiert dafür
+  unter Wasserabspaltung mit dem restlichen Alkohol.
+
+  \noindent Halbacetale:\bigskip
+
+  \chemfig{*6(--(-)-O-(-OH)--)} \qquad
+  \chemfig{
+    HO-[:-30]-[:30]-[:-30]-[:30]-[:-30]-[:30](-[2]OH)
+    -[:-30]O-[:30]-[:-30]
+  }
+  \bigskip
+
+  \noindent Acetale:\bigskip
+
+  \chemfig{*6(--(-)-O-(-O-[:30]-[:-30])--)} \qquad
+  \chemfig{
+    HO-[:-30]-[:30]-[:-30]-[:30]-[:-30]-[:30]
+    (-[2]O-[:30]-[:-30])
+    -[:-30]O-[:30]-[:-30]
+  }
+  \qquad
+  \chemfig{*7(---(-O-[:-30]-[:30])-O---)}
+  \bigskip
+
+  Die verschiedenen Produkte entstehen \emph{nicht} im gleichen Verhältnis!
+\end{solution}
+
+\begin{question}[name={Keto"=Enol"=Tautomerie}]
+  Geben Sie die Strukturformel und den Namen der Enolform des Acetessigesters
+  (\iupac{3\-Oxo\-Butansäure\-Ethyl\-Ester}) an.
+\end{question}
+\begin{solution}[name={Keto"=Enol"=Tautomerie}]
+  \begin{center}
+    \schemestart
+      \chemfig{-[:30](=[2]O)-[:-30]-[:30](=[2]O)-[:-30]O-[:30]-[:-30]}
+      \arrow{<=>[{[\ch{OH-}]}]}[,1.5]
+      \chemfig{=[:30](-[2]OH)-[:-30]-[:30](=[2]O)-[:-30]O-[:30]-[:-30]}
+      \+
+      \chemfig{-[:30](-[2]OH)=[:-30]-[:30](=[2]O)-[:-30]O-[:30]-[:-30]}
+    \schemestop
+  \end{center}
+  \iupac{3\-Hydroxy\-Buta\-3\-en\|säure\-Ethyl\-Ester},
+  \iupac{3\-Hydroxy\-Buta\-2\-en\|säure\-Ethyl\-Ester},
+  das zweite Produkt entsteht bevorzugt (konjugierte Doppelbindungen!).
+\end{solution}
+
+\begin{question}[name={Nukleophile Addition an \ch{C=O}"=Doppelbindungen}]
+  Geben Sie die Strukturformeln der Produkte an, die durch nukleophile
+  Addition aus den folgenden Molekülen entstehen können.  Berücksichtigen Sie
+  insbesondere die Bildung von Ringen.
+  \begin{tasks}(2)
+    \task Ethanol und Ethanal
+    \task \iupac{2\-Hydroxy\|ethanal}
+    \task \iupac{2,3,4\-Tri\|hydroxy\|butanal}
+  \end{tasks}
+\end{question}
+
+\begin{solution}[name=Nukleophile Addition]
+  \begin{tasks}
+    \task Ethanol und Ethanal
+      \begin{center}
+        \schemestart
+          \chemfig{-[:30]-[:-30]OH}
+          \+
+          \chemfig{-[:150]=[2]O}
+          \arrow
+          \chemfig{-[:30]-[:-30]O-[:30](-[2]OH)-[:-30]}
+        \schemestop
+      \end{center}
+    \task \iupac{2\-Hydroxy\|ethanal}
+      \begin{center}
+        \schemestart
+          \chemfig{HO-[:-30]-[:30](-[2,,,,draw=none]\phantom{O})=[:-30]O}
+          \+
+          \chemfig{HO-[:-30]-[:30](-[2,,,,draw=none]\phantom{O})=[:-30]O}
+          \arrow
+          \chemfig{HO-[:-30]-[:30](-[2]OH)-[:-30]O-[:30]-[:-30]=[:30]O}
+        \schemestop
+      \end{center}
+    \task \iupac{2,3,4\-Tri\|hydroxy\|butanal}
+      \begin{center}
+        \schemestart
+          \chemfig{HO-[:-30]-[:30](-[2]OH)-[:-30](-[6]OH)-[:30]=[:-30]O}
+          \arrow
+          \chemfig{HO-*5(-(-HO)--O-(-HO)-)}
+        \schemestop
+      \end{center}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name={Ringbildung}]
+  Geben Sie die Strukturformeln aller fünf- und sechsgliedrigen Ringe an, die
+  aus den folgenden Molekülen in verdünnter Lauge gebildet werden können:
+  \begin{tasks}(2)
+    \task \iupac{\D\-Ribose}
+    \task \iupac{\D\-Galactose}
+  \end{tasks}
+\end{question}
+\begin{solution}[name=Ringbildung]
+  \setatomsep{3em}%
+  Es werden die Haworth-Projektionen angegeben.
+  
+  \iupac{\a\-} und \iupac{\b\-\D\-Ribo\|furanose}:
+
+  \chemfig{
+    HO-[7,0.5]-[6,0.3]?<[7,0.7]
+    (-[6,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7](-[6,0.5]OH)-[:160,1.05]O?
+  }
+  \qquad
+  \chemfig{
+    HO-[7,0.5]-[6,0.3]?<[7,0.7]
+    (-[6,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7](-[2,0.5]OH)-[:160,1.05]O?
+  }
+  \bigskip
+  
+  \iupac{\a\-} und \iupac{\b\-\D\-Galacto\|pyranose}:
+
+  \chemfig{
+    HO-[6,0.5,2]?<[7,0.7]
+    (-[2,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7]
+    (-[6,0.5]OH)
+    -[3,0.7]O-[4]?
+    (-[2,0.3]-[3,0.5]HO)
+  }
+  \qquad
+  \chemfig{
+    HO-[6,0.5,2]?<[7,0.7]
+    (-[2,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7]
+    (-[2,0.5]OH)
+    -[3,0.7]O-[4]?
+    (-[2,0.3]-[3,0.5]HO)
+  }
+  \bigskip
+  
+  \iupac{\a\-} und \iupac{\b\-\D\-Galacto\|furanose}:
+
+  \chemfig{
+    HO-[7,0.5]-[6,0.3]
+    (-[4,0.5]HO)
+    -[6,0.3]?<[7,0.7]
+    (-[2,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7]
+    (-[6,0.5]OH)
+    -[:160,1.05]O?
+  }
+  \qquad
+  \chemfig{
+    HO-[7,0.5]-[6,0.3]
+    (-[4,0.5]HO)
+    -[6,0.3]?<[7,0.7]
+    (-[2,0.5]OH)
+    -[,,,,line width=3pt]
+    (-[6,0.5]OH)
+    >[1,0.7]
+    (-[2,0.5]OH)-[:160,1.05]O?
+  }
+  \setatomsep{1.8em}
+\end{solution}
+
+\begin{question}[name={Oxidation der Alkohole und Aldehyde}]
+  Formulieren Sie die Gleichungen für die folgenden Reaktionen mit
+  Strukturformeln und Oxidationszahlen:
+  \begin{tasks}
+    \task Ethanol und heißes Kupfer-II-oxid
+    \task Ethanal und heißes Kupfer-II-oxid
+    \task Ethanal und Fehling"=Lösung (\ch{Cu^2+} und \ch{OH-}"=Ionen)
+    \task Propanal und Tollens"=Lösung (\ch{Ag+} und \ch{OH-}"=Ionen)
+    \task \iupac{2\-Hydroxy\|propanal} und Fehling"=Lösung
+    \task Formulieren Sie die Aufgaben b bis e mit \iupac{\D\-Glucose}
+      anstelle des Alkanals.
+  \end{tasks}
+\end{question}
+
+\begin{solution}[name={Oxidation der Alkohole und Aldehyde}]
+  \begin{tasks}
+    \task Ethanol und heißes Kupfer"=II"=oxid:
+      \begin{center}
+        \schemestart
+          \chemfig{-[:30]-[:-30]OH}
+          \arrow(.base east--){0}[,0]
+          \+
+          \ch{CuO}
+          \arrow(--.base west)
+          \chemfig{-[:30]=[:-30]O}
+          \arrow(.base east--){0}[,0]
+          \+
+          \ch{Cu}
+          \+
+          \ch{H2O}
+        \schemestop
+      \end{center}
+    \task Ethanal und heißes Kupfer-II-oxid:
+      \begin{center}
+        \schemestart
+          \chemfig{-[:30]=[:-30]O}
+          \arrow(.base east--){0}[,0]
+          \+
+          \ch{CuO}
+          \arrow(--.base west)
+          \chemfig{-[:30](=[2]O)-[:-30]OH}
+          \arrow(.base east--){0}[,0]
+          \+
+          \ch{Cu}
+        \schemestop
+      \end{center}
+    \task Ethanal und Fehling"=Lösung:
+      \begin{center}
+        \schemestart
+          \chemfig{-[:30]=[:-30]O}
+          \arrow{0}[,0]
+          \+
+          \ch{2 Cu^2+}
+          \+
+          \ch{4 OH-}
+          \arrow
+          \chemfig{-[:30](=[2]O)-[:-30]OH}
+          \arrow{0}[,0]
+          \+
+          \ch{Cu2O}
+          \+
+          \ch{2 H2O}
+        \schemestop
+      \end{center}
+    \task Propanal und Tollens"=Lösung:
+      \begin{center}
+        \schemestart
+          \chemfig{-[:-30]-[:30]=[:-30]O}
+          \arrow{0}[,0]
+          \+
+          \ch{2 Ag+}
+          \+
+          \ch{2 OH-}
+          \arrow
+          \chemfig{-[:-30]-[:30](=[2]O)-[:-30]OH}
+          \arrow{0}[,0]
+          \+
+          \ch{2 Ag v}
+          \+
+          \ch{H2O}
+        \schemestop
+      \end{center}
+    \task \iupac{2\-Hydroxy\|propanal} und Fehling"=Lösung:
+      \begin{center}
+        \schemestart
+          \chemfig{-[:-30](-[6]OH)-[:30]=[:-30]O}
+          \arrow{0}[,0]
+          \+
+          \ch{2 Cu^2+}
+          \+
+          \ch{4 OH-}
+          \arrow
+          \chemfig{-[:-30](-[6]OH)-[:30](=[2]O)-[:-30]OH}
+          \arrow{0}[,0]
+          \+
+          \ch{Cu2O}
+          \+
+          \ch{2 H2O}
+        \schemestop
+      \end{center}
+    \task Exemplarisch \iupac{\D\-Glucose} und Tollens:
+      \begin{center}
+        \schemestart
+          \chemfig{
+            HO-[:-30]-[:30](<[2]OH)
+            -[:-30](<:[6]OH)
+            -[:30](<:[2]OH)
+            -[:-30](<:[6]OH)
+            -[:30]=[:-30]O
+          }
+          \arrow{->[\ch{2 Ag+ + 2 OH-}][${} -\ch{2 Ag v} - \ch{H2O}$]}[,2]
+          \chemfig{
+            HO-[:-30]-[:30](<[2]OH)
+            -[:-30](<:[6]OH)
+            -[:30](<:[2]OH)
+            -[:-30](<:[6]OH)
+            -[:30](-[2]OH)
+            =[:-30]O
+          }
+        \schemestop
+      \end{center}
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name={Reduzierende Kohlenhydrate}]
+  Erläutern Sie den Unterschied zwischen einem reduzierendem und einem
+  nicht"=reduzierendem Zucker.  Wie kann man diese Eigenschaft chemisch
+  nachweisen (2 Methoden)?
+\end{question}
+\begin{solution}[name=Reduzierende Kohlenhydrate]
+  Ein reduzierender Zuckerist in der Ringform ein Halbacetal und kann sich
+  daher in die  offenkettige Form umwandeln.  Damit ist die Aldehyd-Gruppe
+  zugänglich, die zur Carboxylgruppe oxidiert werden kann.  Auch Fructose ist
+  ein reduzierender Zucker, da sie über Keto"=Enol"=Tautomerie mit der Glucose
+  im Gleichgewicht steht.  Nicht reduzierende Zucker wie Saccharose, die kein
+  Halbacetal haben, haben auch keine offenkettige Form und damit keine
+  oxidierbare Aldehydgruppe.  Kriterium ist also die Zugänglichkeit der
+  Aldehydgruppe.  Die Eigenschaft kann z.B. mit Fehling oder Tollens überprüft
+  werden.
+\end{solution}
+
+\begin{question}[name={Nukleophile Substitution mit Alkoholen}]
+  Formulieren Sie die Gleichungen für die folgenden Reaktionen mit
+  Strukturformeln:
+  \begin{tasks}
+    \task Erwärmung einer salzsauren Lösung von Ethanol
+    \task Erwärmung einer salzsauren Lösung von Dimethylether
+    \task Erwärmung einer salzsauren Lösung von \iupac{1,2\-Propandiol} (3
+      Produkte)
+  \end{tasks}
+\end{question}
+\begin{solution}[name={Nukleophile Substitution mit Alkoholen}]
+  \begin{tasks}
+    \task\setatomsep{1.3em}salzsaure Lösung von Ethanol:\\
+      \schemestart
+        \ch{HCl}
+        \+
+        \chemfig{-[:30]-[:-30]OH}
+        \arrow
+        \chemfig{-[:30]-[:-30]Cl}
+        \+
+        \ch{H2O}
+      \schemestop
+
+    \task salzsaure Lösung von Dimethylether:\\
+      \schemestart
+        \ch{HCl}
+        \+
+        \ch{CH3-O-CH3}
+        \arrow
+        \ch{CH3-Cl}
+        \+
+        \ch{CH3-OH}
+      \schemestop
+
+    \task\setatomsep{1.3em}salzsaure Lösung von \iupac{1,2\-Propandiol}:\\
+      \schemestart
+        \ch{HCl}
+        \+
+        \chemfig{-[:30](-[2]OH)-[:-30]-[:30]OH}
+        \arrow{->[$- \ch{HCl}$]}
+        \chemfig{-[:30](-[2]Cl)-[:-30]-[:30]OH}
+        \+
+        \chemfig{-[:30](-[2]OH)-[:-30]-[:30]Cl}
+        \+
+        \chemfig{-[:30](-[2]Cl)-[:-30]-[:30]Cl}
+      \schemestop
+  \end{tasks}
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[x={(0.866cm,-0.5cm)}, y={(0.866cm,0.5cm)}, z={(0cm,1cm)}, scale=.5,
+    %Option for nice arrows
+    >=stealth, %
+    inner sep=0pt, outer sep=2pt,%
+    axis/.style={thick,->},
+    wave/.style={thick,color=#1,smooth},
+    polaroid/.style={fill=black!60!white, opacity=0.3},
+    information text/.style=
+      {inner sep=2pt,fill=red!10,rounded corners,text width=2.5cm, text centered}
+  ]
+    % Frame
+    \coordinate (O) at (0,0,0);
+    \draw[axis] (O) -- +(19,0,0) node [right] {x};
+    \draw[axis] (O) -- +(0,2.5,0) node [right] {y};
+    \draw[axis] (O) -- +(0,0,2) node [above] {z};
+
+    \draw[thick,dashed] (-2,0,0) -- (O);
+
+    % Licht vor dem Filter
+    \draw[wave=blue, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, {sin(2.0*\x r)}, 0);
+    \draw[wave=black, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, 0, {sin(2.0*\x r)});
+    \draw[wave=black, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, 0, {-sin(2.0*\x r)});
+    \draw[wave=black, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, {-sin(2.0*\x r)}, 0);
+    \draw[wave=black, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, {-.766*sin(2.0*\x r)}, {-.643*sin(2.0*\x r)});
+    \draw[wave=black, opacity=0.7, variable=\x, samples at={-2,-1.75,...,0}]
+      plot (\x, {.643*sin(2.0*\x r)}, {.766*sin(2.0*\x r)});
+    \foreach \x in{-2,-1.75,...,0}{
+      \draw[color=blue, opacity=0.7,->]
+        (\x,0,0) -- (\x, {sin(2.0*\x r)}, 0);
+      \draw[color=black, opacity=0.7,->]
+        (\x,0,0) -- (\x, 0, {sin(2.0*\x r)});
+      \draw[color=black, opacity=0.7,->]
+        (\x,0,0) -- (\x, 0, {-sin(2.0*\x r)});
+      \draw[color=black, opacity=0.7,->]
+        (\x,0,0) -- (\x, {-sin(2.0*\x r)}, 0);
+      \draw[color=black, opacity=0.7,->]
+        (\x,0,0) -- (\x, {-.766*sin(2.0*\x r)}, {-.643*sin(2.0*\x r)});
+      \draw[color=black, opacity=0.7,->]
+        (\x,0,0) -- (\x, {.643*sin(2.0*\x r)}, {.766*sin(2.0*\x r)});
+    }
+    \node[information text,above] at (-2,0,1.5){\small Licht aller Schwingungs\-e\-be\-nen};
+    % Erstes Gitter
+    \filldraw[polaroid] (0,-2,-1.5) -- (0,-2,1.5) -- (0,2,1.5) -- (0,2,-1.5) -- (0,-2,-1.5)
+      node[below, sloped, near end]{\small opt. Gitter};%
+    % Direction of polarization
+    \draw[thick,<->] (0,-1.75,-1) -- (0,-0.75,-1);
+    % Polarisiertes Licht zwischen Gitter und Probe
+    \draw[wave=blue, variable=\x,samples at={0,0.25,...,6}]
+      plot (\x,{sin(2*\x r)},0);
+    \foreach \x in{0, 0.25,...,6}
+      \draw[color=blue,->] (\x,0,0) -- (\x,{sin(2*\x r)},0);
+
+    \draw (3,3.2,0.7) node [information text]{\small linear pola\-risiertes Licht};
+
+    % Probe
+    \begin{scope}[thick]
+      % Küvette
+      \draw (6,-2,-1.5) -- (6,-2, 1.5)% node [above, sloped, midway]{Probe}
+            (6,-2,-1.5) --node[midway,sloped,below,lencolor]{\small$d$} (8,-2,-1.5)
+            (6, 2, 1.5) -- (8, 2, 1.5)
+            (6,-2, 1.5) -- (8,-2, 1.5)
+            (6,-2, 1.5) -- (6, 2, 1.5)
+            (8, -2, 1.5) -- (8, 2, 1.5) -- (8, 2, -1.5)
+              --node[sloped,below,near end]{\small Probe} (8,-2, -1.5) -- cycle;
+      \draw[dashed] (6, 2, 1.5) -- (6, 2,-1.5)
+            (6,-2,-1.5) -- (6, 2,-1.5)
+            (6, 2,-1.5) -- (8,2,-1.5);
+      % Achsen
+      \draw[->] (8,0,0) -- ++(0,2.5,0) node [right] {y};
+      \draw[->] (8,0,0) -- ++(0,0,2) node [above] {z};
+      % Winkel
+      \draw[angcolor] (8,1,1) .. controls (8,1.307,.541) .. (8,1.414,0);
+      \draw[angcolor] (8,-1.5,-1.5) -- ++ (0,3,3);
+      \node[angcolor,above] at (8,1,0) {\small$\alpha$};
+    \end{scope}
+    % polarisiertes Licht in der Probe
+    \draw[wave=blue, variable=\x, samples at={6,6.25,...,8}]
+      plot (\x,{(-.1115*(\x-6)+1)*sin(2*\x r)},{.3535*(\x-6)*sin(2*\x r)});
+    \foreach \x in{6, 6.25,...,8}
+      \draw[color=blue,->]
+        (\x,0,0) -- (\x,{(-.1115*(\x-6)+1)*sin(2*\x r)},{.3535*(\x-6)*sin(2*\x r)});
+
+    % polarisiertes Licht zwischen Probe und zweitem Gitter
+    \draw[wave=blue, variable=\x, samples at={8,8.25,...,16}] 
+      plot (\x, {0.707*sin(2*\x r)},  {0.707*sin(2*\x r)});  %
+    \foreach \x in{8,8.25,...,16} {
+      \draw[color=blue,->] (\x, 0, 0) --
+          (\x, {0.707*sin(2*\x r)}, {0.707*sin(2*\x r)});
+    }
+
+    \draw (12,2.4,3.1) node [information text]
+      {\small linear polarisiertes und um {\color{angcolor}$\alpha$} gedrehtes Licht};
+
+    % Achsen
+    \draw[->,thick] (14,0,0) -- ++(0,2.5,0) node [right] {y};
+    \draw[->,thick] (14,0,0) -- ++(0,0,2) node [above] {z};
+
+    % Zweites Gitter
+    \filldraw[polaroid]
+      (14,-2,-1.5) -- (14,-2,1.5) -- (14,2,1.5) -- (14,2,-1.5) -- (14,-2,-1.5)
+      node[below, sloped, near end]{\small opt. Gitter};%
+    \draw[thick, <->] (14, -1.5,-1) -- ++(0, .707, 0.707); %Polarization direction
+  \end{tikzpicture}
+  \caption{Schematische Darstellung eines Polarimeters.}
+  \label{fig:polarimeter}
+\end{figure}
+
+\printsolutions
+
+\end{document}

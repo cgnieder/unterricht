@@ -1,0 +1,162 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[greek,ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\DeclareChemReaction[star]{gthreactions}{gather}
+\newcommand*\rctref[1]{\{\ref{#1}\}}
+
+\usepackage{siunitx}
+\sisetup{
+  detect-all ,
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+\DeclareSIUnit{\graddh}{grad\,dH}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+
+\usepackage{fnpct}
+
+\usepackage{booktabs}
+\usepackage{collcell}
+\newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
+
+\usepackage{mdframed}
+\newmdenv[
+  backgroundcolor = red!20,
+  hidealllines    = true,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  splittopskip    = .5\baselineskip ,
+  splitbottomskip = .5\baselineskip ,
+  frametitle      = Definition ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = red!40
+]{definition}
+
+\newmdenv[
+  backgroundcolor = black!5,
+  hidealllines    = true,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  splittopskip    = .5\baselineskip ,
+  splitbottomskip = .5\baselineskip ,
+  frametitle      = Beispiel ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = black!10
+]{beispiel}
+
+
+\usepackage{multicol}
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Fette und Seifen
+\end{center}
+
+\begin{question}[name=Iodzahl und Verseifungszahl]
+  Tabelle \ref{tab:fett_eigenschaften} zeigt die Zusammensetzung von drei
+  pflanzlichen Fetten in Prozent.
+  \begin{tasks}
+    \task Ordnen Sie den drei Fetten jeweils die drei Verseifungszahlen $170$,
+      $200$ und $255$ sowie die drei Iodzahlen $8$, $50$ und $100$ zu und
+      begründen Sie.
+    \task Formulieren Sie an einem Beispiel die Reaktionsgleichung für die
+      Bestimmung der Iodzahl und den Reaktionsmechanismus.
+    \task Formulieren Sie an einem Beispiel die Reaktionsgleichung für die
+      Bestimmung der Verseifungszahl und den Reaktionsmechanismus.
+  \end{tasks}
+\end{question}
+
+\begin{table}[hbp]
+  \centering
+  \caption{Zusammensetzung einiger Fette}\label{tab:fett_eigenschaften}
+  \begin{tabular}{lCSSS}
+    \toprule
+      \bfseries Fettsäure & &
+      {\bfseries Kokosfett} & {\bfseries Rapsöl} & {\bfseries Palmöl} \\
+    \midrule
+      Capronsäure    & C5H11COOH  & 1  & 0  & 0 \\
+      Caprylsäure    & C7H15COOH  & 9  & 0  & 0 \\
+      Caprinsäure    & C9H19COOH  & 7  & 0  & 0 \\
+      Laurinsäure    & C11H23COOH & 47 & 0  & 0 \\
+      Myristinsäure  & C13H27COOH & 16 & 0  & 2 \\
+      Palmitinsäure  & C15H31COOH & 10 & 4  & 39 \\
+      Stearinsäure   & C17H35COOH & 2  & 2  & 5 \\
+      Ölsäure        & C17H33COOH & 6  & 57 & 45 \\
+      Linolsäure     & C17H31COOH & 2  & 24 & 9 \\
+      Linolensäure   & C17H29COOH & 0  & 13 & 0 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{question}[name=Verseifung und deutsche Härte]
+  \begin{tasks}
+    \task Formulieren Sie für die Bildung von Seifen aus Fetten eine
+      Reaktionsgleichung.
+    \task Erklären Sie die Reinigungswirkung der Seife unter Verwendung der
+      Begriffe:
+      \begin{itemize}
+        \item Grenzflächenaktivität
+        \item Dispergiervermögen
+        \item Emulgiervermögen
+     \end{itemize}
+    \task In hartem Wasser steht ein Teil der zugegebenen Seife nicht für die
+      Reinigungswirkung zur Verfügung.  Berechnen Sie, wie viel Gramm
+      Natriumhexadecanoat beim Waschen mit Wasser von \SI{20}{\graddh}
+      (deutsche Härte) nicht für den Waschvorgang genutzt werden können.
+      Wasserverbrauch für Hauptwaschgang: \SI{20}{\liter}.  $\SI{1}{\graddh} =
+      \SI{7.15}{\milli\gram}$ \ch{Ca^2+} pro Liter Wasser.
+  \end{tasks}
+\end{question}
+
+\end{document}

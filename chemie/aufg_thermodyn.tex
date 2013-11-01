@@ -1,0 +1,249 @@
+\documentclass[ahaeffekt]{exercise}
+\def\exerciseTitle{Thermodynamik}
+\hypersetup{pdftitle={\exerciseTitle}}
+\usepackage[numbers,super,square,comma]{natbib}
+\begin{document}
+
+\exercise{Energieumsatz bei chemischen Reaktionen}% Aufgabe 1
+Zink und Iod reagieren schon bei Raumtemperatur heftig miteinander und bilden Zink\-iodid \ce{ZnI2}. Wenn man aus einem Liter einer 1-molaren Lösung von Zinkiodid wieder \SI{1}{\mole} Zink und \SI{1}{\mole} Iod zurückgewinnen will, muss man z.B. bei $U = \SI{20}{\volt}$ und $I = \SI{1}{\ampere}$ 3 Stunden, 40 Minuten und 15 Sekunden lang elektrolysieren.
+\begin{alphlist}
+ \item Zeichnen Sie das Energiediagramm für die Reaktion von Zink und Iod zu Zink\-iodid.
+ \item Welche Richtung ist exotherm und welche ist endotherm?
+ \item In welcher Form wird die Energie abgegeben bzw. aufgenommen?
+ \item Berechnen Sie die molare freie Reaktionsenthalpie für die Bildung von Zinkiodid aus den Elementen. Die elektrische Arbeit ist $W_\text{el} = U I t$.
+ \item Gibt man \SI{1}{\mole} Zink und \SI{1}{\mole} Iod in einen Liter Wasser, so erhält man eine 1-molare Lösung von Zinkiodid in Wasser. Als spezifische Wärmekapazität kann $c = \SI{4.18}{\joule\per\kelvin\per\mole}$ angenommen werden. Um wieviel Grad erwärmt sich die Lösung, wenn ein wärmeisoliertes Gefäß genommen wird?
+\end{alphlist}
+\solution[Energieumsatz bei chemischen Reaktionen]{
+\reaction*{Zn + I2 -> ZnI2}
+\begin{alphlist}
+ \item \quad\\
+ \begin{tikzpicture}[axis/.style={very thick, ->, >=stealth'},
+                    dashed line/.style={dashed, thin},
+                    y=7mm,
+                    scale=1.2]
+  \draw[axis] (0.9,0.8)  -- (6.1,0.8) node(xline)[below]{\footnotesize Reaktionsverlauf};
+  \draw[axis] (1,0.7) -- (1,6.1) node(yline)[left]{\footnotesize Energie};
+  \draw (1.5,3.9) -- (2.3,3.9);
+  \draw[dashed line] (2.3,3.9) -- (5,3.9);
+  \draw (4.1,1.5) -- (5,1.5);
+  \draw[<->] (2.8,3.9) -- (2.8,5.1);
+  \draw[<->] (4.7,1.5) -- (4.7,3.9);
+  \draw (4.75,2.7) node[right]{\footnotesize$\Delta H < 0$};
+  \draw (2.85,4.5) node[right]{\footnotesize$E_a$};
+  \draw (1.55,3.5) node[right]{\footnotesize\ce{Zn + I2}};
+  \draw (4.15,1.05) node[right]{\footnotesize\ce{ZnI2}};
+  \draw[domain=1.6:4.5] plot[id=bla] function{(x-3)**4 - 3*(x-3)**2 -x +8};
+ \end{tikzpicture}
+ \item Die Bildung von Zinkiodid ist exotherm, die Elektrolyse ist endotherm.
+ \item Bei der Bildung von Zinkiodid wird Wärmeenergie abgegeben ($\Delta H<0$) und die Entropie erhöht sich ($\Delta S > 0$). Bei der Elektrolyse haben die Beträge entsprechend das jeweils andere Vorzeichen. Dabei setzt sich die Wärmemenge aus verschiedenen Beträgen zusammen: es muss Energie aufgewandt werden, um bestehende Bindungen zu brechen; die Ionisierungsenergie und die Elektronenaffinität müssen berücksichtigt werden; die Neubildung von Bindungen oder, wie hier, die Solvatation -- also das Ausbilden einer Hydrathülle -- geht als Energiegewinn mit ein.
+ \item Die elektrische Arbeit, die bei der Elektrolyse aufgewandt werden muss, ist gleich dem Betrag der freien Reaktionsenthalpie.\\
+       \begin{align*}
+        \Delta G &= -\frac{W_\text{el}}{n} \\
+                 &= -\frac{UIt}{n} \\
+                 &= -\frac{\SI{20}{\volt}\cdot\SI{1}{\ampere}\cdot\SI{13215}{\second}}{\SI{1}{\mole}} \\
+                 &= \SI{-262.5}{\kilo\joule\per\mole}
+       \end{align*}
+ \item Die abgegebene Wärmemenge ist proportional zur Temperaturänderung (Vernachlässigung von Druck- oder Volumenänderung):\\
+       \begin{align*}
+        Q &= m\cdot c \cdot \Delta T \\
+        \Rightarrow\quad \Delta T &= \frac{Q}{m\cdot c} \\
+         &= \frac{\SI{262.5e3}{\joule}}{\SI{1000}{\gram}\cdot\SI{4.18}{\joule\per\kelvin\per\mole}}\\
+         &= \SI{63.5}{\kelvin}
+       \end{align*}
+       \emph{Anmerkung 1}: Streng genommen ist $W_\text{el}=\Delta G$, während $Q_p=\Delta H$ gilt. Hier wurde vereinfachend $\Delta G=\Delta H$ angenommen.\\
+       \emph{Anmerkung 2}: In der Rechnung wurde die Masse des Zinkiodids nicht be\-rück\-sich\-tigt. Allerdings ist die Wärmekapazität einer Zinkiodid-Lösung gegenüber der von reinem Wasser, die hier verwendet wurde, erniedrigt. Berücksichtigt man beide Effekte, so heben sie sich beinahe gegenseitig auf, so dass der tatsächliche Fehler in der Berechnung gering ist.
+\end{alphlist}
+}
+
+\exercise{Zustandsgleichung idealer Gase}% Aufgabe 2
+\begin{alphlist}
+ \item Wie viel Kelvin sind \SI{35}{\celsius}? Wie viel \si{\celsius} sind \SI{298}{\kelvin}?
+ \item Wie viele Teilchen enthält ein Kolben mit \SI{3}{\liter} Luft bei \SI{25}{\celsius} und \SI{1}{\bar} ?
+ \item An den Kolben aus b) wird eine Wasserstrahlpumpe angeschlossen, die einen Unterdruck von \SI{0.1}{\bar} erzeugen kann. Wie viele Teilchen bleiben im Kolben zurück?
+ \item Der evakuierte Kolben aus c) wird im Wasserbad auf \SI{100}{\celsius} erwärmt. Wie groß wird dann der Druck im Kolben?
+ \item Die Wasserstrahlpumpe wird noch mal an den \SI{100}{\celsius} heißen Kolben aus d) angeschlossen. Wie viele Teilchen bleiben noch im Kolben?
+ \item Der Kolben wird auf \SI{0}{\celsius} abgekühlt. Wie groß ist der Druck jetzt?
+\end{alphlist}
+\solution[Zustandsgleichung idealer Gase]{
+\begin{alphlist}
+ \item Zwischen der Celsius- und der Kelvin-Skala besteht ein linearer Zusammenhang:\\
+       $\vartheta[\si{\celsius}] = T[\si{\kelvin}]-273$.\\
+       $\SI{35}{\celsius} = \SI{308}{\kelvin}$\\
+       $\SI{298}{\kelvin} = \SI{25}{\celsius}$
+ \item Ideale Gasgleichung: $pV=nRT$\\
+       $n=\frac{pV}{RT}=\frac{\SI{1e5}{\pascal}\cdot\SI{3e-3}{\metre\cubed}}{\SI{8.314}{\joule\per\kelvin\per\mole}\cdot\SI{298}{\kelvin}} = \SI{0.121}{\mole}$\\
+       Avogadro-Konstante: $N_A = \SI[per-mode=reciprocal]{6.0221e23}{\per\mole}$\\
+       $N=N_A\cdot n = \SI[per-mode=reciprocal]{6.0221e23}{\per\mole}\cdot\SI{0.121}{\mole} = \num{7.29e22}$\\ \\
+       Alternativ ließe sich die Teilchenzahl auch direkt mit der Gasgleichung berechnen: $pV=NkT\Leftrightarrow N=\frac{pV}{kT}$, wobei $k$ die Boltzmann-Konstante ist.
+  \item Da die Teilchenzahl proportional zum Druck ist und der Druck auf ein Zehntel verringert wird, verringert sich auch die Teilchenzahl auf ein Zehntel: $7.29\cdot10^{21}$.
+  \item Druck und Temperatur verhalten sich proportional,\\
+       also gilt: $\frac{p}{T}=const$.\\
+       $p_2=\frac{T_2}{T_1}\cdot p_1 = \frac{\SI{373}{\kelvin}}{\SI{298}{\kelvin}}\cdot\SI{0.1}{\bar} = \SI{0.125}{\bar}$
+ \item $N = \frac{pV}{kT} = \frac{\SI{0.1e5}{\pascal}\cdot\SI{3e-1}{\metre\cubed}}{\SI{1.381e-23}{\joule\per\kelvin}\cdot\SI{373}{\kelvin}} = \num{5.83e21}$\\ \\
+       oder\\ \\
+       Teilchenzahl und Temperatur verhalten sich antiproportional,\\
+       also gilt $N\cdot T = const$.\\
+       $N_2 = \frac{T_1}{T_2}\cdot N_1 = \frac{\SI{298}{\kelvin}}{\SI{373}{\kelvin}}\cdot\num{7.29e21}=\num{5.82e21}$
+ \item Wieder verwenden wir die Proportionalität:\\
+       $p_2=\frac{T_2}{T_1}\cdot p_1 = \frac{\SI{273}{\kelvin}}{\SI{373}{\kelvin}}\cdot\SI{0.1}{\bar} = \SI{0.073}{\bar}$
+\end{alphlist}
+}
+
+\exercise{Berechnung von molaren Standardreaktionsenthalpien}% Aufgabe 3
+Berechnen Sie $\Delta_rH^0$ für die folgenden Reaktionen aus den Standardbildungsenthalpien der Edukte und Produkte.
+\begin{alphlist}
+ \item \ce{ C6H14_{(l)} + \num{9.5} O2_{(g)} -> 6 CO2 _{(g)} + 7 H2O_{(g)} }
+ \item \ce{ N2_{(g)} + O2_{(g)} -> 2 NO_{(g)} }
+ \item \ce{ CO2_{(g)} + Ca(OH)2_{(s)} -> CaCO3_{(s)} + H2O_{(l)} }
+ \item \ce{ NaCl_{(s)} -> NaCl_{(aq)} }
+ \item \ce{ H2O_{(l)} -> H2O_{(g)} }
+\end{alphlist}
+\solution[Berechnung von molaren Standardreaktionsenthalpien]{
+Benötigte Standardbildungsenthalpien werden in einer geeigneten(!) Quelle nachgeschlagen. Für dieses Dokument wurden der \citet{mortimer}, \citet{NISTwebbook} und -- in Ausnahmefällen(!) -- \citet{wikipedia} verwendet. Letztere wurden gesondert genannt.\\
+Es gilt \[\Delta_rH^0=\sum_i\nu_i\Delta_fH^0(i) = \Delta H(\text{Produkte}) - \Delta H(\text{Edukte})\]
+\begin{alphlist}
+ \item \reaction*{ C6H14_{(l)} + \num{9.5} O2_{(g)} -> 6 CO2 _{(g)} + 7 H2O_{(g)} }
+       \begin{align*}
+        \begin{split}\Delta_rH^0 &= 6\cdot(\SI{-393.5}{\kilo\joule\per\mole}) + 7\cdot(\SI{-241.8}{\kilo\joule\per\mole})\ldots\\
+                                 &\quad\ldots - (\SI{-198.7}{\kilo\joule\per\mole}) - 9.5\cdot\SI{0}{\kilo\joule\per\mole}
+        \end{split}\\
+         &= \SI{-3854.9}{\kilo\joule\per\mole}
+       \end{align*}
+ \item Ab jetzt werden die Standardbildungsenthalpien von Elementen, die ja $0$ sind, nicht mehr explizit angegeben.
+       \reaction*{ N2_{(g)} + O2_{(g)} -> 2 NO_{(g)} }
+       \begin{align*}
+        \Delta_rH^0 &= 2\cdot(\SI{+90.36}{\kilo\joule\per\mole})\\
+         &= \SI{180.7}{\kilo\joule\per\mole}
+       \end{align*}
+       Bemerkung: an dieser Reaktion sieht man besonders gut, dass zur Angabe der Reaktionsenthalpie unbedingt auch die Angabe der Reaktionsgleichung oder des Stoffumsatzes gehört. Die Reaktionsenthalpie der Reaktion \reaction*{1/2 N2 + 1/2 O2 -> NO} beträgt $\Delta_rH^0=\SI{90.4}{\kilo\joule\per\mole}$ und entspricht genau der Bildungsenthalpie für \ce{NO}.
+ \item \reaction*{ CO2_{(g)} + Ca(OH)2_{(s)} -> CaCO3_{(s)} + H2O_{(l)} }
+       \begin{align*}
+        \begin{split}\Delta_rH^0 &= (\SI{-1206.9}{\kilo\joule\per\mole}) + (\SI{-285.9}{\kilo\joule\per\mole})\ldots\\
+                                 &\quad\ldots - (\SI{-393.5}{\kilo\joule\per\mole}) - (\SI{-986.6}{\kilo\joule\per\mole})
+        \end{split}\\
+         &= \SI{-112.7}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \reaction*{ NaCl_{(s)} -> NaCl_{(aq)} }
+       Die Enthalpie für das solvatisierte \ce{NaCl} wurde \citet{wikipedia} entnommen.
+       \begin{align*}
+        \Delta_rH^0 &= (\SI{-407}{\kilo\joule\per\mole}) - (\SI{-411}{\kilo\joule\per\mole})\\
+         &= \SI{4}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \reaction*{ H2O_{(l)} -> H2O_{(g)} }
+       \begin{align*}
+        \Delta_rH^0 &= (\SI{-241.8}{\kilo\joule\per\mole}) - (\SI{-285.9}{\kilo\joule\per\mole})\\
+         &= \SI{44.1}{\kilo\joule\per\mole}
+       \end{align*}
+\end{alphlist}
+}
+
+\exercise{Satz von Hess}% Aufgabe 4
+Die Reaktionsenthalpie für die Hydrierung von Kohlenstoff gemäß
+\reaction{ C_{\text{Graphit}} + 2 H2 -> CH4 \label{rkt:1}}%
+lässt sich aus verschiedenen Gründen nicht direkt bestimmen. Wenden Sie den Satz von Hess unter Zuhilfenahme der Reaktionsenthalpien folgender Reaktionen an:
+\begin{align}
+ \cee{ CH4 + 2 O2 &-> CO2 + 2 H2O }      & \Delta_rH^0 &= \SI{-890.4}{\kilo\joule\per\mole} \tag{A}\label{rkt:A} \\
+ \cee{ 2 H2 + O2 &-> 2 H2O }             & \Delta_rH^0 &= \SI{-571.8}{\kilo\joule\per\mole} \tag{B}\label{rkt:B} \\
+ \cee{ C_{\text{Graphit}} + O2 &-> CO2 } & \Delta_rH^0 &= \SI{-393.5}{\kilo\joule\per\mole} \tag{C}\label{rkt:C}
+\end{align}
+Bestimmen Sie damit die Reaktionsenthalpie von Reaktion (\ref{rkt:1}). (Verwenden Sie \emph{nicht} die Standardbildungsenthalpien zur direkten Berechnung!)
+\solution[Satz von Hess]{
+Die Reaktion (\ref{rkt:1}) lässt sich aus den Reaktionen (\ref{rkt:A}), (\ref{rkt:B}) und (\ref{rkt:C}) zusammengesetzt darstellen. Man stelle sich vor, Reaktionen (\ref{rkt:B}) und (\ref{rkt:C}) laufen parallel ab, anschließend wird Reaktion (\ref{rkt:A}) rückwärts durchlaufen. Dann addieren sich die Reaktionsenthalpien wie folgt:
+\begin{align*}
+ \Delta_rH^0 &= \Delta_rH^0(B) + \Delta_rH^0(C) - \Delta_rH^0(A) \\
+             &= \SI{-571.8}{\kilo\joule\per\mole} + (\SI{-393.5}{\kilo\joule\per\mole}) - (\SI{-890.4}{\kilo\joule\per\mole}) \\
+             &= \SI{-74.9}{\kilo\joule\per\mole}
+\end{align*}
+}
+
+\exercise{Freie Enthalpie und Gibbs-Helmholtz-Gleichung}% Aufgabe 5
+Berechnen Sie für die folgenden Reaktionen die molare freie Reaktionsenthalpie $\Delta G$ bei \SI{25}{\celsius} und bei \SI{1000}{\celsius}. Warum ist der Wert für \SI{1000}{\celsius} weniger zuverlässig als der bei \SI{25}{\celsius}? Geben Sie an, ob, und wenn ja, bei welchen Temperaturen die Reaktionen spontan ablaufen können.
+\begin{alphlist}
+ \item \ce{ H2_{(g)} + I2_{(s)} <=> 2 HI_{(g)} }
+ \item \ce{ C3H8_{(g)} + 5 O2_{(g)} <=> 3 CO2_{(g)} + 4 H2O_{(g)} }
+ \item \ce{ 2 NO2_{(g)} <=> N2O4_{(g)} }
+ \item \ce{ 2 CO_{(g)} + O2_{(g)} <=> 2 CO2_{(g)} }
+ \item \ce{ N2_{(g)} + 2 O2_{(g)} <=> 2 NO2_{(g)} }
+ \item \ce{ Fe2O3_{(s)} + 3 C_{(s)} <=> 2 Fe_{(s)} + 3 CO_{(g)} }
+\end{alphlist}
+\solution[Freie Enthalpie und Gibbs-Helmholtz-Gleichung]{
+Zwischen der freien Enthalpie, der Enthalpie und der Entropie gilt die Beziehung \[\Delta G = \Delta H -T\cdot \Delta S\quad,\] die sogenannte Gibbs-Helmholtz-Gleichung. Da sowohl $\Delta H$ als auch $\Delta S$ Temperatur-abhängig sind, ist der Wert für \SI{1000}{\celsius} weniger zuverlässig, da wir mit den Standard-Werten, die bei \SI{25}{\celsius} gelten, rechnen\footnote{Exaktere Werte erhält man, wenn man die Enthalpie und Entropie mit den Kirchhoffschen Sätzen berechnet und anschließend die Gibbs-Enthalpie bestimmt. Dabei müsste man dann streng genommen die Temperatur-Abhängigkeit der Wärmekapazitäten berücksichtigen. Die Kirchhoffschen Sätze sind aber in der Regel nicht Teil des Schul-Lehrplans.\[\Delta H(T_2) = \Delta H(T_1) + \int\limits_{T_1}^{T_2}\Delta c_p dT\] \[\Delta S(T_2) = \Delta S(T_1) + \int\limits_{T_1}^{T_2}\frac{\Delta c_p}{T} dT\]}.\\
+Alle Reaktionen laufen spontan ab, wenn $\Delta G <0 $, sie können nicht ablaufen, wenn $\Delta G >0$.
+\begin{alphlist}
+ \item \begin{align*}
+        \Delta H^0 &= 2\cdot\SI{25.9}{\kilo\joule\per\mole}\\
+        &= \SI{51.8}{\kilo\joule\per\mole}\\
+        \Delta S^0 &= 2\cdot\SI{206.3}{\joule\per\kelvin\per\mole} -\SI{130.6}{\joule\per\kelvin\per\mole} -\SI{116.7}{\joule\per\kelvin\per\mole} \\
+        &= \SI{165.3}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{51.8}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\SI{165.3}{\joule\per\kelvin\per\mole} \\
+        &= \SI{2.5}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{51.8}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\cdot\SI{165.3}{\joule\per\kelvin\per\mole} \\
+        &= \SI{-162.8}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \begin{align*}
+        \Delta H^0 &= 3\cdot(\SI{-393.5}{\kilo\joule\per\mole}) + 4\cdot(\SI{-285.9}{\kilo\joule\per\mole}) - (\SI{-104.7}{\kilo\joule\per\mole})\\
+        &= \SI{-2219.4}{\kilo\joule\per\mole}\\
+        \begin{split}
+          \Delta S^0 &= 3\cdot\SI{213.6}{\joule\per\kelvin\per\mole} +4\cdot\SI{70.0}{\joule\per\kelvin\per\mole}\ldots\\
+                     &\quad\ldots -\SI{269.9}{\joule\per\kelvin\per\mole} -5\cdot\SI{205.0}{\joule\per\kelvin\per\mole}
+        \end{split}\\
+        &= \SI{-374.1}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{-2219.4}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\left(\SI{-374.1}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{-2107.9}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{-2219.4}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\cdot\left(\SI{-374.1}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{-1733.8}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \begin{align*}
+        \Delta H^0 &= \SI{9.67}{\kilo\joule\per\mole} - 2\cdot\SI{33.8}{\kilo\joule\per\mole}\\
+        &= \SI{-57.9}{\kilo\joule\per\mole}\\
+        \Delta S^0 &= \SI{304.3}{\joule\per\kelvin\per\mole} -2\cdot\SI{204.5}{\joule\per\kelvin\per\mole}\\
+        &= \SI{-104.7}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{-57.9}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\left(\SI{-104.7}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{-26.7}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{-57.9}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\cdot\left(\SI{-104.7}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{78.0}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \begin{align*}
+        \Delta H^0 &= 2\cdot\left(\SI{-393.5}{\kilo\joule\per\mole}\right) - 2\cdot\left(\SI{-110.5}{\kilo\joule\per\mole}\right)\\
+        &= \SI{-566.0}{\kilo\joule\per\mole}\\
+        \Delta S^0 &= 2\cdot\SI{213.6}{\joule\per\kelvin\per\mole} -2\cdot\SI{197.9}{\joule\per\kelvin\per\mole}-\SI{205.0}{\joule\per\kelvin\per\mole}\\
+        &= \SI{-173.6}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{-566.0}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\left(\SI{-173.6}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{-504.3}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{-566.0}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\cdot\left(\SI{-173.6}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{-330.7}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \begin{align*}
+        \Delta H^0 &= 2\cdot\SI{33.8}{\kilo\joule\per\mole}\\
+        &= \SI{67.6}{\kilo\joule\per\mole}\\
+        \Delta S^0 &= 2\cdot\SI{204.5}{\joule\per\kelvin\per\mole} -\SI{191.5}{\joule\per\kelvin\per\mole} -2\cdot\SI{205.0}{\joule\per\kelvin\per\mole} \\
+        &= \SI{-192.5}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{67.6}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\left(\SI{-192.5}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{125.0}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{67.6}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\left(\SI{-192.5}{\joule\per\kelvin\per\mole}\right) \\
+        &= \SI{317.5}{\kilo\joule\per\mole}
+       \end{align*}
+ \item \begin{align*}
+        \Delta H^0 &= 3\cdot\left(\SI{-110.5}{\kilo\joule\per\mole}\right)-\left(\SI{-822.2}{\kilo\joule\per\mole}\right)\\
+        &= \SI{490.7}{\kilo\joule\per\mole}\\
+        \begin{split}
+          \Delta S^0 &= 3\cdot\SI{197.9}{\joule\per\kelvin\per\mole} + 2\cdot\SI{27.2}{\joule\per\kelvin\per\mole}\ldots\\
+                     &\quad\ldots - \SI{90.0}{\joule\per\kelvin\per\mole} -3\cdot\SI{2.4}{\joule\per\kelvin\per\mole}
+        \end{split} \\
+        &= \SI{550.9}{\joule\per\kelvin\per\mole} \\
+        \Delta G^0 &= \SI{490.7}{\kilo\joule\per\mole} - \SI{298}{\kelvin}\cdot\SI{550.9}{\joule\per\kelvin\per\mole} \\
+        &= \SI{326.5}{\kilo\joule\per\mole} \\
+        \Delta G_\text{\SI{1000}{\celsius}} &= \SI{490.7}{\kilo\joule\per\mole} - \SI{1298}{\kelvin}\SI{550.9}{\joule\per\kelvin\per\mole} \\
+        &= \SI{-224.4}{\kilo\joule\per\mole}
+       \end{align*}
+\end{alphlist}
+}
+
+\newpage
+\section*{Lösungen}
+\dosolution
+\newpage
+\bibliographystyle{dinchem}                      % Literaturverzeichnis nach DIN 1505, selbst modifiziert
+\bibliography{LitChem}
+
+\end{document}

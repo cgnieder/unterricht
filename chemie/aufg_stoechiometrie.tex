@@ -1,0 +1,410 @@
+\documentclass[DIV11,bib=totoc]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\usepackage{siunitx}
+\sisetup{
+%  per-mode = fraction ,
+  per-mode            = symbol ,
+  fixed-exponent      = 0 ,
+  scientific-notation = fixed ,
+  exponent-product    = \cdot ,
+  group-digits        = false
+}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{biblatex}
+\addbibresource{\jobname.bib}
+\usepackage{filecontents}
+
+\begin{filecontents}{\jobname.bib}
+@book{pse_viley,
+  author    = {Fluck and Heumann},
+  title     = {Das Periodensystem der Elemente},
+  edition   = {3. Auflage},
+  year      = {2002},
+  publisher = { VILEY-VCH Verlag}
+}
+\end{filecontents}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+\usepackage{enumitem}
+
+\usepackage{fnpct}
+\usepackage{booktabs}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Aufgaben Stöchiometrie
+\end{center}
+
+\addsec{Übungen}
+
+\begin{question}
+Wieviel Gramm Natriumamid (\ch{NaNH2}) und Distickstoffoxid (\ch{N2O}) werden
+benötigt, um \SI{50.0}{g} Natriumazid (\ch{NaN3}) herzustellen bei der Annahme
+eines vollständigen Stoffumsatzes gemäß
+\begin{reaction*}
+  2 NaNH2 + N2O -> NaN3 + NaOH + NH3 \,?
+\end{reaction*}
+\end{question}
+\begin{solution}
+\begin{tasks}[label=\empty](2)
+  \task
+  \begin{align*}
+    m_{\ch{NaNH2}} &= m_{\ch{NaN3}} \cdot\frac{M_{\ch{NaNH2}}}{M_{\ch{NaN3}}} \\
+      &= \SI{50.0}{g}\cdot\frac{\SI{39.0}{\gram\per\mole}}{\SI{65.0}{\gram\per\mole}} \\
+      &= \SI{30.0}{g}
+  \end{align*}
+  \task
+  \begin{align*}
+    m_{\ch{N2O}} &= m_{\ch{NaN3}} \cdot\frac{M_{\ch{N2O}}}{M_{\ch{NaN3}}} \\
+      &= \SI{50.0}{g}\cdot\frac{\SI{46.0}{\gram\per\mole}}{\SI{65.0}{\gram\per\mole}} \\
+      &= \SI{35.4}{g}
+  \end{align*}
+\end{tasks}
+\end{solution}
+
+\begin{question}
+Bei der Umsetzung von \ch{P4O10} mit \ch{PCl5} entsteht \ch{POCl3} als
+einziges Produkt.
+\begin{tasks}
+  \task Formulieren Sie die Reaktionsgleichung.
+  \task Wieviel Mol \ch{POCl3} kann man aus \SI{1.00}{mol} \ch{PCl5} erhalten?
+  \task Welche Masse \ch{PCl5} braucht man, um \SI{12.0}{g} \ch{POCl3}
+    herzustellen?
+  \task Welche Masse \ch{P4O10} braucht man zur Umsetzung mit \SI{7.50}{g}
+    \ch{PCl5}?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{P4O10 + 6 PCl5 -> 10 POCl3}
+    \task Aus \SI{1.00}{mol} \ch{PCl5} erhält man
+      $\SI{1.00}{mol}\cdot\frac{10}{6} = \SI{1.67}{mol}$ \ch{POCl3}.
+    \task \SI{12.0}{g} \ch{POCl3} entsprechen
+      $\frac{\SI{12.0}{g}}{\SI{153.5}{g/mol}} = \SI{0.078}{mol}$.  Also
+      benötigt man $\SI{0.078}{mol}\cdot\frac{6}{10}=\SI{0.047}{mol}$
+      \ch{PCl5}.  Das entspricht $\SI{0.047}{mol}\cdot\SI{208.5}{g/mol} =
+      \SI{9.8}{g}$.
+    \task \SI{7.50}{g} \ch{PCl5} entsprechen
+      $\frac{\SI{7.50}{g}}{\SI{208.5}{g/mol}} = \SI{0.0360}{mol}$.  Man
+      benötigt dann $\SI{0.0360}{mol}\cdot\frac{1}{6}=\SI{6.00e-3}{mol}$
+      \ch{P4O10}.  Das entspricht $\SI{6.00e-3}{mol}\cdot\SI{284}{g/mol} =
+      \SI{1.70}{g}$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Wieviel Gramm Iodwasserstoff (\ch{HI}) entstehen aus \SI{5.00}{g} \ch{PI3} bei
+der vollständigen Umsetzung gemäß
+\begin{reaction*}
+  PI3 + 3 H2O -> 3 HI + H3PO3 \,?
+\end{reaction*}
+\end{question}
+\begin{solution}
+\SI{5.00}{g} \ch{PI3} enstsprechen $\frac{\SI{5.00}{g}}{\SI{412}{g/mol}} =
+\SI{12.1}{\milli\mole}$.  Also entstehen $\SI{12.1}{\milli\mole}\cdot3 =
+\SI{36.4}{\milli\mole}$ \ch{HI}.  Das sind
+$\SI{36.4e-3}{\mole}\cdot\SI{128}{\gram\per\mole} = \SI{4.66}{\gram}$.
+\end{solution}
+
+\begin{question}
+Wieviel Gramm des \textcolor{blue}{blau}gedruckten Produktes können maximal bei
+der Umsetzung folgender Mengen erhalten werden?
+\begin{tasks}
+ \task
+   \begin{reaction*}
+     !(\SI{9.00}{\gram})( CS2 ) + !(\SI{3.00}{\gram})( 2 NH3 ) ->
+       @{format=\color{blue}} NH4NCS + H2S
+    \end{reaction*}
+ \task
+   \begin{reaction*}
+     !(\SI{2.50}{\gram})( 2 F2 ) + !(\SI{2.50}{\gram})( 2 NaOH ) ->
+       @{format=\color{blue}} OF2 + 2 NaF + H2O
+    \end{reaction*}
+ \task
+   \begin{reaction*}
+     !(\SI{6.00}{\gram})( 3 SCl2 ) + !(\SI{3.50}{\gram})( 4 NaF ) ->
+       @{format=\color{blue}} SF4 + S2Cl2 + 4 NaCl
+    \end{reaction*}
+ \task
+   \begin{reaction*}
+     !(\SI{2.650}{\gram})( 3 NaBH4 ) + !(\SI{4.560}{\gram})( 4 BF3 ) ->
+       3 NaBF4 + 2 @{format=\color{blue}} B2H6
+    \end{reaction*}
+\end{tasks}
+\end{question}
+\begin{solution}
+Es müssen die Stoffmengen, berücksichtigt um die stöchiometrischen Faktoren,
+verglichen werden.
+\begin{tasks}
+  \task Das Gemisch enthält $\frac{m}{M} =
+    \frac{\SI{9.00}{\gram}}{\SI{76.15}{\gram\per\mole}} = \SI{0.118}{\mole}$
+    \ch{CS2} und $\frac{\SI{3.00}{\gram}}{\SI{17.04}{\gram\per\mole}} =
+    \SI{0.176}{\mole} = 2\cdot\SI{0.0880}{\mole}$ \ch{NH3}.  Also wird die
+    maximale Menge durch die Menge des \ch{NH3} bestimmt.  Es enstehen $M\cdot
+    n = \SI{76.14}{\gram\per\mole}\cdot\SI{0.0880}{\mole} = \SI{6.70}{\gram}$
+    \ch{NH4NCS}.
+  \task Das Gemisch enthält
+    $\frac{\SI{2.50}{\gram}}{\SI{38.00}{\gram\per\mole}} = \SI{0.0658}{\mole}
+    = 2\cdot\SI{0.0329}{\mole}$ \ch{F2} und
+    $\frac{\SI{2.50}{\gram}}{\SI{40.00}{\gram\per\mole}} = \SI{0.0625}{\mole}
+    = 3\cdot\SI{0.0208}{\mole}$ \ch{NaOH}.  Also wird die maximale Menge durch
+    die Menge des \ch{NaOH} bestimmt.  Es enstehen
+    $\SI{54.00}{\gram\per\mole}\cdot\SI{0.0208}{\mole} = \SI{1.12}{\gram}$
+    \ch{OF2}.
+  \task Das Gemisch enthält
+    $\frac{\SI{6.00}{\gram}}{\SI{102.97}{\gram\per\mole}} = \SI{0.0583}{\mole} =
+    3\cdot\SI{0.0194}{\mole}$ \ch{SCl2} und
+    $\frac{\SI{3.50}{\gram}}{\SI{41.99}{\gram\per\mole}} = \SI{0.0834}{\mole}
+    = 4\cdot\SI{0.0208}{\mole}$ \ch{NaF}.  Also wird die maximale Menge durch
+    die Menge des \ch{SCl2} bestimmt.  Es enstehen
+    $\SI{108.07}{\gram\per\mole}\cdot\SI{0.0194}{\mole} = \SI{2.10}{\gram}$
+    \ch{SF4}.
+  \task Das Gemisch enthält
+    $\frac{\SI{2.650}{\gram}}{\SI{37.833}{\gram\per\mole}} =
+    \SI{0.07004}{\mole} = 3\cdot\SI{0.02335}{\mole}$ \ch{NaBH4} und
+    $\frac{\SI{4.650}{\gram}}{\SI{67.805}{\gram\per\mole}} =
+    \SI{0.06858}{\mole} = 4\cdot\SI{0.01714}{\mole}$ \ch{BF3}.  Also wird die
+    maximale Menge durch die Menge des \ch{BF3} bestimmt.  Es enstehen
+    $\SI{27.670}{\gram\per\mole}\cdot2\cdot\SI{0.01714}{\mole} =
+    \SI{0.9485}{\gram}$ \ch{B2H6}.
+\end{tasks}
+\end{solution}
+
+\begin{question}
+Berechnen Sie die prozentuale Ausbeute des des \textcolor{blue}{blau}gedruckten
+Produkts.  Der Reaktand ohne Mengenangabe ist im Überschuss vorhanden.
+\begin{tasks}
+ \task
+   \begin{reaction*}
+     !(\SI{5.00}{\gram})( 3 LiBH4 ) + 3 NH4Cl ->
+       !(\SI{2.16}{\gram})( @{format=\color{blue}} B3N3H6 ) + 9 H2 + 3 LiCl
+    \end{reaction*}
+ \task
+   \begin{reaction*}
+     !(\SI{6.00}{\gram})( Ca3P2 ) + 6 H2O ->
+       !(\SI{1.40}{\gram})( 2 @{format=\color{blue}} PH3 ) + 3 Ca(OH)2
+    \end{reaction*}
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}
+  \task \SI{5.00}{\gram} \ch{LiBH4} enstprechen $\frac{m}{M} =
+    \frac{\SI{5.00}{\gram}}{\SI{21.784}{\gram\per\mole}} = \SI{0.2295}{\mole} =
+    4\cdot\SI{0.0574}{\mole}$.  Also können maximal \SI{0.0574}{\mole}
+    \ch{B3N3H6} erhalten werden.  Das entspricht $M\cdot n =
+    \SI{80.502}{\gram\per\mole}\cdot\SI{0.0574}{\mole} = \SI{4.62}{\gram}$.
+    Damit beträgt die Ausbeute $\frac{\SI{2.16}{\gram}}{\SI{4.62}{\gram}} =
+    \num{0.468} = \SI{46.8}{\percent}$.
+  \task \SI{6.00}{\gram} \ch{Ca3P2} enstprechen
+    $\frac{\SI{6.00}{\gram}}{\SI{182.182}{\gram\per\mole}} =
+    \SI{0.0329}{\mole}$.  Also können maximal $2\cdot\SI{0.0329}{\mole} =
+    \SI{0.0658}{\mole}$ \ch{PH3} erhalten werden.  Das entspricht $M\cdot n =
+    \SI{33.998}{\gram\per\mole}\cdot\SI{0.0658}{\mole} = \SI{2.24}{\gram}$.
+    Damit beträgt die Ausbeute $\frac{\SI{1.40}{\gram}}{\SI{2.24}{\gram}} =
+    \num{0.654} = \SI{65.4}{\percent}$.
+\end{tasks}
+\end{solution}
+
+\begin{question}
+\SI{7.69}{\gram} eines Gemisches von Calciumcarbid (\ch{CaC2}) und Calciumoxid
+(\ch{CaO}) reagieren mit Wasser gemäß den folgenden Reaktionen:
+\begin{reactions*}
+  CaC2\sld{} + 2 H2O\lqd{} &-> Ca(OH)2\aq{} + C2H2\gas{} \\
+  CaO\sld{} + H2O\lqd{} &-> Ca(OH)2\aq{}
+\end{reactions*}
+Nehmen Sie vollständigen Stoffumsatz an. Wieviel Prozent des Gemisches
+bestehen aus \ch{CaC2}, wenn \SI{2.34}{\gram} \ch{C2H2} (Ethin) erhalten
+werden?
+\end{question}
+\begin{solution}
+\SI{2.34}{\gram} Ethin sind
+$\frac{\SI{2.34}{\gram}}{\SI{26.04}{\gram\per\mole}} = \SI{90}{\milli\mole}$
+Ethin.  Also wurden \SI{90}{\milli\mole} \ch{CaC2} eingesetzt.  Das sind
+$\SI{90e-3}{\mole}\cdot\SI{64.10}{\gram\per\mole} = \SI{5.77}{\gram}$.  Das
+Gemisch besteht damit zu $\frac{5.77}{7.69}=0.75=\SI{75}{\percent}$ aus
+Calciumcarbid.
+\end{solution}
+
+\begin{question}
+Welche Stoffmengenkonzentrationen haben folgende Lösungen?
+\begin{tasks}(2)
+  \task \SI{4.00}{\gram} \ch{NaOH} in \SI{250}{\milli\liter} Lösung
+  \task \SI{13.0}{\gram} \ch{NaCl} in \SI{1.50}{\liter} Lösung
+  \task \SI{10.0}{\gram} \ch{AgNO3} in \SI{350}{\milli\liter} Lösung
+  \task \SI{94.5}{\gram} \ch{HNO3} in \SI{250}{\milli\liter} Lösung
+  \task \SI{6.500}{\gram} \ch{KMnO4} in \SI{2.000}{\liter} Lösung
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}
+  \task $n_{\ch{NaOH}} = \frac{\SI{4.00}{\gram}}{\SI{40.00}{\gram\per\mole}} =
+    \SI{0.100}{\mole}$, $c =\frac{\SI{0.100}{\mole}}{\SI{0.250}{\liter}} =
+    \SI{0.400}{\mole\per\liter}$
+  \task $n_{\ch{NaCl}} = \frac{\SI{13.0}{\gram}}{\SI{58.44}{\gram\per\mole}} =
+    \SI{0.222}{\mole}$, $c = \frac{\SI{0.222}{\mole}}{\SI{1.50}{\liter}} =
+    \SI{0.148}{\mole\per\liter}$
+  \task $n_{\ch{AgNO3}} = \frac{\SI{10.0}{\gram}}{\SI{169.88}{\gram\per\mole}} =
+    \SI{58.9}{\milli\mole}$, $c = \frac{\SI{58.9e-3}{\mole}}{\SI{0.350}{\liter}}
+    = \SI{0.168}{\mole\per\liter}$
+  \task $n_{\ch{HNO3}} = \frac{\SI{94.5}{\gram}}{\SI{63.02}{\gram\per\mole}} =
+    \SI{1.50}{\mole}$, $ c =\frac{\SI{1.50}\mole}{\SI{0.250}{\liter}} =
+    \SI{6.00}{\mole\per\liter}$
+  \task $n_{\ch{KMnO4}} = \frac{\SI{6.500}{\gram}}{\SI{158.032}{\gram\per\mole}}
+    = \SI{41.13}{\milli\mole}$, $c =
+    \frac{\SI{41.13e-3}{\mole}}{\SI{2.000}{\liter}} =
+    \SI{0.02057}{\mole\per\liter}$
+\end{tasks}
+\end{solution}
+
+\begin{question}
+Wieviele Mole Substanz sind in folgenden Lösungen enthalten?
+\begin{tasks}(2)
+  \task \SI{1.20}{\liter} mit $c(\ch{Ba(OH)2}) = \SI{0.0500}{\mole\per\liter}$
+  \task \SI{25.0}{\milli\liter} mit $c(\ch{H2SO4}) = \SI{6.00}{\mole\per\liter}$
+  \task \SI{0.250}{\liter} mit $c(\ch{NaCl}) = \SI{0.100}{\mole\per\liter}$
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}
+  \task $n = c\cdot V = \SI{0.0500}{\mole\per\liter}\cdot\SI{1.20}{\liter} =
+    \SI{0.0600}\mole$
+  \task $n = \SI{6.00}{\mole\per\liter}\cdot\SI{25.0e-3}{\liter} =
+    \SI{0.150}{\mole}$
+  \task $n = \SI{0.100}{\mole\per\liter}\cdot\SI{0.250}{\liter} =
+    \SI{0.0250}{\mole}$
+\end{tasks}
+\end{solution}
+
+\begin{question}
+Welche Masse muss man einwiegen, um folgende Lösungen herzustellen?
+\begin{tasks}(2)
+  \task \SI{500.0}{\milli\liter} mit $c(\ch{KMnO4}) = \SI{0.02000}{\mole\per\liter}$
+  \task \SI{2.000}{\liter} mit $c(\ch{KOH}) = \SI{1.500}{\mole\per\liter}$
+  \task \SI{25.00}{\milli\liter} mit $c(\ch{BaCl2}) = \SI{0.2000}{\mole\per\liter}$
+\end{tasks}
+\end{question}
+\begin{solution}
+\begin{tasks}
+  \task $n = c\cdot V = \SI{0.02000}{\mole\per\liter}\cdot\SI{0.5000}{\liter}
+    = \SI{0.01000}{\mole}$,\\
+    $m = M\cdot n = \SI{158.032}{\gram\per\mole}\cdot\SI{0.01000}{\mole} =
+    \SI{1.5810}{\gram}$
+  \task $n = \SI{1.500}{\mole\per\liter}\cdot\SI{2.000}{\liter} =
+    \SI{3.000}{\mole}$,\\
+    $m = \SI{56.105}{\gram\per\mole}\cdot\SI{3.000}{\mole} =
+    \SI{168.32}{\gram}$
+  \task $n = \SI{0.2000}{\mole\per\liter}\cdot\SI{25.00e-3}{\liter} =
+    \SI{5.000e-3}{\mole}$,\\
+    $m = \SI{208.233}{\gram\per\mole}\cdot\SI{5.000e-3}{\mole} =
+    \SI{1.0412}{\gram}$
+\end{tasks}
+\end{solution}
+
+\begin{question}
+Wieviele Milliliter einer Lösung mit $c(\ch{KOH}) =
+\SI{0.250}{\mole\per\liter}$ reagieren mit \SI{15.0}{\milli\liter} einer
+Lösung mit $c(\ch{H2SO4}) = \SI{0.350}{\mole\per\liter}$ gemäß der Gleichung
+\begin{reaction*}
+  2 KOH\aq{} + H2SO4\aq{} -> K2SO4\aq{} + 2 H2O\lqd{}
+\end{reaction*}
+bei Annahme vollständigen Stoffumsatzes?
+\end{question}
+\begin{solution}
+\begin{align*}
+  n_{\ch{H2SO4}}
+    &= c\cdot V = \SI{0.350}{\mole\per\liter}\cdot\SI{15.0e-3}{\liter}\\
+    &= \SI{5.25e-3}{\mole}\\
+  \Rightarrow\quad n_{\ch{KOH}}
+    &= 2\cdot n_{\ch{H2SO4}} = 2\cdot\SI{5.25e-3}{\mole}\\
+    &= \SI{10.5e-3}{\mole}\\
+  V_{\ch{KOH}}
+    &= \frac{n}{c} = \frac{\SI{10.5e-3}{\mole}}{\SI{0.250}{\mole\per\liter}}\\
+    &= \SI{42.0}{\milli\liter}
+\end{align*}
+\end{solution}
+
+\begin{question}
+Wenn Phosphorsäure, \ch{H3PO4\aq{}}, im Überschuß zu \SI{125}{\milli\liter}
+einer Lösung von Bariumchlorid, \ch{BaCl2\aq{}}, gegeben wird, scheiden sich
+\SI{3.26}{\gram} \ch{Ba3(PO4)2\sld} aus.  Welche Stoffmengenkonzentration hat
+die \ch{BaCl2}-Lösung?
+\end{question}
+\begin{solution}
+\SI{3.26}{\gram} \ch{Ba3(PO4)2} entsprechen
+$\frac{\SI{3.26}{\gram}}{\SI{601.93}{\gram\per\mole}} =
+\SI{5.416}{\milli\mole}$.  Die Lösung enthielt damit
+$2\cdot\SI{5.416}{\milli\mole} = \SI{10.83}{\milli\mole}$ \ch{BaCl2}.  Also
+beträgt die Konzentration $c =
+\frac{\SI{10.83}{\milli\mole}}{\SI{125}{\milli\liter}} =
+\SI{0.0866}{\mole\per\liter}$.
+\end{solution}
+
+\begin{question}
+Wenn Eisen-Pulver zu einer Silbersalz-Lösung gegeben wird, geht das Eisen in
+Lösung und Silber scheidet sich aus:
+\begin{reaction*}
+ Fe\sld{} + 2 Ag+ \aq{} -> Fe^2+ \aq{} + 2 Ag\sld{} v
+\end{reaction*}
+Welche Masse \ch{Fe\sld} benötigt man mindestens, um alles Silber aus
+\SI{2.00}{\liter} einer Lösung mit $c(\ch{Ag+}) =
+\SI{0.0650}{\mole\per\liter}$ auszuscheiden?
+\end{question}
+\begin{solution}
+\begin{align*}
+  n_{\ch{Ag}}
+    &= c\cdot V = \SI{0.0650}{\mole\per\liter}\cdot\SI{2.00}{\liter}\\
+    &= \SI{0.130}{\mole}\\
+  \Rightarrow\quad n_{\ch{Fe}}
+    &= \frac{1}{2}\cdot n_{\ch{Ag}} = \frac{1}{2}\cdot\SI{0.130}{\mole}\\
+    &= \SI{0.0650}{\mole}\\
+  m_{\ch{Fe}}
+    &= M\cdot n = \SI{55.85}{\gram\per\mole}\cdot\SI{0.0650}{\mole}\\
+    &= \SI{3.63}{\gram}
+\end{align*}
+\end{solution}
+
+\addsec{Lösungen}
+Bei allen Aufgaben wurden die molaren Massen mit den Angaben des PSE des
+WILEY-VCH-Verlages~\cite{pse_viley} berechnet.
+
+Es bedeuten $M$:~molare Masse, $m$:~Masse, $n$:~Stoffmenge, $V$:~Volumen,
+$c$:~Stoffmengenkonzentration.
+
+\printsolutions
+
+\printbibliography
+
+\end{document}

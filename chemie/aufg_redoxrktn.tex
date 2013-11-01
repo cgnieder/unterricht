@@ -1,0 +1,435 @@
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage{microtype}
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german ,
+  chemformula/name-format = \centering
+}
+\usepackage{siunitx}
+\sisetup{
+  per-mode = fraction
+}
+\usepackage{enumitem}
+\usepackage{exsheets}
+\SetupExSheets{
+  totoc,
+  toc-level = subsection ,
+  headings-format = \bfseries\sffamily
+}
+\usepackage{fnpct}
+
+\usepackage{xcolor}
+\usepackage{mdframed}
+\newmdenv[
+  skipabove=\baselineskip,
+  skipbelow=\baselineskip,
+  hidealllines=true,
+  backgroundcolor=red!10
+  ]{definition}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Redoxreaktionen
+\end{center}
+
+\addsec{Oxidationszahlen}
+
+\begin{definition}
+  \textbf{Oxidationszahlen} entsprechen bei Atomen und atomaren Ionen der
+  Ladung des entsprechenden Teilchens. Bei Molekülen entsprechen die
+  Oxidationszahlen der Ladung, den eine entsprechende ionische Verbindung
+  hätte.
+\end{definition}%
+Um Oxidationszahlen aufstellen zu können, wendet man folgende Regeln an. Wenn
+die Regeln sich widersprechen, wendet man die mit der kleineren Nummer an.
+\begin{enumerate}[label=\arabic*.]
+  \item Reine Elemente haben OZ $=0$.
+  \item Metalle haben \emph{immer} positive OZ, bei Hauptgruppenmetallen
+    entspricht sie der Hauptgruppennummer.
+  \item Die OZ in Verbindungen addieren sich \emph{immer} zur Gesamtladung der
+    Verbindung.
+  \item Fluor (\ch{F}) hat die OZ $=-1$.
+  \item Wasserstoff (\ch{H}) hat die OZ $=+1$.
+  \item Sauerstoff (\ch{O}) hat die OZ $=-2$; Ausnahmen: in Peroxiden ($-1$)
+    und \ch{OF2} ($+2$)
+  \item In Verbindungen von Nichtmetallen hat das elektronegativere Element
+    die Oxidationszahl entsprechend seiner Hauptgruppennummer.
+\end{enumerate}
+
+\addsec{Aufstellen von Redoxgleichungen}
+
+Redoxreaktionen sind ohne Übung und eine bestimmte Vorgehensweise oft nicht
+leicht aufzustellen. Darum werden hier die Regeln aufgestellt, die -- richtig
+angewendet -- immer sicher zum Ziel führen.
+\begin{enumerate}[label=\arabic*.]
+  \item Zuerst muss man mit Hilfe der Oxidationszahlen das \emph{Oxidations-}
+    und das \emph{Reduktionspaar} bestimmen.
+  \item Dann stellt man die Oxidations- und Reduktionsreaktion
+    (Halbreaktionen) auf, um die übertragene \emph{Elektronenzahl anzupassen}.
+  \item Setzt man die Reaktion wieder zusammen, muss anschließend ein
+    \emph{Ladungsausgleich} mit \ch{H+} bzw. \ch{OH-} je nach saurem oder
+    basischen Milieu durchgeführt werden.
+  \item Nun muss man die \emph{Sauerstoff- und Wasserstoff-Anzahl} mit
+    \ch{H2O} \emph{ausgleichen}.
+  \item Eventuell müssen nun noch an der Reaktion nicht beteiligte Ionen
+    vervollständigt werden.
+\end{enumerate}
+
+\minisec{Beispiel 1}
+
+In saurer Lösung regieren \ch{I2} und \ch{ClO3-} (Chlorat) unter Bildung von
+\ch{IO3-} (Iodat) und \ch{Cl-}:
+\begin{reactions*}
+  I2 + ClO3- &-> IO3- + Cl- \\
+  \intertext{Zuerst werden die Oxidationszahlen bestimmt.}
+  "\ox{0,I}" {}_2 + "\ox{+5,Cl}" "\ox{-2,O}" {}_3-
+    &-> "\ox{+5,I}" "\ox{-2,O}" {}_3 + "\ox{-1,Cl}" ^- \\
+  \intertext{Jetzt muss man herausfinden, wieviele \el\ übertragen
+    wurden. Dazu stellt man die Oxi\-da\-tions- und die Reduktionsreaktion
+    auf.  \emph{Achten Sie darauf, dass hier die Anzahl der Iod-Atome links
+      und rechts übereinstimmen muss!}}
+  "\ox[parse=false]{\textcolor{red}{0},I}" {}_2 &-> 2
+  "\ox[parse=false]{\textcolor{red}{V},I}" O_3-
+  + $2\cdot{\color{red}5}$ e- & OX \\
+  "\ox[parse=false]{\textcolor{red}{V},Cl}" O_3- + ${\color{red}6}$ e- &->
+  "\ox[parse=false]{\textcolor{red}{$-$I},Cl}" ^- & RED \\
+  \intertext{Da natürlich gleich viele Elektronen abgegeben wie aufgenommen
+    werden müssen, muss man die Elektronenzahl angleichen.}
+  ${\color{red}3}$ I2 &-> ${\color{red}3}\cdot 2$ IO3- + ${\color{red}3}\cdot 10$ e- & OX  \\
+  ${\color{red}5}$ ClO3- + ${\color{red}5}\cdot 6$ e- &-> ${\color{red}5}$ Cl- & RED \\
+  \intertext{Setzt man die beiden Gleichungen wieder zusammen, ist man fast am
+    Ziel.}
+  3 I2 + 5 ClO3- &-> 6 IO3- + 5 Cl- \\
+  \intertext{Links und rechts des Reaktionspfeils müssen die Ladungen
+    übereinstimmen.  Dafür sorgt man, indem man eine entsprechende Anzahl an
+    \Hpl\ (im Sauren, so wie hier) oder \Hyd\ (im Basischen) hinzugibt.}
+  3 I2 + 5 ClO3- &-> 6 IO3- + 5 Cl- \color{red} + 6 H+ \\
+  \intertext{Zuletzt muss noch die Anzahl der Sauerstoff- und
+    Wasserstoff-Atome mit \water\ ausgeglichen werden.}  3 I2 + 5 ClO3-
+  \color{red} + 3 H2O\normalcolor &-> 6 IO3- + 5 Cl- + 6 H+
+\end{reactions*}
+
+\minisec{Beispiel 2}
+
+Permanganat (\ch{MnO4-}) und Hydrazin (\ch{N2H4}) reagieren in basischer
+Lösung zu Braunstein (\ch{MnO2}) und Stickstoff:
+\begin{reactions*}
+  "\ox{+7,Mn}\ox{-2,O}" {}_4- + "\ox{-2,N}" {}_2 "\ox{+1,H}" {}_4 &->
+    "\ox{+4,Mn}\ox{-2,O}" {}_2 + "\ox{0,N}" {}_2 \\
+  \intertext{Halbreaktionen:}
+  "\ox[parse=false]{\textcolor{red}{VII},Mn}" O4- + ${\color{red}3}$ e- &->
+    "\ox[parse=false]{\textcolor{red}{IV},Mn}" O2 & RED \\
+  "\ox[parse=false]{\textcolor{red}{$-$II},N}" {}_2 H4 &->
+    "\ox[parse=false]{\textcolor{red}{0},N}" {}_2 + ${\color{red}4}$ e- & OX \\
+  \intertext{Elektronenzahl anpassen:}
+  4 "\ox{+7,Mn}" O4- + ${\color{red}12}$ e- &-> 4 "\ox{+4,Mn}" O2 & RED \\
+  3 "\ox{-2,N}" 2H4 &-> 3 "\ox{0,N}" {}_2 + ${\color{red}12}$ e- & OX \\ \\
+  4 MnO4- + 3 N2H4 &-> 4 MnO2 + 3 N2 \\
+  \intertext{Ladungsausgleich:}
+  4 MnO4- + 3 N2H4 &-> 4 MnO2 + 3 N2 \color{red} + 4 OH- \\
+  \intertext{H- und O-Anzahl ausgleichen:}
+  4 MnO4- + 3 N2H4 &-> 4 MnO2 + 3 N2 + 4 OH- \color{red} + 4 H2O
+\end{reactions*}
+
+\addsec{Übungen}
+
+\begin{question}
+  Bestimmen Sie die Oxidationszahlen in folgenden Verbindungen.
+  \begin{tasks}(4)
+    \task \ch{U2Cl10}
+    \task \ch{BiO+}
+    \task \ch{Na6V10O28}
+    \task \ch{K2SnO3}
+    \task \ch{Ta6O19^8-}
+    \task \ch{K2Ti2O5}
+    \task \ch{Mg(BF4)2}
+    \task \ch{Cs2TeF8}
+    \task \ch{K2W4O13}
+    \task \ch{N2H4}
+    \task \ch{H2NOH}
+    \task \ch{S2O5Cl2}
+    \task \ch{Na3P3O9}
+    \task \ch{CaN2O2}
+    \task \ch{XeO6^4-}
+    \task \ch{TaOCl3}
+    \task \ch{Ca2Sb2O7}
+    \task \ch{B2Cl4}
+    \task \ch{H6TeO6}
+    \task \ch{UO2^2+}
+    \task \ch{BrF6-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(4)
+    \task \ch{ "\ox{5,U}" {}2 "\ox{-1,Cl}" {}10}
+    \task \ch{ "\ox{3,Bi}\ox{-2,O}" {}+}
+    \task \ch{ "\ox{1,Na}" {}6 "\ox{5,V}" {}10 "\ox{-2,O}" {}28}
+    \task \ch{ "\ox{1,K}" {}2 "\ox{2,Sn}\ox{-2,O}" {}3}
+    \task \ch{ "\ox{5,Ta}" {}6 "\ox{-2,O}" {}19^8-}
+    \task \ch{ "\ox{1,K}" {}2 "\ox{4,Ti}" {}2 "\ox{-2,O}" {}5}
+    \task \ch{ "\ox{2,Mg}" {}( "\ox{3,B}\ox{-1,F}" {}4)2}
+    \task \ch{ "\ox{1,Cs}" {}2 "\ox{3,Te}\ox{-1,F}" {}8}
+    \task \ch{ "\ox{1,K}" {}2 "\ox{6,W}" {}4 "\ox{-2,O}" {}13}
+    \task \ch{ "\ox{-2,N}" {}2 "\ox{1,H}" {}4}
+    \task \ch{ "\ox{1,H}" {}2 "\ox{-1,N}\ox{-2,O}\ox{1,H}"}
+    \task \ch{ "\ox{6,S}" {}2 "\ox{-2,O}" {}5 "\ox{-1,Cl}" {}2}
+    \task \ch{ "\ox{1,Na}" {}3 "\ox{5,P}" {}3 "\ox{-2,O}" {}9}
+    \task \ch{ "\ox{2,Ca}\ox{1,N}" {}2 "\ox{-2,O}" {}2}
+    \task \ch{ "\ox{8,Xe}\ox{-2,O}" {}6^4-}
+    \task \ch{ "\ox{5,Ta}\ox{-2,O}\ox{-1,Cl}" {}3}
+    \task \ch{ "\ox{2,Ca}" {}2 "\ox{6,Sb}" {}2 "\ox{-2,O}" {}7}
+    \task \ch{ "\ox{2,B}" {}2 "\ox{-1,Cl}" {}4}
+    \task \ch{ "\ox{1,H}" {}6 "\ox{6,Te}\ox{-2,O}" {}6}
+    \task \ch{ "\ox{6,U}\ox{-2,O}" {}2^2+}
+    \task \ch{ "\ox{5,Br}\ox{-1,F}" {}6-}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Formulieren Sie für die angegebenen Reaktionen Teilgleichungen für die
+  Oxidation und Reduktion und die Redoxgleichung für diese Reaktion.
+  Kennzeichnen Sie in der Redoxreaktion Reduktionsmittel und Oxidationsmittel.
+  \begin{tasks}
+    \task Aluminium reagiert mit Chlor zu Aluminiumchlorid.
+    \task Natrium reagiert beim Kontakt mit Wasser zu Natronlauge und Wasserstoff.
+    \task Leitet man Chlorgas in Ammoniakgas ein, so kommt es zur Bildung von
+      Stickstoff und Chlorwasserstoffgas.
+    \task Wenn man konzentrierte Schwefelsäure mit Kohlenstoff (\ch{C}) erhitzt, dann
+      entstehen Schwefeldioxid und ein anderes, farbloses Gas. Wenn man dieses Gas in
+      Calciumhydroxidlösung ("`Kalkwasser"') leitet, entsteht eine weiße Trübung
+      (Niederschlag).
+    \task Schwefelwasserstoff wird in Chlorwasser eingeleitet. Als Reaktionsprodukt
+      entstehen Chloridionen und ein gelber Feststoff.
+    \task Reaktion einer Kaliumpermanganatlösung mit Wasserstoffperoxidlösung im
+      alkalischen Medium. Es entstehen Braunstein (\ch{MnO2}) und Sauerstoff.
+    \task Chlor reagiert mit Natronlauge. Es entstehen Chlorid und Hypochlorit
+      (\ch{OCl-}).
+  \end{tasks}
+\end{question}
+\begin{solution}
+  Oxidationsmittel ist immer dasjenige, das selbst reduziert wird. Umgekehrt
+  ist das Reduktionsmittel dasjenige, das oxidiert wird.
+  \begin{tasks}
+    \task \ch{2 Al + 3 Cl2 -> 2 AlCl3},\\
+      Oxidation: \ch{Al -> Al^3+ + 3 e-},\\
+      Reduktion: \ch{Cl2 + 2 e- -> 2 Cl-}
+    \task \ch{2 Na + 2 H2O -> 2 NaOH + H2},\\
+      Oxidation: \ch{Na -> Na+ + e-},\\
+      Reduktion: \ch{2 H2O + 2 e- -> 2 OH- + H2}
+    \task \ch{3 Cl2 + 2 NH3 -> N2 + 6 HCl},\\
+      Oxidation: \ch{2 NH3 -> N2 + 6 e- + 6 H+},\\
+      Reduktion: \ch{Cl2 + 2 e- -> 2 Cl-}
+    \task \ch{2 SO4^2- + C -> 2 SO2 + CO2 + 2 H2O},\\
+      Oxidation: \ch{C + 2 H2O -> CO2 + 4 e- + 4 H+},\\
+      Reduktion: \ch{4 H+ + SO4^2- + 2 e- -> SO2 + 2 H2O}
+    \task \ch{H2S + Cl2 -> 2 Cl- + S + 2 H+},\\
+      Oxidation: \ch{S^2- -> S + 2 e-},\\
+      Reduktion: \ch{Cl2 + 2 e- -> 2 Cl-}
+    \task \ch{2 KMnO4 + 3 H2O2 -> 2 MnO2 + 3 O2 + 2 KOH + 2 H2O},\\
+      Oxidation: \ch{H2O2 + 2 OH- -> O2 + 2 H2O + 2 e-},\\
+      Reduktion: \ch{MnO4- + 2 H2O + 3 e- -> MnO2 + 4 OH-}
+    \task \ch{Cl2 + 2 NaOH -> NaCl + NaOCl + H2O},\\
+      Oxidation: \ch{Cl2 + 4 OH- -> 2 OCl- + 2 H2O + 2 e-},\\
+      Reduktion: \ch{Cl2 + 2 e- -> 2 Cl-}
+  \end{tasks}
+\end{solution}
+
+\begin{question}\chemsetup[ox]{pos=side}
+  Stellen Sie unter Verwendung der Schrittfolge die Reaktionsgleichungen für
+  folgende Redoxprozesse auf. Alle Reaktionen finden in wässriger Lösung
+  statt.
+  \begin{tasks}
+    \task \ox{3,Eisen}-Ionen reagieren mit Iodid-Ionen zu \ox{2,Eisen}-Ionen und Iod.
+    \task Dichromat-Ionen (\ch{Cr2O7^2-}) reagieren mit Iodid-Ionen zu Iod und
+      \ox{3,Chrom}-Ionen. Die Reaktion findet im sauren \pH-Wert-Bereich statt.
+    \task Schweflige Säure (\ch{H2SO3}) reagiert mit Iod zu Schwefelsäure und
+      Iodwasserstoff.
+    \task \ox{3,Chrom}-Oxid reagiert mit Nitrat-Ionen zu Chromat-Ionen (\ch{CrO4^2-})
+      und Nitrit-Ionen (\ch{NO2-}). Dabei werden \Hpl-Ionen frei.
+    \task Quecksilber reagiert mit Salpetersäure (\Hpl\ und \ch{NO3-}) zu
+      \ox{2,Quecksilber}-Ionen und Stickstoffmonoxid. Als Nebenprodukt entsteht Wasser.
+    \task Iod und Chlor reagieren zu Iodat-Ionen (\ch{IO3-}) und Chlorid-Ionen.
+    \task Stickstoffmonoxid und Salpetersäure reagieren zu Distickstofftetroxid und
+      Wasser.
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{2 Fe^3+ + 2 I- -> 2 Fe^2+ + I2}
+    \task \ch{Cr2O7^2- + 6 I- + 14 H+ -> 2 Cr^3+ + 3 I2 + 7 H2O}
+    \task \ch{H2SO3 + I2 + H2O -> H2SO4 + 2 HI}
+    \task \ch{2 Cr^3+ + 3 NO3- + 5 H2O -> 2 CrO4^2- + 3 NO2- + 10 H+}
+    \task \ch{3 Hg + 2 HNO3 + 6 H+ -> 3 Hg^2+ + 2 NO + 4 H2O}
+    \task \ch{I2 + 5 Cl2 + 6 H2O -> 2 IO3^- + 10 Cl- + 12 H+}
+    \task \ch{2 NO + 4 HNO3 -> 3 N2O4 + 2 H2O}\\
+      Diese Reaktion ist ein Beispiel für eine Komproportionierung.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Vervollständigen Sie die folgenden Redoxreaktionen und erläutern Sie anhand
+  dieser Gleichungen die Begriffe Oxidation, Reduktion, Disproportionierung
+  und Komproportionierung.
+  \begin{tasks}(2)
+     \task \ch{Br2 + OH- -> Br- + BrO3-}
+     \task \ch{Mn^2+ + MnO4- + OH- -> MnO2}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{6 Br2 + 6 H2O -> 10 Br- + 2 BrO3- + 12 H+}\\
+      Diese Reaktion ist eine Disproportionierung. Brom ändert seine
+      Oxidationsstufe gleichzeitig von $\pm0$ zu $-1$ (Bromid) und zu
+      $+5$ (Bromat).
+    \task \ch{3 Mn^2+ + 3 MnO4- + 2 H2O -> 5 MnO2 + 4 H+}\\
+      Diese Reaktion ist eine Komproportionierung. Mangan hat zu Beginn die
+      Oxidationsstufen $+2$ und $+7$ (Permanganat), die sich beide zu $+4$
+      ändern.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Vervollständigen Sie die folgenden Gleichungen für Redoxreaktionen, die in
+  saurer wässriger Lösung ablaufen.
+  \begin{tasks}(2)
+    \task \ch{Cr2O7^2- + H2S -> Cr^3+ + S}
+    \task \ch{P4 + HOCl -> H3PO4 + Cl-}
+    \task \ch{Cu + NO3- -> Cu^2+ + NO}
+    \task \ch{PbO2 + I- -> PbI2 + I2}
+    \task \ch{ClO3- + I- -> Cl- + I2}
+    \task \ch{Zn + NO3- -> Zn^2+ + NH4+}
+    \task \ch{H3AsO3 + BrO3- -> H3AsO4 + Br-}
+    \task \ch{H2SeO3 + H2S -> Se + HSO4-}
+    \task \ch{ReO2 + Cl2 -> HReO4 + Cl-}
+    \task \ch{AsH3 + Ag+ -> As4O6 + Ag}
+    \task \ch{Mn^2+ + BiO3- -> MnO4- + Bi^3+}
+    \task \ch{NO + NO3- -> N2O4}
+    \task \ch{MnO4- + HCN + I- -> Mn^2+ + ICN}
+    \task \ch{Zn + H2MoO4 -> Zn^2+ + Mo^3+}
+    \task \ch{IO3- + N2H4 -> I- + N2}
+    \task \ch{S2O3^2- + IO3- + Cl- -> SO4^2- + ICl2-}
+    \task \ch{Se + BrO3- -> H2SeO3 + Br-}
+    \task \ch{H5IO6 + I- -> I2}
+    \task \ch{Pb3O4 -> Pb^2+ + PbO2}
+    \task \ch{As2S3 + ClO3- -> H3AsO4 + S + Cl-}
+    \task \ch{XeO3 + I- -> Xe + I3-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{Cr2O7^2- + 3 H2S + 8 H+ -> 2 Cr^3+ + S + 7 H2O}
+    \task \ch{P4 + 10 HOCl + 6 H2O -> 4 H3PO4 + 10 Cl- + 10 H+}
+    \task \ch{3 Cu + 2 NO3- + 8 H+ -> 3 Cu^2+ + 2 NO + 4 H2O}
+    \task \ch{PbO2 + 4 I- + 4 H+ -> PbI2 + I2 + 2 H2O}
+    \task \ch{ClO3- + 6 I- + 6 H+ -> Cl- + 3 I2 + 3 H2O}
+    \task \ch{4 Zn + NO3- + 10 H+ -> 4 Zn^2+ + NH4+ + 3 H2O}
+    \task \ch{3 H3AsO3 + BrO3- -> 3 H3AsO4 + Br-}
+    \task \ch{2 H2SeO3 + H2S -> 2 Se + HSO4- + 2 H2O + H+}
+    \task \ch{2 ReO2 + 3 Cl2 + 4 H2O -> 2 HReO4 + 6 Cl- + 6 H+}
+    \task \ch{4 AsH3 + 24 Ag+ + 6 H2O -> As4O6 + 24 Ag + 24 H+}
+    \task \ch{2 Mn^2+ + 5 BiO3- + 14 H+ -> 2 MnO4- + 5 Bi^3+ + 7 H2O}
+    \task \ch{2 NO + 4 NO3- + 4 H+ -> 3 N2O4 + 2 H2O}
+    \task \ch{2 MnO4- + 5 HCN + 5 I- + 11 H+ -> 2 Mn^2+ + 5 ICN + 8 H2O}
+    \task \ch{3 Zn + 2 H2MoO4 + 12 H+ -> 3 Zn^2+ + 2 Mo^3+ + 8 H2O}
+    \task \ch{2 IO3- + 3 N2H4 -> 2 I- + 3 N2 + 6 H2O}
+    \task \ch{S2O3^2- + IO3- + Cl- -> SO4^2- + ICl2-}
+    \task \ch{3 Se + 2 BrO3- 3 H2O -> 3 H2SeO3 + 2 Br-}
+    \task \ch{H5IO6 + 7 I- + 7 H+ -> 4 I2 + 6 H2O}
+    \task \ch{Pb3O4 + 4 H+ -> 2 Pb^2+ + PbO2 + 2 H2O}\\
+      \ch{Pb3O4}, auch Mennige genannt, enthält zwei \ox*{2,Pb}- und ein
+      \ox*{4,Pb}-Atom pro Einheit. Das bedeutet, dass hier gar keine
+      Redox-Reaktion stattgefunden hat.
+    \task \ch{3 As2S3 + 5 ClO3- + 9 H2O -> 6 H3AsO4 + 9 S + 5 Cl-}
+    \task \ch{XeO3 + 9 I- + 6 H+ -> Xe + 3 I3- + 3 H2O}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Vervollständigen Sie die folgenden Gleichungen für Redoxreaktionen, die in
+  basischer wässriger Lösung ablaufen.
+  \begin{tasks}(2)
+    \task \ch{ClO2- -> ClO2 + Cl-}
+    \task \ch{MnO4- + I- -> MnO4^2- + IO4-}
+    \task \ch{P4 -> H2PO2- + PH3}
+    \task \ch{SbH3 -> Sb(OH)4- + H2}
+    \task \ch{OC(NH2)2 + OBr- -> CO3^2- + N2 + Br-}
+    \task \ch{Mn(OH)2 + O2 -> Mn(OH)3}
+    \task \ch{Cl2 -> ClO3- + Cl-}
+    \task \ch{S^2- + I2 -> SO4^2- + I-}
+    \task \ch{CN- + MnO4- -> OCN- + MnO2}
+    \task \ch{Au + CN- + O2 -> Au(CN)2-}
+    \task \ch{Si -> SiO3^2- + H2}
+    \task \ch{Cr(OH)3 + OBr- -> CrO4^2- + Br-}
+    \task \ch{I2 + Cl2 -> H3IO6^2- + Cl-}
+    \task \ch{Al -> Al(OH)4- + H2}
+    \task \ch{Al + NO3- -> Al(OH)4- + NH3}
+    \task \ch{Ni^2+ + Br2 -> NiO(OH) + Br-}
+    \task \ch{S -> SO3^2- + S^2-}
+    \task \ch{S^2- + HO2- -> SO4^2-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{5 ClO2- + 2 H2O -> 4 ClO2 + Cl- + 4 OH-}
+    \task \ch{8 MnO4- + I- 8 OH- -> 8 MnO4^2- + IO4- + 4 H2O}
+    \task \ch{P4 + 3 H2O + 3 OH- -> 3 H2PO2- + PH3}
+    \task \ch{SbH3 + OH- + 3 H2O -> [Sb(OH)4]- + 3 H2}
+    \task \ch{OC(NH2)2 + 3 OBr- 2 OH- -> CO3^2- + N2 + 3 Br- + 3 H2O}
+    \task \ch{4 Mn(OH)2 + O2 + 2 H2O -> 4 Mn(OH)3}
+    \task \ch{3 Cl2 + 6 OH- -> ClO3- + 5 Cl- + 3 H2O}
+    \task \ch{S^2- + 4 I2 + 8 OH- -> SO4^2- + 8 I- + 4 H2O}
+    \task \ch{3 CN- + 2 MnO4- + H2O -> 3 OCN- + 2 MnO2 + 2 OH-}
+    \task \ch{4 Au + 8 CN- + O2 + 2 H2O -> 4 [Au(CN)2]- + 4 OH-}
+    \task \ch{Si + 2 OH- + H2O -> SiO3^2- + 2 H2}
+    \task \ch{2 Cr(OH)3 + 3 OBr- + 4 OH- -> 2 CrO4^2- + 3 Br- + 5 H2O}
+    \task \ch{I2 + 7 Cl2 + 18 OH- -> 2 H3IO6^2- + 14 Cl- + 6 H2O}
+    \task \ch{2 Al + 2 OH- + 6 H2O -> 2 [Al(OH)4]- + 3 H2}
+    \task \ch{8 Al + 3 NO3- 5 OH- + 18 H2O -> 8 [Al(OH)4]- + 3 NH3}
+    \task \ch{2 Ni^2+ + Br2 + 6 OH- -> 2 NiO(OH) + 2 Br- + 2 H2O}
+    \task \ch{3 S + 6 OH- -> SO3^2- + 2 S^2- + 3 H2O}
+    \task \ch{S^2- + 4 HO2- -> SO4^2- + 4 OH-}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Vervollständigen Sie die folgenden Gleichungen, die nicht in wässriger
+  Lösung sondern in der Schmelze oder in der Gasphase ablaufen. (Das heißt,
+  dass Sie weder einen Ladungsausgleich mit \Hpl/\Hyd{} machen können noch
+  einen Wasserstoff-/Sauerstoff-Ausgleich mit \ch{H2O}.
+  \begin{tasks}
+    \task \ch{Cr2O3 + NO3- + CO3^2- -> CrO4^2- + NO2- + CO2}
+    \task \ch{Ca3(PO4)2 + C + SiO2 -> P4 + CaSiO3 + CO}
+    \task \ch{Mn3O4 + Na2O2 -> Na2MnO4 + Na2O}
+    \task \ch{Si3N4 + SrO + C + N2 -> Sr2Si5N8 + CO}
+    \task \ch{NH3\gas{} + O2\gas{} -> NO\gas{} + H2O\gas}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \ch{Cr2O3 + 3 NO3- + 2 CO3^2- -> 2 CrO4^2- + 3 NO2- + 2 CO2}
+    \task \ch{2 Ca3(PO4)2 + 10 C + 6 SiO2 -> P4 + 6 CaSiO3 + 10 CO}
+    \task \ch{Mn3O4 + 5 Na2O2 -> 3 Na2MnO4 + 2 Na2O}
+    \task \ch{5 Si3N4 + 6 SrO + 6 C + 2 N2 -> 3 Sr2Si5N8 + 6 CO}
+    \task \ch{4 NH3\gas{} + 5 O2\gas{} -> 4 NO\gas{} + 6 H2O\gas}
+  \end{tasks}
+\end{solution}
+
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

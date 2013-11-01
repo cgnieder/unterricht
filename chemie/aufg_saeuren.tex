@@ -1,0 +1,238 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[greek,ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+%  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+
+\usepackage{siunitx}
+\sisetup{
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+
+\usepackage{fnpct}
+
+\usepackage{booktabs}
+
+\usepackage{mdframed}
+\newmdenv[
+  backgroundcolor = red!20,
+  hidealllines    = true,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  frametitle      = Definition ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = red!40
+]{definition}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Säuren und \pH-Wert
+\end{center}
+
+\addsec{Ein bisschen Theorie}
+Eine Säure ist ein Stoff, der bei der Reaktion mit Wasser ein Proton
+(\Hpl)\footnote{Gibt das Wasserstoff-Atom, das aus einem Proton im Kern und
+  einem Elektron in der Hülle besteht, sein Elektron ab, bleibt nur ein Proton
+  übrig. Daher nennt man das Wasserstoff"=Ion \Hpl\ auch Proton.} abspalten
+kann.  Das Proton verbindet sich mit Wasser (\ch{H2O}).
+\begin{definition}
+  Säurereaktion\slash Protolyse:
+  \begin{reaction*}
+    H-Rest + H2O -> Rest- + H3O+
+  \end{reaction*}
+\end{definition}
+Bei dieser Reaktion entsteht immer ein negativ geladenes Säurerest-Ion.
+
+Das verbindende aller Säuren ist das bei der Reaktion mit Wasser entstehende
+\ch{H3O+}"=Teilchen, das \emph{Oxonium"=Ion}\footnote{früher: Hydronium"=Ion}.
+Je mehr Oxonium"=Ionen in der Säurelösung schwimmen, desto saurer ist die
+Lösung.
+
+In neutralem, reinem Wasser sind ebenfalls Oxonium"=Ionen vorhanden, etwa $1$
+Ion auf $10$ Millionen Wassermoleküle.  Das entspricht der Konzentration von
+\begin{equation}
+  c = \SI{0.0000001}{\mole\per\liter} = \SI{e-7}{\mole\per\liter} \,.
+  \label{eq:aquadest}
+\end{equation}
+
+Der \emph{\pH-Wert} einer Lösung gibt die Konzentration der Oxonium"=Ionen in
+\si{\mole\per\liter} an.  Da aber Zahlen wie \num{0.0000001} unhandliche
+Zahlen sind, ist der \pH-Wert durch den \emph{negativen dekadischen
+  Logarithmus} dieser Konzentration gegeben.  Bei reinem Wasser entspricht das
+\begin{equation}
+  \pH = -\log\num{0.0000001} = -\log 10^{-7} = -(-7) = 7 \,.
+\end{equation}
+Je \emph{höher} die Konzentration ist (je mehr Oxonium"=Ionen sich in der
+Lösung befinden, je saurer die Lösung also ist), desto \emph{niedriger} wird
+der \pH-Wert (siehe Tabelle \ref{tab:pH-Werte}).  Eine Konzentration von
+$\num{1}:\num{1000} = \SI{0.0001}{\mole\per\liter}$ entspricht dann
+\begin{equation}
+  \pH = -\log\num{0.0001} = -\log 10^{-3} = 3 \,.
+\end{equation}
+
+\begin{table}
+  \centering
+  \begin{tabular}{l*{2}{>{$}l<{$}}S[retain-zero-exponent]}
+    \toprule
+      \textbf{\pH-Wert} & \text{\textbf{Konzentration}} &
+      \text{\textbf{als Dezimale}} & {\textbf{als Zehnerpotenz}} \\
+    \midrule
+      0             & 1:1        & 1         & e0 \\
+      1             & 1:10       & 0.1       & e-1 \\
+      2             & 1:100      & 0.01      & e-2 \\
+      3             & 1:1000     & 0.001     & e-3 \\
+      4             & 1:10000    & 0.0001    & e-4 \\
+      5             & 1:100000   & 0.00001   & e-5 \\
+      6             & 1:1000000  & 0.000001  & e-6 \\
+      7 (= neutral) & 1:10000000 & 0.0000001 & e-7 \\
+    \bottomrule
+  \end{tabular}
+  \caption{Zusammenhang zwischen \pH-Wert und der Konzentration von
+    Oxonium"=Ionen in Wasser in \si{\mole\per\liter}.}
+  \label{tab:pH-Werte}
+\end{table}
+
+\newpage
+\addsec{Aufgaben zum \pH-Wert}
+
+\begin{question}
+  In ein Planschbecken von \SI{1000}{\liter} wird \SI{1}{\liter} Essigsäure
+  ($\pH=3$) gegossen.  Welchen \pH-Wert hat dann das Wasser?
+\end{question}
+\begin{solution}
+  Die Säure hat den \pH-Wert $\pH = 3$, also eine Konzentration von $\num{e-3} =
+  \SI{0.001}{\mole\per\liter}$.   Das entspricht $\num{1}:\num{1000}$.  Nun
+  wird die Säure auf das tausendfache\footnote{Eigentlich auf das
+    \num{1001}"=fache, das kann man aber vernachlässigen.} verdünnt und hat
+  damit eine Konzentration von $1:\num{1000000} =\num{0.000001}$.  Das
+  entspricht einem \pH-Wert von
+\begin{equation*}
+  \pH = -\log\num{0.000001} = -\log 10^{-6} = 6 \,.
+\end{equation*}
+Das Wasser hat also einen \pH-Wert von 6.
+\end{solution}
+
+\begin{question}[ID=1literhcl]
+  Wieviel Wasser brauche ich, um \SI{1}{\liter} Salzsäure ($\pH = 1$) zu
+  neutralisieren?
+\end{question}
+\begin{solution}
+  Der \pH-Wert von 1 bedeutet, dass die Säure eine Konzentration (in
+  \si{\mole\per\liter}) von $10^{-1} = 0.1 = 1:10$ hat.  Sie muss nun auf
+  $\num{1}:\num{10000000}$ (siehe Gleichung~\eqref{eq:aquadest}) verdünnt
+  werden, also um eine Million.  Das heißt, man benötigt \SI{1000000}{\liter}
+  Wasser.
+\end{solution}
+
+\begin{question}
+  Wieviel Wasser benötigt man, um \SI{0.3}{\liter} Salzsäure zu neutralisieren?
+\end{question}
+\begin{solution}
+  Da man eine Million Liter Wasser für \SI{1}{\liter} Salzsäure benötigte
+  (siehe Aufgabe~\QuestionNumber{1literhcl}), benötigen wir hier das
+  \num{0.3}"=fache, also \SI{300000}{\liter} Wasser.
+\end{solution}
+
+\begin{question}
+  Du möchtest aus Salpetersäure ($\pH = 1$) \SI{500}{\milli\liter} eine
+  Salpetersäure mit $\pH = 5$ herstellen.  Wie sieht das Mischungsverhältnis
+  aus?
+\end{question}
+\begin{solution}
+  Um die Salpetersäure mit $\pH = 1$ (Konzentration
+  $1:10\,\si{\mole\per\liter}$) auf $\pH = 5$ (Konzentration
+  $\num{1}:\num{100000}\,\si{\mole\per\liter}$) zu verdünnen, müsste ich
+  \SI{1}{\liter} auf \SI{10000}{\liter} verdünnen.  Da ich aber nur
+  $\SI{500}{\milli\liter} = \SI{0.5}{\liter}$ und nicht \SI{10000}{\liter}
+  herstellen möchte, benötige ich (Dreisatz):
+  \begin{center}
+    \begin{tabular}{ll}
+        Säure mit $\pH = 1$  & Säure mit $\pH = 5$ \\
+      \midrule
+        \SI{1}{\liter}       & \SI{10000}{\liter} \\
+        \SI{0.0001}{\liter}  & \SI{1}{\liter} \\
+        \SI{0.00005}{\liter} & \SI{0.5}{\liter}
+    \end{tabular}
+  \end{center}
+  \SI{0.00005}{\liter} sind \SI{0.05}{\milli\liter}.  Ich muss also
+  \SI{0.05}{\milli\liter} der Säure mit $\pH = 1$ auf einen halben Liter
+  verdünnen.
+\end{solution}
+
+\begin{question}
+  Wieviel Wasser muss ich zu Essigsäure ($\pH = 3$) geben, um
+  \SI{300}{\milli\liter} einer Essigsäure mit $\pH = 5$ zu erhalten?
+\end{question}
+\begin{solution}
+  $\pH = 3$ entspricht einer Konzentration (in \si{\mole\per\liter}) von
+  $\num{1}:\num{1000}$, $\pH = 5$ einer Konz. von $\num{1}:\num{100000}$.  Ich
+  muss die Säure also um das \num{100}"=fache verdünnen. Das bedeutet also,
+  ich muss \SI{3}{\milli\liter} der Säure mit $\pH = 1$ auf
+  \SI{300}{\milli\liter} verdünnen.
+\end{solution}
+
+\begin{question}
+  Ich verdünne \SI{30}{\milli\liter} Salzsäure-Lösung ($\pH = 2$) mit Wasser
+  zu einem \pH{} von 4.  Welches Volumen hat die Lösung dann?
+\end{question}
+\begin{solution}
+  $\pH = 2$ bedeutet eine Konzentration (in \si{\mole\per\liter}
+  $\num{1}:\num{10}$, $\pH = 4$ bedeutet $\num{1}:\num{10000}$.  Ich muss um
+  das \num{1000}"=fache verdünnen.  Also muss ich die \SI{30}{\milli\liter}
+  auf $\SI{30000}{\milli\liter} = \SI{30}{\liter}$ verdünnen.
+\end{solution}
+
+\begin{question}
+  \SI{1}{\milli\liter} Schwefelsäure ($\pH = 0.5$) wird auf $\pH = 6$
+  verdünnt.  Wieviel Wasser brauche ich?
+\end{question}
+\begin{solution}
+  Der $\pH = 0.5$ entspricht einer Konzentration (in \si{\mole\per\liter}) von
+  $10^{-0.5} = \frac{1}{\sqrt{10}} \approx \frac{1}{3.162}$, also etwa
+  $1:\num{3.162}$.  Um diese Lösung auf $\pH = 6$, also
+  $\num{1}:\num{1000000}$ zu verdünnen, muss ich die Lösung um das
+  $\frac{\num{1000000}}{\num{3.162}} = \num{316200}$"=fache verdünnen.  Ich
+  muss die Lösung also auf $\SI{316200}{\milli\liter} = \SI{316.2}{\liter}$
+  verdünnen.
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

@@ -1,0 +1,912 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage[utopia]{mathdesign}
+\usepackage[oldstyle]{libertine}
+\usepackage{microtype}
+
+\usepackage[greek,ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language    = german,
+  chemformula/format = \libertineLF
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\DeclareChemReaction[star]{gthreactions}{gather}
+\newcommand*\rctref[1]{\{\ref{#1}\}}
+
+\usepackage{siunitx}
+\sisetup{
+  detect-all ,
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+
+\usepackage{fnpct}
+
+\usepackage{booktabs}
+\usepackage{collcell}
+\newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
+
+\usepackage{mdframed}
+\newmdenv[
+  backgroundcolor = red!20,
+  hidealllines    = true,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  splittopskip    = .5\baselineskip ,
+  splitbottomskip = .5\baselineskip ,
+  frametitle      = Definition ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = red!40
+]{definition}
+
+\newmdenv[
+  backgroundcolor = black!5,
+  hidealllines    = true,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  splittopskip    = .5\baselineskip ,
+  splitbottomskip = .5\baselineskip ,
+  frametitle      = Beispiel ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = black!10
+]{beispiel}
+
+
+\usepackage{multicol}
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Säuren und Basen nach Br\o nstedt
+\end{center}
+\begin{multicols}{2}
+  \tableofcontents
+\end{multicols}
+
+\section{Die Basis}
+\subsection{Worum es geht}
+\subsubsection{Säuren}
+Die Basis für die Säure-Theorie nach Br\o nstedt ist die sogenannte
+\emph{Protolyse}\footnote{Proton: \Hpl, griech. \textgreek{l'usic} (l\'ysis):
+  Auflösung}"=Gleichung~\rctref{rct:protolyse}.  Hierbei wird ein Proton
+(\Hpl) von einem Stoff, der \emph{Säure}, auf einen anderen Stoff,
+\emph{Wasser}, übertragen.
+\begin{reaction}
+  HA + H2O <=> A- + H3O+ \label{rct:protolyse}
+\end{reaction}
+Dabei ist \ch{A} ein (beinahe) beliebiger Rest.  Jeder Stoff, der mit Wasser
+diese Gleichgewichtsreaktion\footnote{Siehe dazu Thema \emph{chemisches
+  Gleichgewicht}} eingehen kann, ist eine Säure.  Genauer wäre: \emph{eine
+wässrige Lösung eines solchen Stoffes ist eine Säure}.  Einige Möglichkeiten
+für solche Stoffe sind in Tabelle~\ref{tab:saeuren} aufgelistet.
+
+\begin{table}
+  \centering
+  \caption{wichtige Säuren}\label{tab:saeuren}
+  \begin{tabular}{lCCl}
+    \toprule
+      \bfseries Säure          &         & \textbf{Säurerest} \\
+      Name                     & Formel  & Formel  & Name \\
+    \midrule
+      Salzsäure                & HCl     & Cl-     & Chlorid \\
+      Bromwasserstoffsäure     & HBr     & Br-     & Bromid \\
+      Schwefelwasserstoffsäure & H2S     & HS-     & Hyrdogensulfid \\
+                               & HS-     & S^2-    & Sulfid \\
+      Schwefelsäure            & H2SO4   & HSO4-   & Hydrogensufat \\
+                               & HSO4-   & SO4^2-  & Sulfat \\
+      schweflige Säure         & H2SO3   & HSO3-   & Hydrogensulfit \\
+                               & HSO3-   & SO3^2-  & Sulfit \\
+      Salpetersäure            & HNO3    & NO3-    & Nitrat \\
+      salpetrige Säure         & HNO2    & NO2-    & Nitrit \\
+      Kohlensäure              & H2CO3   & HCO3-   & Hydrogencarbonat \\
+                               & HCO3-   & CO3^2-  & Carbonat \\
+      Phosphorsäure            & H3PO4   & H2PO4-  & Dihydrogenphosphat \\
+                               & H2PO4-  & HPO4^2- & Hydrogenphosphat \\
+                               & HPO4^2- & PO4^3-  & Phosphat \\
+      Blausäure                & HCN     & CN-     & Cyanid \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\begin{definition}
+  Einen Stoff, der Protonen (\Hpl) abgeben kann, einen sogenannten
+  \emph{Protonendonatoren}, nennt man Säure.
+\end{definition}
+
+Das, was die saure Wirkung einer Säure ausmacht, kann offensichtlich nicht das
+Säuremolekül selbst sein: es reagiert schließlich (je nach Gleichgewichtslage
+kaum bis nahezu vollständig).  Auch der Säurerest kann nicht verantwortlich
+sein: er ist bei jeder Säure anders.  Übrig bleibt die Gemeinsamkeit aller
+Protolyse-Reaktionen: das \emph{Oxonium}- oder
+\emph{Hydronium}"=Ion \ch{H3O+}.
+
+\subsubsection{Basen}
+Auch für Basen gibt eine Reaktionsgleichung, die ihre Rolle festlegt:
+\begin{reaction}
+  B + H2O <=> HB+ + OH- \label{rct:basen_protolyse}
+\end{reaction}
+Hier gilt also das umgekehrte: eine Base gibt kein Proton ab, sondern nimmt
+eines auf. Ein paar wichtige Basen sind in Tabelle~\ref{tab:basen} aufgelistet.
+\begin{definition}
+  Einen Stoff, der Protonen (\Hpl) aufnehmen kann, einen sogenannten
+  \emph{Protonenakzeptoren}, nennt man Base.
+\end{definition}
+
+\subsection{Die Theorie}
+Überträgt man obige Definitionen nochmals auf die
+Reaktionen~\rctref{rct:protolyse} und~\rctref{rct:basen_protolyse},
+\begin{reactions*}
+  HA + H2O &<=> A- + H3O+ \\
+  B  + H2O &<=> HB+ + OH-
+\end{reactions*}
+dann stellen wir folgendes fest: in Reaktion~\rctref{rct:protolyse} sind
+\ch{HA} und \ch{H3O+} Säuren, denn sie können ein \ch{H+} abgeben.  \ch{H2O}
+und \ch{A-} sind Basen, denn sie können ein \ch{H+} aufnehmen.  In
+Reaktion~\rctref{rct:basen_protolyse} sind \ch{H2O} und \ch{HB+} Säuren und
+\ch{B} und \ch{OH-} Basen.
+
+Wir entdecken ein Prinzip:
+\begin{reactions*}
+       !(\color{red}Säure~A)( HA )  + !(\color{blue}Base~B)( H2O )
+  &<=> !(\color{red}Base~A)( A- )   + !(\color{blue}Säure~B)( H3O+ ) \\
+       !(\color{red}Base~A)( B )    + !(\color{blue}Säure~B)( H2O )
+  &<=> !(\color{red}Säure~A)( HB- ) + !(\color{blue}Base~B)( OH- )
+\end{reactions*}
+Offenbar wird aus einer Säure eine Base und umgekehrt.  Man spricht daher von
+\emph{korrespondierenden} oder auch \emph{konjugierten Säure/Base-Paaren}.
+Und offenbar ist Wasser selbst auch sowohl eine Säure als auch eine Base, je
+nachdem womit es reagiert.
+
+\begin{definition}
+  Ein Stoff, der sowohl Säure als auch Base ist, nennt man
+  \emph{Ampholyt}. Ein solcher Stoff ist \emph{amphoter}.
+\end{definition}
+
+\begin{table}
+  \centering
+  \caption{wichtige Basen}\label{tab:basen}
+  \begin{tabular}{lCCl}
+    \toprule
+      \bfseries Base &         & \textbf{Basenrest} & \\
+      Name           & Formel  & Formel             & Name \\
+    \midrule
+      Natronlauge    & NaOH \\
+      Kalilauge      & KOH  \\
+      Ammoniak       & NH3     & NH4+               & Ammonium \\
+      Hydrazin       & N2H4    & N2H5+              & Hydrazinium \\
+      Methylamin     & CH3NH2  & CH3NH3+            & Methylammonium \\
+      Anilin         & C6H5NH2 & C6H5NH3+           & Anilinium \\
+      Pyridin        & C5H5N   & C5H5NH+            & Pyridinium \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Wenn nun Wasser ein Ampholyt ist, also Säure und Base, bedeutet das, es kann
+mit sich selbst eine Protolyse-Reaktion machen:
+\begin{reaction}
+  H2O + H2O <<=> H3O+ + OH- \label{rct:autoprotolyse}
+\end{reaction}
+Diese Gleichung, eine sogenannte
+\emph{Autoprotolyse}\footnote{griech. \textgreek{a>ut'o}: selbst}, wird bei
+der Definition des \pH-Werts noch eine Rolle spielen.
+
+\section{Quantitative Betrachtung}
+\subsection{Starke und schwache Säuren}
+Wie \emph{sauer} eine Lösung nun ist, hängt von der
+Stoffmengenkonzentration\footnote{Stoffmengenkonzentration: $c=\frac{n}{V}$,
+  $[c]=\si{\mole\per\liter}$.} des Oxonium"=Ions ab.  Diese wiederum hängt
+über Reaktion~\rctref{rct:protolyse} von der eingesetzten Konzentration der
+Säure sowie von der Lage des Gleichgewichts ab.  Zur Beschreibung der
+Säurestärke benötigen wir also das \emph{Massenwirkungsgesetz} für
+Reaktion~\rctref{rct:protolyse}.  Zur Minimierung der Schreibarbeit werden wir
+ab hier $[\ch{A}]$ schreiben, wenn wir $c(\ch{A})$, also die
+Stoffmengenkonzentration des Stoffes \ch{A}, meinen.
+\begin{gather}
+  K =
+    \frac
+      { [\ch{A-}] \cdot [\ch{H3O+}] }
+      { [\ch{HA}] \cdot [\ch{H2O}] } \label{eq:protolyse_mwg} \\
+  [\ch{H3O+}] =
+    K \cdot \frac{ [\ch{HA}] \cdot [\ch{H2O}] }{ [\ch{A-}] }
+\end{gather}
+Nennen wir nun das Produkt aus $K \cdot [\ch{H2O}] = \Ka$, erhalten wir eine
+relativ einfache Gleichung zur Berechnung der \ch{H3O+}-Konzentration,
+vorausgesetzt wir kennen \Ka und die im Gleichgewicht vorliegenden
+Konzentrationen:
+\begin{equation}
+  [\ch{H3O+}] = \Ka \cdot \frac{ [\ch{HA}] }{ [\ch{A-}] } \label{eq:cHtO_aus_Ks}
+\end{equation}
+
+Aus mehreren Gründen verwendet man diese Gleichung jedoch nicht.
+\begin{itemize}
+  \item zum einen ist die Konzentration im Gleichgewicht unbekannt und müsste
+    vorher berechnet werden.
+  \item zum zweiten können die Werte von $[\ch{H3O+}]$ zwischen
+    ca. $\SI{0.00000000000001}{\mole\per\liter} = \SI{1e-14}{\mole\per\liter}$ und
+    \SI{1}{\mole\per\liter} schwanken.
+  \item zum dritten benötigt man den Wert von \Ka, der noch mehr schwanken
+    kann.
+\end{itemize}
+Gleichung~\eqref{eq:cHtO_aus_Ks} ist -- nach \Ka umgestellt -- aber die
+Definition der \emph{Säurekonstanten}:
+\begin{equation}
+  \Ka = \frac{ [\ch{H3O+}] \cdot [\ch{A-}] }{ [\ch{HA}] } \label{eq:Ks_definition}
+\end{equation}
+Der Wert von \Ka gibt auf eine Weise an, wieviel einer Säure
+dissoziert\footnote{zerfallen} ist, wie weit also das Gleichgewicht auf Seite
+der Produkte liegt.  Man legt fest:
+\begin{align*}
+  \Ka &>1 \quad\text{starke Säure} \\
+  \Ka &<1 \quad\text{schwache Säure}
+\end{align*}
+Da dieser Wert \emph{sehr} groß oder \emph{sehr} klein sein kann, verwendet
+man lieber den sogenannten \emph{\pKa-Wert} (mit $\log$ soll immer der
+dekadische Logarithmus gemeint sein):
+\begin{equation}
+  \pKa = -\log\Ka
+\end{equation}
+Damit gilt jetzt:
+\begin{align*}
+  \pKa &<0 \quad\text{starke Säure} \\
+  \pKa &>0 \quad\text{schwache Säure}
+\end{align*}
+
+Völlig analoge Überlegungen führen auf die \emph{Basenkonstante}
+\begin{equation}
+  \Kb = \frac{ [\ch{OH-}] \cdot [\ch{HB+}] }{ [\ch{B}] } \label{eq:Kb_definition}
+\end{equation}
+und die Festlegung:
+\begin{align*}
+  \Kb &>1 \quad\text{starke Base} \\
+  \Kb &<1 \quad\text{schwache Base}
+\end{align*}
+Aus analogen Gründen führt man den \emph{\pKb-Wert} ein:
+\begin{equation}
+  \pKb = -\log\Kb
+\end{equation}
+\begin{align*}
+  \pKb &<0 \quad\text{starke Base} \\
+  \pKb &>0 \quad\text{schwache Base}
+\end{align*}
+
+Sowohl \pKa- als auch \pKb-Werte sind charakteristische Werte für Säuren
+bzw. Basen.  Viele davon wurden sehr gründlich bestiommt und können jederzeit
+nachgeschlagen werden.  Tabelle~\ref{tab:pKa_pKb} listet einige davon auf.
+
+\subsection{Der \pH-Wert}
+Knüpfen wir uns noch einmal Reaktion\rctref{rct:autoprotolyse} vor:.
+\begin{reaction*}
+  H2O + H2O <<=> H3O+ + OH-
+\end{reaction*}
+Das Massenwirkungsgesetz für diese Reaktion lautet:
+\begin{equation}
+  K = \frac{ [\ch{H3O+}] \cdot [\ch{OH-}] }{ [\ch{H2O}]^2 }
+\end{equation}
+Wir stellen diese Gleichung um
+\begin{align}
+  K \cdot [\ch{H2O}]^2  &= [\ch{H3O+}] \cdot [\ch{OH-}] \\
+  \intertext{und taufen das Produkt \(K \cdot [\ch{H2O}]^2 = \Kw\)}
+  \Kw  &= [\ch{H3O+}] \cdot [\ch{OH-}] \label{eq:ionenprodukt}
+\end{align}
+Gleichung~\eqref{eq:ionenprodukt} nennt man auch das \emph{Ionenprodukt des
+  Wassers}.  Bei \SI{25}{\celsius} beträgt
+\[
+  \Kw = \SI{1e-14}{\mole\squared\per\liter\squared}
+      = \SI{0.00000000000001}{\mole\squared\per\liter\squared} \,.
+\]
+Das bedeutet, dass in neutralem Wasser die Konzentration von \ch{H3O+}
+\begin{equation}
+  [\ch{H3O+}] = [\ch{OH-}] = \SI{1e-7}{\mole\per\liter}
+\end{equation}
+beträgt.
+
+Sauer wird es erst, wenn die Konzentration mehr als \SI{1e-7}{\mole\per\liter}
+beträgt.  Liegt sie darunter, so ist die Lösung basisch.  Um die Angabe
+einfacher zu machen, macht man nun folgendes:
+\begin{align}
+  [\ch{H3O+}]      &= \SI{1e-7}{\mole\per\liter} \\
+  \log[\ch{H3O+}]  &= -7 \\
+  -\log[\ch{H3O+}] &= 7 \\
+  \intertext{Jetzt definiert man den \pH:}
+  \pH &\equiv -\log[\ch{H3O+}] \label{eq:pH_definition}
+\end{align}
+Für neutrales Wasser gilt also bei \SI{25}{\celsius} $\pH = 7$.  Eine höhere
+Konzentration würde einen niedrigeren \pH bedeuten.  Also ist es sauer, wenn
+man einen $\pH < 7$ vorliegen hat, basisch bei $\pH > 7$ und neutral bei $\pH
+= 7$.  Das alles gilt streng genommen nur für die schon erwähnten
+\SI{25}{\celsius}, darum werden wir uns aber nicht mehr weiter kümmern.
+
+\begin{definition}
+  Der \pH{} (von \textit{\textbf{p}otentia \textbf{h}ydrogenii}\footnote{Das ist
+    nicht \emph{völlig} richtig, soll uns aber auch nicht weiter
+    beschäftigen.}) ist definiert als der negative dekadische Logarithmus der
+  Konzentration der Oxonium"=Ionen (in \si{\mole\per\liter}).  Analog dazu ist
+  der \pOH{} definiert als der negative dekadische Logarithmus der
+  Konzentration der Hydroxid"=Ionen.
+  \begin{align}
+    \pH  &\equiv -\log[\ch{H3O+}] \tag{\ref{eq:pH_definition}} \\
+    \pOH &\equiv -\log[\ch{OH-}]
+  \end{align}
+\end{definition}
+
+Gleichung~\eqref{eq:ionenprodukt} führt auf einen Zusammenhang zwischen \pH
+und \pOH:
+\begin{align}
+  \Kw         &= [\ch{H3O+}] \cdot [\ch{OH-}] \tag{\ref{eq:ionenprodukt}} \\
+  \num{1e-14} &= [\ch{H3O+}] \cdot [\ch{OH-}] \\
+  14          &= -\log[\ch{H3O+}] -\log[\ch{OH-}] \\
+  14          &= \pH + \pOH \label{eq:ionensumme}
+\end{align}
+
+Eine ähnliche Vereinfachung kann man bei Gleichung~\eqref{eq:cHtO_aus_Ks}
+vornehmen:
+\begin{align}
+  [\ch{H3O+}]      &=
+    \Ka \cdot \frac{ [\ch{HA}] }{ [\ch{A-}] } \tag{\ref{eq:cHtO_aus_Ks}} \\
+  \log[\ch{H3O+}]  &=
+    \log\Ka + \log\biggl(\frac{ [\ch{HA}] }{ [\ch{A-}] }\biggr) \\
+  -\log[\ch{H3O+}] &=
+    -\log\Ka - \log\biggl(\frac{ [\ch{HA}] }{ [\ch{A-}] }\biggr) \\
+  \pH             &=
+    \pKa - \log\biggl(\frac{ [\ch{HA}] }{ [\ch{A-}] }\biggr)
+    \label{eq:henderson_hasselbalch}
+\end{align}
+Gleichung~\eqref{eq:henderson_hasselbalch} nennt man die
+\emph{Henderson"=Hasselbalch"=Gleichung}.  Sie ist allgemein gültig und vor
+allem für die hier nicht besprochenen Pufferlösungen nützlich.
+
+\subsection{\pH-Werte berechnen}
+Stellen wir uns vor, wir hätten eine \SI{2.0}{\Molar} Essigsäure-Lösung, deren
+$\Ka = \num{1.8e-5}$ beträgt, und wollten nun wissen, welche
+\ch{H3O+}-Konzentration in dieser Lösung vorliegt, welchen \pH{} die Lösung also
+hat.
+\begin{reaction}
+  !(Essigsäure)( CH3COOH ) + H2O <<=> !(Acetat)( CH3COO- ) + H3O+
+\end{reaction}
+Die Gleichgewichtskonzentration der Essigsäure beträgt nun
+\(\SI{2.0}{\mole\per\liter}-x\), da ein gewisser Teil zerfallen ist.  Dafür
+betragen die Acetat"=Konzentration und die Oxonium"=Konzentration beide \(x\),
+entsprechen also beide dem zefallenen Teil der Essigsäure.
+\begin{align*}
+  [\ch{H3O+}] &= \Ka \cdot \frac{ [\ch{HA}] }{ [\ch{A-}] } \\
+  x   &= \num{1.8e-5} \cdot \frac{ 2.0 - x }{ x } \\
+  0   &= x^2 +\num{1.8e-5}x - \num{3.6e-5} \\
+  x_1 &= \SI{0.006}{\mole\per\liter} \\
+  x_2 &= \SI{-0.006}{\mole\per\liter}
+\end{align*}
+\(x_2\) kann offensichtlich nicht die Lösung sein.  Schließlich gibt es keine
+negativen Konzentrationen.  Also beträgt die Oxonium"=Konzentration
+\SI{0.006}{\mole\per\liter}.  Damit ist der \pH-Wert der Lösung
+\begin{align*}
+  \pH &= -\log(\SI{0.006}{\mole\per\liter}) \\
+  \pH &= \num{2.2}
+\end{align*}
+Der \pOH{} beträgt damit \(\pOH = \num{11.8}\).
+
+Bedeutet das nun, dass wir jedesmal, wenn wir den \pH wissen wollen, eine
+quadratische Gleichung lösen müssen?  Nun, obwohl das auch nicht dramatisch
+wäre, lautet die Antwort: Nein.
+
+Bei einer starken Säure darf man dafür ausgehen, dass sie nahezu vollständig
+dissoziert ist.  Das bedeutet, dass die Oxonium"=Konzentration in etwa der der
+ursprunglich vorhandenen Säure \([\ch{HA}]_0\) entpsricht.
+\begin{equation}
+  \pH = -\log[\ch{HA}]_0 \qquad \text{starke Säure}
+\end{equation}
+
+Auch bei einer schwachen Säure gibt es eine näherungsweise Bestimmung:
+\begin{gather}
+  [\ch{H3O+}] = \Ka \cdot \frac{ [\ch{HA}] }{ [\ch{A-}] }
+    \qquad  x = \Ka \cdot \frac{ [\ch{HA}]_0 - x }{ x } \\
+  0 = x^2 + \Ka \cdot x - \Ka \cdot [\ch{HA}]_0
+\end{gather}
+Da bei einer schwachen Säure \Ka sehr klein ist und auch $x$ eher ein kleiner
+Wert ist, vereinfachen wir die quadratische Gleichung weiter:
+\begin{gather}
+  0 = x^2 - \Ka \cdot [\ch{HA}]_0 \qquad x^2 = \Ka \cdot [\ch{HA}]_0 \\
+  x = \sqrt{ \Ka \cdot [\ch{HA}]_0 } \\
+  \pH = -\log\biggl(\Ka \cdot [\ch{HA}]_0 \biggr)^\frac{1}{2} \\
+  \pH = \frac{1}{2} \biggl( -\log(\Ka) - \log[\ch{HA}]_0 \biggr) \\
+  \pH = \frac{1}{2} \biggl( \pKa - \log[\ch{HA}]_0 \biggr)
+    \qquad \text{schwache Säure}\label{eq:schwache_saeure}
+\end{gather}
+
+Wieder führen völlig analoge Überlegungen zu den entsprechenden Gleichungen
+für Basen:
+\begin{align}
+  \pOH &= -\log[\ch{B}]_0 \quad \text{starke Base} \\
+  \pOH &= \frac{1}{2} \biggl( \pKb - \log[\ch{B}]_0 \biggr)
+    \quad \text{schwache Base}
+\end{align}
+
+Zuletzt gilt dann auch noch diese praktische Beziehung zwischen \pKa{} und
+\pKb{}  korrespondierender
+Säure/Base-Paare
+\begin{equation}
+  14 = \pKa + \pKb  \,,
+\end{equation}
+die wir unbewiesen hinnehmen wollen\footnote{Alle Interessierten können den
+  Beweis gerne versuchen, er ist nicht schwer.}. Tabelle~\ref{tab:formeln}
+fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
+
+\begin{table}
+  \centering
+  \caption{Übersicht über alle Formeln}\label{tab:formeln}
+  \renewcommand*\arraystretch{1.75}
+  \begin{tabular}{ll}
+    \toprule
+      \bfseries Anwendung   & \bfseries Formel \\
+   \midrule
+      \pH{} und \pOH
+        & $\displaystyle\pH + \pOH = 14$ \\
+      \pKa und \pKb
+        & $\displaystyle\pKa + \pKb = 14$ \\
+      starke Säure
+        & $\displaystyle\pH = -\log[\text{Säure}]$ \\
+      schwache Säure
+        & $\displaystyle\pH = \frac{1}{2}(\pKa -\log[\text{Säure}])$ \\
+      starke Base
+        & $\displaystyle\pOH = -\log[\text{Base}]$ \\
+      schwache Base
+        & $\displaystyle\pOH = \frac{1}{2}(\pKb -\log[\text{Base}])$ \\
+      Henderson-Hasselbalch
+        & $\displaystyle\pH = \pKa - \log\biggl(\frac{ [\ch{HA}] }{ [\ch{A-}] }\biggr)$\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Beispiele für Rechenaufgaben}
+\begin{beispiel}
+  Berechnen Sie den \pH-Wert einer \SI{2.4}{\Molar} Ammoniak-Lösung (\(\pKb =
+  \num{4.7}\)) auf exaktem Weg.
+
+  \noindent Lösung:
+  \begin{reaction*}
+    NH3 + H2O <=> NH4+ + OH-
+  \end{reaction*}
+  Die exakte Berechnung erfolgt über das Gleichgewicht, also über des
+  Massenwirkungsgesetz:
+  \begin{gather*}
+    \Kb = \frac{[\ch{NH4+}]\cdot[\ch{OH-}]}{[\ch{NH3}]}
+      \qquad \Kb = \frac{x^2}{2.4-x}
+  \end{gather*}
+  Damit ergibt sich eine quadratische Gleichung:
+  \begin{gather*}
+    0 = x^2 + \Kb\cdot x - 2.4\cdot\Kb \\
+    0 = x^2 + 10^{-\pKb}\cdot x - 2.4 \cdot 10^{-\pKb} \\
+    0 = x^2 + \num{2.0e-5}\cdot x - \num{4.8e-5}
+  \end{gather*}
+  Wir erhalten die folgende Lösung:
+  \begin{gather*}
+    x = [\ch{OH-}] = \SI{.0069}{\mole\per\liter} \\
+    \Rightarrow\quad
+    \pOH = \num{2.2}
+    \quad\text{und}\quad
+    \pH  = \num{11.8}
+  \end{gather*}
+\end{beispiel}
+
+\begin{beispiel}
+  Berechnen Sie den \pH-Wert einen Salzsäure (\(\pKa=\num{-6.2}\)) Lösung mit
+  \(c = \SI{.5}{\milli\mole\per\liter}\).
+  \noindent Lösung:
+  \begin{reaction*}
+    HCl + H2O <=> Cl- + H3O+
+  \end{reaction*}
+  Salzsäure ist \emph{die} klassische starke Säure, \(\pKa=\num{-6.2}\) ist
+  deutlich unter Null.  Achten Sie darauf, die richtige Einheit für die
+  Konzentration zu verwenden!
+  \begin{gather*}
+    \pH = -\log [\ch{HCl}] \\
+    \pH = -\log \SI{.5e-3}{\mole\per\liter} \\
+    \pH = \num{3.3}
+  \end{gather*}
+  Die Lösung hat \(\pH = \num{3.3}\).
+\end{beispiel}
+
+\begin{beispiel}
+  Berechnen Sie den \pH-Wert einer Blausäure (\(\pKa = \num{9.4}\)) mit \(c =
+  \SI{.25}{\mole\per\liter}\).
+  \noindent Lösung:
+  \begin{reaction*}
+    HCN + H2O <=> CN- + H3O+
+  \end{reaction*}
+  Blausäure ist eine recht schwache wenn auch eine äußerst giftige Säure,
+  \(\pKa=\num{9.4}\) ist klar über Null.
+  \begin{gather*}
+    \pH = \frac{1}{2}\cdot(\pKa - \log [\ch{HCN}]) \\
+    \pH = \frac{1}{2}\cdot(9.4 - \log \SI{.25}{\mole\per\liter}) \\
+    \pH = \num{5.0}
+  \end{gather*}
+  Die Lösung hat \(\pH = \num{5.0}\).
+\end{beispiel}
+
+\newpage
+\section{Aufgaben}
+\begin{question}
+  Welche ist die korrespondierende Base von:
+  \begin{tasks}(6)
+    \task \ch{H3PO4}
+    \task \ch{H2PO4-}
+    \task \ch{NH3}
+    \task \ch{HS-}
+    \task \ch{H2SO4}
+    \task \ch{HCO3-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(6)
+    \task \ch{H2PO4-}
+    \task \ch{HPO4^2-}
+    \task \ch{HH2^-}
+    \task \ch{S^2-}
+    \task \ch{HSO4-}
+    \task \ch{CO3^2-}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Welche ist die korrespondierende Säure von:
+  \begin{tasks}(6)
+    \task \ch{H2O}
+    \task \ch{HS-}
+    \task \ch{NH3}
+    \task \ch{H2AsO4-}
+    \task \ch{F-}
+    \task \ch{NO2-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(6)
+    \task \ch{H3O+}
+    \task \ch{H2S}
+    \task \ch{NH4+}
+    \task \ch{H3AsO4}
+    \task \ch{HF}
+    \task \ch{HNO2}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Identifizieren Sie alle Br\o nstedt"=Säuren und -Basen:
+  \begin{tasks}(2)
+    \task \ch{NH3 + HCl <=> NH4+ + Cl-}
+    \task \ch{HSO4- + CN- <=> HCN + SO4^2-}
+    \task \ch{H2PO4- + CO3^2- <=> HPO4^2- + HCO3-}
+    \task \ch{H3O+ + HS- <=> H2S + H2O}
+    \task \ch{N2H4 + HSO4- <=> N2H5+ + SO4^2-}
+    \task \ch{H2O + NH4+ <=> NH3 + H3O+}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(2)
+    \task \ch{!(Base)( NH3 ) + !(Säure)( HC )l
+      <=> !(Säure)( NH4+ ) + !(Base)( Cl- ) }
+    \task \ch{!(Säure)( HSO4- ) + !(Base)( CN- )
+      <=> !(Säure)( HCN ) + !(Base)( SO4^2- )}
+    \task \ch{!(Säure)( H2PO4- ) + !(Base)( CO3^2- )
+      <=> !(Base)( HPO4^2- ) + !(Säure)( HCO3- )}
+    \task \ch{!(Säure)( H3O+ ) + !(Base)( HS- )
+      <=> !(Säure)( H2S ) + !(Base)( H2O )}
+    \task \ch{!(Base)( N2H4 ) + !(Säure)( HSO4- )
+      <=> !(Säure)( N2H5+ ) + !(Base)( SO4^2- )}
+    \task \ch{!(Base)( H2O ) + !(Säure)( NH4+ )
+      <=> !(Base)( NH3 ) + !(Säure)( H3O+ )}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Formulieren Sie das Protolyse"=Gleichgewicht folgender Br\o nstedt"=Säuren:
+  \begin{tasks}(6)
+    \task \ch{H2O}
+    \task \ch{HF}
+    \task \ch{HSO3-}
+    \task \ch{NH4+}
+    \task \ch{HOCl}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(2)
+    \task \ch{H2O + H2O <=> H3O+ + OH-}
+    \task \ch{HF + H2O <=> H3O+ + F-}
+    \task \ch{HSO3- + H2O <=> H3O+ + SO3^2-}
+    \task \ch{NH4+ + H2O <=> H3O+ + NH3}
+    \task \ch{HOCl + H2O <=> H3O+ + ^-OCl}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Formulieren Sie das Protolyse"=Gleichgewicht folgender Br\o nstedt"=Basen:
+  \begin{tasks}(6)
+    \task \ch{OH-}
+    \task \ch{N^3-}
+    \task \ch{H2O}
+    \task \ch{HCO3-}
+    \task \ch{O^2-}
+    \task \ch{SO4^2-}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(2)
+    \task \ch{OH- + H2O <=> OH- + H2O}
+    \task \ch{N^3- + H2O <=> OH- + HN^2-}
+    \task \ch{H2O + H2O <=> OH- + H3O+}
+    \task \ch{HCO3- + H2O <=> OH- + H2CO3}
+    \task \ch{O^2- + H2O <=> OH- + OH-}
+    \task \ch{SO4^2- + H2O <=> OH- + HSO4-}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Bestimmen Sie die Konzentration \([\ch{H+}]\) und \([\ch{OH-}]\) in folgenden
+  Lösungen:
+  \begin{tasks}(2)
+    \task \SI{.015}{\mole\per\liter} \ch{HNO3}
+    \task \SI{.0025}{\mole\per\liter} \ch{Ba(OH)2}
+    \task \SI{.00030}{\mole\per\liter} \ch{HCl}
+    \task \SI{.016}{\mole\per\liter} \ch{Ca(OH)2}
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task $[\ch{H+}] = \SI{.015}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{6.67e-13}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{2.0e-12}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{.005}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{.00030}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{3.3e-11}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{3.1e-13}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{.032}{\mole\per\liter}$
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Welchen \pH-Wert haben folgende Lösungen:
+  \begin{tasks}(2)
+    \task \([\ch{H+}] = \SI{7.3e-5}{\mole\per\liter}\)
+    \task \([\ch{H+}] = \SI{.084}{\mole\per\liter}\)
+    \task \([\ch{H+}] = \SI{3.9e-8}{\mole\per\liter}\)
+    \task \([\ch{OH-}] = \SI{3.3e-4}{\mole\per\liter}\)
+    \task \([\ch{OH-}] = \SI{.042}{\mole\per\liter}\)
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}(5)
+    \task $\pH = 4.1$
+    \task $\pH = 1.1$
+    \task $\pH = 7.4$
+    \task $\pH = 10.5$
+    \task $\pH = 12.6$
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Wie groß sind \([\ch{H+}]\) und \([\ch{OH-}]\) wenn folgende Werte gemessen
+  wurden:
+  \begin{tasks}(5)
+    \task \(\pH = \num{1.23}\)
+    \task \(\pH = \num{10.92}\)
+    \task \(\pOH = \num{4.32}\)
+    \task \(\pOH = \num{12.34}\)
+    \task \(\pOH = \num{0.16}\)
+  \end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task $[\ch{H+}] = \SI{0.0589}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{1.70e-13}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{1.20e-11}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{8.32e-4}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{2.09e-10}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{4.79e-5}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{0.02188}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{5.571e-13}{\mole\per\liter}$
+    \task $[\ch{H+}] = \SI{1.4e-14}{\mole\per\liter}$, $[\ch{OH-}] =
+      \SI{0.69}{\mole\per\liter}$
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Welchen \pH-Wert hat eine Lösung von \SI{.30}{\mole\per\liter} \ch{NH3}?
+\end{question}
+\begin{solution}
+  \[
+    \pH = 14 - \frac{1}{2}(4.7 -\log(0.30)) = 11.4
+  \]
+\end{solution}
+
+\begin{question}
+  Wieviel Mol Fluss"-säure benötigt man, um \SI{500}{\milli\liter} einer Lösung
+  mit \(\pH=\num{2.60}\) herzustellen?
+\end{question}
+\begin{solution}
+  \begin{gather*}
+    \pH = \frac{1}{2}(\pKa -\log[\ch{HF}]) \\
+    \log[\ch{HF}] = \pKa - 2\cdot\pH \\
+    [\ch{HF}] = 10^{\pKa-2\cdot\pH} = \SI{0.02}{\mole\per\liter} \\
+    n(\ch{HF}) = \SI{0.01}{\mole}
+  \end{gather*}
+\end{solution}
+
+\begin{question}
+  Welchen \pH-Wert hat eine Lösung von \SI{.12}{\mole} Cyansäure (\ch{HOCN},
+  \(\pKa=\num{3.9}\)) pro Liter?
+\end{question}
+\begin{solution}
+  \[
+    \pH = \frac{1}{2}\biggl(\pKa
+          -\log\biggl(\frac{n(\ch{HOCN})}{V}\biggr)\biggr)
+        = 2.41
+  \]
+\end{solution}
+
+\begin{question}
+  Dichloressigsäure (\ch{Cl2HCCOOH}), eine einprotonige Säure, ist bei einer
+  Konzentration von \SI{.20}{\mole\per\liter} zu \SI{33}{\percent}
+  dissoziiert.  Wie groß sind \Ka, \pKa, \pH{} und \pOH?
+\end{question}
+\begin{solution}
+  Es gilt die Reaktionsgleichung
+  \begin{reaction*}
+    Cl2CHCOOH + H2O <=> Cl2HCOO- + H3O+
+  \end{reaction*}
+  und das Massenwirkungsgesetz
+  \[
+    \Ka = \frac{[\ch{Cl2HCOO-}][\ch{H3O+}]}{[\ch{Cl2HCOOH}]} \,.
+  \]
+  Dass die Säure zu \SI{33}{\percent} disoziiert ist, bedeutet, dass
+  im Gleichgewicht gilt $[\ch{Cl2HCOOH}] \approx 2\cdot[\ch{Cl2HCOO-}]$ und
+  dass \SI{67}{\percent} der eingesetzten Säure im Gleichgewicht noch
+  vorhanden sind.  Damit ergeben sich die Gleichgewichts"=Konzentrationen
+  $[\ch{Cl2HCOOH}] = \SI{.134}{\mole\per\liter}$ und $[\ch{Cl2HCOO-}] =
+  [\ch{H3O+}] = \SI{0.066}{\mole\per\liter}$.  Daraus errechnet sich die
+  Säurekonstante zu $\Ka = \SI{0.033}{\mole\per\liter}$ und $\pKa = 1.5$.
+  Dichloressigsäure ist also eine vergleichsweise starke Säure.  Aus der
+  Gleichgewichts"=Konzentration ergeben sich $\pH = 1.2$ und $\pOH = 12.8$.
+\end{solution}
+
+\begin{question}
+  In einer Lösung von Benzylamin (\ch{C6H5CH2NH2}) mit einer Konzentration von
+  \SI{250}{\milli\mole\per\liter} ist \([\ch{OH-}] =
+  \SI{2.4e-3}{\mole\per\liter}\).  Wie groß sind \pKb{} und \pH?
+\end{question}
+\begin{solution}
+  Für die Reaktion
+  \begin{reaction*}
+    C6H5CH2NH2 + H2O <=> C6H5CH2NH3+ + OH-
+  \end{reaction*}
+  gilt das Massenwirkungsgesetz
+  \[
+    \Kb = \frac{[\ch{C6H5CH2NH3+}][\ch{OH-}]}{[\ch{C6H5CH2NH2}]} \,.
+  \]
+  Da im Gleichgewicht $[\ch{C6H5CH2NH3+}] = [\ch{OH-}]$ gilt und außerdem die
+  Beziehung $[\ch{C6H5CH2NH2}] + [\ch{C6H5CH2NH3+}] =
+  \SI{0.250}{\mole\per\liter}$ erfüllt sein muss, ergeben sich $\Kb =
+  \SI{2.3e-5}{\mole\per\liter}$ und $\pKb = 4.6$.  Die Lösung hat damit den
+  $\pH = 11.4$.
+\end{solution}
+
+\begin{question}
+  Für Milchsäure ist $\Ka = \SI{1.5e-4}{\mole\per\liter}$.  Wie groß ist der
+  \pH, wenn \SI{.16}{\mole\per\liter} Milchsäure in Lösung sind?
+\end{question}
+\begin{solution}
+  Mit Gleichung~\eqref{eq:schwache_saeure} gilt $\pH = \frac{1}{2}(-\log\Ka -
+  \log[\text{Milchsäure}])$, woraus sich $\pH = 2.3$ errechnet.
+\end{solution}
+
+\begin{question}
+  Wie groß sind die Konzentrationen von \ch{N2H5+}, \ch{OH-} und \ch{N2H4}
+  (Hydrazin), in einer Lösung von \SI{.15}{\mole\per\liter} Hydrazin?
+\end{question}
+\begin{solution}
+  Es gilt die Reaktionsgleichung
+  \begin{reaction*}
+    N2H4 + H2O <=> N2H5+ + OH-
+  \end{reaction*}
+  mit dem Massenwirkungsgesetz
+  \[
+    \Kb = \frac{ [\ch{N2H5+}][\ch{OH-}] }{ [\ch{N2H4}] } \,.
+  \]
+  Für eine exakte Berechnung ergibt sich also die quadratische Gleichung
+  \[
+    \num{9.8e-7} = \frac{x\cdot x}{0.15 - x}
+  \]
+  mit den Lösungen $x_1 = \num{-3.8e-4}$ und $x_2 = \num{3.8e-4}$.  Da es
+  keine negativen Konzentrationen geben kann, ist die zweite Lösung die
+  richtige und die Gleichgewichtskonzentrationen betragen $[\ch{N2H5+}] =
+  [\ch{OH-}] = \SI{3.8e-4}{\mole\per\liter}$ und $[\ch{N2H4}] =
+  \SI{0.15}{\mole\per\liter}$.  (Beachten Sie die Rechen- und
+  Messgenauigkeit.  Selbst wenn sich rechnerisch $[\ch{N2H4}] =
+  \SI{0.1496}{\mole\per\liter}$ ergeben, erlauben die gegebenen Zahlenwerte
+  nur eine Genauigkeit von zwei signifikanten Stellen.)
+\end{solution}
+
+\begin{table}
+  \centering
+  \caption{\pKa- und \pKb-Werte einiger Säuren und Basen.}\label{tab:pKa_pKb}
+  \begin{tabular}{lCSS}
+    \toprule
+      \bfseries Säure     & \textbf{Formel}  &
+        {\bfseries\Ka in \si[detect-all]{\mole\per\liter}} & {\bfseries\pKa} \\
+    \midrule
+      Oxonium             & H3O+    & 5.5     & -1.7 \\
+      Wasser              & H2O     & 2.0e-16 & 15.7 \\
+      Salzsäure           & HCl     & 1.3e6   & -6.1 \\
+      Bromwasserstoff     & HBr     & 7.9e8   & -8.9 \\
+      Flusssäure          & HF      & 6.6e-4  & 3.2 \\
+      Schwefelsäure       & H2SO4   & 1.0e3   & -3.0 \\
+                          & HSO4-   & 1.2e-2  & 1.9 \\
+      Salpetersäure       & HNO3    & 20.9    & -1.3 \\
+      Phosphorsäure       & H3PO4   & 7.4e-3  & 2.1 \\
+                          & H2PO4-  & 6.3e-8  & 7.2 \\
+                          & HPO4^2- & 4.4e-13 & 12.4 \\
+      Kohlensäure         & H2CO3   & 3.0e-7  & 6.5 \\
+                          & HCO3-   & 4.0e-11 & 10.4 \\
+      Blausäure           & HCN     & 4.0e-10 & 9.4 \\
+      Essigsäure          & CH3COOH & 1.8e-5  & 4.7 \\
+      Ameisensäure        & HCOOH   & 1.8e-4  & 3.7 \\
+      Schwefelwasserstoff & H2S     & 1.2e-7  & 6.9 \\
+                          & HS-     & 1.0e-13 & 13.0 \\
+    \midrule
+      \bfseries Base      & \textbf{Formel}
+        & {\bfseries \Kb} & {\bfseries \pKb} \\
+    \midrule
+      Hydroxid            & OH-     & 5.5     & -1.7 \\
+      Wasser              & H2O     & 2.0e-16 & 15.7 \\
+      Ammoniak            & NH3     & 1.8e-5  & 4.7 \\
+      Hydrazin            & N2H4    & 9.8e-7  & 6.0 \\
+      Methylamin          & CH3NH2  & 5.4e-4  & 3.3 \\
+      Anilin              & C6H5NH2 & 4.3e-10 & 9.3 \\
+      Pyridin             & C5H5N   & 1.5e-9  & 8.8 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\clearpage
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

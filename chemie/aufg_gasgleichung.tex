@@ -1,0 +1,547 @@
+\documentclass[DIV11]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\usepackage{siunitx}
+\sisetup{
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot
+}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  y tick label style = {
+    /pgf/number format/.cd,
+    fixed,
+    fixed zerofill,
+    precision = 2,
+    /tikz/.cd} ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+\usepackage{enumitem}
+
+\usepackage{fnpct}
+\usepackage{booktabs}
+
+\usepackage{mdframed}
+\newmdenv[linecolor=red!20, linewidth=1ex]{intermission}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Gasgleichung
+\end{center}
+
+\addsec{Übungen}
+
+\begin{question}[name=Ideales Gas]
+\begin{tasks}
+  \task Wie groß ist das molare Volumen $V_m$ von Stickstoff bei den heute
+    üblichen Standardbedingungen (SATP) $T_0 = \SI{298.15}{\kelvin}$, $p_0 =
+    \SI{1.000e5}{\pascal}$ ($\SI{1.000}{\bar}$) bzw.\ bei den in früherer Zeit
+    üblichen Normalbedingungen (STP) $T = \SI{273.15}{\kelvin}$, $p =
+    \SI{1.013e5}{\pascal}$ (\SI{1.013}{\bar}, \SI{1.000}{\atm})?
+  \task Wieviele Moleküle Stickstoff befinden sich bei \SI{20}{\celsius} und
+  \SI{25}{\bar} in einer \SI{10}{\liter}"=Stahlflasche?
+\end{tasks}
+\end{question}
+\begin{solution}[name=Ideales Gas]
+\begin{tasks}
+  \task
+  \begin{gather*}
+    V_{m,\text{SATP}}
+      = \frac{V}{n}
+      = \frac{RT}{p}
+      = \frac
+          {
+            \SI[sticky-per]{8.314}{\joule\per\kelvin\mole} \cdot
+            \SI{298.15}{\kelvin}
+          }
+          {\SI{1.000e5}{\pascal}}
+      = \SI{24.79}{\liter\per\mole} \\
+   V_{m,\text{STP}}
+      = \frac
+          {
+            \SI[sticky-per]{8.314}{\joule\per\kelvin\mole} \cdot
+            \SI{273.15}{\kelvin}
+          }
+          {\SI{1.013e5}{\pascal}}
+     = \SI{22.42}{\liter\per\mole}
+  \end{gather*}
+  \task
+    \[
+      N = \frac{pV}{kT}
+        = \frac
+            {\SI{25e5}{\pascal}\cdot\SI{0.010}{\cubic\metre}}
+            {\SI{1.381e-23}{\joule\per\kelvin}\cdot\SI{293}{\kelvin}}
+        = \num{6.18e24}
+    \]
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Virial-Ansatz]
+Beim sogenannten Virial-Ansatz für reale Gase wird die Gasgleichung durch eine
+Reihenentwicklung an ein reales Gas angepasst: \[\frac{pV}{n} = RT + Bp + Cp^2
++ Dp^3 + \cdots\]  Die Virial-Koeffizienten $B,C,D\ldots$ sind druckunabhängig
+und müssen experimentell bestimmt werden. Bricht man die Entwicklung nach dem
+zweiten Glied ab, erhält man \[\frac{pV}{n} = RT + Bp \,.\]  Zeigen Sie, dass
+für $B=b-\frac{a}{RT}$ der Virialansatz in die van"=der"=Waalssche Gleichung
+übergeht.
+
+Tipp: stellen Sie beide Gleichungen auf den Kompressibilitätsfaktor $Z$ um und
+vergleichen Sie dann die Gleichungen.
+\end{question}
+\begin{solution}[name=Virial-Ansatz]
+  Wir gehen die Lösung von zwei Seiten an. Zunächst stellen wir die verkürzte
+  Virialgleichung in etwas anderer Form dar:
+  \begin{equation}
+    pV_m = RT + Bp
+    \quad\Leftrightarrow\quad
+    \frac{pV_m}{RT} = 1 + \frac{Bp}{RT}
+    \qquad\Leftrightarrow\quad
+    \frac{pV_m}{RT} = 1 + \frac{B}{V_m} \label{eq:virial}
+  \end{equation}
+  Nun versuchen wir, die van"=der"=Waals"=Gleichung in eine vergleichbare Form
+  zu bringen:
+  \begin{equation}
+    p = \frac{RT}{V_m-b} - \frac{1}{V_m^2}
+    \quad\Leftrightarrow\quad
+    \frac{pV_m}{RT} = \frac{V_m}{V_m-b} - \frac{a}{RTV_m} \label{eq:vdW}
+  \end{equation}
+  Der erste Bruch auf der rechten Seite in Gleichung~\eqref{eq:vdW} lässt sich
+  durch Polynomdivision als unendliche Summe darstellen:
+  \begin{equation}
+    \frac{V_m}{V_m-b}
+      = 1 + \frac{b}{V_m} + \frac{b^2}{V_m^2} + \frac{b^3}{V_m^3} + \cdots
+      \label{eq:inv-sum}
+  \end{equation}
+  Diese Summe brechen wir nun nach dem zweiten Glied ab und fügen Sie wieder
+  in Gleichung~\eqref{eq:vdW} ein.
+  \begin{equation}
+    \frac{pV_m}{RT}
+      = 1 + \frac{b}{V_m} - \frac{a}{RTV_m}
+      = 1 + \biggl(b-\frac{a}{RT}\biggr)\cdot\frac{1}{V_m} \label{eq:vdW2}
+  \end{equation}
+  Ein Vergleich von Gleichung~\eqref{eq:vdW2} mit Gleichung~\eqref{eq:virial}
+  zeigt nun, dass die Gleichungen übereinstimmen, wenn $B = b - a/(RT)$ ist.
+\end{solution}
+
+\begin{question}[name=Druck als Zustandsfunktion]
+Zeigen sie mit Hilfe des sogenannten Schwarzschen Satzes, dass der Druck eine
+Zustandsfunktion ist, und zwar im Falle eines idealen Gases als auch eines
+Gases, welches der van"=der"=Waalsschen Zustandsgleichung gehorcht.
+\end{question}
+\begin{solution}[name=Druck als Zustandsfunktion]
+Der Satz von Schwarz besagt, dass für eine Zustandsfunktion die Reihenfolge
+des Ableitens keine Rolle spielt. Mit anderen Worten: der Zustand ist
+unabhängig davon, wie er erreicht wird:
+\[
+  \frac{\partial p^2}{\partial T \partial V}
+  = \frac{\partial p^2}{\partial V \partial T}
+\]
+Für ein ideales Gas ergibt sich also:
+\begin{align*}
+ p &= \frac{nRT}{V}\\
+ \frac{\partial p}{\partial T} &= \frac{nR}{V} & \frac{\partial p}{\partial V}
+   &= -\frac{nRT}{V^2}\\
+ \frac{\partial p^2}{\partial V\partial T}
+   &= -\frac{nR}{V^2} & \frac{\partial p^2}{\partial T\partial V}
+   &= -\frac{nR}{V^2}
+\end{align*}
+Für ein van"=der"=Waals-Gas erhalten wir:
+\begin{align*}
+ p &= \frac{RT}{V_m-b} - \frac{a}{V_m^2}\\
+ \frac{\partial p}{\partial T}
+   &= \frac{R}{V_m-b} & \frac{\partial p}{\partial V_m}
+   &= -\frac{RT}{(V_m-b)^2} + \frac{2a}{V_m^3}\\
+ \frac{\partial p^2}{\partial V_m\partial T}
+   &= -\frac{R}{(V_m-b)^2} & \frac{\partial p^2}{\partial T\partial V_m}
+   &= -\frac{R}{(V_m-b)^2}
+\end{align*}
+\end{solution}
+
+\begin{question}[name=Totales Differential]
+Überprüfen Sie, ob der folgende Ausdruck ein totales Differential ist:
+\[ dQ = \frac{RT}{p}dp - RdT \]
+\end{question}
+\begin{solution}[name=Totales Differential]
+Wenn $dQ$ ein totales Differential ist, dann muss der Schwarzsche Satz erfüllt
+sein, es muss also gelten:
+\[
+  \frac{\partial Q^2}{\partial T\partial p} = \frac{\partial Q^2}{\partial p\partial T}
+\]
+Ein Vergleich der beiden Gleichungen
+\[
+  dQ = \frac{RT}{p}dp - RdT
+  \quad \text{und} \quad
+  dQ = \frac{\partial Q}{\partial p}dp + \frac{\partial Q}{\partial T}dT
+\]
+liefert uns
+\[
+  \frac{\partial Q}{\partial p} = \frac{RT}{p}
+  \quad \Rightarrow \qquad
+  \frac{\partial Q^2}{\partial T\partial p} = \frac{R}{p}
+\]
+und
+\[
+  \frac{\partial Q}{\partial T} = -R
+  \quad \Rightarrow \qquad
+  \frac{\partial Q^2}{\partial p\partial T} = 0 \,.
+\]
+Also ist $dQ$ kein totales Differential.
+\end{solution}
+
+\begin{question}[name=Van-der-Waalssche Zustandsgleichung I,ID=vdW:1]
+Der kritische Druck und die kritische Temperatur von Stickstoff betragen
+\[p_k = \SI{3.3944e6}{\pascal} \text{ und } T_k = \SI{126.15}{\kelvin}.\]
+Wie lautet die van"=der"=Waalssche Zustandsgleichung für Stickstoff?  Wie groß
+ist das kritische Molvolumen von \ch{N2}, $V_{m,k}$?  Geben Sie die
+van"=der"=Waals-Konstante $a$ sowohl in
+\si{\pascal(\metre\cubed\per\mole)\squared} als auch in
+\si{\atm(\liter\per\mole)\squared} an!
+\end{question}
+\begin{solution}[name=Van-der-Waalssche Zustandsgleichung I]
+  Es gilt $p_k = a/(27b^2)$ und $T_k = 8a/(27Rb)$ (siehe
+  Übung~\QuestionNumber{vdW:3}). Durch Teilen der kritischen Temperatur durch
+  den kritischen Druck kann man also $b$ bestimmen:
+  \[
+    \frac{T_k}{p_k} = \frac{8b}{R}
+    \quad\Leftrightarrow\quad
+    b = \frac{RT_k}{8p_k}
+      = \SI{3.8625e-5}{\metre\cubed\per\mole}
+  \]
+  Mit jeder der beiden kritischen Größen lässt sich dann $a$ berechnen:
+  \[
+    a = p_k \cdot 27b^2
+      = \SI{0.13673}{\pascal\metre\tothe{6}\per\mole\squared}
+      = \SI{1.3494}{\atm\square\liter\per\mole\squared}
+  \]
+\end{solution}
+
+\begin{question}[name=Van-der-Waalssche Zustandsgleichung II,ID=vdW:2]
+Ein Gas gehorcht näherungsweise der van"=der"=Waals"=Gleichung ($a =
+\SI{0.50}{\metre\tothe{6}\pascal\per\mol\squared}$).  Bei \SI{273}{\kelvin} und
+\SI{3}{\mega\pascal} beträgt sein Volumen $\SI{5e-4}{\metre\cubed\per\mole}$.
+\begin{tasks}
+  \task Berechnen Sie die van"=der"=Waals"=Konstante $b$.
+  \task Welche Bedeutung besitzen die van"=der"=Waals"=Konstanten $a$ und $b$?
+  \task Wie hängt das Kovolumen mit dem Radius $r$ eines "`kugelförmigen"'
+    Moleküls (z.\,B. Methan) zusammen?
+\end{tasks}
+\end{question}
+\begin{solution}[name=Van-der-Waalssche Zustandsgleichung II]
+  \begin{figure}
+    \centering
+    \begin{tikzpicture}
+      \draw (0,0) circle (1cm) ;
+      \draw (2,0) circle (1cm) ;
+      \draw[dotted] (1,0) circle (2cm) ;
+    \end{tikzpicture}
+    \caption{Schematische Darstellung des Kovolumens zweier kugelförmiger
+      Atome}\label{fig:kovolumen}
+  \end{figure}
+  \begin{tasks}
+    \task Umgestellt auf $b$ lässt sich $b$ durch einfaches Einsetzen
+      berechnen:
+      \[
+        b = V_m - \frac{RT}{p-a/V_m^2}
+          = \SI{-1.77e-3}{\metre\cubed\per\mole}
+      \]
+    \task Die van"=der"=Waals"=Konstante $b$ wird oft als das \emph{Kovolumen}
+      oder \emph{Ausschließungsvolumen} betrachtet, also als das Volumen, dass
+      sich die Teilchen gegenseitig wegnehmen, was etwas größer als das
+      Eigenvolumen der Teilchen ist.
+
+      Den Quotienten $a/V_m^2$ nennt man in der Regel den \emph{Binnendruck}
+      des Gases.  Durch die gegenseitigen anziehenden/abstoßenden
+      Wechselwirkung ist der Druck eines realen Gases in der Regel geringer
+      als er für ein ideales Gases wäre, was durch den Binnendruck in der
+      van"=der"=Waals"=Gleichung berücksichtigt wird.
+    \task Das Ko-Volumen kann man sich durch folgende Überlegung klarmachen:
+      das Volumen, das zwei Kugeln gegenseitig nicht zur Verfügung haben
+      entspricht einer Kugel mit doppeltem Radius (siehe
+      Abbildung~\ref{fig:kovolumen}) also dem achtfachen des Volumens eines
+      Atoms.  Bezogen auf eines der Atome entspricht  das dem vierfachen des
+      Eigenvolumens.  Rechnet man das auf ein Mol hoch, ergibt sich  $b =
+      4\cdot V_{m,\text{Eigen}}$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[name=Van-der-Waalssche Zustandsgleichung III,ID=vdW:3]
+\SI{10}{\mole} Methan nehmen bei \SI{0}{\celsius} ein Volumen von
+\SI{1.756}{\liter} ein.
+\begin{tasks}
+  \task Berechnen Sie den Druck von Methan mit Hilfe der idealen Gasgleichung.
+  \task Berechnen Sie den Druck mit Hilfe der Van"=der"=Waalsschen
+    Zu\-stands\-glei\-chung.  Die kritische Temperatur und der kritische Druck
+    von Methan betragen $T_k = \SI{190.7}{\kelvin}$ bzw. $p_k =
+    \SI{4.63}{\mega\pascal}$.
+  \task Ein Manometer zeigt Ihnen einen Wert von \SI{10.13}{\mega\pascal} an.
+    Erläutern Sie in diesem Zusammenhang den Unterschied zwischen den von
+    Ihnen vorhergesagten Werten.
+  \task Schätzen Sie aus dem Kovolumen $b$ den Radius des Methanmoleküls ab.
+\end{tasks}
+Tipp: Der Zusammenhang zwischen kritischen Größen und den
+Van"=der"=Waals"=Konstanten $a$ und $b$ ergibt sich aus der Tatsache, dass am
+kritischen Punkt die Isotherme im $p$-$V$-Diagramm einen Sattelpunkt besitzt,
+für den gilt: $\frac{\partial p}{\partial V_m} = 0$; $\frac{\partial
+  ^2p}{\partial V_m^2} = 0$.  Nach Lösen der Gleichungen erhält man $p_k =
+\frac{a}{27b^2}$ und $T_k = \frac{8a}{27Rb}$.
+\end{question}
+\begin{solution}[name=Van-der-Waalssche Zustandsgleichung III]
+\begin{tasks}
+  \task
+    \[
+      p = \frac{nRT}{V}
+        =
+          \frac
+            {
+              \SI{10}{\mole} \cdot \SI{8.3145}{\joule\per\kelvin\per\mole}
+              \cdot \SI{273}{\kelvin}
+            }
+            {\SI{1.756e-3}{\metre^3}}
+        = \SI{12.9}{\mega\pascal}
+    \]
+  \task kritische Größen liefern
+    \[
+      b = \frac{RT_k}{8 p_k}
+        = \frac
+            {\SI{8.3145}{\joule\per\kelvin\per\mole}\cdot\SI{190.7}{\kelvin}}
+            {8 \cdot\SI{4.63e6}{\pascal}}
+        = \SI{42.8e-6}{\metre^3\per\mole}
+    \]
+    \[
+      a = \frac{27 R^2 T_k^2}{64 p_k}
+        = \frac
+            {
+              27 \cdot
+              \left(
+                \SI{8.3145}{\joule\per\kelvin\per\mole}
+              \right)^2
+              \cdot \left( \SI{190.7}{\kelvin} \right)^2
+            }
+             {64 \cdot \SI{4.63e6}{\pascal}}
+        = \SI{0.229}{\pascal\metre^6\per\mole^2}
+    \]
+    \begin{align*}
+     p &= \frac{nRT}{V - nb} - \frac{an^2}{V^2} \\
+       &= \frac
+            {
+              \SI{10}{\mole} \cdot \SI{8.3145}{\joule\per\kelvin\per\mole} \cdot
+              \SI{273}{\kelvin}
+            }
+            {\SI{1.756e-3}{\metre^3} - \SI{10}{\mole} \cdot
+          \SI{42.8e-6}{\metre^3\per\mole}}
+         -
+          \frac
+            {
+              \SI{0.229}{\pascal\metre^6\per\mole^2} \cdot
+              \left( \SI{10}{\mole} \right)^2
+            }
+            {\left( \SI{1.756e-3}{\metre^3} \right)^2} \\
+       &= \SI{9.67}{\mega\pascal}
+    \end{align*}
+  \task Die ideale Gasgleichung, die Eigenvolumen und Wechselwirkungen zwischen
+    den Gasteilchen vernachlässigt, kann nur einen Näherungswert liefern.  Die
+    van"=der"=Waalssche Gleichung nähert zwar mithilfe empirischer Konstanten
+    etwas besser, ist aber immer noch eine Näherungsgleichung.
+  \item
+    \begin{gather*}
+      b = 4 \cdot V_{m,\text{eigen}}
+        = 4 \cdot N_A \cdot \frac{4}{3} \pi r^3 \\
+      r = \sqrt[3]{\frac{3 b}{16 N_A \pi}}
+        = \sqrt[3]
+            {
+              \frac{3 \cdot \SI{42.8e-6}{\metre^3\per\mole}}{16 \cdot
+              \SI{6.0221e23}{\per\mole} \cdot \pi}
+            }
+        = \SI{1.62e-10}{\metre} = \SI{1.62}{\angstrom}
+    \end{gather*}
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Ideales vs. reales Gas]
+\SI{10}{\mole} Ethan nehmen bei \SI{27}{\celsius} ein Volumen von
+\SI{4.86}{\liter} ein.
+\begin{tasks}
+  \task Berechnen Sie den Druck des Gases nach dem idealen Gasgesetz und
+  \task nach der van"=der"=Waals-Gleichung ($a =
+    \SI{5.507}{\liter\squared\bar\per\mole\squared}$, $b =
+    \SI{0.0651}{\liter\per\mole}$).
+  \task Berechnen Sie die prozentuale Abweichung und beurteilen Sie, ob
+    anziehende oder abstoßende Kräfte vorherrschen.
+\end{tasks}
+\end{question}
+\begin{solution}[name=Ideales vs. reales Gas]
+\begin{tasks}
+  \task
+    \[
+      p = \frac{nRT}{V}
+        = \frac
+            {
+              \SI{10}{\mole} \cdot \SI{8.3145}{\joule\per\kelvin\per\mole}
+              \cdot \SI{300}{\kelvin}
+            }
+            {\SI{4.86e-3}{\metre\cubed}}
+        = \SI{5.13}{\mega\pascal}
+    \]
+  \task
+    \begin{align*}
+      p &= \frac{nRT}{V-nb}-\frac{an^2}{V^2} \\
+        &= \frac
+             {
+               \SI{10}{\mole} \cdot \SI{8.3145}{\joule\per\kelvin\per\mole}
+               \cdot \SI{300}{\kelvin}
+             }
+             {\SI{4.86e-3}{\metre\cubed} -
+           \SI{10}{\mole}\cdot\SI{0.0651e-3}{\metre\cubed\per\mole} }
+         -
+           \frac
+             {
+               \SI{0.5507}{\metre^6\pascal\per\mole^2} \cdot
+               (\SI{10}{\mole})^2
+             }
+             { (\SI{4.86e-3}{\metre\cubed})^2 } \\
+        &= \SI{3.59}{\mega\pascal}
+    \end{align*}
+  \task Es herrschen anziehende  Kräfte vor, da $p_{\text{vdW}} <
+    p_{\text{id}}$: $ \Delta p/p_\text{id} = (5.13 - 3.59)/5.13 =
+    \SI{30}{\percent}$.
+\end{tasks}
+\end{solution}
+
+\begin{question}[name=Differentialquotient]
+Es wird angenommen, dass für ein bestimmtes Gas zwar $(\partial U/\partial
+V)_T = 0 $ ansonsten aber die Zustandsgleichung $ p(V - b) = RT $ gilt, wobei
+$b$ die van"=der"=Waals"=Konstante ist.  Berechnen Sie den partiellen
+Differentialquotienten $(\partial H/\partial V)_T$.
+\end{question}
+\begin{solution}[name=Differentialquotient]
+  Für ein ideales Gas wäre $(\partial H/\partial V)_T = 0$.  Mit der
+  vereinfachten Zustandsgleichung für reale Gase, bei der das Kovolumen
+  berücksichtigt wird, erwarten wir einen Wert ungleich Null.
+
+  Zunächst setzen wir $H=U+pV$ in den gesuchten Differentialquotienten ein:
+  \begin{equation}
+    \biggl(\frac{\partial H}{\partial V}\biggr)_T
+      = \biggl( \frac{\partial(U + pV)}{\partial V} \biggr)_T
+      = \biggl(\frac{\partial U}{\partial V}\biggr)_T
+        + \biggl(\frac{\partial(pV)}{\partial V}\biggr)_T
+      = \biggl(\frac{V\partial p}{\partial V}\biggr)_T
+        + \biggl(\frac{p\partial V}{\partial V}\biggr)_T \label{eq:dHdV}
+  \end{equation}
+  In Gleichung~\eqref{eq:dHdV} setzt man nun die Zustandsgleichung ein:
+  \begin{multline}
+    \biggl(\frac{V\partial p}{\partial V}\biggr)_T
+      + \biggl(\frac{p\partial V}{\partial V}\biggr)_T
+      = \frac{\partial}{\partial V} \biggl(\frac{RT}{V-b}\biggr) \cdot V  + p \\
+      = -\frac{RT}{(V-b)^2} \cdot V + p
+      = -p \cdot \frac{V}{V-b} + p
+      = p \cdot \biggl(1-\frac{V}{V-b}\biggr)
+  \end{multline}
+  Wenn $b=0$ ist gibt das Ergebnis ganz korrekt $0$ für ein ideales Gas.  Für
+  ein reales Gas, das der angegebenen Zustandsfunktion gehorcht, ergibt sich
+  für $(\partial H/\partial V)_T$ wie erwartet ein positives Ergebnis.
+\end{solution}
+
+\begin{question}[name=Chemiebetrieb]
+In einem Chemiebetrieb wird bei \SI{60}{\celsius} und einem Behälterdruck von
+\SI{5}{\mega\pascal} durch falsches Öffnen der Ventile ein
+\SI{200}{\liter}"=Behälter mit Siliziumtetrachlorid (\ch{SiCl4}) mit einem
+\SI{1300}{\liter}"=Behälter Ammoniak (\ch{NH3}) verbunden.  Die spontan
+ablaufende Reaktion führt zur stöchiometrisch vollständigen Umsetzung in
+Siliziumnitrid \ch{Si3N4\sld} und Ammoniumchlorid \ch{NH4Cl\sld}.
+
+Welcher Druck stellt sich ein, wenn das Volumen der Feststoffe berücksichtigt
+und Ammoniak nach der Reaktion als reales Gas im niedrigen Druckbereich
+betrachtet wird?
+
+Verwenden Sie folgende Daten:
+\begin{itemize}
+  \item \ch{NH3}:
+    $a = \SI{0.442}{\newton\metre\tothe4\per\mole\squared}$,
+    $b = \SI{37.3e-6}{\metre\cubed\per\mole}$;
+  \item \ch{Si3N4}:
+    $\varrho = \SI{3.2}{\gram\per\centi\metre\cubed}$;
+  \item \ch{NH4Cl}:
+    $\varrho = \SI{1.54}{\gram\per\centi\metre\cubed}$
+\end{itemize}
+\end{question}
+\begin{solution}[name=Chemiebetrieb]
+  Die Reaktion findet gemaß der Reaktionsgleichung
+  \begin{reaction*}
+    3 SiCl4 + 16 NH3 -> Si3N4 + 12 NH4Cl
+  \end{reaction*}
+  statt.  Zunächst müssen die vorhandenen Stoffmengen der Edukte und die
+  entstandenen Mengen der Produkte bestimmt werden.
+  \[
+    n_{\ch{SiCl4}} = \frac{pV}{RT} = \SI{361.2}{\mole}
+    \qquad
+    n_{\ch{NH3}}   = \frac{pV}{RT} = \SI{2347.6}{\mole}
+  \]
+  Da die Umsetzung im Verhältnis $3:16$ stattfindet, werden
+  $\frac{16}{3}\cdot\SI{361.2}{\mole} = \SI{1926.4}{\mole}$ Ammoniak
+  verbraucht, \SI{421.2}{\mole} verbleiben.  Es entstehen
+  $\frac{1}{3}\cdot\SI{361.2}{\mole} = \SI{120.4}{\mole}$ \ch{Si3N4} und
+  $4\cdot\SI{361.2}{\mole} = \SI{1444.8}{\mole}$ Ammoniumchlorid.
+
+  Nun berechnen wir die Volumina der Feststoffe:
+  \[
+    V = \varrho \cdot m = \varrho\cdot M\cdot n
+    \qquad
+    V_{\ch{S13N4}} = \SI{54.1}{\liter}
+    \quad
+    V_{\ch{NH4Cl}} = \SI{119}{\liter}
+  \]
+  Damit verbleibt als Gesamtvolumen \SI{1.3269}{\metre\cubed}.  Über die
+  van"=der"=Waalssche Gleichung lässt sich nun der Druck, den das verbleibende
+  Ammoniak verursacht, berechnen.
+  \[
+    p = \frac{nRT}{V-nb} + \frac{an^2}{V^2}
+      = \SI{9.34e5}{\pascal}
+      = \SI{9.34}{\bar}
+  \]
+\end{solution}
+
+\newpage
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}

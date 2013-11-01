@@ -1,0 +1,107 @@
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{libertine}
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german ,
+  chemformula/name-format = \centering
+}
+\usepackage{siunitx}
+\sisetup{
+  per-mode = fraction
+}
+\usepackage{enumitem}
+\usepackage{exsheets}
+\SetupExSheets{
+  totoc,
+  toc-level = section ,
+  headings-format = \bfseries\sffamily
+}
+\usepackage{fnpct}
+
+\usepackage{elektrochemie}
+
+\usepackage{mdframed}
+\newmdenv[
+  skipabove=\baselineskip,
+  skipbelow=\baselineskip,
+  hidealllines=true,
+  backgroundcolor=red!10
+  ]{definition}
+
+\usepackage[colorlinks]{hyperref}
+
+
+
+\begin{document}
+\begin{figure}
+ \centering
+ \setechemie{elektrolyse}
+ \begin{tikzpicture}
+  \drawcell
+  % Teilchen:
+  \foreach \x/\y in
+    {
+       .5*\elwidth+.2/.75*\elheight ,
+       .5*\elwidth+.2/.5*\elheight ,
+       .5*\elwidth+.3/.125*\elheight ,
+       .5*\elwidth+.1/-.1 ,
+      -.5*\elwidth-.2/.25*\elheight ,
+      -.5*\elwidth-.2/.625*\elheight
+    }
+    { \draw[] ($(anode)+(\x,\y)$) circle (2pt) ; }
+  \foreach \x/\y in
+    {
+      -.5*\elwidth-.2/.8*\elheight ,
+      -.5*\elwidth-.15/.55*\elheight ,
+      -.5*\elwidth-.3/-.1 ,
+       .5*\elwidth+.1/.1 ,
+       .5*\elwidth+.15/.6*\elheight ,
+       .5*\elwidth+.15/.73*\elheight
+    }
+    { \draw[] ($(cathode)+(\x,\y)$) circle (2pt) ; }
+  % Elektrolytbewegung:
+  \node at ($(cathode)+(1.5,2.5)$) {\ch{->[ SO4^2- ]}};
+  \node at ($(cathode)+(1.7,1.5)$) {\ch{<-[ Na+ ]}};
+  \node at ($(anode)+(-1.5,1.8)$)  {\ch{<-[ Na+ ]}};
+  \node at ($(anode)+(-2,1.2)$)    {\ch{->[ SO4^2- ]}};
+  % Reaktionsgleichungen:
+  \node[below,align=center] at ($(cathode)+(0,-1)$)
+    {
+      Kathode \\
+      \ch{2 e- + 2 H2O -> H2\gas{} + 2 OH-} \\
+    } ;
+  \node[below,align=center] at ($(anode)+(0,-1)$)
+    {
+      Anode \\
+      \ch{2 H2O -> O2\gas{} + 4 H+ + 4 e-} \\
+    } ;
+ \end{tikzpicture}
+ \caption{Versuchsanordnung zur Elektrolyse einer wässrigen \ch{Na2SO4}-Lösung}
+\end{figure}
+
+\begin{figure}
+ \centering
+ \setechemie{
+   membrane ,
+   electrodes = {Cu}{Zn} ,
+   anode-color = {red!20} ,
+   electrolyte-color = {blue!5}
+ }
+ \begin{tikzpicture}
+  \drawcell
+ \end{tikzpicture}
+\end{figure}
+
+
+\end{document}

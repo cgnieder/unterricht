@@ -1,0 +1,543 @@
+% arara: pdflatex
+% arara: pdflatex
+\documentclass[DIV11]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[supstfm=libertinesups]{superiors}
+\usepackage{libertine}
+\usepackage{microtype}
+
+\usepackage[ngerman]{babel}
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\usepackage{upgreek}
+\usepackage{chemmacros}
+\chemsetup{
+  option/language         = german,
+  chemformula/name-format = \centering ,
+%  phases/pos              = sub
+}
+\renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
+\renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
+
+\DeclareChemReaction[star]{gthreactions}{gather}
+\newcommand*\rctref[1]{\{\ref{#1}\}}
+
+\usepackage{siunitx}
+\sisetup{
+%  per-mode = fraction ,
+  per-mode = symbol ,
+  fixed-exponent = 0 ,
+%  scientific-notation = true ,
+  exponent-product = \cdot ,
+  list-final-separator = { und } ,
+  list-pair-separator = { und } ,
+  range-phrase = { bis }
+}
+
+\usepackage{chemfig}
+\renewcommand*\printatom[1]{#1}
+\setatomsep{1.8em}
+
+\usepackage{pgfplots,tikz}
+\pgfplotsset{
+  compat = 1.7 ,
+  scaled ticks = false
+}
+
+\usepackage[load-headings]{exsheets}
+\SetupExSheets{
+  totoc ,
+  headings = block-rev
+}
+\usepackage{enumitem}
+
+\usepackage{fnpct}
+\usepackage{booktabs}
+\usepackage{collcell}
+\newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
+
+\usepackage[colorlinks]{hyperref}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Puffer
+\end{center}
+
+\addsec{Übungen}
+Auf Seite~\pageref{tab:pKs-werte} finden Sie eine Tabelle mit den \pKa-Werten
+einiger Säuren, die Sie zur Lösung der Aufgaben verwenden können.  Wenn nicht
+anders angegeben, bedeutet die Notation $[\ch{A}]$ die Konzentration des
+Stoffes \ch{A}, also $c(\ch{A})$.  Mit $\log$ ist, wenn nicht anders
+angegeben, der dekadische Logarithmus gemeint.
+
+\bigskip
+
+\begin{question}
+\begin{tasks}
+  \task Wie muß ein Puffer für den \pH-Wert $7.3$ zusammengesetzt sein, wenn
+    eine Konzentration für das Dihydrogenphosphation von
+    \SI{0.30}{\mole\per\liter} vorgegeben wird? 
+  \task Puffert dieser Puffer besser gegen Säuren oder Basen?
+  \task Zu \SI{100}{\milli\liter} dieses Puffers gibt man
+   \SI{10}{\milli\liter} \SI{1}{\Molar}  Salzsäure. Welchen \pH-Wert zeigt die
+   Lösung jetzt?
+  \task Welchen \pH-Wert zeigt eine ungepufferte Lösung mit dem gleichen
+    \pH-wert wie der Puffer bei der gleichen Säurezugabe?
+  \task Geben Sie ein Beispiel für ein wichtiges Puffersystem in Natur oder
+    Technik. 
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Einsetzen der gegebenen Werte in die
+      Henderson"=Hasselbalch"=Gleichung ergibt die Gleichung
+      \[ 7.3 = 7.21 - \log \frac{0.30}{x} \]
+      mit der Lösung $x=0.37$.  Damit ist der Puffer aus \SI{0.30}{\Molar}
+      Dihydrogenphosphat und \SI{0.37}{\Molar} Hydrogenphosphat
+      zusammengesetzt.
+    \task Der Puffer puffert etwa gleich gut gegen Säuren und Basen, durch den
+      leichten Überschuß Hydrogenphosphat etwas besser gegen Säuren.
+    \task Nach Zugabe der Säure betragen die neuen Konzentrationen
+      $[\ch{H2PO4-}] = (0.3\cdot0.1+0.01/0.11) = 0.364$ und $[\ch{HPO4^2-}] =
+      (0.37\cdot0.1-0.01)/0.11 = 0.245$, jeweils in \si{\mole\per\liter}.
+      Damit ergibt sich der $\pH = 7.04$, der \pH{} sank also um $0.26$
+      Einheiten.
+    \task In einer ungepufferten Lösung mit $\pH = 7.3$ beträgt die
+      Oxonium"=Konzentration $[\ch{H3O+}] = \SI{5.0e-8}{\mole\per\liter}$.
+      Damit ergibt sich nach Zugabe der Säure eine Konzentration von
+      $[\ch{H3O+}] = (\num{5.0e-8}\cdot0.1+0.01=0.01$, die vor Zugabe der
+      Säure vorhandene Stoffmenge ist also vernachlässigbar.  Die Lösung hat
+      dann einen $\pH = 2$, was einer Änderung um $5.3$ Einheiten entspricht.
+    \task Der in dieser Aufgabe verwendete Dihydrogenphosphat\slash
+      Hydrogenphosphat"=Puffer ist Bestandteil des wichtigen Puffersystems
+      Blut.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+In \SI{500}{\milli\liter} einer Lösung sind \SI{10}{\gram} Essigsäure und
+\SI{15}{\gram} Natriumacetat gelöst.
+\begin{tasks}
+  \task Welchen \pH-Wert zeigt diese Lösung?
+  \task Welchen \pH-Wert zeigt diese Lösung nach Zugabe von \SI{2}{\gram}
+    \ch{NaOH} (Volumenänderung vernachlässigen)?
+  \task Welchen \pH-Wert zeigt diese Lösung nach Zugabe von \SI{10}{\gram}
+    \ch{NaOH}?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Die molaren Massen von Essigsäure ist \SI{60.0}{\gram\per\mole}, die
+      von Natriumacetat \SI{82.0}{\gram\per\mole}.  Die Konzentrationen betragen
+      also $[\ch{CH3COOH}] = (10/60)/0.5 = 0.333$ und $[\ch{CH3COO-}] =
+      (15/82)/0.5 = 0.366$, jeweils in \si{\mole\per\liter}.  Eingesetzt in die
+      Henderson"=Hasselbalch"=Gleichung ergibt sich der $\pH = 4.80$.
+    \task Die molare Masse von \ch{NaOH} beträgt \SI{40.0}{\gram\per\mole}.
+      Es werden also \SI{0.05}{\mole} Natriumhydroxid zugegeben.  Damit
+      ergeben sich die neuen Konzentrationen $[\ch{CH3COOH}] =
+      (0.333\cdot0.5-0.05)/0.5 = 0.233$ und $[\ch{CH3COO-}] =
+      (0.366\cdot0.5+0.05)/0.5 = 0.466$, jeweils in \si{\mole\per\liter}.  Der
+      neue \pH{} ergibt sich dann zu $\pH = 5.06$.
+    \task \SI{10}{\gram} Natriumhydroxid entsprechen \SI{0.25}{\mole}.  In der
+      Lösung befanden sich $0.333\cdot0.5 = \SI{0.167}{\mole}$ Essigsäure.
+      Diese werden vollständig deprotoniert.  Es verbleiben also
+      \SI{0.083}{\mole} Hydroxid.  Damit ergibt sich ein $\pOH = 1.1$ und ein
+      $\pH = 12.9$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Hergestellt werden soll ein Puffer mit $\pH = 7$.
+\begin{tasks}
+  \task Erläuteren und begründen Sie Zusammensetzung und Wirkungsweise eines
+    Puffers.
+  \task Wählen Sie ein Puffersystem aus und berechnen Sie seine
+    Zusammensetzung für den gewünschten \pH-Bereich.
+  \task Puffert die berechnete Lösung besser gegen Säure- oder Basenzugabe?
+  \task Setzen Sie die Konzentration der Säure des Puffers gleich
+    \SI{0.1}{\Molar} und berechnen Sie, welchen \pH-Wert \SI{20}{\milli\liter}
+    der Lösung nach Zugabe von \SI{5}{\milli\liter} \SI{0.01}{\Molar}
+    Salzsäure hat.
+  \task Welchen \pH-Wert hätten \SI{20}{\milli\liter} einer ungepufferten
+    Lösung mit \pH = $7$ nach Zugabe der gleichen Säuremenge wie in d?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Ein Puffer ist eine wässrige Lösung einer schwachen Säure und ihrer
+      korrespondierenden Base.  Die Säure kann zugebenene Hydroxid-Ionen
+      abfangen und reagiert dabei zu ihrer korrespondierenden Base.  Die Base
+      kann zugegebene Oxonium-Ionen abfangen und reagiert dabei zur Säure.
+      Wenn die Konzentrationen der Pufferbestandteile groß im Vergleich zu den
+      zugegebenen Mengen Hodroxid oder Oxonium sind, verändern sich dabei die
+      Konzentrationen der Pufferbestandteile nicht wesentlich und ihr
+      Verhältnis bleibt weitestgehend gleich, was den \pH-Wert stabil hält.
+
+      Am besten puffert ein Puffer bei gleichen Bestandteilen Säure und
+      korrespondierender Base, also bei dem \pH-Wert, der dem \pKa-Wert der
+      Säure entspricht.  Die Stoffmengen von Säure und Base bestimmen die
+      Pufferkapazität.  Wird eine von beiden vollständig umgesetzt, ist der
+      Puffer zerstört.
+    \task Für $\pH=7$ bieten sich entweder der Dihydrogenphosphat\slash
+      Hydrogenphosphat"=Puffer ($\pKa=7.21$) oder der Kohlensäure\slash
+      Hydrogencarbonat"=Puffer ($\pKa=6.46$) an.  Das benötigte Verhältnis
+      $x=\text{Säure} : \text{Base}$ ergibt sich aus der
+      Henderson"=Hasselbalch"=Gleichung
+      \[
+        x = 10^{\pKa-\pH}
+      \]
+      und ergibt für den Dihydrogenphosphat\slash Hydrogenphosphat"=Puffer $x
+      = 1.6 = 8:5$ und für den Kohlensäure\slash Hydrogencarbonat"=Puffer $x =
+      0.29 \approx 3:10$.
+    \task Der Dihydrogenphosphat\slash Hydrogenphosphat"=Puffer puffert besser
+      gegen zugegebene Base, der Kohlensäure\slash Hydrogencarbonat"=Puffer
+      besser gegen zugegebene Säure.
+    \task Die Konzentration der Säure beträgt nach Zugabe der Salzsäure
+      $(0.1\cdot0.02 + 0.01\cdot0.05)/0.025 = 0.1$ (in
+      \si{\mole\per\liter}). Im Fall des Dihydrogenphosphat\slash
+      Hydrogenphosphat"=Puffers beträgt die Konztentration der Base
+      $(0.1\cdot0.02/1.6 - 0.01\cdot0.05)/0.025 = 0.03$ (in
+      \si{\mole\per\liter}).  Damit ergibt sich $\pH = 6.7$.  Im Fall des
+      Kohlensäure\slash Hydrogencarbonat"=Puffers beträgt die Konzentration
+      der Base $(0.1\cdot0.02/0.29 - 0.01\cdot0.05)/0.025 = 0.26$ (in
+      \si{\mole\per\liter}).  Damit ergibt sich $\pH = 6.9$.  Wie in c
+      festgestellt puffert der Kohlensäure\slash Hydrogencarbonat"=Puffer
+      besser gegen die Säurezugabe.
+    \task Ohne Puffer hätte sich eine Oxonium"=Konzentration von
+      \SI{0.02}{\mole\per\liter} eingestellt, was $\pH = 1.7$ entspricht.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[ID=HCl/NaCl]
+Warum kann eine Mischung aus Salzsäure und Kochsalz nicht als Puffer wirken?
+\end{question}
+\begin{solution}
+  Salzsäure ist eine starke Säure ($\pKa=-6$).  Dementsprechend ist das
+  Chlorid \ch{Cl-} eine so schwache Base ($\pKb = 20$), dass es quasi gar
+  nicht basisch reagiert.  Anders gesagt: das Gleichgewicht der Reaktion
+  \ch[arrow-ratio=.1,arrow-min-length=4.5em]{HCl + H2O <=>> H3O+ + Cl-} liegt
+  (fast) vollständig auf der Seite der dissoziierten Säure, so dass sich kein
+  Verhältnis zwischen Säure und korrespondierender Base einstellen kann, das
+  als Puffer wirken kann.
+\end{solution}
+
+\begin{question}
+\begin{tasks}
+  \task Eine Lösung von \SI{100}{\milli\liter} enthält \SI{0.2}{\Molar}
+    \ch{HOAc} und \SI{0.4}{\Molar} \ch{^-OAc} (\ch{^-OAc} ist die
+    Kurzschreibweise für \ch{CH3COO-}).  Erläutern Sie die Vorgänge, die das
+    Protolysegleichgewicht in dieser Lösung bestimmen und leiten Sie aus dem
+    Massenwirkungsgesetz ab, wie man den \pH-Wert dieser Lösung berechnet.
+    Berechnen Sie den \pH-Wert.
+  \task Zu dieser Lösung gibt man \SI{10}{\milli\liter} \SI{0.2}{\Molar}
+    \ch{HCl}.  Berechnen Sie  den \pH-Wert, den die Lösung jetzt hat.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Es lassen sich mehrere Protolysereaktionen aufschreiben
+      \begin{gthreactions}
+        HOAc + H2O <=> ^-OAc + H3O+ \label{rct:HOAc} \\
+        ^-OAc + H2O <=> HOAc + OH- \label{rct:OAc-} \\
+        2 H2O <=> H3O+ + OH- \label{rct:autoprotolyse}
+      \end{gthreactions}
+      Reaktion~\rctref{rct:HOAc} beschreibt die Säureprotolyse der Essigsäure,
+      Reaktion~\rctref{rct:OAc-} die entsprechende basische Reaktion des
+      Acetats.  Beide hängen über den Satz von Heß mit
+      Reaktion~\rctref{rct:autoprotolyse}, der Autoprotolyse des Wassers,
+      miteinander zusammen.  (Damit ließe sich zeigen, weshalb \pKa{} und
+      \pKb{} korrespondierender Base und Säure zusammen $14$ ergeben.)  Das
+      Massenwirkungsgesetz für Reaktion~\rctref{rct:HOAc} ist
+      \begin{gather}
+        K   = \frac{[\ch{^-OAc}][\ch{H3O+}]}{[\ch{HOAc}][\ch{H2O}]} \label{eq:MWG} \\
+        \Ka = \frac{[\ch{^-OAc}][\ch{H3O+}]}{[\ch{HOAc}]} \label{eq:Ks}
+      \end{gather}
+      \Ka{} in Gleichung~\eqref{eq:Ks} ist definiert als $K\cdot[\ch{H2O}]$,
+      weshalb sich Gleichung~\eqref{eq:Ks} aus Gleichung~\eqref{eq:MWG} durch
+      Multiplikation mit $[\ch{H2O}]$ ergibt.  Logarithmieren und
+      anschließende Multiplikation mit $-1$ von Gleichung~\eqref{eq:Ks} führt
+      mit den Definitionen $\pH=-\log[\ch{H3O+}]$ und $\pKa=-\log\Ka$ auf die
+      Henderson"=Hasselbalch"=Gleichung für den Essigsäure\slash Acetat"=Puffer:
+      \begin{gather}
+        \pKa = -\log\biggl(\frac{[\ch{^-OAc}]}{[\ch{HOAc}]}\biggl) + \pH \\
+        \pH = \pKa -\log\biggl(\frac{[\ch{HOAc}]}{[\ch{^-OAc}]}\biggl)
+      \end{gather}
+      Damit ergibt sich nun ein \pH{} von $5.1$.
+    \task Die Konzentrationen nach Zugabe der Salzsäure betragen (in
+      \si{\mole\per\liter}) $[\ch{HOAc}] = (0.2\cdot0.1 + 0.2\cdot0.01)/0.11 =
+      0.2$ und $[\ch{^-OAc}] = (0.4\cdot0.1 - 0.2\cdot0.01)/0.11 = 0.34$.  Der
+      \pH{} beträgt nun also $5.0$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}[ID=HCOOH]
+Gegeben ist eine Lösung  von  \SI{0.2}{\Molar} \ch{HCOOH} und \SI{0.3}{\Molar}
+Natriumformiat (\SI{100}{\milli\liter}).
+\begin{tasks}
+  \task Berechnen Sie den \pH-Wert der Lösung.
+  \task Ist diese Lösung ein Puffer? Wenn ja, puffert sie besser gegen Säuren
+    oder Basen?
+  \task Welchen \pH-Wert zeigt diese Lösung nach Zugabe von
+    \SI{10}{\milli\liter} \SI{0.1}{\Molar} \ch{HCl}?
+  \task Welchen \pH-Wert würde eine Lösung, die ungepuffert ist und den
+    gleichen \pH-Wert hat, nach der gleichen Säurezugabe zeigen?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Nach der Henderson"=Hasselbalch"=Gleichung ergibt sich ein \pH{} von
+      $3.9$.
+    \task Da Ameisensäure eine schwache Säure ist, ist die Mischung
+      \ch{HCOOH}\slash\ch{HCOO-} ein Puffer.  Die Base ist in leichtem
+      Überschuß vorhanden, also puffert die Lösung besser gegen Säuren.
+    \task Die neuen Konzentrationen betragen $[\ch{HCOOH}] =
+      (0.2\cdot0.1+0.01\cdot0.1)/0.11 = 0.19$ und $[\ch{HCOO-}] =
+      (0.3\cdot0.1-0.01\cdot0.1)/0.11 = 0.26$, jeweils in
+      \si{\mole\per\liter}.  Damit ergibt sich ein \pH{} von $3.9$.
+    \task Ein \pH{} von $3.9$ enstpricht einer Oxonium"=Konzentration von
+      \SI{1.3e-4}{\mole\per\liter} und im vorgegebenen Volumen einer
+      Stoffmenge von \SI{1.3e-5}{\mole}.  Es werden \SI{0.001}{\mole}
+      Oxonium"=Ionen hinzugegeben, was ein deutlicher Überschuß ist.  Damit
+      kann die AUsgangskonzentration vernachlässigt werden und mit der
+      Konzentration von \SI{0.009}{\mole\per\liter} ergibt sich ein \pH{} von
+      $2.0$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Gegeben ist eine Lösung von \SI{1}{\gram} \ch{NH3} und \SI{5}{\gram}
+\ch{NH4Cl} in \SI{500}{\milli\liter} Lösung.
+\begin{tasks}
+  \task Berechnen Sie den \pH-Wert der Lösung.
+  \task Welchen \pH-Wert zeigt diese Lösung nach Zugabe von \SI{1}{\gram}
+    \ch{NaOH} (keine Volumenänderung)?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task \SI{1}{\gram} Ammoniak entspricht einer Stoffmenge von
+      \SI{0.059}{\mole} und damit einer Konzentration von
+      \SI{0.12}{\mole\per\liter}.  \SI{5}{\gram} Ammoniumchlorid entsprechen
+      einer Stoffmenge von \SI{0.019}{\mole} und einer Konzentration von
+      \SI{0.037}{\mole\per\liter}.  Damit ergibt sich ein \pH{} von $9.75$.
+    \task \SI{1}{\gram} Natriumhydroxid entspricht \SI{0.025}{\mole}.  Die
+      neuen Konzentrationen betragen also $[\ch{NH4+}] = (0.037-0.025)/0.5 =
+      0.024$ und $[\ch{NH3}] = (0.12+0.025)/0.5 = 0.29$, jeweils in
+      \si{\mole\per\liter}.  Der \pH{} beträgt dann $10.3$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Gegeben ist eine Lösung von \SI{1}{\gram} \ch{HCl} und \SI{1}{\gram} \ch{NaCl}
+in \SI{500}{\milli\liter} Lösung.  Welchen \pH-Wert zeigt diese Lösung nach
+Zugabe von \SI{10}{\gram} \ch{NaOH} (keine Volumenänderung)?
+\end{question}
+\begin{solution}
+  Auch wenn die Zusammensetzung der Lösung nach einem Puffer aussieht, ist sie
+  keiner (siehe auch die Lösung zu Übung~\QuestionNumber{HCl/NaCl}).  Lediglich
+  die Salzsäure muss zur Berechnung des \pH{} berücksichtigt werden.
+  \SI{1}{\gram} \ch{HCl} entsprechen \SI{0.027}{\mole}.  Das ergibt eine
+  Konzentration von \SI{0.056}{\mole\per\liter}, also beträgt der $\pH = 1.3$.
+  \SI{10}{\gram} \ch{NaOH} entsprechen \SI{0.250}{\mole}.  Nach Neutralisation
+  verbleiben also \SI{0.223}{\mole} \ch{NaOH}, also eine Konzentration von
+  \SI{0.446}{\mole\per\liter}.  Der \pOH{} ist dann $0.4$, der \pH{} beträgt
+  $13.6$.
+\end{solution}
+
+\begin{question}
+Gegeben ist eine Lösung von \SI{500}{\milli\liter} aus \SI{0.1}{\Molar}
+Natriumdihydrogenphosphat und \SI{0.1}{\Molar} Dinatriumhydrogenphosphat.
+\begin{tasks}
+  \task Berechnen Sie den \pH-Wert der Lösung.
+  \task Ist diese Lösung ein Puffer? Wenn ja, puffert sie besser gegen Säuren
+    oder Basen?
+  \task Welchen \pH-Wert zeigt diese Lösung nach Zugabe von
+    \SI{10}{\milli\liter} \SI{0.1}{\Molar} \ch{HCl}?
+  \task Welchen \pH-Wert würde eine Lösung, die ungepuffert ist und den
+    gleichen \pH-Wert hat, nach der gleichen Säurezugabe zeigen?
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Da die Konzentrationen im Verhältnis $1:1$ vorliegen, entspricht der
+      \pH{} dem \pKa{} der Säure, es ist also $\pH = 7.2$.
+    \task Die Mischung aus Dihydrogenphosphat und Hydrogenphosphat ist ein
+      Puffer.  Da die Konzentrationen im Verhältnis $1:1$ vorliegen, puffert
+      sie gleichermaßen gegen Säuren und Basen.
+    \task Nach Säurezugabe ergeben sich die Konzentrationen $[\ch{H2PO4-}] =
+      (0.1\cdot0.5 + 0.01\cdot0.1)/0.51 = 0.1$ und $[\ch{HPO4^2-}] =
+      (0.1\cdot0.5 - 0.01\cdot0.1)/0.51 = 0.096$, also hat die Lösung den $\pH
+      = 7.2$.
+    \task Mit der gleichen Argumentation wie in der Lösung zu
+      Übung~\QuestionNumber{HCOOH}d kann die zu Beginn vorliegende Menge an
+      Oxonium"=Ionen vernachlässigt werden.  Mit der Konzentration
+      $[\ch{H3O+}] = \SI{0.002}{\mole\per\liter}$ ergibt sich also ein \pH{}
+      von $2.7$.
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Gegeben sind \SI{10}{\milli\liter} einer \SI{0.1}{\Molar} \ch{HF}.  Diese wird
+mit \SI{0.1}{\Molar} \ch{NaOH} titriert.
+\begin{tasks}
+  \task Berechnen Sie den \pH-Wert nach Zugabe von
+      \SIlist{0;1;5;9;10;10.5;12;14}{\milli\liter} Zugabe der \ch{NaOH}.
+  \task Skizzieren Sie den Verlauf der \pH-Kurve.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Zur Lösung der Aufgabe werden wir folgende Annahmen machen: 1. \ch{HF}
+      ist eine schwache Säure, es gilt $\pH=0.5(\pKa-\log[\ch{HF}])$ für die
+      reine Säurelösung.  Die analoge Annahme soll für die reine
+      Fluorid-Lösung gelten  2. Die Zugabe von Natronlauge führt vollständig
+      zur Bildung von \ch{F-} und solange \ch{HF} nicht vollständig
+      neutralisiert wurde, gilt die Henderson"=Hasselbalch"=Gleichung.
+      3. Nach der vollständigen Neutralisierung kann \ch{F-} vernachlässigt
+      werden und nur noch die überschüssige \ch{NaOH} trägt zum \pH-Wert bei.
+      Damit ergeben sich folgende Werte:
+      \begin{center}
+        \begin{tabular}{l*{8}{S}}
+          \toprule
+            $V(\ch{NaOH})$ in \si{\milli\liter}
+                &   0 &   1 &   5 &   9 &  10 & 10.5 &   12 &   14 \\
+            \pH & 2.1 & 2.2 & 3.1 & 4.1 & 7.9 & 11.4 & 12.0 & 12.2 \\
+          \bottomrule
+        \end{tabular}
+      \end{center}
+    \task
+      \begin{tikzpicture}[baseline]
+        \begin{axis}[
+          anchor = north ,
+          xlabel = {$V$ zugegebene \ch{NaOH} in \si{\milli\liter}} ,
+          ylabel = {\pH}]
+         \addplot[color=red,mark=x,smooth] coordinates {
+            (0,2.1)
+            (1,2.2)
+            (5,3.1)
+            (9,4.1)
+            (10,7.9)
+           (10.5,11.4)
+           (12,12.0)
+           (14,12.2)
+         };
+        \end{axis}
+       \end{tikzpicture}
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+Gegeben sind \SI{10}{\milli\liter} einer \SI{0.1}{\Molar} \ch{NH3}.  Diese
+wird mit \SI{0.1}{\Molar} \ch{HCl} titriert.
+\begin{tasks}
+  \task Berechnen Sie den \pH-Wert nach Zugabe von
+    \SIlist{0;1;5;9;10;10.5;12;14}{\milli\liter} Zugabe der \ch{HCl}.
+  \task Skizzieren Sie den Verlauf der Titrationskurve.
+\end{tasks}
+\end{question}
+\begin{solution}
+  \begin{tasks}
+    \task Zur Lösung der Aufgabe werden wir folgende Annahmen machen: 1. \ch{NH3}
+      ist eine schwache Base, es gilt $\pOH=0.5(\pKb-\log[\ch{NH3}])$ für die
+      reine Basenlösung.  Die analoge Annahme soll für die reine
+      Ammonium-Lösung gelten  2. Die Zugabe von Salzsäure führt vollständig
+      zur Bildung von \ch{NH4+} und solange \ch{NH3} nicht vollständig
+      neutralisiert wurde, gilt die Henderson"=Hasselbalch"=Gleichung.
+      3. Nach der vollständigen Neutralisierung kann \ch{NH4+} vernachlässigt
+      werden und nur noch die überschüssige \ch{HCl} trägt zum \pH-Wert bei.
+      Damit ergeben sich folgende Werte:
+      \begin{center}
+        \begin{tabular}{l*{8}{S}}
+          \toprule
+            $V(\ch{HCl})$ in \si{\milli\liter}
+                &    0 &    1 &   5 &   9 &  10 & 10.5 &  12 &  14 \\
+            \pH & 11.1 & 10.2 & 9.2 & 8.3 & 5.3 &  2.6 & 2.0 & 1.8 \\
+          \bottomrule
+        \end{tabular}
+      \end{center}
+    \task
+      \begin{tikzpicture}[baseline]
+        \begin{axis}[
+          anchor = north ,
+          xlabel = {$V$ zugegebene \ch{HCl} in \si{\milli\liter}} ,
+          ylabel = {\pH}]
+         \addplot[color=red,mark=x,smooth] coordinates {
+            (0,11.1)
+            (1,10.2)
+            (5,9.2)
+            (9,8.3)
+            (10,5.3)
+           (10.5,2.6)
+           (12,2.0)
+           (14,1.8)
+         };
+        \end{axis}
+       \end{tikzpicture}
+  \end{tasks}
+\end{solution}
+
+\begin{table}
+  \centering
+  \begin{tabular}{lCCSS}
+    \toprule
+      & {\bfseries{}Säure} & {\bfseries{}Base} & {\bfseries\Ka} & {\bfseries\pKa} \\
+    \midrule
+      Chlorwasserstoff   & HCl     & Cl-     &    1e6   & -6 \\
+      Oxonium            & H3O+    & H2O     &   55     & -1.74 \\
+      Schwefelsäure      & H2SO4   & HSO4-   &    1e3   & -3 \\
+      Salpetersäure      & HNO3    & NO3-    &   21     & -1.32 \\
+      Hydrogensulfat     & HSO4-   & SO4^2-  &  1.3e-2  &  1.92 \\
+      Phosphorsäure      & H3PO4   & H2PO4-  &  1.1e-2  &  1.96 \\
+      Fluorwasserstoff   & HF      & F-      & 7.25e-4  &  3.14 \\
+      Methansäure        & HCOOH   & HCOO-   &  1.7e-4  &  3.77 \\
+      Ethansäure         & CH3COOH & CH3COO- & 1.75e-5  &  4.76 \\
+      Kohlensäure        & H2CO3   & HCO3-   &  3.5e-7  &  6.46 \\
+      Dihydrogenphosphat & H2PO4-  & HPO4^2- &  6.2e-8  &  7.21 \\
+      Ammonium           & NH4+    & NH3     &  5.8e-10 &  9.24 \\
+      Hydrogencarbonat   & HCO3-   & CO3^2-  &    4e-11 & 10.4 \\
+      Hydrogenphosphat   & HPO4^2- & PO4^3-  &  4.8e-13 & 12.32 \\
+      Wasser             & H2O     & OH-     &  1.8e-16 & 15.74 \\
+      Ammoniak           & NH3     & NH2-    &    1e-23 & 23 \\
+      Hydroxid           & OH-     & O^2-    &    1e-24 & 24 \\
+    \bottomrule
+  \end{tabular}
+  \caption{\pKa-Werte einiger Säuren}
+  \label{tab:pKs-werte}
+\end{table}
+
+\newpage
+\addsec{Lösungen}
+In den Lösungen ist die Kenntnis der Henderson"=Hasselbalch"=Gleichung
+vorausgesetzt und sie wird nicht explizit hingeschrieben.  Zur Erinnerung:
+\[ \pH = \pKa - \log\biggl(\frac{[\text{Säure}]}{[\text{Base}]}\biggr) \]
+Desweiteren wird angenommen, dass Sie die Definition des \pH-Wertes kennen und
+anwenden können ($\pH = -\log[\ch{H3O+}]$).  Außerdem wird die entsprechende
+Definition des \pOH{} ($\pOH = -\log[\ch{OH-}]$) und die Beziehung $\pH + \pOH
+= 14$ als bekannt angenommen.  Ebenso wird angenommen, dass Sie zwischen
+schwachen und starken Säuren unterscheiden können und wissen, wie man im
+jeweiligen Fall den \pH-Wert berechnen kann, nämlich mit $\pH =
+\frac{1}{2}\cdot(\pKa - \log[\ch{HA}])$ bzw. $\pH = -\log[\ch{HA}]$.   Und zu
+guter Letzt wird vorausgesetzt, dass Sie mit Stoffmengen, Massen, Dichten und
+Konzentrationen umgehen können, also die Gleichungen $\varrho = \frac{m}{V}$,
+$M = \frac{m}{n}$ und $c = \frac{n}{V}$ (mit $\varrho$~= Dichte, $m$~= Masse,
+$M$~= molare Masse, $n$~= Stoffmenge, $V$~= Volumen und $c$~= Konzentration)
+kennen und anwenden können.
+
+Da das hier chemische Übungen sind, wird die benötigte Mathematik
+stillschweigend vorausgesetzt.  Wenn Sie Schwierigkeiten mit dem Umstellen von
+Gleichungen und der Funktionsweise von Logarithmen haben, sollten Sie Sich
+dazu Übungen besorgen.  Sonst fällt Ihnen das nachvollziehen des einen oder
+anderen Schritts in der Lösung vermutlich schwerer als nötig.
+
+\bigskip
+
+\printsolutions
+
+\end{document}
