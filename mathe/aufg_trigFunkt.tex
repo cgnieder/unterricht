@@ -1,0 +1,118 @@
+% arara: pdflatex: { shell: on }
+\documentclass{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+% \show\vary
+% \mathchar"432
+\let\vary\relax
+\usepackage{exsheets}
+
+\usepackage{tkz-fct}
+\usetkzobj{all}
+
+\usepackage{xcolor}
+\colorlet{grid}{black!10}
+
+\usepackage{scrpage2}
+\clearscrheadfoot
+\pagestyle{scrheadings}
+\chead{Seite \thepage}
+\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+
+\begin{document}
+
+\begin{center}
+  \Huge\sffamily Trigonometrische Funktionen
+\end{center}
+
+\addsec{Aufgaben}
+
+\begin{question}
+  Bestimme die Funktionsgleichungen der Sinusfunktionen im folgenden Schaubild:
+
+\begin{tikzpicture}[scale=.7]
+  \tkzInit[xmin=-1,xmax=16,ymin=-4,ymax=6]
+  \tkzGrid[sub,subxstep=.5,subystep=.5,color=grid]
+  \tkzAxeY[font=\footnotesize]
+  \tkzAxeX[trig=2,font=\footnotesize]
+  \tkzClip
+  \foreach\v in {.5,1,...,5}
+    {\tkzVLine[dotted]{\v*\FPpi}}
+  \tkzFct[color=red,domain=0:16]{2*sin(x-pi)+3}
+  \tkzFct[color=green,domain=0:16]{1.5*sin(2*(x-pi/2))-1}
+  \tkzFct[color=blue,domain=0:16]{3*sin(.5*x)+1.5}
+  \tkzFct[color=brown,domain=0:16]{sin(x/3)+4}
+\end{tikzpicture}
+\end{question}
+\begin{solution}
+  Diese Gleichungen stellen nur \emph{eine} mögliche Lösung dar.
+  \begin{tasks}[label-width=3em,item-indent=4.3333em](2)
+    \task[Rot:]
+      $ f(x) = 2\sin(x-\pi)+3 \vphantom{\big(} $
+    \task[Grün:]
+      $
+        f(x) =
+        \frac{3}{2}\sin\bigl(2\left(x-\frac{\pi}{2}\right)\bigr)-1
+      $
+    \task[Blau:]
+      $ f(x) = 3\sin\bigl(\frac{1}{2}x\bigr)+\frac{3}{2} $
+    \task[Braun:]
+      $ f(x) = \sin\bigl(\frac{x}{3}\bigl)+4 $
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Bestimme die Funktionsgleichungen der Sinusfunktionen im folgenden Schaubild:
+
+\begin{tikzpicture}[scale=.7]
+  \tkzInit[xmin=-1,xmax=16,ymin=-4,ymax=6]
+  \tkzGrid[sub,subxstep=.5,subystep=.5,color=grid]
+  \tkzAxeXY[font=\footnotesize]
+  \tkzClip
+  \tkzFct[color=red,domain=0:16]{sin(.5*pi*x)+3}
+  \tkzFct[color=green,domain=0:16]{sin(pi*(x+.5))-1}
+  \tkzFct[color=blue,domain=0:16]{.5*sin(.25*pi*(x-1))-3}
+  \tkzFct[color=brown,domain=0:16]{4*sin(pi*x/5)+2}
+\end{tikzpicture}
+\end{question}
+\begin{solution}
+  Diese Gleichungen stellen nur \emph{eine} mögliche Lösung dar.
+  \begin{tasks}[label-width=3em,item-indent=4.3333em](2)
+    \task[Rot:]
+      $ f(x) = \sin\bigl(\frac{\pi x}{2}\bigr)+3 $
+    \task[Grün:]
+      $ f(x) = \sin\bigl(\pi\left(x+\frac{1}{2}\right)\bigr)-1 $
+    \task[Blau:]
+      $ f(x) = \frac{1}{2}\sin\bigl(\frac{\pi}{4}(x+1)\bigr) -3  $
+    \task[Braun:]
+      $ f(x) = 4\sin\bigl(\frac{\pi x}{5}\bigl) +2 $
+  \end{tasks}
+\end{solution}
+
+\begin{question}
+  Zeichne folgende Funktionen in ein Schaubild im Intervall $[0,5\pi]$:
+  \begin{tasks}(2)
+    \task $f(x)=\sin(3x)+1 \vphantom{\big(}$
+    \task $f(x)=-2\sin\bigl(\frac{1}{2}\left(x+\frac{\pi}{2}\right)\bigr)$
+    \task $f(x)=3\sin\bigl(\frac{3}{2}x\bigr)-2$
+    \task $f(x)=\frac{5}{2}\sin\bigl(3x-\frac{3\pi}{2}\bigr)+2$
+  \end{tasks}
+\end{question}
+
+\begin{question}
+  Zeichne folgende Funktionen in ein Schaubild im Intervall $[0,10]$:
+  \begin{tasks}(2)
+    \task $f(x)=\sin(\pi x)-2 \vphantom{\big(}$
+    \task $f(x)=2\sin\bigl(\frac{\pi}{2}(x+1)\bigr)$
+    \task $f(x)=4\sin\bigl(\frac{3\pi}{2}x\bigr)+1$
+    \task $f(x)=0{,}5\sin(0{,}5\pi x)-0{,}5 \vphantom{\big(}$
+  \end{tasks}
+\end{question}
+
+\addsec{Lösungen}
+\printsolutions
+
+\end{document}
+

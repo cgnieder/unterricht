@@ -1,34 +1,29 @@
 % arara: pdflatex
 % arara: pdflatex
-\documentclass{scrartcl}
-
+\documentclass{arbeitsblatt}
+\usepackage[greek,ngerman]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[supstfm=libertinesups]{superiors}
-\usepackage[utopia]{mathdesign}
-\usepackage[oldstyle]{libertine}
-\usepackage{microtype}
 
-\usepackage[greek,ngerman]{babel}
-\usepackage{scrpage2}
-\clearscrheadfoot
-\pagestyle{scrheadings}
-\chead{Seite \thepage}
-\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
+\title{Säuren und Basen nach Br\o nstedt}
+
+\usepackage{silence}
+\WarningFilter{microtype}{I cannot find a protrusion list}
+
+\usepackage{multicol}
 
 \usepackage{upgreek}
-\usepackage{chemmacros}
-\chemsetup{
-  option/language    = german,
-  chemformula/format = \libertineLF
-}
+\chemsetup{option/greek=upgreek}
+
 \renewrobustcmd*\mch[1][]{\ch{^{#1}-}}
 \renewrobustcmd*\pch[1][]{\ch{^{#1}+}}
 
 \DeclareChemReaction[star]{gthreactions}{gather}
 \newcommand*\rctref[1]{\{\ref{#1}\}}
+\chemsetup{
+  chemformula/format = \libertineLF\microtypesetup{disable}
+}
 
-\usepackage{siunitx}
 \sisetup{
   detect-all ,
 %  per-mode = fraction ,
@@ -41,69 +36,24 @@
   range-phrase = { bis }
 }
 
-\usepackage{chemfig}
 \renewcommand*\printatom[1]{#1}
-\setatomsep{1.8em}
 
-\usepackage{pgfplots,tikz}
 \pgfplotsset{
   compat = 1.7 ,
   scaled ticks = false
 }
 
-\usepackage[load-headings]{exsheets}
 \SetupExSheets{
   totoc ,
   headings = block-rev
 }
 
-\usepackage{fnpct}
-
-\usepackage{booktabs}
 \usepackage{collcell}
 \newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
 
-\usepackage{mdframed}
-\newmdenv[
-  backgroundcolor = red!20,
-  hidealllines    = true,
-  leftmargin      = 2em ,
-  rightmargin     = 2em ,
-  skipabove       = \baselineskip ,
-  skipbelow       = \baselineskip ,
-  splittopskip    = .5\baselineskip ,
-  splitbottomskip = .5\baselineskip ,
-  frametitle      = Definition ,
-  frametitlefont  = \large\sffamily\scshape ,
-  frametitlebackgroundcolor = red!40
-]{definition}
-
-\newmdenv[
-  backgroundcolor = black!5,
-  hidealllines    = true,
-  leftmargin      = 2em ,
-  rightmargin     = 2em ,
-  skipabove       = \baselineskip ,
-  skipbelow       = \baselineskip ,
-  splittopskip    = .5\baselineskip ,
-  splitbottomskip = .5\baselineskip ,
-  frametitle      = Beispiel ,
-  frametitlefont  = \large\sffamily\scshape ,
-  frametitlebackgroundcolor = black!10
-]{beispiel}
-
-
-\usepackage{multicol}
-\usepackage[colorlinks]{hyperref}
-
 \begin{document}
 
-\begin{center}
-  \Huge\sffamily Säuren und Basen nach Br\o nstedt
-\end{center}
-\begin{multicols}{2}
-  \tableofcontents
-\end{multicols}
+\maketitle
 
 \section{Die Basis}
 \subsection{Worum es geht}
@@ -265,7 +215,7 @@ Aus mehreren Gründen verwendet man diese Gleichung jedoch nicht.
     vorher berechnet werden.
   \item zum zweiten können die Werte von $[\ch{H3O+}]$ zwischen
     ca. $\SI{0.00000000000001}{\mole\per\liter} = \SI{1e-14}{\mole\per\liter}$ und
-    \SI{1}{\mole\per\liter} schwanken.
+    $\SI{1}{\mole\per\liter}$ schwanken.
   \item zum dritten benötigt man den Wert von \Ka, der noch mehr schwanken
     kann.
 \end{itemize}
@@ -342,7 +292,7 @@ Das bedeutet, dass in neutralem Wasser die Konzentration von \ch{H3O+}
 \end{equation}
 beträgt.
 
-Sauer wird es erst, wenn die Konzentration mehr als \SI{1e-7}{\mole\per\liter}
+Sauer wird es erst, wenn die Konzentration mehr als $\SI{1e-7}{\mole\per\liter}$
 beträgt.  Liegt sie darunter, so ist die Lösung basisch.  Um die Angabe
 einfacher zu machen, macht man nun folgendes:
 \begin{align}
@@ -425,7 +375,7 @@ negativen Konzentrationen.  Also beträgt die Oxonium"=Konzentration
 \end{align*}
 Der \pOH{} beträgt damit \(\pOH = \num{11.8}\).
 
-Bedeutet das nun, dass wir jedesmal, wenn wir den \pH wissen wollen, eine
+Bedeutet das nun, dass wir jedesmal, wenn wir den \pH\ wissen wollen, eine
 quadratische Gleichung lösen müssen?  Nun, obwohl das auch nicht dramatisch
 wäre, lautet die Antwort: Nein.
 
@@ -683,10 +633,10 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
   Bestimmen Sie die Konzentration \([\ch{H+}]\) und \([\ch{OH-}]\) in folgenden
   Lösungen:
   \begin{tasks}(2)
-    \task \SI{.015}{\mole\per\liter} \ch{HNO3}
-    \task \SI{.0025}{\mole\per\liter} \ch{Ba(OH)2}
-    \task \SI{.00030}{\mole\per\liter} \ch{HCl}
-    \task \SI{.016}{\mole\per\liter} \ch{Ca(OH)2}
+    \task $\SI{.015}{\mole\per\liter}$ \ch{HNO3}
+    \task $\SI{.0025}{\mole\per\liter}$ \ch{Ba(OH)2}
+    \task $\SI{.00030}{\mole\per\liter}$ \ch{HCl}
+    \task $\SI{.016}{\mole\per\liter}$ \ch{Ca(OH)2}
   \end{tasks}
 \end{question}
 \begin{solution}
@@ -749,7 +699,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 \end{solution}
 
 \begin{question}
-  Welchen \pH-Wert hat eine Lösung von \SI{.30}{\mole\per\liter} \ch{NH3}?
+  Welchen \pH-Wert hat eine Lösung von $\SI{.30}{\mole\per\liter}$ \ch{NH3}?
 \end{question}
 \begin{solution}
   \[
@@ -758,7 +708,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 \end{solution}
 
 \begin{question}
-  Wieviel Mol Fluss"-säure benötigt man, um \SI{500}{\milli\liter} einer Lösung
+  Wieviel Mol Fluss"-säure benötigt man, um $\SI{500}{\milli\liter}$ einer Lösung
   mit \(\pH=\num{2.60}\) herzustellen?
 \end{question}
 \begin{solution}
@@ -771,7 +721,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 \end{solution}
 
 \begin{question}
-  Welchen \pH-Wert hat eine Lösung von \SI{.12}{\mole} Cyansäure (\ch{HOCN},
+  Welchen \pH-Wert hat eine Lösung von $\SI{.12}{\mole}$ Cyansäure (\ch{HOCN},
   \(\pKa=\num{3.9}\)) pro Liter?
 \end{question}
 \begin{solution}
@@ -784,7 +734,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 
 \begin{question}
   Dichloressigsäure (\ch{Cl2HCCOOH}), eine einprotonige Säure, ist bei einer
-  Konzentration von \SI{.20}{\mole\per\liter} zu \SI{33}{\percent}
+  Konzentration von $\SI{.20}{\mole\per\liter}$ zu \SI{33}{\percent}
   dissoziiert.  Wie groß sind \Ka, \pKa, \pH{} und \pOH?
 \end{question}
 \begin{solution}
@@ -809,7 +759,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 
 \begin{question}
   In einer Lösung von Benzylamin (\ch{C6H5CH2NH2}) mit einer Konzentration von
-  \SI{250}{\milli\mole\per\liter} ist \([\ch{OH-}] =
+  $\SI{250}{\milli\mole\per\liter}$ ist \([\ch{OH-}] =
   \SI{2.4e-3}{\mole\per\liter}\).  Wie groß sind \pKb{} und \pH?
 \end{question}
 \begin{solution}
@@ -830,7 +780,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 
 \begin{question}
   Für Milchsäure ist $\Ka = \SI{1.5e-4}{\mole\per\liter}$.  Wie groß ist der
-  \pH, wenn \SI{.16}{\mole\per\liter} Milchsäure in Lösung sind?
+  \pH, wenn $\SI{.16}{\mole\per\liter}$ Milchsäure in Lösung sind?
 \end{question}
 \begin{solution}
   Mit Gleichung~\eqref{eq:schwache_saeure} gilt $\pH = \frac{1}{2}(-\log\Ka -
@@ -839,7 +789,7 @@ fasst alle Formeln, die Sie kennen sollten, noch einmal zusammen.
 
 \begin{question}
   Wie groß sind die Konzentrationen von \ch{N2H5+}, \ch{OH-} und \ch{N2H4}
-  (Hydrazin), in einer Lösung von \SI{.15}{\mole\per\liter} Hydrazin?
+  (Hydrazin), in einer Lösung von $\SI{.15}{\mole\per\liter}$ Hydrazin?
 \end{question}
 \begin{solution}
   Es gilt die Reaktionsgleichung

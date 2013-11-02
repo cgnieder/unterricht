@@ -48,7 +48,7 @@
 \cnltx@create@message*{arb}{arbeitsblatt}{WarningNoLine}
 \cnltx@create@message*{arb}{arbeitsblatt}{Info}
 
-\RequirePackage[ngerman]{babel}
+% \RequirePackage[ngerman]{babel}
 
 % font setup:
 \RequirePackage[oldstyle]{libertine}
@@ -70,7 +70,7 @@
 \RequirePackage{fnpct}
 
 % micro typography:
-\RequirePackage{microtype}
+\RequirePackage[babel]{microtype}
 
 % now recalculate the typearea:
 \recalctypearea
@@ -89,7 +89,6 @@
 
 % tabular material:
 \RequirePackage{array,booktabs,hhline}
-\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
 
 % header/footer:
 \RequirePackage{scrpage2}
@@ -102,12 +101,12 @@
 
 % exercises:
 \let\vary\relax
-\RequirePackage{exsheets}
+\RequirePackage[load-headings]{exsheets}
 
 % plots and other math graphics:
 \RequirePackage{xcolor}
 \colorlet{grid}{black!10}
-\RequirePackage{tkz-fct,tkz-euclide}
+\RequirePackage{tkz-fct,tkz-euclide,pgfplots}
 \usetkzobj{all}
 
 % title and the like:
@@ -125,6 +124,10 @@
   \let\title\@gobble
   \let\date\@gobble
   \let\author\@gobble
+  \begin{multicols}{2}[\section*{Inhaltsverzeichnis}]
+    \let\tocbasic@listhead\@gobble
+    \tableofcontents
+  \end{multicols}%
 }
 
 \renewcommand*\othersectionlevelsformat[3]{%
@@ -133,9 +136,135 @@
   \textcolor{cnltxblue}{\partname~\thepart\autodot}}
 
 % math and chemistry related commands:
-\RequirePackage{amsmath,amssymb,siunitx,chemmacros}
+\RequirePackage{amsmath,amssymb,siunitx,chemmacros,chemfig}
 \sisetup{locale=DE}
+\chemsetup{
+  option/language    = german,
+  chemformula/format = \libertineLF
+}
 
+% chemfig settings:
+% declare decoration 'complete sines'
+% (see http://tex.stackexchange.com/a/25689/5049)
+\usetikzlibrary{decorations.pathmorphing}
+\pgfdeclaredecoration{complete sines}{initial}{%
+  \state{initial}[
+      width=+0pt,
+      next state=sine,
+      persistent precomputation={%
+        \pgfmathsetmacro\matchinglength{%
+          \pgfdecoratedinputsegmentlength /
+          int(\pgfdecoratedinputsegmentlength/\pgfdecorationsegmentlength)
+        }%
+        \setlength{\pgfdecorationsegmentlength}{\matchinglength pt}%
+      }%
+    ]{}
+  \state{sine}[width=\pgfdecorationsegmentlength]{%
+    \pgfpathsine{%
+      \pgfpoint
+        {0.25\pgfdecorationsegmentlength}
+        {0.5\pgfdecorationsegmentamplitude}%
+    }%
+    \pgfpathcosine{%
+      \pgfpoint
+        {0.25\pgfdecorationsegmentlength}
+        {-0.5\pgfdecorationsegmentamplitude}%
+    }%
+    \pgfpathsine{%
+      \pgfpoint
+        {0.25\pgfdecorationsegmentlength}
+        {-0.5\pgfdecorationsegmentamplitude}%
+    }%
+    \pgfpathcosine{%
+      \pgfpoint
+        {0.25\pgfdecorationsegmentlength}
+        {0.5\pgfdecorationsegmentamplitude}%
+    }%
+  }%
+  \state{final}{}%
+}
+
+% delocated electrons:
+\pgfdeclaredecoration{delocated electrons}{initial}{%
+  \state{initial}[width=2pt]{%
+    \pgfpathlineto{\pgfpoint{2pt}{0pt}}%
+    \pgfpathmoveto{\pgfpoint{1.5pt}{2pt}}%
+    \pgfpathlineto{\pgfpoint{2pt}{2pt}}%
+    \pgfpathmoveto{\pgfpoint{2pt}{0pt}}%
+  }%
+  \state{final}{%
+    \pgfpathlineto{\pgfpointdecoratedpathlast}%
+  }%
+}
+
+\tikzset{
+  bold bond/.style = {line width = \arb@bondboldwidth},
+  dash bond/.style =
+    {dash pattern = on \arb@bondhashlength off \arb@bondhashlength},
+  hash bond/.style =
+    {
+      dash pattern = on \arb@bondwidth off \arb@bondhashlength,
+      line width   = \arb@bondboldwidth
+    },
+  wavy bond/.style =
+    {
+      decorate,
+      decoration =
+        {
+          complete sines,
+          amplitude   = \arb@bondboldwidth,
+          post length = 0 pt,
+          pre length  = 0 pt,
+          % Use the atom spacing: saved 
+          segment length = 
+            \the\dimexpr\csname CF@atom@sep\endcsname/5\relax
+        }
+    }
+  semi double bond/.style =
+    {decorate, decoration = delocated electrons},
+  semi double bond right/.style =
+    {
+      decorate,
+      decoration = {delocated electrons, mirror}
+    }
+}
+
+\newrobustcmd*\ChemDrawLike{%
+  \setatomsep{\arb@atomsep}%
+  \setdoublesep{\arb@doublesep}%
+  \setbondoffset{\arb@bondoffset}%
+  \setbondstyle{line width = \arb@bondwidth}%
+  \setcrambond
+    {\the\dimexpr \arb@bondwidth * 2 + \arb@bondboldwidth \relax}
+    {\arb@bondwidth}
+    {\arb@bondhashlength}%
+  \setarrowdefault{,,line width = \arb@bondwidth}%
+  \ifbool{arb@chemfig@chemformula}
+    {\ChemFigExtendAtom}%
+    {\renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}}%
+}
+
+\newrobustcmd*\setbonds[6]{%
+  \def\arb@atomsep{#1}%
+  \def\arb@bondwidth{#2}%
+  \def\arb@bondboldwidth{#3}%
+  \def\arb@bondhashlength{#4}%
+  \def\arb@doublesep{#5}%
+  \def\arb@bondoffset{#6}%
+}
+
+\setbonds
+  {1.78500 em}
+  {0.06642 em}
+  {0.22832 em}
+  {0.25737 em}
+  {0.35700 em}
+  {0.18265 em}
+\ChemDrawLike
+\setarrowoffset{1em}
+\setcompoundsep{7em}
+
+% math setup:
 \DeclareMathOperator\asin{sin^{-1}}
 \DeclareMathOperator\acos{cos^{-1}}
 \DeclareMathOperator\atan{tan^{-1}}
@@ -198,6 +327,20 @@
       }[-\baselineskip]%
     \endgroup
 }
+
+% definitions:
+\newmdenv[
+  % backgroundcolor = red!20,
+  % hidealllines    = true,
+  linecolor       = cnltxred ,
+  leftmargin      = 2em ,
+  rightmargin     = 2em ,
+  skipabove       = \baselineskip ,
+  skipbelow       = \baselineskip ,
+  frametitle      = Definition ,
+  frametitlefont  = \large\sffamily\scshape ,
+  frametitlebackgroundcolor = cnltxred!40
+]{definition}
 
 % acronyms abused as some kind of glossary:
 \newrobustcmd\saveat{%
