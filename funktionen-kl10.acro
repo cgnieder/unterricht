@@ -14,10 +14,19 @@
 \DeclareAcronym{Funktion}{
   short = Funktion ,
   long  = {
-    Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl der
-    \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl der
+    Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl aus der
+    \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl aus der
     \begriff*{Wertemenge} zugeordnet, und zwar so, dass man eindeutig sagen
-    kann, welche es ist.
+    kann, welche es ist.  Diese zugeordnete Zahl nennt man auch
+    \begriff*{Funktionswert}.
+  }
+}
+\DeclareAcronym{Funktionswert}{
+  short = Funktionswert ,
+  long  = {
+    Der Wert der \begriff*{Wertemenge}, der einem bestimmten Wert der
+    \begriff*{Definitionsmenge} zugeordnet wird.  Oder anders gesagt: der
+    $y$-Wert, der zu einem bestimmten $x$-Wert gehört.
   }
 }
 \DeclareAcronym{Funktionsgleichung}{
@@ -49,7 +58,7 @@
 }
 \DeclareAcronym{Ordinatenabschnitt}{
   short = Ordinatenabschnitt ,
-  long  = Ein Fachbegriff für die \begriff*{y-Achsenabschnitt}.
+  long  = Ein Fachbegriff für den \begriff*{y-Achsenabschnitt}.
 }
 \DeclareAcronym{Parabel}{
   short = Parabel ,

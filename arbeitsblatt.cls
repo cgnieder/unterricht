@@ -41,37 +41,75 @@
   \arbeitsblatt@version\space
   \arbeitsblatt@info\space (CN)]
 
-\LoadClassWithOptions{scrartcl}
+\newbool{arb@loadfonts}
+\newbool{arb@babel}
+\pgfkeys{
+  arb/.cd ,
+    loadfonts/.is if = arb@loadfonts ,
+    babel/.code      =
+      \booltrue{arb@babel}
+      \def\arb@babel@options{#1} ,
+    babel/.default   = ngerman ,
+    .unknown/.code   =
+      \expandafter\PassOptionsToClass\expandafter{\pgfkeyscurrentname}{scrartcl}
+}
+
+\ProcessPgfOptions{/arb}
+\let\@classoptionslist\relax
+
+\LoadClass{scrartcl}
 
 \cnltx@create@message*{arb}{arbeitsblatt}{Error}
 \cnltx@create@message*{arb}{arbeitsblatt}{Warning}
 \cnltx@create@message*{arb}{arbeitsblatt}{WarningNoLine}
 \cnltx@create@message*{arb}{arbeitsblatt}{Info}
 
-% \RequirePackage[ngerman]{babel}
+\ifbool{arb@babel}{%
+  \expandafter\RequirePackage\expandafter[\arb@babel@options]{babel}
+}{}
 
-% font setup:
-\RequirePackage[oldstyle]{libertine}
-\csdef{libertine@figurestyle}{LF}
-\RequirePackage[libertine]{newtxmath}
-\csdef{libertine@figurestyle}{OsF}
-
+\ifbool{arb@loadfonts}{
+  % font setup:
+  \RequirePackage[T1]{fontenc}
+  \RequirePackage[oldstyle]{libertine}
+  \csdef{libertine@figurestyle}{LF}
+  \RequirePackage[libertine]{newtxmath}
+  \csdef{libertine@figurestyle}{OsF}
+  \RequirePackage[scaled=.81]{beramono}
+}{}
 % foornotes:
-\RequirePackage[supstfm=libertinesups]{superiors}
-% libertine does not have superior letters:
-\def\@makefnmark{%
-  \hbox{%
-    \cnltx@ifisnum{\@thefnmark}
-      {\textsu{\hspace*{\superiors@spaced}\@thefnmark}}
-      {\@textsuperscript{\normalfont\@thefnmark}}%
-  }%
-}
+\ifbool{arb@loadfonts}{
+  \RequirePackage[supstfm=libertinesups]{superiors}
+  % libertine does not have superior letters:
+  \def\@makefnmark{%
+    \hbox{%
+      \cnltx@ifisnum{\@thefnmark}
+        {\textsu{\hspace*{\superiors@spaced}\@thefnmark}}
+        {\@textsuperscript{\normalfont\@thefnmark}}%
+    }%
+  }
+}{}
 \deffootnote{2em}{1em}{\llap{\thefootnotemark. }}
 \RequirePackage{fnpct}
 
 % micro typography:
-\RequirePackage[babel]{microtype}
-
+\ifbool{arb@loadfonts}{
+  \RequirePackage[babel]{microtype}
+  \DeclareMicrotypeSet[tracking]{scshape}{
+    encoding = {*} ,
+    shape    = {sc,scit,si}
+  }
+  \DeclareMicrotypeSet{romansans}{
+    encoding = {*},
+    family   = {rm*,sf*}
+  }
+  \microtypesetup{
+    tracking   = scshape ,
+    protrusion = romansans ,
+    expansion  = romansans
+  }
+  \DisableLigatures{ family = tt* }
+}{}
 % now recalculate the typearea:
 \recalctypearea
 
@@ -107,6 +145,7 @@
 \RequirePackage{xcolor}
 \colorlet{grid}{black!10}
 \RequirePackage{tkz-fct,tkz-euclide,pgfplots}
+\pgfplotsset{compat=newest}
 \usetkzobj{all}
 
 % title and the like:
@@ -117,6 +156,14 @@
 \renewcommand*\author[1]{\gdef\@author{#1}}
 \renewcommand*\date[1]{\gdef\@date{#1}}
 
+\newbool{arb@abstract}
+\newcommand\arb@abstract{}
+\newcommand\setabstract[1]{%
+  \booltrue{arb@abstract}%
+  \renewcommand\arb@abstract{#1}%
+}
+
+\RequirePackage{multicol}
 \renewcommand*\maketitle{%
   \begin{center}
     \Huge\sffamily\@title
@@ -124,7 +171,12 @@
   \let\title\@gobble
   \let\date\@gobble
   \let\author\@gobble
-  \begin{multicols}{2}[\section*{Inhaltsverzeichnis}]
+  \ifbool{arb@abstract}{%
+    \begin{abstract}
+      \arb@abstract
+    \end{abstract}
+  }{}%
+  \begin{multicols}{2}[{\section*{\contentsname}\pdfbookmark[1]{\contentsname}{toc}}]
     \let\tocbasic@listhead\@gobble
     \tableofcontents
   \end{multicols}%
@@ -239,9 +291,10 @@
     {\arb@bondwidth}
     {\arb@bondhashlength}%
   \setarrowdefault{,,line width = \arb@bondwidth}%
-  \ifbool{arb@chemfig@chemformula}
-    {\ChemFigExtendAtom}%
-    {\renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}}%
+  % \ifbool{arb@chemfig@chemformula}
+  %   {\ChemFigExtendAtom}%
+  %   {\renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}}%
+  \renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}%
 }
 
 \newrobustcmd*\setbonds[6]{%
