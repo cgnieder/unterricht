@@ -1,12 +1,22 @@
 % arara: pdflatex: { shell: on }
 % arara: pdflatex: { shell: on }
-% arara: pdflatex: { shell: on }
-% arara: pdflatex: { shell: on }
-\documentclass{arbeitsblatt}
-\usepackage[T1]{fontenc}
+% !arara: pdflatex: { shell: on }
+% !arara: pdflatex: { shell: on }
+\documentclass[loadfonts,babel=ngerman]{arbeitsblatt}
 \usepackage[utf8]{inputenc}
 
 \title{(Quadratische) Funktionen}
+\setabstract{%
+  Diese Übersicht soll grundsätzlich nur quadratische Funktionen behandeln und
+  alle typischen Aufgabestellungen enthalten, wie sie in einer
+  Realschulprüfung vorkommen können.  Da dort das Thema "`quadratische
+  Funktionen"' aber nicht klar von den linearen Funktionen zu trennen sind,
+  werden diese hier auch kurz behandelt.
+  
+  Am Ende der Übersicht befindet sich eine Liste häufig verwendeter Begriffe
+  mit jeweils einer kurzen Erklärung.  Begriff, die dort auftauchen, sind mit
+  einem Pfeil gekennzeichnet, so wie hier \begriff{Funktion}.
+}
 
 \usepackage{silence}
 \WarningFilter{microtype}{I cannot find a protrusion list}
@@ -28,20 +38,6 @@
 \begin{document}
 
 \maketitle
-
-\begin{abstract}
-  Diese Übersicht soll grundsätzlich nur quadratische Funktionen behandeln und
-  alle typischen Aufgabestellungen enthalten, wie sie in einer
-  Realschulprüfung vorkommen können.  Da dort das Thema "`quadratische
-  Funktionen"' aber nicht klar von den linearen Funktionen zu trennen sind,
-  werden diese hier auch kurz behandelt.
-  
-  Am Ende der Übersicht befindet sich eine Liste häufig verwendeter Begriffe
-  mit jeweils einer kurzen Erklärung.  Begriff, die dort auftauchen, sind mit
-  einem Pfeil gekennzeichnet, so wie hier \begriff{Funktion}.
-\end{abstract}
-
-\tableofcontents
 
 \section{Allgemeines -- Begriffsklärung}
 
@@ -67,9 +63,11 @@ Beispiel dafür ist Tabelle~\vref{tab:wertetabelle}.
   \end{tabular}
 \end{table}
 
-Diese Zahlenpaare kann man in einem Koordinatensystem einzeichen.  Für die
-Werte aus Tabelle~\vref{tab:wertetabelle} wurde das in
-Abbildung~\vref{fig:wertepaare} gemacht.
+Der $y$-Wert, der einem $x$-Wert zugeordnet wurde, wird auch
+\begriff{Funktionswert} genannt.  Die Zahlenpaare kann man in einem
+Koordinatensystem einzeichen.  Für die Werte aus
+Tabelle~\vref{tab:wertetabelle} wurde das in Abbildung~\vref{fig:wertepaare}
+gemacht.
 
 \begin{figure}
   \centering
@@ -146,10 +144,10 @@ unbedingt merken: sie werden unter Garantie prüfungsrelevant sein!
   aufstellen:
   \begin{center}
     \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
-     x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\
-    \hline
-     y & -5 & -3 & -1 &  1 &  3 &  5 &  7
-  \end{tabular}
+       x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\
+      \hline
+       y & -5 & -3 & -1 &  1 &  3 &  5 &  7
+    \end{tabular}
   \end{center}
   Die $y$-Werte kann man jeweils ausrechnen, indem man die
   $x$-Werte\footnote{Sie werden zufällig ausgewählt; von $-3$ bis $3$ ist
@@ -250,7 +248,7 @@ sich der \begriff{Steigungswinkel} mit dem Tangens\footnote{Zur Erinnerung:
     \tkzGrid
     \tkzAxeXY
     \tkzDefPoints{.5/0/N,2/0/X,1.5/2/a,3/2/b,3/5/c}
-    \tkzDrawSegments(a,b b,c c,a)
+    \tkzDrawSegments[color=red](a,b b,c)
     \tkzLabelSegment[below](a,b){$\Delta x$}
     \tkzLabelSegment[right](b,c){$\Delta y$}
     \tkzMarkAngle[color=green,fill=green!10](X,N,a)
@@ -292,6 +290,57 @@ werden hier ab jetzt auch $\atan$ verwenden.
 \end{beispiel}
 
 \section{Quadratische Funktionen -- Parabeln}\label{sec:quadr-funkt-parab}
+\subsection{Was ist das?}
+Quadratische Funktionen sind Funktionen, deren \begriff{Funktionswert}
+mindestens dadurch gebildet wird, dass der $x$-Wert mit sich selbst
+multipliziert wurde.  Da auch bei einem Quadrat die Fläche dadurch berechnet
+wird, dass eine Seite mit sich selbst multipliziert wird, nennt man
+"`Mit"=sich"=selbst"=multiplizieren"' auch \emph{quadrieren}.  Das Ergebnis
+nennt man das \emph{Quadrat} der entprechenden Zahl.  Zum Beispiel ist \num{9}
+das Quadrat von \num{3} (und auch das Quadrat von \num{-3}).
+
+Die einfachste Funktionsgleichung einer quadratischen Funktion ist damit
+\begin{equation}
+  \label{eq:quadr-funkt-simpel}
+  y = x\cdot x
+\end{equation}
+oder eher
+\begin{equation}
+  \label{eq:quadr-funkt-basis}
+  y = x^2 \quad.
+\end{equation}
+
+Die Funktion in Gleichung~\vref{eq:quadr-funkt-basis} hat folgende
+\begriff{Wertetabelle}:
+
+\begin{center}
+  \begin{tabular}{>{$}l<{$}||*6{>{$}C{1cm}<{$}|}>{$}C{1cm}<{$}}
+     x & -3 & -2 & -1 &  0 &  1 &  2 &  3  \\
+    \hline
+     y &  9 &  4 &  1 &  0 &  1 &  4 &  9
+  \end{tabular}
+\end{center}
+
+Als Schaubild ergibt sich damit der Graph in
+Abbildung~\vref{fig:normalparabel}.  Den Graph einer quadratischen Funktion
+nennt man \begriff{Parabel} und eine Parabel der Form wie in
+Abbildung~\ref{fig:normalparabel} nennt man \emph{Normalparabel}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=.5]
+    \tkzInit[xmin=-5.5,xmax=5.5,ymin=--1,ymax=10]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzDefPoints{-3/9/a,-2/4/b,-1/1/c,0/0/d,1/1/e,2/4/f,3/9/g}
+    \tkzDrawPoints[color=red,shape=cross out](a,b,c,d,e,f,g)
+    \tkzFct[color=red]{x**2}
+  \end{tikzpicture}
+  \caption{Der Graph der Normalparabel
+    (Gleichung~\ref{eq:quadr-funkt-basis}).}
+  \label{fig:normalparabel}
+\end{figure}
+
 \subsection{Normalparabel}
 
 \subsection{Allgemeine Form}
