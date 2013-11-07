@@ -42,15 +42,20 @@
   \arbeitsblatt@info\space (CN)]
 
 \newbool{arb@loadfonts}
+\booltrue{arb@loadfonts}
+\newbool{arb@autotoc}
+\booltrue{arb@autotoc}
 \newbool{arb@babel}
+
 \pgfkeys{
   arb/.cd ,
-    loadfonts/.is if = arb@loadfonts ,
-    babel/.code      =
+    load-fonts/.is if = arb@loadfonts ,
+    auto-toc/.is if   = arb@autotoc ,
+    babel/.code       =
       \booltrue{arb@babel}
       \def\arb@babel@options{#1} ,
-    babel/.default   = ngerman ,
-    .unknown/.code   =
+    babel/.default    = ngerman ,
+    .unknown/.code    =
       \expandafter\PassOptionsToClass\expandafter{\pgfkeyscurrentname}{scrartcl}
 }
 
@@ -176,10 +181,12 @@
       \arb@abstract
     \end{abstract}
   }{}%
-  \begin{multicols}{2}[{\section*{\contentsname}\pdfbookmark[1]{\contentsname}{toc}}]
-    \let\tocbasic@listhead\@gobble
-    \tableofcontents
-  \end{multicols}%
+  \ifbool{arb@autotoc}{%
+    \begin{multicols}{2}[{\section*{\contentsname}\pdfbookmark[1]{\contentsname}{toc}}]
+      \let\tocbasic@listhead\@gobble
+      \tableofcontents
+    \end{multicols}%
+  }{}%
 }
 
 \renewcommand*\othersectionlevelsformat[3]{%
@@ -188,10 +195,10 @@
   \textcolor{cnltxblue}{\partname~\thepart\autodot}}
 
 % math and chemistry related commands:
-\RequirePackage{amsmath,amssymb,siunitx,chemmacros,chemfig}
+\RequirePackage{amsmath,amssymb,siunitx,chemfig}
 \sisetup{locale=DE}
+\RequirePackage[language=ngerman,ghsystem=false]{chemmacros}
 \chemsetup{
-  option/language    = german,
   chemformula/format = \libertineLF
 }
 
@@ -323,15 +330,18 @@
 \DeclareMathOperator\atan{tan^{-1}}
 
 % 
-\newcommand*\menge[1]{\mathbb{#1}}
-\newcommand*\natuerliche     {\menge{N}}
-\newcommand*\ganze           {\menge{Z}}
-\newcommand*\rationale       {\menge{Q}}
-\newcommand*\irrationale     {\menge{I}}
-\newcommand*\reelle          {\menge{R}}
-\newcommand*\komplexe        {\menge{C}}
-\newcommand*\definitionsmenge{\menge{D}}
-\newcommand*\wertemenge      {\menge{W}}
+\newcommand*\zahlenmenge[1]{\mathbb{#1}}
+\newcommand*\natuerliche     {\zahlenmenge{N}}
+\newcommand*\ganze           {\zahlenmenge{Z}}
+\newcommand*\rationale       {\zahlenmenge{Q}}
+\newcommand*\irrationale     {\zahlenmenge{I}}
+\newcommand*\reelle          {\zahlenmenge{R}}
+\newcommand*\komplexe        {\zahlenmenge{C}}
+\newcommand*\definitionsmenge{\zahlenmenge{D}}
+\newcommand*\wertemenge      {\zahlenmenge{W}}
+
+\newcommand*\menge[1]{\{#1\}}
+\newcommand*\vorausgesetzt{\mid}
 
 % \punkt*(x,y) or \punkt*(x,y,z)
 % \punkt{A}(x,y) or \punkt{A}(x,y,z)
@@ -404,16 +414,21 @@
 }
 \newcommand*\resetat{}
 
-\newcommand*\siehe{$\rightarrow$~}
-\newcommand*\begriff{\siehe\ac}
-\newcommand*\begriffa{\siehe\aca}
+\newrobustcmd*\siehe{$\rightarrow$\nobreakspace}
+\newrobustcmd*\begriff{\siehe\acs}
+\newrobustcmd*\begriffa{\siehe\aca}
+\newrobustcmd*\begriffp{\siehe\acp}
 % currently there is one definition file, mathe-kl10.acro
 \newrobustcmd*\loadacronyms[1]{%
   \saveat
+  \shorthandon{"}%
+  \useshorthands{"}%
   \makeatletter
   \input{#1.acro}%
+  \shorthandoff{"}%
   \resetat
 }
+\@onlypreamble\loadacronyms
 
 \AtBeginDocument{%
   \RequirePackage{hyperref}

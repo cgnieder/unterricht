@@ -1,121 +1,155 @@
 \RequirePackage{acro}
 
 \DeclareAcronym{Abszisse}{
-  short = Abszisse ,
-  long  = Ein Fachbegriff für die $x$-Achse.
+  short = {Abszisse} ,
+  long  = {Ein Fachbegriff für die $x$"~Achse.} ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Definitionsmenge}{
-  short = Definitionsmenge ,
+  short = {Definitionsmenge} ,
   long  = {
     Die Menge der Zahlen, denen Zahlen aus einer zweiten Menge, der
     \begriff*{Wertemenge} zugeordnet werden.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Funktion}{
-  short = Funktion ,
+  short = {Funktion} ,
   long  = {
     Eine eindeutige \begriff*{Zuordnung}.  Eine Zahl aus der
     \begriff*{Definitionsmenge} bekommt \emph{genau eine} Zahl aus der
     \begriff*{Wertemenge} zugeordnet, und zwar so, dass man eindeutig sagen
     kann, welche es ist.  Diese zugeordnete Zahl nennt man auch
     \begriff*{Funktionswert}.
-  }
+  },
+  long-plural  = ,
+  short-plural = {en}
 }
 \DeclareAcronym{Funktionswert}{
-  short = Funktionswert ,
+  short = {Funktionswert} ,
   long  = {
     Der Wert der \begriff*{Wertemenge}, der einem bestimmten Wert der
     \begriff*{Definitionsmenge} zugeordnet wird.  Oder anders gesagt: der
-    $y$-Wert, der zu einem bestimmten $x$-Wert gehört.
-  }
+    $y$"~Wert, der zu einem bestimmten $x$"~Wert gehört.
+  },
+  long-plural  = ,
+  short-plural = {e}
 }
 \DeclareAcronym{Funktionsgleichung}{
-  short = Funktionsgleichung ,
+  short = {Funktionsgleichung} ,
   long  = {
     Die Vorschrift, nach der man den Wert aus der \begriff*{Wertemenge} bilden
     kann, der einer Zahl aus der \begriff*{Definitionsmenge} zugeordnet wird.
-  }
+  },
+  long-plural  = ,
+  short-plural = {en}
 }
 \DeclareAcronym{Gerade}{
-  short = Gerade ,
+  short = {Gerade} ,
   long  = {
     Eine lineare \begriff*{Funktion}.  Ihre Wertepaare liegen im Schaubild
     alle auf einer geraden Linie.
   } ,
-  alt   = Geraden
+  alt   = {Geraden} ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Graph}{
-  short = Graph ,
+  short = {Graph} ,
   long  = {
     Die graphische Darstellung einer \begriff*{Funktion} im
     Koordinatensystem.
   } ,
-  alt   = Graphen
+  alt   = {Graphen} ,
+  long-plural  = ,
+  short-plural = {en}
 }
 \DeclareAcronym{Ordinate}{
-  short = Ordinate ,
-  long  = Ein Fachbegriff für die $y$-Achse.
+  short = {Ordinate} ,
+  long  = {Ein Fachbegriff für die $y$"~Achse.} ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Ordinatenabschnitt}{
-  short = Ordinatenabschnitt ,
-  long  = Ein Fachbegriff für den \begriff*{y-Achsenabschnitt}.
+  short = {Ordinatenabschnitt} ,
+  long  = {Ein Fachbegriff für den \begriff*{y-Achsenabschnitt}.} ,
+  long-plural  = ,
+  short-plural = {e}
 }
 \DeclareAcronym{Parabel}{
-  short = Parabel ,
+  short = {Parabel} ,
   long  = {
     Der \begriff*{Graph} einer quadratischen Funktion.  Oft auch als Synonym
     für \emph{quadratische Funktion} verwendet.
   } ,
-  alt   = Parabeln
+  alt   = {Parabeln} ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Steigung}{
-  short = Steigung ,
+  short = {Steigung} ,
   long  = {
     Ein Maß dafür, wie steil der \begriff*{Graph} einer \begriffa*{Gerade} im
     Koordinatensystem liegt.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = {en}
 }
 \DeclareAcronym{Steigungswinkel}{
-  short = Steigungswinkel ,
+  short = {Steigungswinkel} ,
   long  = {
     Der Winkel, den der \begriff*{Graph} einer \begriffa*{Gerade} mit der
-    $x$-Achse bildet.  Er wird aus der \begriff*{Steigung} über
+    $x$"~Achse bildet.  Er wird aus der \begriff*{Steigung} über
     $\tan(\alpha)=m$ berechnet.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = 
 }
 \DeclareAcronym{Tupel}{
-  short = Tupel ,
+  short = {Tupel} ,
   long  = {
     Wertepaare oder Zahlenpaare wie $\punkt*(1,2)$.  In der Regel werden sie
     als Koordinaten eines Punktes im Koordinatensystem interpretiert.
   } ,
-  alt   = Tupeln
+  alt   = {Tupeln} ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Wertemenge}{
-  short = Wertemenge ,
+  short = {Wertemenge} ,
   long  = {
     Die Menge der Zahlen, die denen einer ersten Menge, der
     \begriff*{Definitionsmenge} zugeordnet werden.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{Wertetabelle}{
-  short = Wertetabelle ,
+  short = {Wertetabelle} ,
   long  = {
     Eine Tabelle, in der einige \begriff*{Tupel} einer \begriff*{Zuordnung}
     aufgelistet sind.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = {n}
 }
 \DeclareAcronym{y-Achsenabschnitt}{
-  short = $y$-Achsenabschnitt ,
+  short = {$y$"~Achsenabschnitt} ,
   long  = {
     Die Stelle, an der der \begriff*{Graph} einer \begriffa*{Gerade} die
-    $y$-Achse schneidet.  Man nennt sie auch \begriff*{Ordinatenabschnitt}.
-  }
+    $y$"~Achse schneidet.  Man nennt sie auch \begriff*{Ordinatenabschnitt}.
+  } ,
+  long-plural  = ,
+  short-plural = {e}
 }
 \DeclareAcronym{Zuordnung}{
-  short = Zuordnung ,
+  short = {Zuordnung} ,
   long  = {
     Eine Gruppe von \begriffa*{Tupel}, die nach einer bestimmten Regel
     gebildet werden.
-  }
+  } ,
+  long-plural  = ,
+  short-plural = {en}
 }

@@ -2,7 +2,7 @@
 % arara: pdflatex: { shell: on }
 % !arara: pdflatex: { shell: on }
 % !arara: pdflatex: { shell: on }
-\documentclass[loadfonts,babel=ngerman]{arbeitsblatt}
+\documentclass[load-fonts,babel=ngerman]{arbeitsblatt}
 \usepackage[utf8]{inputenc}
 
 \title{(Quadratische) Funktionen}
@@ -63,7 +63,7 @@ Beispiel dafür ist Tabelle~\vref{tab:wertetabelle}.
   \end{tabular}
 \end{table}
 
-Der $y$-Wert, der einem $x$-Wert zugeordnet wurde, wird auch
+Der $y$"~Wert, der einem $x$"~Wert zugeordnet wurde, wird auch
 \begriff{Funktionswert} genannt.  Die Zahlenpaare kann man in einem
 Koordinatensystem einzeichen.  Für die Werte aus
 Tabelle~\vref{tab:wertetabelle} wurde das in Abbildung~\vref{fig:wertepaare}
@@ -124,7 +124,7 @@ Prüfungsaufgaben zum Thema "`quadratische Funktionen"' auch lineare Funktionen
 beinhalten.  Man sollte sie also auch kennen.
 
 \section{Lineare Funktionen -- Geraden}\label{sec:line-funkt-gerad}
-\subsection{Funktionsgleichung, Steigung und $y$-Achsenabschnitt}
+\subsection{Funktionsgleichung, Steigung und $y$"~Achsenabschnitt}
 
 Lineare Funktionen sind eine spezielle Sorte von Funktionen, bei denen alle
 Wertepaare im Koordinatensystem auf einer geraden Linie liegen.  Man nennt sie
@@ -149,8 +149,8 @@ unbedingt merken: sie werden unter Garantie prüfungsrelevant sein!
        y & -5 & -3 & -1 &  1 &  3 &  5 &  7
     \end{tabular}
   \end{center}
-  Die $y$-Werte kann man jeweils ausrechnen, indem man die
-  $x$-Werte\footnote{Sie werden zufällig ausgewählt; von $-3$ bis $3$ ist
+  Die $y$"~Werte kann man jeweils ausrechnen, indem man die
+  $x$"~Werte\footnote{Sie werden zufällig ausgewählt; von $-3$ bis $3$ ist
     meistens ein guter Bereich.} in die Gleichung einsetzt.  Zum Beispiel:
   \begin{equation*}
     y = 2\cdot(-2)+1=-4+1=-3
@@ -158,8 +158,8 @@ unbedingt merken: sie werden unter Garantie prüfungsrelevant sein!
 \end{beispiel}
 
 Der \begriff{y-Achsenabschnitt} $c$ gibt den Wert an, an dem der
-\begriff{Graph} die $y$-Achse schneidet.  Das ist das Zahlenpaar, dessen
-$x$-Wert $0$ ist: $\punkt{S_y}(0,c)$.
+\begriff{Graph} die $y$"~Achse schneidet.  Das ist das Zahlenpaar, dessen
+$x$"~Wert $0$ ist: $\punkt{S_y}(0,c)$.
 \begin{equation}
   \label{eq:lin-funkt-achsenabschnitt}
   y = m \cdot 0 + c = c
@@ -168,8 +168,8 @@ $x$-Wert $0$ ist: $\punkt{S_y}(0,c)$.
 Die \begriff{Steigung} $m$ ist ein Maß dafür, wie steil oder flach der
 \begriff{Graph} der \begriffa{Gerade} im Koordinatensystem liegt.  Man kann
 sie bestimmen, indem man an den \begriffa{Graph} der \begriffa{Gerade} ein
-rechtwinkliges Dreieck einzeichnet, dessen eine Kathete parallel zur $x$-Achse
-ist und dessen zweite Kathete parallel zur $y$-Achse ist.  Die Größe und
+rechtwinkliges Dreieck einzeichnet, dessen eine Kathete parallel zur $x$"~Achse
+ist und dessen zweite Kathete parallel zur $y$"~Achse ist.  Die Größe und
 Position des Dreiecks spielt dabei keine Rolle.  Der Quotient aus der
 vertikalen Seite $\Delta y$ und der horizontalen Seite $\Delta x$ ergibt dann
 $m$:
@@ -198,8 +198,8 @@ Ein solches Dreieck ist in Abbildung~\vref{fig:lin-funkt-steigung} gezeigt.
 
 \subsection{Bestimmung einer Geraden aus zwei Punkten}
 Hat man zwei Punkte $\punkt P(x_p,y_p)$ und $\punkt Q(x_q,y_q)$ gegeben, dann
-ergibt die Differenz ihrer $y$-Werte $\Delta y$ und die Differenz ihrer
-$x$-Werte $\Delta x$.  Damit lässt sich die \begriff{Steigung} dann auch
+ergibt die Differenz ihrer $y$"~Werte $\Delta y$ und die Differenz ihrer
+$x$"~Werte $\Delta x$.  Damit lässt sich die \begriff{Steigung} dann auch
 berechnen:
 \begin{equation}
   \label{eq:steigung-aus-zwei-punkten}
@@ -219,8 +219,8 @@ bestimmen.
     m = \frac{3-(-3)}{1-(-2)}=\frac{6}{3}=2
   \end{equation*}
   Nun setzt man den Wert der Steigung und die Werte eines der
-  Punkte\footnote{Die Werte eines Punktes entsprechen immer einem $x$-Wert und
-    einem $y$-Wert (alphabetisch!).  Sie werden also für $x$ und $y$
+  Punkte\footnote{Die Werte eines Punktes entsprechen immer einem $x$"~Wert und
+    einem $y$"~Wert (alphabetisch!).  Sie werden also für $x$ und $y$
     eingesetzt.} in Gleichung~\vref{eq:lineare-funktion} ein und berechnet $c$:
   \begin{align*}
     -3 &= 2\cdot(-2) +c \\
@@ -292,7 +292,7 @@ werden hier ab jetzt auch $\atan$ verwenden.
 \section{Quadratische Funktionen -- Parabeln}\label{sec:quadr-funkt-parab}
 \subsection{Was ist das?}
 Quadratische Funktionen sind Funktionen, deren \begriff{Funktionswert}
-mindestens dadurch gebildet wird, dass der $x$-Wert mit sich selbst
+mindestens dadurch gebildet wird, dass der $x$"~Wert mit sich selbst
 multipliziert wurde.  Da auch bei einem Quadrat die Fläche dadurch berechnet
 wird, dass eine Seite mit sich selbst multipliziert wird, nennt man
 "`Mit"=sich"=selbst"=multiplizieren"' auch \emph{quadrieren}.  Das Ergebnis
@@ -329,7 +329,7 @@ Abbildung~\ref{fig:normalparabel} nennt man \emph{Normalparabel}.
 \begin{figure}
   \centering
   \begin{tikzpicture}[scale=.5]
-    \tkzInit[xmin=-5.5,xmax=5.5,ymin=--1,ymax=10]
+    \tkzInit[xmin=-5.5,xmax=5.5,ymin=-2,ymax=10]
     \tkzGrid
     \tkzAxeXY
     \tkzDefPoints{-3/9/a,-2/4/b,-1/1/c,0/0/d,1/1/e,2/4/f,3/9/g}
@@ -342,8 +342,102 @@ Abbildung~\ref{fig:normalparabel} nennt man \emph{Normalparabel}.
 \end{figure}
 
 \subsection{Normalparabel}
+Manchmal wird nur die Parabel mit der Gleichung
+$y=x^2$~(\ref{eq:quadr-funkt-basis}) als "`Normalparabel"' bezeichnet,
+meistens meint man aber alle, deren Graphen die gleiche Form wie in
+Abbildung~\ref{fig:normalparabel} haben.  Das heißt, das $x^2$ darf bei einer
+Normalparabel nicht weiter mit einer Zahl multipliziert werden, da das die
+Form ändern würde.  Das Addieren weiterer Terme verschiebt allerdings den
+Graphen nur.  Die allgemeine Form einer Normalparabel lautet damit
+\begin{equation}
+  \label{eq:normalparabel}
+    y = x^2 + p\cdot x + q
+\end{equation}
+Diese Gleichung sollte man sich schon mal merken, da sie der Ansatz für viele
+verschiedene Aufgabenstellungen ist.
+
+Der Wert $q$ verschiebt die Parabel vertikal\footnote{senkrecht, also in
+  $y$"~Richtung} und entspricht dem $y$"~Achsenabschnitt
+
+\begin{beispiel}
+  Das Schaubild der Funktion $y=x^2-2$ ist eine um $2$ Einheiten nach unten
+  geschobene Normalparabel, das der Funktion $y=x^2+3$ eine um $3$ Einheiten
+  nach oben geschobene:
+  \begin{center}
+    \begin{tikzpicture}[scale=.5]
+      \tkzInit[xmin=-5,xmax=5,ymin=-3,ymax=7]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzFct[color=red]{x**2-2}
+      \tkzDefPointByFct(-1)
+      \tkzText[left,text=red](tkzPointResult){$y=x^2-2$}
+      \tkzFct[color=green]{x**2+3}
+      \tkzDefPointByFct(1)
+      \tkzText[right,text=green](tkzPointResult){$y=x^2+3$}
+    \end{tikzpicture}
+  \end{center}
+\end{beispiel}
+
+Der Teil $p\cdot x$ verschiebt die Parabel zwar in $x$"~Richtung, gleichzeitig
+aber auch in $y$"~Richtung.  Es lässt sich zwar vorhersagen, wie das Schaubild
+verschoben wird, dass muss man aber nicht unbedingt können, darum wird es hier
+auch nicht näher beschrieben.
+
+\begin{beispiel}
+  Die Schaubilder der Funktionen $y=x^2-2x$ und $y=x^2+3x$ sind verschobene
+  Normalparabeln:
+  \begin{center}
+    \begin{tikzpicture}[scale=.5]
+      \tkzInit[xmin=-5,xmax=5,ymin=-3,ymax=7]
+      \tkzGrid
+      \tkzAxeXY
+      \tkzFct[color=red]{x**2-2*x}
+      \tkzDefPointByFct(-1)
+      \tkzText[left,text=red](tkzPointResult){$y=x^2-2x$}
+      \tkzFct[color=blue]{x**2+3*x}
+      \tkzDefPointByFct(1)
+      \tkzText[right,text=blue](tkzPointResult){$y=x^2+3x$}
+    \end{tikzpicture}
+  \end{center}
+\end{beispiel}
 
 \subsection{Allgemeine Form}
+In der allgemeinen Form wird auch das $x^2$ mit einer Zahl mulipliziert, so
+dass die Form der Parabel \emph{keine} Normalparabel mehr ist.
+\begin{equation}
+  \label{eq:allgemeine-form}
+  y = a\cdot x^2 + b\cdot x + c
+\end{equation}
+$c$ gibt auch hier den $y$"~Achsenabschnitt an.  Sehen wir uns den Fall an,
+wenn $b=0$ und $c=0$.  Die Gleichung lautet dann
+\begin{equation}
+  \label{eq:ax**2}
+  y = a\cdot x^2 \quad.
+\end{equation}
+Für die Werte $a=2$, $a=\frac{1}{3}$ und $a=-3$ sind die Schaubilder in
+Abbildung~\vref{fig:gestreckt-und-gestaucht} dargestellt.  Schaubilder, die
+enger als eine Normalparabel sind, nennt man \emph{gestreckt} und
+Schaulbilder, die flacher als Normalparabeln sind, nennt man \emph{gestaucht}.
+
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=.5]
+    \tkzInit[xmin=-5,xmax=5,ymin=-5,ymax=5]
+    \tkzGrid
+    \tkzAxeXY
+    \tkzFct[color=red]{2*x**2}
+    \tkzDefPointByFct(1.1)
+    \tkzText[right,text=red](tkzPointResult){$y=2x^2$}
+    \tkzFct[color=blue]{-3*x**2}
+    \tkzText[right,text=blue](1,-3){$y=-3x^2$}
+    \tkzFct[color=brown]{.333333*x**2}
+    \tkzDefPointByFct(2)
+    \tkzText[below right,text=brown](tkzPointResult){$y=\frac{1}{3}x^2$}
+  \end{tikzpicture}
+  \caption{Gestreckte und gestauchte Parabeln}
+  \label{fig:gestreckt-und-gestaucht}
+\end{figure}
+
 
 \subsection{Scheitelform}
 
