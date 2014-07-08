@@ -1,0 +1,178 @@
+% --------------------------------------------------------------------------
+% the VEKTORGEOMETRIE package v0.0
+% 
+%   TikZ-Stile und Makros, die Skizzen im Bereich Vektorgeometrie erleichtern
+%   sollen
+% 
+% 2014/07/08
+% --------------------------------------------------------------------------
+% Clemens Niederberger
+% Web:    https://github.com/cgnieder/unterricht/
+% E-Mail: contact@mychemistry.eu
+% --------------------------------------------------------------------------
+% Copyright 2014 Clemens Niederberger
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% 
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Clemens Niederberger.
+% --------------------------------------------------------------------------
+% If you have any ideas, questions, suggestions or bugs to report, please
+% feel free to contact me.
+% --------------------------------------------------------------------------
+\def\vktgt@version{0.0}
+\def\vktgt@date{2014/07/08}
+\def\vktgt@info{TikZ fuer Vektorgeometrie}
+
+\ProvidesPackage{vektorgeometrie}[%
+  \vktgt@date\space
+  \vktgt@version\space
+  \vktgt@info\space (CN)]
+
+\RequirePackage{tikz,etoolbox,mathehelfer}
+
+\tikzset{
+  vektorgeometrie/.cd ,
+    3D/.style = {
+      x = {(-.3535 cm,-.3535 cm)},
+      y = {(1 cm, 0 cm)},
+      z = {(0 cm, 1 cm)} ,
+      vektorgeometrie/3D/axes ,
+      vektorgeometrie/3D/domain = (-5:5)(-5:5)(-5:5) ,
+      vektorgeometrie/3D/ticks = minimal ,
+      % re-think this:
+      vektorgeometrie/3D/.cd
+    } ,
+    3D/domain/.code = \vktgt@readdomain{#1} ,
+    3D/x-domain/.code = \vktgt@readdomain@x#1\q@stop ,
+    3D/y-domain/.code = \vktgt@readdomain@y()#1\q@stop ,
+    3D/z-domain/.code = \vktgt@readdomain@z()()#1\q@stop ,
+    3D/axes/.is choice ,
+    3D/axes/.default = true ,
+    3D/axes/true/.code = {
+      \def\axes{
+        \draw[->]
+          ({\vktgt@xmin-.5},0,0) -- ({\vktgt@xmax+.5},0,0)
+          node[anchor=north east]{$x$} ;
+        \draw[->]
+          (0,{\vktgt@ymin-.5},0) -- (0,{\vktgt@ymax+.5},0)
+          node[anchor=west]{$y$} ;
+        \draw[->]
+          (0,0,{\vktgt@zmin-.5}) -- (0,0,{\vktgt@zmax+.5})
+          node[anchor=south]{$z$} ;
+        \vktgt@ticks
+      }
+    } ,
+    3D/axes/false/.code = \let\axes\relax ,
+    3D/ticks/.is choice ,
+    3D/ticks/none/.code = \let\vktgt@ticks\relax,
+    3D/ticks/minimal/.code =
+      \def\vktgt@ticks{
+        \foreach\x in {\vktgt@xmin@int,...,\vktgt@xmax@int}
+          { \draw (\x,-.1,0) -- ++ (0,.2,0) ; }
+        \foreach\y in {\vktgt@ymin@int,...,\vktgt@ymax@int}
+          { \draw (0,\y,-.1) -- ++ (0,0,.2) ; }
+        \foreach\z in {\vktgt@zmin@int,...,\vktgt@zmax@int}
+          { \draw (0,-.1,\z) -- ++ (0,.2,0) ; }
+        \node[left] at (1,-.1,0) {$1$} ;
+        \node[below] at (0,1,-.1) {$1$} ;
+        \node[left] at (0,-.1,1) {$1$} ;
+        \node at (0,0,0) {$0$} ;
+      } ,
+    3D/ticks/full/.code =
+      \def\vktgt@ticks{
+        \foreach\x in {\vktgt@xmin@int,...,\vktgt@xmax@int}
+          {
+            \draw (\x,-.1,0) -- ++ (0,.2,0)
+            node[left,pos=0] {\pgfmathparse{\x==0 ? "" : "$\x$"}\pgfmathresult} ;
+          }
+        \foreach\y in {\vktgt@ymin@int,...,\vktgt@ymax@int}
+          {
+            \draw (0,\y,-.1) -- ++ (0,0,.2)
+            node[below,pos=0] {\pgfmathparse{\y==0 ? "" : "$\y$"}\pgfmathresult} ;
+          }
+        \foreach\z in {\vktgt@zmin@int,...,\vktgt@zmax@int}
+          {
+            \draw (0,-.1,\z) -- ++ (0,.2,0)
+            node[left,pos=0] {\pgfmathparse{\z==0 ? "" : "$\z$"}\pgfmathresult} ;
+          }
+        \node at (0,0,0) {$0$} ;
+      }
+}
+
+\newcommand*\vktgt@readdomain[1]{%
+  \vktgt@readdomain@x#1\q@stop
+  \vktgt@readdomain@y#1\q@stop
+  \vktgt@readdomain@z#1\q@stop
+}
+\def\vktgt@readdomain@x(#1:#2)#3\q@stop{%
+  \pgfmathsetmacro\vktgt@xmin{#1}%
+  \pgfmathsetmacro\vktgt@xmin@int{int(#1)}%
+  \pgfmathsetmacro\vktgt@xmax{#2}%
+  \pgfmathsetmacro\vktgt@xmax@int{int(#2)}%
+}
+\def\vktgt@readdomain@y(#1)(#2:#3)#4\q@stop{%
+  \pgfmathsetmacro\vktgt@ymin{#2}%
+  \pgfmathsetmacro\vktgt@ymin@int{int(#2)}%
+  \pgfmathsetmacro\vktgt@ymax{#3}%
+  \pgfmathsetmacro\vktgt@ymax@int{int(#3)}%
+}
+\def\vktgt@readdomain@z(#1)(#2)(#3:#4)\q@stop{%
+  \pgfmathsetmacro\vktgt@zmin{#3}%
+  \pgfmathsetmacro\vktgt@zmin@int{int(#3)}%
+  \pgfmathsetmacro\vktgt@zmax{#4}%
+  \pgfmathsetmacro\vktgt@zmax@int{int(#4)}%
+}
+
+\newcommand*\ebene[5][]{%
+  \pgfmathsetmacro\ebene@A{(#5)/(#2)}%
+  \pgfmathsetmacro\ebene@B{(#5)/(#3)}%
+  \pgfmathsetmacro\ebene@C{(#5)/(#4)}%
+  \draw[draw=red,fill=red!20,opacity=.8,#1]
+    (\ebene@A,0,0) -- (0,\ebene@B,0) -- (0,0,\ebene@C) -- cycle ;
+}
+
+\newbool{vkt@drawpoint@name}
+
+\newcommand*\drawpoint{%
+  \@ifstar
+    {\boolfalse{vkt@drawpoint@name}\vktgt@drawpoint}
+    {\booltrue{vkt@drawpoint@name}\vktgt@drawpoint}%
+}
+\newcommand*\sketchpoint{\vktgt@sketchpoint}
+
+\newcommand*\vktgt@drawpoint[1][right]{%
+  \tikzset{
+    vkt@point/.cd ,
+      label/.style={#1}
+  }%
+  \ifbool{vkt@drawpoint@name}
+    {\vktgt@drawpoint@aux}
+    {\vktgt@drawpoint@aux*}%
+}
+
+\def\vktgt@sketchpoint(#1,#2,#3){%
+  \draw[dotted]
+    (#1,0,0) -- (#1,#2,0) -- (#1,#2,#3)
+    (0,#2,0) -- (#1,#2,0) ;
+  \draw (#1,#2,#3) circle (2pt) ;
+}
+
+\def\vktgt@drawpoint@aux#1(#2,#3,#4){
+  \vktgt@sketchpoint(#2,#3,#4)
+  \node[vkt@point/label] at (#2,#3,#4)
+    {%
+      \ifbool{vkt@drawpoint@name}
+        {$\punkt{#1}(#2,#3,#4)$}
+        {$\punkt*(#2,#3,#4)$}%
+    } ;
+}
+
+\endinput

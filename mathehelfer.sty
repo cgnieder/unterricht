@@ -1,0 +1,76 @@
+% --------------------------------------------------------------------------
+% the MATHEHELFER package v0.0
+% 
+%   Kleine Helferlein für das Setzen von Mathematik
+% 
+% 2014/07/08
+% --------------------------------------------------------------------------
+% Clemens Niederberger
+% Web:    https://github.com/cgnieder/unterricht/
+% E-Mail: contact@mychemistry.eu
+% --------------------------------------------------------------------------
+% Copyright 2014 Clemens Niederberger
+% 
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License, either version 1.3
+% of this license or (at your option) any later version.
+% The latest version of this license is in
+%   http://www.latex-project.org/lppl.txt
+% and version 1.3 or later is part of all distributions of LaTeX
+% version 2005/12/01 or later.
+% 
+% This work has the LPPL maintenance status `maintained'.
+% 
+% The Current Maintainer of this work is Clemens Niederberger.
+% --------------------------------------------------------------------------
+% If you have any ideas, questions, suggestions or bugs to report, please
+% feel free to contact me.
+% --------------------------------------------------------------------------
+\def\mthhlf@version{0.0}
+\def\mthhlf@date{2014/07/08}
+\def\mthhlf@info{Kleine Helferlein für das Setzen von Mathematik}
+
+\ProvidesPackage{mathehelfer}[%
+  \mthhlf@date\space
+  \mthhlf@version\space
+  \mthhlf@info\space (CN)]
+
+\RequirePackage{amsmath,amssymb}
+
+% \punkt*(x,y) or \punkt*(x,y,z)
+% \punkt{A}(x,y) or \punkt{A}(x,y,z)
+\newcommand*\punkt{\@ifstar{\mthhlf@punkt}{\mthhlf@punkt@nostar}}
+\newcommand*\mthhlf@punkt@nostar[1]{#1\mthhlf@punkt}
+\newcommand*\mthhlf@punkt{}
+\def\mthhlf@punkt(#1){\mthhlf@punkt@aux#1,,\q@stop}
+\def\mthhlf@punkt@aux#1,#2,#3,#4\q@stop{%
+  \ifblank{#3}
+    {\mthhlf@punkt@RR{#1}{#2}}
+    {\mthhlf@punkt@RRR{#1}{#2}{#3}}%
+}
+\newcommand*\mthhlf@punkt@RR[2]{(\,#1\mid#2\,)}
+\newcommand*\mthhlf@punkt@RRR[3]{(\,#1\mid#2\mid#3\,)}
+
+% math setup:
+\DeclareMathOperator\asin{sin^{-1}}
+\DeclareMathOperator\acos{cos^{-1}}
+\DeclareMathOperator\atan{tan^{-1}}
+
+\newcommand*\auftrag[1]{{}\mid{}#1}
+
+\newcommand*\zahlenmenge[1]{\mathbb{#1}}
+\newcommand*\natuerliche     {\zahlenmenge{N}}
+\newcommand*\ganze           {\zahlenmenge{Z}}
+\newcommand*\rationale       {\zahlenmenge{Q}}
+\newcommand*\irrationale     {\zahlenmenge{I}}
+\newcommand*\reelle          {\zahlenmenge{R}}
+\newcommand*\komplexe        {\zahlenmenge{C}}
+\newcommand*\definitionsmenge{\zahlenmenge{D}}
+\newcommand*\wertemenge      {\zahlenmenge{W}}
+\newcommand*\loesung         {\zahlenmenge{L}}
+\newcommand*\menge[1]{\{#1\}}
+\newcommand*\bedingung{\mid}
+
+\endinput
+HISTORY:
+2014/07/08 v0.0 - initial draft

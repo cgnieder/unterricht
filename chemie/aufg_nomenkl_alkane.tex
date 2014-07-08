@@ -1,78 +1,29 @@
 % arara: pdflatex
 % arara: pdflatex
-\documentclass{scrartcl}
-
-\usepackage[T1]{fontenc}
+\documentclass[auto-toc=false,babel=ngerman]{arbeitsblatt}
 \usepackage[utf8]{inputenc}
-\usepackage[supstfm=libertinesups]{superiors}
-\usepackage{libertine}
-\usepackage{microtype}
+\title{Nomenklatur von Kohlenwasserstoffen}
 
-\usepackage[greek,ngerman]{babel}
-\usepackage{scrpage2}
-\clearscrheadfoot
-\pagestyle{scrheadings}
-\chead{Seite \thepage}
-\cfoot{\small C.\,Niederberger -- aktualisiert am \today}
-
-\usepackage{upgreek}
-\usepackage{chemmacros}
-\chemsetup{
-  option/language         = german,
-  chemformula/name-format = \centering ,
-%  phases/pos              = sub
-}
-
-\DeclareChemReaction[star]{gthreactions}{gather}
-\newcommand*\rctref[1]{\{\ref{#1}\}}
-
-\usepackage{chemnum}
-\cmpdsetup{cmpd-counter=Alph}
-
-\usepackage{siunitx}
-\sisetup{
-  detect-all ,
-%  per-mode = fraction ,
-  per-mode = symbol ,
-  fixed-exponent = 0 ,
-%  scientific-notation = true ,
-  exponent-product = \cdot ,
-  list-final-separator = { und } ,
-  list-pair-separator = { und } ,
-  range-phrase = { bis }
-}
-\DeclareSIUnit{\graddh}{grad\,dH}
-
-\usepackage{chemfig}
-\setatomsep{1.8em}
-\setcrambond{2.5pt}{1pt}{2pt}
-\definesubmol{C}{{\vphantom{CH_3}C}H_}
-\definesubmol{m}{C(-[2]H)(-[6]H)}
-
-\usepackage[load-headings]{exsheets}
 \SetupExSheets{
   totoc ,
   headings = block-rev
 }
 
-\usepackage{fnpct}
+\DeclareSIUnit{\graddh}{grad\,dH}
 
-\usepackage{booktabs}
+\ChemDrawLike
+
+\definesubmol{C}{CH}
+\definesubmol{m}{C(-[2]H)(-[6]H)}
+
 \usepackage{collcell}
 \newcolumntype{C}{>{\collectcell\ch}l<{\endcollectcell}}
 
-\usepackage{tikz}
 \colorlet{angcolor}{green!50!black}
 \colorlet{lencolor}{red!50!black}
 
-\usepackage{multicol}
-\usepackage[colorlinks]{hyperref}
-
 \begin{document}
-
-\begin{center}
-  \Huge\sffamily Nomenklatur von Kohlenwasserstoffen
-\end{center}
+\maketitle
 
 \addsec{Übungen}
 
@@ -105,7 +56,7 @@
 \end{question}
 \begin{solution}[name=Einfach verweigte Alkane I]
   \begin{tasks}
-    \task \chemfig{!C3-!C{}(-[6]!C3)-!C2-!C3}
+    \task \chemfig{!C3-!C(-[6]!C3)-!C2-!C3}
     \task \chemfig{!C3-!C2-!C{}(-[6]!C2-!C3)-!C2-!C2-!C3}
     \task \chemfig{!C3-!C2-!C2-!C{}(-[6]!C2-!C2-!C3)-!C2-!C2-!C3}
     \task \chemfig{!C3-!C2-!C2-!C2-!C{}(-[6]!C2-!C2-!C2-!C3)-!C2-!C2-!C2-!C3}

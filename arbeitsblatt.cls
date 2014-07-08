@@ -6,10 +6,10 @@
 % 2013/11/01
 % --------------------------------------------------------------------------
 % Clemens Niederberger
-% Web:    https://bitbucket.org/cgnieder/unterricht/
+% Web:    https://github.com/cgnieder/unterricht/
 % E-Mail: contact@mychemistry.eu
 % --------------------------------------------------------------------------
-% Copyright 2013 Clemens Niederberger
+% Copyright 2013-2014 Clemens Niederberger
 % 
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3
@@ -133,6 +133,7 @@
 % tabular material:
 \RequirePackage{array,booktabs,hhline}
 
+% TODO: aktualisieren auf scrlayer-scrpage
 % header/footer:
 \RequirePackage{scrpage2}
 \clearscrheadfoot
@@ -195,170 +196,7 @@
   \textcolor{cnltxblue}{\partname~\thepart\autodot}}
 
 % math and chemistry related commands:
-\RequirePackage{amsmath,amssymb,siunitx,chemfig}
-\sisetup{locale=DE}
-\RequirePackage[language=ngerman,ghsystem=false]{chemmacros}
-\chemsetup{
-  chemformula/format = \libertineLF
-}
-
-% chemfig settings:
-% declare decoration 'complete sines'
-% (see http://tex.stackexchange.com/a/25689/5049)
-\usetikzlibrary{decorations.pathmorphing}
-\pgfdeclaredecoration{complete sines}{initial}{%
-  \state{initial}[
-      width=+0pt,
-      next state=sine,
-      persistent precomputation={%
-        \pgfmathsetmacro\matchinglength{%
-          \pgfdecoratedinputsegmentlength /
-          int(\pgfdecoratedinputsegmentlength/\pgfdecorationsegmentlength)
-        }%
-        \setlength{\pgfdecorationsegmentlength}{\matchinglength pt}%
-      }%
-    ]{}
-  \state{sine}[width=\pgfdecorationsegmentlength]{%
-    \pgfpathsine{%
-      \pgfpoint
-        {0.25\pgfdecorationsegmentlength}
-        {0.5\pgfdecorationsegmentamplitude}%
-    }%
-    \pgfpathcosine{%
-      \pgfpoint
-        {0.25\pgfdecorationsegmentlength}
-        {-0.5\pgfdecorationsegmentamplitude}%
-    }%
-    \pgfpathsine{%
-      \pgfpoint
-        {0.25\pgfdecorationsegmentlength}
-        {-0.5\pgfdecorationsegmentamplitude}%
-    }%
-    \pgfpathcosine{%
-      \pgfpoint
-        {0.25\pgfdecorationsegmentlength}
-        {0.5\pgfdecorationsegmentamplitude}%
-    }%
-  }%
-  \state{final}{}%
-}
-
-% delocated electrons:
-\pgfdeclaredecoration{delocated electrons}{initial}{%
-  \state{initial}[width=2pt]{%
-    \pgfpathlineto{\pgfpoint{2pt}{0pt}}%
-    \pgfpathmoveto{\pgfpoint{1.5pt}{2pt}}%
-    \pgfpathlineto{\pgfpoint{2pt}{2pt}}%
-    \pgfpathmoveto{\pgfpoint{2pt}{0pt}}%
-  }%
-  \state{final}{%
-    \pgfpathlineto{\pgfpointdecoratedpathlast}%
-  }%
-}
-
-\tikzset{
-  bold bond/.style = {line width = \arb@bondboldwidth},
-  dash bond/.style =
-    {dash pattern = on \arb@bondhashlength off \arb@bondhashlength},
-  hash bond/.style =
-    {
-      dash pattern = on \arb@bondwidth off \arb@bondhashlength,
-      line width   = \arb@bondboldwidth
-    },
-  wavy bond/.style =
-    {
-      decorate,
-      decoration =
-        {
-          complete sines,
-          amplitude   = \arb@bondboldwidth,
-          post length = 0 pt,
-          pre length  = 0 pt,
-          % Use the atom spacing: saved 
-          segment length = 
-            \the\dimexpr\csname CF@atom@sep\endcsname/5\relax
-        }
-    }
-  semi double bond/.style =
-    {decorate, decoration = delocated electrons},
-  semi double bond right/.style =
-    {
-      decorate,
-      decoration = {delocated electrons, mirror}
-    }
-}
-
-\newrobustcmd*\ChemDrawLike{%
-  \setatomsep{\arb@atomsep}%
-  \setdoublesep{\arb@doublesep}%
-  \setbondoffset{\arb@bondoffset}%
-  \setbondstyle{line width = \arb@bondwidth}%
-  \setcrambond
-    {\the\dimexpr \arb@bondwidth * 2 + \arb@bondboldwidth \relax}
-    {\arb@bondwidth}
-    {\arb@bondhashlength}%
-  \setarrowdefault{,,line width = \arb@bondwidth}%
-  % \ifbool{arb@chemfig@chemformula}
-  %   {\ChemFigExtendAtom}%
-  %   {\renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}}%
-  \renewcommand*\printatom[1]{\ensuremath{\mathsf{##1}}}%
-}
-
-\newrobustcmd*\setbonds[6]{%
-  \def\arb@atomsep{#1}%
-  \def\arb@bondwidth{#2}%
-  \def\arb@bondboldwidth{#3}%
-  \def\arb@bondhashlength{#4}%
-  \def\arb@doublesep{#5}%
-  \def\arb@bondoffset{#6}%
-}
-
-\setbonds
-  {1.78500 em}
-  {0.06642 em}
-  {0.22832 em}
-  {0.25737 em}
-  {0.35700 em}
-  {0.18265 em}
-\ChemDrawLike
-\setarrowoffset{1em}
-\setcompoundsep{7em}
-
-% math setup:
-\DeclareMathOperator\asin{sin^{-1}}
-\DeclareMathOperator\acos{cos^{-1}}
-\DeclareMathOperator\atan{tan^{-1}}
-
-% 
-\newcommand*\zahlenmenge[1]{\mathbb{#1}}
-\newcommand*\natuerliche     {\zahlenmenge{N}}
-\newcommand*\ganze           {\zahlenmenge{Z}}
-\newcommand*\rationale       {\zahlenmenge{Q}}
-\newcommand*\irrationale     {\zahlenmenge{I}}
-\newcommand*\reelle          {\zahlenmenge{R}}
-\newcommand*\komplexe        {\zahlenmenge{C}}
-\newcommand*\definitionsmenge{\zahlenmenge{D}}
-\newcommand*\wertemenge      {\zahlenmenge{W}}
-
-\newcommand*\menge[1]{\{#1\}}
-\newcommand*\vorausgesetzt{\mid}
-
-% \punkt*(x,y) or \punkt*(x,y,z)
-% \punkt{A}(x,y) or \punkt{A}(x,y,z)
-\newcommand*\punkt{\@ifstar{\@punkt}{\@Punkt}}
-\newcommand*\@Punkt[1]{#1\@punkt}
-\newcommand*\@punkt{}
-\def\@punkt(#1){\@punkt@aux#1,,\q@stop}
-\def\@punkt@aux#1,#2,#3,#4\q@stop{%
-  \ifblank{#3}
-    {\@punkt@RR{#1}{#2}}
-    {\@punkt@RRR{#1}{#2}{#3}}%
-}
-\newcommand*\@punkt@RR[2]{(\,#1\mid#2\,)}
-\newcommand*\@punkt@RRR[3]{(\,#1\mid#2\mid#3\,)}
-
-% Arbeitsstrich:
-\newcommand*\auftrag[1]{{}\mid#1}
+\RequirePackage{mathehelfer,chemiehelfer}
 
 % example environment:
 \RequirePackage[framemethod=tikz]{mdframed}
@@ -371,6 +209,10 @@
   leftline   = false ,
   frametitle = {\refstepcounter{beispiel}\textbf{Beispiel~\thebeispiel.}}
 ]{beispiel}
+
+\newmdenv[
+  frametitle = {\textbf{Info}}
+]{info}
 
 % tipp
 \RequirePackage{marginnote,ragged2e,adjustbox}
@@ -438,9 +280,14 @@
   }%
 }
 
+\newrobustcmd\setarbeitsblatt[1]{%
+  \pgfqkeys{/arb}{#1}%
+}
+
 \endinput
 HISTORY:
 2013/11/01 v0.0 - initial draft
+2014/07/08 v0.1 - Code in 'mathehelfer' und `chemiehelfer' ausgelagert
 
 TODO:
 - Option, mit denen Mathe/Chemie-Pakete optional geladen werden können

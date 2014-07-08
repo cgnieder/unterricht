@@ -7,7 +7,7 @@ Clemens Niederberger
 Web:    https://github.com/cgnieder/unterricht/
 E-Mail: contact@mychemistry.eu
 --------------------------------------------------------------------------
-Copyright 2013 Clemens Niederberger
+Copyright 2013-2014 Clemens Niederberger
 
 Lizenz: CC BY-NC-SA
 
@@ -15,8 +15,17 @@ Dieses Werk bzw. Inhalt ist lizenziert unter einer Creative Commons
 Namensnennung - Nicht-kommerziell - Weitergabe unter gleichen
 Bedingungen 3.0 Unported Lizenz.
 
-Ausnahme: die LaTeX2e-Klasse `arbeitsblatt.cls' steht unter der LPPL 1.3
-oder später und hat den Status `maintained'.  Aktueller Maintainer ist
-Clemens Niederberger.
-
+Ausnahmen:
+ - die LaTeX2e-Klasse `arbeitsblatt.cls' steht unter der LPPL 1.3 oder später
+   und hat den Status `maintained'.  Aktueller Maintainer ist Clemens
+   Niederberger.
+ - das LaTeX2e-Paket `mathehelfer.sty' steht unter der LPPL 1.3 oder später
+   und hat den Status `maintained'.  Aktueller Maintainer ist Clemens
+   Niederberger.
+ - das LaTeX2e-Paket `chemiehelfer.sty' steht unter der LPPL 1.3 oder später
+   und hat den Status `maintained'.  Aktueller Maintainer ist Clemens
+   Niederberger.
+ - das LaTeX2e-Paket `vektorgeometrie.sty' steht unter der LPPL 1.3 oder später
+   und hat den Status `maintained'.  Aktueller Maintainer ist Clemens
+   Niederberger.
 --------------------------------------------------------------------------
